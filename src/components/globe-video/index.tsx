@@ -6,13 +6,21 @@ export default function GlobeVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll();
   const [interactionVisible, setInteractionVisible] = useState(false);
-  useEffect(() => {
-    if (!videoRef?.current) return;
-    videoRef.current.pause();
-  }, [videoRef]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (videoRef?.current?.readyState) {
+    if (latest < 0.1) {
+      if (videoRef?.current?.readyState) {
+
+        if (videoRef.current.paused) {
+          videoRef.current.play();
+        }
+      }
+    }
+
+    if (videoRef?.current?.readyState && latest > 0.1) {
+      if (!videoRef.current.paused) {
+        videoRef.current.pause();
+      }
       videoRef.current.currentTime = videoRef.current.duration * latest;
     }
     if (!interactionVisible && latest > 0.99) {
