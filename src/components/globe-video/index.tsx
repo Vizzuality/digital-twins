@@ -4,34 +4,67 @@ import { useEffect, useRef, useState } from "react";
 
 export default function GlobeVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { scrollYProgress } = useScroll();
   const [interactionVisible, setInteractionVisible] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const [goToEnd, setGoToEnd] = useState(false);
+
+  const { scrollYProgress } = useScroll();
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.1) {
-      if (videoRef?.current?.readyState) {
+    const direction: 'down' | 'up' = latest > lastScrollY ? "down" : "up";
+    if (videoRef?.current?.readyState) {
+      if (!goToEnd && direction === "down" && latest > 0.95) {
+        setGoToEnd(true);
+      } else if (goToEnd && (direction === "down" && latest < 0.95) || direction === "up") {
+        setGoToEnd(false);
+      }
 
-        if (videoRef.current.paused) {
-          videoRef.current.play();
-        }
+      if (!goToEnd && videoRef.current.paused) {
+        videoRef.current.play();
       }
     }
-
-    if (videoRef?.current?.readyState && latest > 0.1) {
-      if (!videoRef.current.paused) {
-        videoRef.current.pause();
-      }
-      videoRef.current.currentTime = videoRef.current.duration * latest;
-    }
-    if (!interactionVisible && latest > 0.99) {
-      setInteractionVisible(true);
-    }
-
-    if (interactionVisible && latest < 0.99) {
-      setInteractionVisible(false);
-    }
+    setLastScrollY(latest);
   })
 
+
+
+  useEffect(() => {
+    const handleTimeUpdate = () => {
+      if (videoRef.current === null || typeof videoRef.current === undefined) return;
+
+      const remainingTime = videoRef.current.duration - videoRef.current.currentTime;
+      if (goToEnd) {
+        // Max speed playback
+        videoRef.current.playbackRate = 16;
+        if (remainingTime > 8) {
+          // Use video jumps to get close to the end o the video
+          videoRef.current!.currentTime = videoRef.current!.currentTime + (remainingTime / 20);
+        } else if (remainingTime === 0) {
+          // End of video
+          videoRef.current.pause();
+          setInteractionVisible(true);
+          videoRef.current.playbackRate = 1;
+          setGoToEnd(false);
+        }
+      } else {
+        // Normal playback
+        videoRef.current.playbackRate = 1;
+        setInteractionVisible(false);
+      }
+    };
+
+    const currentVideo = videoRef.current;
+    if (currentVideo) {
+      currentVideo.addEventListener("timeupdate", handleTimeUpdate);
+    }
+
+    return () => {
+      if (currentVideo) {
+        currentVideo.removeEventListener("timeupdate", handleTimeUpdate);
+      }
+    };
+  }, [goToEnd]);
 
   return (
     <>
