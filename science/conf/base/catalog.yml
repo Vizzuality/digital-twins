@@ -1,0 +1,25 @@
+wind-speed-global-100km:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/ws_global_100km.nc
+
+wind-speed-global-10km:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/ws_global_10km.nc
+
+wind-speed-global-100km-parts:
+  type: partitions.PartitionedDataset
+  path: data/03_primary/ws-100-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+wind-speed-global-10km-parts:
+  type: partitions.PartitionedDataset
+  path: data/03_primary/ws-10-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
