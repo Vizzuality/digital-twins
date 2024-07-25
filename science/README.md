@@ -10,10 +10,11 @@ Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
 
 The project contains one pipeline for now: `globe`
 
-### `globe`
+### `global`
 
-Pipeline to split nextgems global wind speed datasets to set of tiffs to use in blender to render a rotating globe.
+Pipeline to split nextgems global datasets (low and high resolution) into a set of tiffs (one per timestep) to use in blender to render a rotating globe.
 
+### 
 
 ## Rules and guidelines
 
