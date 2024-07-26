@@ -75,16 +75,16 @@ def create_pipeline(**kwargs) -> Pipeline:
     hurricane_precipitation_pipe = pipeline(
         pipe=crop_base_pipeline,
         parameters={
-            "params:bbox": "params:hurricane_video.bbox",
-            "params:video": "params:hurricane_video",
+            "params:bbox": "params:hurricane_10km_render_params.bbox",
+            "params:video": "params:hurricane_10km_render_params",
         },
         namespace="total_precipitation_10km",
         tags=["hurricane", "zoomin", "high_resoltuion"],
     ) + pipeline(
         pipe=crop_base_pipeline,
         parameters={
-            "params:bbox": "params:hurricane_video.bbox",
-            "params:video": "params:hurricane_video",
+            "params:bbox": "params:hurricane_100km_render_params.bbox",
+            "params:video": "params:hurricane_100km_render_params",
         },
         namespace="total_precipitation_100km",
         tags=["hurricane", "zoomin", "low_resoltuion"],
@@ -93,16 +93,16 @@ def create_pipeline(**kwargs) -> Pipeline:
     amazonia_cloud_cover_pipe = pipeline(
         pipe=crop_base_pipeline,
         parameters={
-            "params:bbox": "params:amazonia_video.bbox",
-            "params:video": "params:amazonia_video",
+            "params:bbox": "params:amazonia_10km_render_params.bbox",
+            "params:video": "params:amazonia_10km_render_params",
         },
         namespace="cloud_cover_10km",
         tags=["amazonia", "zoomin", "high_resoltuion"],
     ) + pipeline(
         pipe=crop_base_pipeline,
         parameters={
-            "params:bbox": "params:amazonia_video.bbox",
-            "params:video": "params:amazonia_video",
+            "params:bbox": "params:amazonia_100km_render_params.bbox",
+            "params:video": "params:amazonia_100km_render_params",
         },
         namespace="cloud_cover_100km",
         tags=["amazonia", "zoomin", "low_resoltuion"],

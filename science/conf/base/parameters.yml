@@ -1,15 +1,33 @@
-hurricane_video:
+hurricane_10km_render_params:
     cmap: "viridis"
-    figsize: [12, 10]
+    scale: 4
     bbox:
         minx: -84.088
         miny: 15.89
         maxx: -55.88
         maxy: 41.15
 
-amazonia_video:
+hurricane_100km_render_params:
+    cmap: "viridis"
+    scale: 20
+    bbox:
+        minx: -84.088
+        miny: 15.89
+        maxx: -55.88
+        maxy: 41.15
+
+amazonia_10km_render_params:
     cmap: "Greens_r"
-    figsize: [12, 10]
+    scale: 4
+    bbox:
+        minx: -67.53
+        miny: -8.55
+        maxx: -47.76
+        maxy: 8.64
+
+amazonia_100km_render_params:
+    cmap: "Greens_r"
+    scale: 20
     bbox:
         minx: -67.53
         miny: -8.55

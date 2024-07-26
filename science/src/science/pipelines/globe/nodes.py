@@ -40,7 +40,6 @@ def split_by_timestep(ds: xr.Dataset) -> dict[str, xr.DataArray]:
 def parts_to_video(
     parts: dict[str, Callable[[], xr.DataArray]], params: dict[Any:Any]
 ) -> SequenceVideo:
-    resize_factor = 10
     cmap_lut = matplotlib.colormaps.get_cmap(params.get("cmap"))(range(256))
     cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
     imgs = []
@@ -49,15 +48,16 @@ def parts_to_video(
             # This comes from a partition dataset which is a callable only if reading files. When it is
             # a memoryfile it is not a callable
             dataset = dataset()[0]  # noqa: PLW2901
-        grey = dataset.values
-        grey = rescale(grey, 4, anti_aliasing=True)
+        # flip array to make the 0,0 origin of the image at the upper corner for PIL
+        grey = np.flipud(dataset.values)
+        grey = rescale(grey, params.get("scale"))
         # scale the values to 0-255
         grey = (
             (grey.astype(float) - grey.min()) * 255 / (grey.max() - grey.min())
         ).astype(np.uint8)
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
         np.take(cmap_lut, grey, axis=0, out=result)
-        imgs.append(Image.fromarray(np.flipud(result)))
+        imgs.append(Image.fromarray(result))
 
     return SequenceVideo(imgs, fps=20)
 
