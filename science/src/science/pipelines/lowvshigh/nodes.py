@@ -3,7 +3,6 @@ This is a boilerplate pipeline 'globe_compact'
 generated using Kedro 0.19.6
 """
 import logging
-from re import I
 from typing import Any, Callable
 
 import cartopy  # noqa: F401
@@ -14,7 +13,6 @@ import numpy as np
 import xarray as xr
 from kedro_datasets.video.video_dataset import SequenceVideo
 from PIL import Image
-from rasterio.plot import reshape_as_image
 from skimage.transform import rescale
 
 log = logging.getLogger(__name__)

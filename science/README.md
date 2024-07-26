@@ -10,20 +10,13 @@ Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
 
 The project contains one pipeline for now: `globe`
 
-### `global`
+### `lowvshigh`
 
-Pipeline to split nextgems global datasets (low and high resolution) into a set of tiffs (one per timestep) to use in blender to render a rotating globe.
+Pipeline to generate the comparisson between low and high resolution simulations. Currently it has:
 
-### 
+- splits nextgems global datasets into a set of tiffs (one per timestep) to use in blender to render a rotating globe.
+- video generation pipeline for a regions defined in `conf/parameters.yml`
 
-## Rules and guidelines
-
-In order to get the best out of the template:
-
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a [data engineering convention](https://docs.kedro.org/en/stable/faq/faq.html#what-is-data-engineering-convention)
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
 
 ## How to install dependencies
 
@@ -42,51 +35,36 @@ You can run your Kedro project with:
 ```
 kedro run
 ```
-
-## How to test your Kedro project
-
-Have a look at the files `src/tests/test_run.py` and `src/tests/pipelines/data_science/test_pipeline.py` for instructions on how to write your tests. Run the tests as follows:
+I recomend use the `ParallelRunner` to run the nodes in parallel 
 
 ```
-pytest
+kedro run --runner=ParallelRunner
 ```
 
-To configure the coverage threshold, look at the `.coveragerc` file.
+### Run a subset of the pipeline
 
-## Project dependencies
-
-To see and update the dependency requirements for your project use `requirements.txt`. Install the project requirements with `pip install -r requirements.txt`.
-
-[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
-
-## How to work with Kedro and notebooks
-
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `catalog`, `context`, `pipelines` and `session`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r requirements.txt` you will not need to take any extra steps before you use them.
-
-### Jupyter
+Kedro allows run subsets by selecting only nodes, pipelines or tags. Check the tags in the pipeline code or in kedro viz.
+For example to run only the detailed videos pipelines use
 
 ```
-kedro jupyter notebook
+kedro run --runner=ParallelRunner --tags zoomin
 ```
 
-You can also start JupyterLab:
+
+## Kedro viz
+
+Visualize the pipeline with
 
 ```
-kedro jupyter lab
+kedro viz
 ```
 
-### IPython
-And if you want to run an IPython session:
 
-```
-kedro ipython
-```
+## Rules and guidelines
 
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can use tools like [`nbstripout`](https://github.com/kynan/nbstripout). For example, you can add a hook in `.git/config` with `nbstripout --install`. This will run `nbstripout` before anything is committed to `git`.
+In order to get the best out of the template:
 
-> *Note:* Your output cells will be retained locally.
-
-[Further information about using notebooks for experiments within Kedro projects](https://docs.kedro.org/en/develop/notebooks_and_ipython/kedro_and_notebooks.html).
+* Don't remove any lines from the `.gitignore` file we provide
+* Make sure your results can be reproduced by following a [data engineering convention](https://docs.kedro.org/en/stable/faq/faq.html#what-is-data-engineering-convention)
+* Don't commit data to your repository
+* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`

@@ -2,12 +2,10 @@
 This is a boilerplate pipeline 'globe_compact'
 generated using Kedro 0.19.6
 """
-from pydoc import cli
-
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
-from science.pipelines.globe.nodes import (
+from science.pipelines.lowvshigh.nodes import (
     clip_to_boundary,
     georef_nextgems_dataset,
     parts_to_video,
