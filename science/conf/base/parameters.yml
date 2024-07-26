@@ -1,12 +1,17 @@
-hurricane_bbox:
-    minx: -84.088
-    miny: 15.89
-    maxx: -55.88
-    maxy: 41.15
+hurricane_video:
+    cmap: "viridis"
+    figsize: [12, 10]
+    bbox:
+        minx: -84.088
+        miny: 15.89
+        maxx: -55.88
+        maxy: 41.15
 
-
-amazonia_bbox:
-    minx: -67.53
-    miny: -8.55
-    maxx: -47.76
-    maxy: 8.64
+amazonia_video:
+    cmap: "Greens_r"
+    figsize: [12, 10]
+    bbox:
+        minx: -67.53
+        miny: -8.55
+        maxx: -47.76
+        maxy: 8.64

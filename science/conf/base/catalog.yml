@@ -27,6 +27,8 @@ wind_speed_global_10km.parts:
   filename_suffix: ".tif"
 
 
+
+
 # ============== CLOUD COVER ================
 
 
@@ -41,7 +43,7 @@ cloud_cover_100km.raw:
 
 cloud_cover_10km.parts:
   type: partitions.PartitionedDataset
-  path: data/03_primary/amazonia-10-parts
+  path: data/02_intermediate/amazonia-10-parts
   dataset: 
     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
     save_args:
@@ -50,12 +52,20 @@ cloud_cover_10km.parts:
 
 cloud_cover_100km.parts:
   type: partitions.PartitionedDataset
-  path: data/03_primary/amazonia-100-parts
+  path: data/02_intermediate/amazonia-100-parts
   dataset: 
     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
     save_args:
       compress: zstd
   filename_suffix: ".tif"
+
+cloud_cover_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/cloud_cover_10km.mp4
+
+cloud_cover_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/cloud_cover_100km.mp4
 
 # ============== PRECIPITATION ================
 
@@ -70,7 +80,7 @@ total_precipitation_100km.raw:
 
 total_precipitation_10km.parts:
   type: partitions.PartitionedDataset
-  path: data/03_primary/hurricane-10-parts
+  path: data/02_intermediate/hurricane-10-parts
   dataset: 
     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
     save_args:
@@ -79,9 +89,18 @@ total_precipitation_10km.parts:
 
 total_precipitation_100km.parts:
   type: partitions.PartitionedDataset
-  path: data/03_primary/hurricane-100-parts
+  path: data/02_intermediate/hurricane-100-parts
   dataset: 
     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
     save_args:
       compress: zstd
   filename_suffix: ".tif"
+
+
+total_precipitation_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tp_global_10km.mp4
+
+total_precipitation_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tp_global_100km.mp4

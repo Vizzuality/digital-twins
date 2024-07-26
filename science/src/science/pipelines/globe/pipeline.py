@@ -10,6 +10,7 @@ from kedro.pipeline.modular_pipeline import pipeline
 from science.pipelines.globe.nodes import (
     clip_to_boundary,
     georef_nextgems_dataset,
+    parts_to_video,
     split_by_timestep,
 )
 
@@ -31,7 +32,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
         ]
     )
-    clipped_base_pipeline = pipeline(
+    crop_base_pipeline = pipeline(
         [
             node(
                 func=georef_nextgems_dataset,
@@ -51,6 +52,11 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="parts",
                 name="split-by-timestep",
             ),
+            node(
+                func=parts_to_video,
+                inputs=["parts", "params:video"],
+                outputs="video",
+            ),
         ]
     )
 
@@ -67,25 +73,37 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
     hurricane_precipitation_pipe = pipeline(
-        pipe=clipped_base_pipeline,
-        parameters={"params:bbox": "params:hurricane_bbox"},
+        pipe=crop_base_pipeline,
+        parameters={
+            "params:bbox": "params:hurricane_video.bbox",
+            "params:video": "params:hurricane_video",
+        },
         namespace="total_precipitation_10km",
-        tags=["huirricane", "zoomin", "high_resoltuion"],
+        tags=["hurricane", "zoomin", "high_resoltuion"],
     ) + pipeline(
-        pipe=clipped_base_pipeline,
-        parameters={"params:bbox": "params:hurricane_bbox"},
+        pipe=crop_base_pipeline,
+        parameters={
+            "params:bbox": "params:hurricane_video.bbox",
+            "params:video": "params:hurricane_video",
+        },
         namespace="total_precipitation_100km",
-        tags=["huirricane", "zoomin", "low_resoltuion"],
+        tags=["hurricane", "zoomin", "low_resoltuion"],
     )
 
     amazonia_cloud_cover_pipe = pipeline(
-        pipe=clipped_base_pipeline,
-        parameters={"params:bbox": "params:amazonia_bbox"},
+        pipe=crop_base_pipeline,
+        parameters={
+            "params:bbox": "params:amazonia_video.bbox",
+            "params:video": "params:amazonia_video",
+        },
         namespace="cloud_cover_10km",
         tags=["amazonia", "zoomin", "high_resoltuion"],
     ) + pipeline(
-        pipe=clipped_base_pipeline,
-        parameters={"params:bbox": "params:amazonia_bbox"},
+        pipe=crop_base_pipeline,
+        parameters={
+            "params:bbox": "params:amazonia_video.bbox",
+            "params:video": "params:amazonia_video",
+        },
         namespace="cloud_cover_100km",
         tags=["amazonia", "zoomin", "low_resoltuion"],
     )
