@@ -3,6 +3,7 @@ This is a boilerplate pipeline 'globe_compact'
 generated using Kedro 0.19.6
 """
 import logging
+from math import isnan
 from typing import Any, Callable
 
 import cartopy  # noqa: F401
@@ -48,11 +49,21 @@ def parts_to_video(
             dataset = dataset()[0]  # noqa: PLW2901
         # flip array to make the 0,0 origin of the image at the upper corner for PIL
         grey = np.flipud(dataset.values)
-        grey = rescale(grey, params.get("scale"))
+        if np.isnan(grey).any():
+            grey = np.nan_to_num(grey)
+            grey = rescale(grey, params.get("scale"))
+            grey[grey == 0] = np.nan
+        else:
+            grey = rescale(grey, params.get("scale"))
         # scale the values to 0-255
         grey = (
-            (grey.astype(float) - grey.min()) * 255 / (grey.max() - grey.min())
-        ).astype(np.uint8)
+            (grey.astype(float) - np.nanmin(grey))
+            * 255
+            / (np.nanmax(grey) - np.nanmin(grey))
+        )
+        grey = np.nan_to_num(grey)
+        grey = grey.astype(np.uint8)
+        # breakpoint()
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
         np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))

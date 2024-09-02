@@ -70,45 +70,44 @@ def create_pipeline(**kwargs) -> Pipeline:
         tags=["windspeed", "global", "low_resolution"],
     )
 
-    hurricane_precipitation_pipe = pipeline(
+    hurricane_cloud_pipe = pipeline(
         pipe=crop_base_pipeline,
         parameters={
-            "params:bbox": "params:hurricane_10km_render_params.bbox",
-            "params:video": "params:hurricane_10km_render_params",
-        },
-        namespace="total_precipitation_10km",
-        tags=["hurricane", "zoomin", "high_resoltuion"],
-    ) + pipeline(
-        pipe=crop_base_pipeline,
-        parameters={
-            "params:bbox": "params:hurricane_100km_render_params.bbox",
-            "params:video": "params:hurricane_100km_render_params",
-        },
-        namespace="total_precipitation_100km",
-        tags=["hurricane", "zoomin", "low_resoltuion"],
-    )
-
-    amazonia_cloud_cover_pipe = pipeline(
-        pipe=crop_base_pipeline,
-        parameters={
-            "params:bbox": "params:amazonia_10km_render_params.bbox",
-            "params:video": "params:amazonia_10km_render_params",
+            "bbox": "params:hurricane_10km_render_params.bbox",
+            "video": "params:hurricane_10km_render_params",
         },
         namespace="cloud_cover_10km",
-        tags=["amazonia", "zoomin", "high_resoltuion"],
-    ) + pipeline(
-        pipe=crop_base_pipeline,
-        parameters={
-            "params:bbox": "params:amazonia_100km_render_params.bbox",
-            "params:video": "params:amazonia_100km_render_params",
-        },
-        namespace="cloud_cover_100km",
-        tags=["amazonia", "zoomin", "low_resoltuion"],
+        tags=["hurricane", "zoomin", "high_resoltuion"],
     )
 
-    return (
-        global_wind_10km_pipe
-        + global_wind_100km_pipe
-        + hurricane_precipitation_pipe
-        + amazonia_cloud_cover_pipe
+    amazonia_precipitation_pipe = pipeline(
+        pipe=crop_base_pipeline,
+        parameters={
+            "bbox": "params:amazonia_10km_render_params.bbox",
+            "video": "params:amazonia_10km_render_params",
+        },
+        namespace="total_precipitation_10km",
+        tags=["amazonia", "zoomin", "high_resoltuion"],
     )
+
+    temp_pipe = pipeline(
+        pipe=crop_base_pipeline,
+        parameters={
+            "bbox": "params:temperature_10km_render_params.bbox",
+            "video": "params:temperature_10km_render_params",
+        },
+        namespace="temp_10km",
+        tags=["pyrines", "zoomin", "high_resolution"],
+    )
+
+    sst_pipe = pipeline(
+        pipe=crop_base_pipeline,
+        parameters={
+            "bbox": "params:sst_10km_render_params.bbox",
+            "video": "params:sst_10km_render_params",
+        },
+        namespace="sst_10km",
+        tags=["sst", "zoomin", "high_resolution"],
+    )
+
+    return hurricane_cloud_pipe + amazonia_precipitation_pipe + temp_pipe + sst_pipe
