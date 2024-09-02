@@ -28,6 +28,11 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="parts",
                 name="split-by-timestep",
             ),
+            node(
+                func=parts_to_video,
+                inputs=["parts", "params:video"],
+                outputs="video",
+            ),
         ]
     )
     crop_base_pipeline = pipeline(
@@ -61,12 +66,14 @@ def create_pipeline(**kwargs) -> Pipeline:
     global_wind_10km_pipe = pipeline(
         pipe=global_base_pipeline,
         namespace="wind_speed_global_10km",
+        parameters={"video": "params:global_video"},
         tags=["windspeed", "global", "high_resolution"],
     )
 
     global_wind_100km_pipe = pipeline(
         pipe=global_base_pipeline,
         namespace="wind_speed_global_100km",
+        parameters={"video": "params:global_video"},
         tags=["windspeed", "global", "low_resolution"],
     )
 
@@ -110,4 +117,11 @@ def create_pipeline(**kwargs) -> Pipeline:
         tags=["sst", "zoomin", "high_resolution"],
     )
 
-    return hurricane_cloud_pipe + amazonia_precipitation_pipe + temp_pipe + sst_pipe
+    return (
+        global_wind_10km_pipe
+        + global_wind_100km_pipe
+        + hurricane_cloud_pipe
+        + amazonia_precipitation_pipe
+        + temp_pipe
+        + sst_pipe
+    )

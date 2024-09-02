@@ -1,3 +1,7 @@
+global_video:
+    cmap: "viridis"
+    scale: 1
+
 hurricane_10km_render_params:
     cmap: "Blues_r"
     scale: 4
@@ -45,10 +49,10 @@ amazonia_100km_render_params:
 
 
 sst_10km_render_params:
-    cmap: "inferno"
+    cmap: "plasma"
     scale: 4
     bbox:
-        minx: -80.66
-        miny: 25.66
-        maxx: -6.30
-        maxy: 58.23
+        minx: -129
+        miny: -7
+        maxx: -93
+        maxy: 8.5

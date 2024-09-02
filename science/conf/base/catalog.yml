@@ -26,6 +26,14 @@ wind_speed_global_10km.parts:
       compress: zstd
   filename_suffix: ".tif"
 
+wind_speed_global_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/wind_speed_global_10km.mp4
+
+wind_speed_global_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/wind_speed_global_100km.mp4
+
 
 
 
