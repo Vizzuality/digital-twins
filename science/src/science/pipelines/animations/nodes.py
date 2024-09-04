@@ -49,18 +49,11 @@ def parts_to_video(
             dataset = dataset()[0]  # noqa: PLW2901
         # flip array to make the 0,0 origin of the image at the upper corner for PIL
         grey = np.flipud(dataset.values)
-        if np.isnan(grey).any():
-            grey = np.nan_to_num(grey)
-            grey = rescale(grey, params.get("scale"))
-            grey[grey == 0] = np.nan
-        else:
-            grey = rescale(grey, params.get("scale"))
+        grey = rescale(grey, params.get("scale"))
         # scale the values to 0-255
-        grey = (
-            (grey.astype(float) - np.nanmin(grey))
-            * 255
-            / (np.nanmax(grey) - np.nanmin(grey))
-        )
+        _min = params.get("vmin") or np.nanmin(grey)
+        _max = params.get("vmax") or np.nanmax(grey)
+        grey = (grey.astype(float) - _min) * 255 / (_max - _min)
         grey = np.nan_to_num(grey)
         grey = grey.astype(np.uint8)
         # breakpoint()
@@ -68,7 +61,7 @@ def parts_to_video(
         np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))
 
-    return SequenceVideo(imgs, fps=20)
+    return SequenceVideo(imgs, fps=params.get("fps") or 20, fourcc="h264")
 
 
 # super slow

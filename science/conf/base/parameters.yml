@@ -1,6 +1,10 @@
-global_video:
+global_video_10:
     cmap: "viridis"
     scale: 1
+
+global_video_100:
+    cmap: "viridis"
+    scale: 10
 
 hurricane_10km_render_params:
     cmap: "Blues_r"
@@ -56,3 +60,10 @@ sst_10km_render_params:
         miny: -7
         maxx: -93
         maxy: 8.5
+
+scenarios:
+    cmap: "viridis"
+    scale: 2
+    fps: 20
+    vmin: 269.56
+    vmax: 324.11

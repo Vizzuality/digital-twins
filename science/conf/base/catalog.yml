@@ -1,4 +1,4 @@
-# ============== WINDSPEED ================
+# ------------- WINDSPEED --------------
 
 wind_speed_global_100km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
@@ -29,15 +29,15 @@ wind_speed_global_10km.parts:
 wind_speed_global_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/wind_speed_global_10km.mp4
+  fourcc: "h264"
 
 wind_speed_global_100km.video:
   type: video.VideoDataset
   filepath: data/03_primary/wind_speed_global_100km.mp4
+  fourcc: "h264"
 
 
-
-
-# ============== CLOUD COVER ================
+# -------------- CLOUD COVER --------------
 
 
 cloud_cover_10km.raw:
@@ -75,7 +75,8 @@ cloud_cover_100km.video:
   type: video.VideoDataset
   filepath: data/03_primary/cloud_cover_100km.mp4
 
-# ============== PRECIPITATION ================
+
+# -------------- PRECIPITATION --------------
 
 
 total_precipitation_10km.raw:
@@ -114,7 +115,7 @@ total_precipitation_100km.video:
   filepath: data/03_primary/tp_global_100km.mp4
 
 
-# ============== TEMP ================
+# -------------- TEMP --------------
 
 
 temp_10km.raw:
@@ -136,7 +137,7 @@ temp_10km.video:
   filepath: data/03_primary/tas_10km.mp4
 
 
-# ============== SEA SURFACE TEMP ================
+# -------------- SEA SURFACE TEMP --------------
 
 
 sst_10km.raw:
@@ -156,3 +157,44 @@ sst_10km.parts:
 sst_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/sst_10km.mp4
+
+
+# ============= SCENARIOS ==============
+
+
+plus2k.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+
+# plus2k.parts:
+#   type: partitions.PartitionedDataset
+#   path: data/02_intermediate/plus2k
+#   dataset: 
+#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+#     save_args:
+#       compress: zstd
+#   filename_suffix: ".tif"
+
+plus2k.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/plus_2k_scenario.mp4
+
+
+hist.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+
+# hist.parts:
+#   type: partitions.PartitionedDataset
+#   path: data/02_intermediate/hist
+#   dataset: 
+#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+#     save_args:
+#       compress: zstd
+#   filename_suffix: ".tif"
+
+
+hist.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/hist_scenario.mp4
+

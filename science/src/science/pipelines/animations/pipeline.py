@@ -5,7 +5,7 @@ generated using Kedro 0.19.6
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
-from science.pipelines.lowvshigh.nodes import (
+from science.pipelines.animations.nodes import (
     clip_to_boundary,
     georef_nextgems_dataset,
     parts_to_video,
@@ -35,7 +35,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
         ]
     )
-    crop_base_pipeline = pipeline(
+    zoom_in_base_pipeline = pipeline(
         [
             node(
                 func=georef_nextgems_dataset,
@@ -63,22 +63,47 @@ def create_pipeline(**kwargs) -> Pipeline:
         ]
     )
 
+    scenarios_base_pipeline = pipeline(
+        [
+            node(
+                func=georef_nextgems_dataset,
+                inputs="raw",
+                outputs="georef",
+                name="georeferenciate-dataset",
+            ),
+            node(
+                func=split_by_timestep,
+                inputs="georef",
+                outputs="parts",
+                name="split-by-timestep",
+            ),
+            node(
+                func=parts_to_video,
+                inputs=["parts", "params:video"],
+                outputs="video",
+            ),
+        ]
+    )
+
+    # -------- Globe animations ------------
+
     global_wind_10km_pipe = pipeline(
         pipe=global_base_pipeline,
         namespace="wind_speed_global_10km",
-        parameters={"video": "params:global_video"},
+        parameters={"video": "params:global_video_10"},
         tags=["windspeed", "global", "high_resolution"],
     )
 
     global_wind_100km_pipe = pipeline(
         pipe=global_base_pipeline,
         namespace="wind_speed_global_100km",
-        parameters={"video": "params:global_video"},
+        parameters={"video": "params:global_video_100"},
         tags=["windspeed", "global", "low_resolution"],
     )
 
+    # -------- Zoom ins -------------
     hurricane_cloud_pipe = pipeline(
-        pipe=crop_base_pipeline,
+        pipe=zoom_in_base_pipeline,
         parameters={
             "bbox": "params:hurricane_10km_render_params.bbox",
             "video": "params:hurricane_10km_render_params",
@@ -88,7 +113,7 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
     amazonia_precipitation_pipe = pipeline(
-        pipe=crop_base_pipeline,
+        pipe=zoom_in_base_pipeline,
         parameters={
             "bbox": "params:amazonia_10km_render_params.bbox",
             "video": "params:amazonia_10km_render_params",
@@ -98,7 +123,7 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
     temp_pipe = pipeline(
-        pipe=crop_base_pipeline,
+        pipe=zoom_in_base_pipeline,
         parameters={
             "bbox": "params:temperature_10km_render_params.bbox",
             "video": "params:temperature_10km_render_params",
@@ -108,13 +133,28 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
     sst_pipe = pipeline(
-        pipe=crop_base_pipeline,
+        pipe=zoom_in_base_pipeline,
         parameters={
             "bbox": "params:sst_10km_render_params.bbox",
             "video": "params:sst_10km_render_params",
         },
         namespace="sst_10km",
         tags=["sst", "zoomin", "high_resolution"],
+    )
+
+    # ------ Scenarios --------------
+
+    plus2k_pipe = pipeline(
+        pipe=scenarios_base_pipeline,
+        parameters={"video": "params:scenarios"},
+        namespace="plus2k",
+        tags=["scenarios"],
+    )
+    hist_pipe = pipeline(
+        pipe=scenarios_base_pipeline,
+        parameters={"video": "params:scenarios"},
+        namespace="hist",
+        tags=["scenarios"],
     )
 
     return (
@@ -124,4 +164,6 @@ def create_pipeline(**kwargs) -> Pipeline:
         + amazonia_precipitation_pipe
         + temp_pipe
         + sst_pipe
+        + plus2k_pipe
+        + hist_pipe
     )
