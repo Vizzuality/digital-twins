@@ -3,6 +3,7 @@ This is a boilerplate pipeline 'globe_compact'
 generated using Kedro 0.19.6
 """
 import logging
+from math import isnan
 from typing import Any, Callable
 
 import cartopy  # noqa: F401
@@ -41,23 +42,31 @@ def parts_to_video(
     cmap_lut = matplotlib.colormaps.get_cmap(params.get("cmap"))(range(256))
     cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
     imgs = []
-    for dataset_id, dataset in parts.items():
+    for _, dataset in parts.items():
         if callable(dataset):
-            # This comes from a partition dataset which is a callable only if reading files. When it is
-            # a memoryfile it is not a callable
+            # This comes from a partition dataset which is a callable only if reading files.
+            # When it is a memoryfile it is not a callable
             dataset = dataset()[0]  # noqa: PLW2901
         # flip array to make the 0,0 origin of the image at the upper corner for PIL
         grey = np.flipud(dataset.values)
         grey = rescale(grey, params.get("scale"))
+
         # scale the values to 0-255
-        grey = (
-            (grey.astype(float) - grey.min()) * 255 / (grey.max() - grey.min())
-        ).astype(np.uint8)
+        if params.get("cmap") == "RdBu_r":
+            grey = matplotlib.colors.CenteredNorm(halfrange=10)(grey) * 255
+            grey = grey.astype(np.uint8)
+        else:
+            _min = params.get("vmin") or np.nanmin(grey)
+            _max = params.get("vmax") or np.nanmax(grey)
+            grey = (grey.astype(float) - _min) * 255 / (_max - _min)
+
+        grey = np.nan_to_num(grey)
+        grey = grey.astype(np.uint8)
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
         np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))
 
-    return SequenceVideo(imgs, fps=20)
+    return SequenceVideo(imgs, fps=params.get("fps") or 20, fourcc="h264")
 
 
 # super slow
@@ -84,3 +93,7 @@ def parts_to_video_matplotlib(
         )
         plt.close()  # close the figure, I hate matplotlib
     return SequenceVideo(imgs, fps=20)
+
+
+def diff(a: xr.Dataset, b: xr.Dataset) -> xr.Dataset:
+    return a - b

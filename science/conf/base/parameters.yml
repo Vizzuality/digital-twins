@@ -1,11 +1,19 @@
-hurricane_10km_render_params:
+global_video_10:
     cmap: "viridis"
+    scale: 1
+
+global_video_100:
+    cmap: "viridis"
+    scale: 10
+
+hurricane_10km_render_params:
+    cmap: "Blues_r"
     scale: 4
     bbox:
-        minx: -84.088
-        miny: 15.89
-        maxx: -55.88
-        maxy: 41.15
+        minx: -88.23
+        miny: 21.37
+        maxx: -51.77
+        maxy: 42.37
 
 hurricane_100km_render_params:
     cmap: "viridis"
@@ -17,13 +25,22 @@ hurricane_100km_render_params:
         maxy: 41.15
 
 amazonia_10km_render_params:
-    cmap: "Greens_r"
+    cmap: "viridis"
     scale: 4
     bbox:
-        minx: -67.53
-        miny: -8.55
-        maxx: -47.76
-        maxy: 8.64
+        minx: -79.72
+        miny: -16.60
+        maxx: -45.27
+        maxy: 7.672
+
+temperature_10km_render_params:
+    cmap: "winter"
+    scale: 4
+    bbox:
+        minx: -12.1350
+        miny: 32.5146
+        maxx: 4.7930
+        maxy: 44.1825
 
 amazonia_100km_render_params:
     cmap: "Greens_r"
@@ -33,3 +50,25 @@ amazonia_100km_render_params:
         miny: -8.55
         maxx: -47.76
         maxy: 8.64
+
+
+sst_10km_render_params:
+    cmap: "plasma"
+    scale: 4
+    bbox:
+        minx: -129
+        miny: -7
+        maxx: -93
+        maxy: 8.5
+
+scenarios:
+    cmap: "winter"
+    scale: 2
+    fps: 20
+    vmin: 269.56
+    vmax: 324.11
+
+diff_video:
+    cmap: "RdBu_r"
+    scale: 2
+    fps: 20

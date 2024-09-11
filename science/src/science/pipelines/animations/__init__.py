@@ -1,5 +1,5 @@
 """
-This is a boilerplate pipeline 'globe_compact'
+This is a boilerplate pipeline 'animations'
 generated using Kedro 0.19.6
 """
 
