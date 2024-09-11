@@ -62,8 +62,13 @@ sst_10km_render_params:
         maxy: 8.5
 
 scenarios:
-    cmap: "viridis"
+    cmap: "winter"
     scale: 2
     fps: 20
     vmin: 269.56
     vmax: 324.11
+
+diff_video:
+    cmap: "RdBu_r"
+    scale: 2
+    fps: 20

@@ -198,3 +198,6 @@ hist.video:
   type: video.VideoDataset
   filepath: data/03_primary/hist_scenario.mp4
 
+diff.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/diff_video.mp4

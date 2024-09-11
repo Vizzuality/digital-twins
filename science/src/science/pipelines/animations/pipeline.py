@@ -7,6 +7,7 @@ from kedro.pipeline.modular_pipeline import pipeline
 
 from science.pipelines.animations.nodes import (
     clip_to_boundary,
+    diff,
     georef_nextgems_dataset,
     parts_to_video,
     split_by_timestep,
@@ -157,6 +158,15 @@ def create_pipeline(**kwargs) -> Pipeline:
         tags=["scenarios"],
     )
 
+    diff_scenarios = pipeline(
+        [
+            node(diff, ["plus2k.raw", "hist.raw"], "scenarios_diff"),
+            node(split_by_timestep, "scenarios_diff", "diff_parts"),
+            node(parts_to_video, ["diff_parts", "params:diff_video"], "diff.video"),
+        ],
+        tags=["scenarios", "diff"],
+    )
+
     return (
         global_wind_10km_pipe
         + global_wind_100km_pipe
@@ -166,4 +176,5 @@ def create_pipeline(**kwargs) -> Pipeline:
         + sst_pipe
         + plus2k_pipe
         + hist_pipe
+        + diff_scenarios
     )
