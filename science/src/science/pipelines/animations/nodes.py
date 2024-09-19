@@ -8,6 +8,7 @@ from typing import Any, Callable
 
 import cartopy  # noqa: F401
 import cartopy.crs as ccrs
+import cmocean
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,6 +18,54 @@ from PIL import Image
 from skimage.transform import rescale
 
 log = logging.getLogger(__name__)
+
+
+# windy rain radar cmap
+RAIN_CMAP_IDX = [
+    0,
+    3,
+    8,
+    14,
+    20,
+    26,
+    32,
+    36,
+    40,
+    44,
+    48,
+    52,
+    56,
+    60,
+    64,
+    68,
+    100,
+    101,
+    255,
+]
+
+RAIN_CMAP_LUT = np.array(
+    [
+        [130, 130, 130, 0],
+        [123, 121, 132, 20],
+        [95, 85, 141, 100],
+        [0, 101, 154, 180],
+        [0, 144, 147, 220],
+        [0, 179, 125, 240],
+        [117, 208, 89, 255],
+        [220, 220, 30, 255],
+        [244, 202, 8, 255],
+        [245, 168, 24, 255],
+        [236, 130, 63, 255],
+        [205, 75, 75, 255],
+        [182, 45, 100, 255],
+        [156, 16, 109, 255],
+        [125, 0, 108, 255],
+        [92, 0, 100, 255],
+        [0, 0, 0, 255],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+    ]
+)
 
 
 def georef_nextgems_dataset(ds: xr.Dataset) -> xr.Dataset:
@@ -29,6 +78,13 @@ def clip_to_boundary(raster: xr.Dataset, bbox: dict[str, float]) -> xr.Dataset:
     return raster.rio.clip_box(**bbox)
 
 
+def get_min_max(ds: xr.Dataset, params: dict[Any:Any]) -> tuple[float, float]:
+    _min = params.get("vmin") or float(ds.min().to_array().values[0])
+    _max = params.get("vmax") or float(ds.max().to_array().values[0])
+    log.info(f"Min max is: {_min=}, {_max=}")
+    return _min, _max
+
+
 def split_by_timestep(ds: xr.Dataset) -> dict[str, xr.DataArray]:
     return {
         f"{ts.item()}": ds.sel(time=ts).to_dataarray().squeeze(drop=True)
@@ -37,10 +93,18 @@ def split_by_timestep(ds: xr.Dataset) -> dict[str, xr.DataArray]:
 
 
 def parts_to_video(
-    parts: dict[str, Callable[[], xr.DataArray]], params: dict[Any:Any]
+    parts: dict[str, Callable[[], xr.DataArray]],
+    params: dict[Any:Any],
+    min_max: tuple[float, float] | None = None,
 ) -> SequenceVideo:
-    cmap_lut = matplotlib.colormaps.get_cmap(params.get("cmap"))(range(256))
-    cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
+    cmap = matplotlib.colormaps.get(params.get("cmap")) or cmocean.cm.cmap_d.get(
+        params.get("cmap")
+    )
+    if cmap is not None:
+        cmap_lut = cmap(range(256))
+        cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
+    else:
+        cmap_lut = None
     imgs = []
     for _, dataset in parts.items():
         if callable(dataset):
@@ -56,14 +120,19 @@ def parts_to_video(
             grey = matplotlib.colors.CenteredNorm(halfrange=10)(grey) * 255
             grey = grey.astype(np.uint8)
         else:
-            _min = params.get("vmin") or np.nanmin(grey)
-            _max = params.get("vmax") or np.nanmax(grey)
+            _min = min_max[0] if min_max is not None else np.nanmin(grey)
+            _max = min_max[1] if min_max is not None else np.nanmax(grey)
             grey = (grey.astype(float) - _min) * 255 / (_max - _min)
+            grey = np.clip(grey, a_min=0, a_max=255)
 
         grey = np.nan_to_num(grey)
         grey = grey.astype(np.uint8)
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
-        np.take(cmap_lut, grey, axis=0, out=result)
+        if cmap_lut is None:  # do some shittery with the custom LUT
+            idxs = np.searchsorted(RAIN_CMAP_IDX, grey)
+            np.take(RAIN_CMAP_LUT[..., 0:3], idxs, axis=0, out=result)
+        else:
+            np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))
 
     return SequenceVideo(imgs, fps=params.get("fps") or 20, fourcc="h264")

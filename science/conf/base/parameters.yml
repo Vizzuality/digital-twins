@@ -15,26 +15,19 @@ hurricane_10km_render_params:
         maxx: -51.77
         maxy: 42.37
 
-hurricane_100km_render_params:
-    cmap: "viridis"
-    scale: 20
-    bbox:
-        minx: -84.088
-        miny: 15.89
-        maxx: -55.88
-        maxy: 41.15
-
 amazonia_10km_render_params:
-    cmap: "viridis"
+    cmap: "rain_custom"
     scale: 4
+    vmin: 0
+    vmax: 0.3
     bbox:
-        minx: -79.72
-        miny: -16.60
-        maxx: -45.27
-        maxy: 7.672
+        minx: -85.3
+        miny: -8
+        maxx: -60
+        maxy: 10
 
 temperature_10km_render_params:
-    cmap: "winter"
+    cmap: "inferno"
     scale: 4
     bbox:
         minx: -12.1350
@@ -42,18 +35,8 @@ temperature_10km_render_params:
         maxx: 4.7930
         maxy: 44.1825
 
-amazonia_100km_render_params:
-    cmap: "Greens_r"
-    scale: 20
-    bbox:
-        minx: -67.53
-        miny: -8.55
-        maxx: -47.76
-        maxy: 8.64
-
-
 sst_10km_render_params:
-    cmap: "plasma"
+    cmap: "thermal"
     scale: 4
     bbox:
         minx: -129
@@ -62,9 +45,10 @@ sst_10km_render_params:
         maxy: 8.5
 
 scenarios:
-    cmap: "winter"
+    cmap: "inferno"
     scale: 2
     fps: 20
+    # we need to fix the temp range so the normal and +2 scenario can be compared side by side
     vmin: 269.56
     vmax: 324.11
 

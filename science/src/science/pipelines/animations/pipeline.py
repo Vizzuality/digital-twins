@@ -9,6 +9,7 @@ from science.pipelines.animations.nodes import (
     clip_to_boundary,
     diff,
     georef_nextgems_dataset,
+    get_min_max,
     parts_to_video,
     split_by_timestep,
 )
@@ -51,6 +52,9 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="clip-dataset",
             ),
             node(
+                func=get_min_max, inputs=["clipped", "params:video"], outputs="minmax"
+            ),
+            node(
                 func=split_by_timestep,
                 inputs="clipped",
                 outputs="parts",
@@ -58,7 +62,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=parts_to_video,
-                inputs=["parts", "params:video"],
+                inputs=["parts", "params:video", "minmax"],
                 outputs="video",
             ),
         ]
@@ -130,7 +134,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             "video": "params:temperature_10km_render_params",
         },
         namespace="temp_10km",
-        tags=["pyrines", "zoomin", "high_resolution"],
+        tags=["temperature", "zoomin", "high_resolution"],
     )
 
     sst_pipe = pipeline(
