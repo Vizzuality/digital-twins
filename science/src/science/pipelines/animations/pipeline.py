@@ -22,43 +22,46 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=georef_nextgems_dataset,
                 inputs="raw",
                 outputs="georef",
-                name="georeferenciate-dataset",
             ),
             node(
                 func=split_by_timestep,
                 inputs="georef",
                 outputs="parts",
-                name="split-by-timestep",
+            ),
+            node(
+                func=get_min_max,
+                inputs=["georef", "params:video"],
+                outputs="minmax",
             ),
             node(
                 func=parts_to_video,
-                inputs=["parts", "params:video"],
+                inputs=["parts", "params:video", "minmax"],
                 outputs="video",
             ),
         ]
     )
+
     zoom_in_base_pipeline = pipeline(
         [
             node(
                 func=georef_nextgems_dataset,
                 inputs="raw",
                 outputs="georef",
-                name="georeferenciate-dataset",
             ),
             node(
                 func=clip_to_boundary,
                 inputs=["georef", "params:bbox"],
                 outputs="clipped",
-                name="clip-dataset",
             ),
             node(
-                func=get_min_max, inputs=["clipped", "params:video"], outputs="minmax"
+                func=get_min_max,
+                inputs=["clipped", "params:video"],
+                outputs="minmax",
             ),
             node(
                 func=split_by_timestep,
                 inputs="clipped",
                 outputs="parts",
-                name="split-by-timestep",
             ),
             node(
                 func=parts_to_video,
@@ -74,17 +77,20 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=georef_nextgems_dataset,
                 inputs="raw",
                 outputs="georef",
-                name="georeferenciate-dataset",
             ),
             node(
                 func=split_by_timestep,
                 inputs="georef",
                 outputs="parts",
-                name="split-by-timestep",
+            ),
+            node(
+                func=get_min_max,
+                inputs=["georef", "params:video"],
+                outputs="minmax",
             ),
             node(
                 func=parts_to_video,
-                inputs=["parts", "params:video"],
+                inputs=["parts", "params:video", "minmax"],
                 outputs="video",
             ),
         ]
@@ -109,41 +115,41 @@ def create_pipeline(**kwargs) -> Pipeline:
     # -------- Zoom ins -------------
     hurricane_cloud_pipe = pipeline(
         pipe=zoom_in_base_pipeline,
+        namespace="cloud_cover_10km",
         parameters={
             "bbox": "params:hurricane_10km_render_params.bbox",
             "video": "params:hurricane_10km_render_params",
         },
-        namespace="cloud_cover_10km",
         tags=["hurricane", "zoomin", "high_resoltuion"],
     )
 
     amazonia_precipitation_pipe = pipeline(
         pipe=zoom_in_base_pipeline,
+        namespace="total_precipitation_10km",
         parameters={
             "bbox": "params:amazonia_10km_render_params.bbox",
             "video": "params:amazonia_10km_render_params",
         },
-        namespace="total_precipitation_10km",
         tags=["amazonia", "zoomin", "high_resoltuion"],
     )
 
     temp_pipe = pipeline(
         pipe=zoom_in_base_pipeline,
+        namespace="temp_10km",
         parameters={
             "bbox": "params:temperature_10km_render_params.bbox",
             "video": "params:temperature_10km_render_params",
         },
-        namespace="temp_10km",
         tags=["temperature", "zoomin", "high_resolution"],
     )
 
     sst_pipe = pipeline(
         pipe=zoom_in_base_pipeline,
+        namespace="sst_10km",
         parameters={
             "bbox": "params:sst_10km_render_params.bbox",
             "video": "params:sst_10km_render_params",
         },
-        namespace="sst_10km",
         tags=["sst", "zoomin", "high_resolution"],
     )
 
@@ -151,14 +157,14 @@ def create_pipeline(**kwargs) -> Pipeline:
 
     plus2k_pipe = pipeline(
         pipe=scenarios_base_pipeline,
-        parameters={"video": "params:scenarios"},
         namespace="plus2k",
+        parameters={"video": "params:scenarios"},
         tags=["scenarios"],
     )
     hist_pipe = pipeline(
         pipe=scenarios_base_pipeline,
-        parameters={"video": "params:scenarios"},
         namespace="hist",
+        parameters={"video": "params:scenarios"},
         tags=["scenarios"],
     )
 

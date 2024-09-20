@@ -10,6 +10,7 @@ import cartopy  # noqa: F401
 import cartopy.crs as ccrs
 import cmocean
 import matplotlib
+import matplotlib.colors
 import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
@@ -45,27 +46,53 @@ RAIN_CMAP_IDX = [
 
 RAIN_CMAP_LUT = np.array(
     [
-        [130, 130, 130, 0],
-        [123, 121, 132, 20],
-        [95, 85, 141, 100],
-        [0, 101, 154, 180],
-        [0, 144, 147, 220],
-        [0, 179, 125, 240],
-        [117, 208, 89, 255],
-        [220, 220, 30, 255],
-        [244, 202, 8, 255],
-        [245, 168, 24, 255],
-        [236, 130, 63, 255],
-        [205, 75, 75, 255],
-        [182, 45, 100, 255],
-        [156, 16, 109, 255],
-        [125, 0, 108, 255],
-        [92, 0, 100, 255],
-        [0, 0, 0, 255],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
+        [230, 230, 230],
+        [215, 213, 224],
+        [155, 146, 201],
+        [67, 138, 176],
+        [31, 155, 158],
+        [13, 182, 131],
+        [117, 208, 89],
+        [220, 220, 30],
+        [244, 202, 8],
+        [245, 168, 24],
+        [236, 130, 63],
+        [205, 75, 75],
+        [182, 45, 100],
+        [156, 16, 109],
+        [125, 0, 108],
+        [92, 0, 100],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
     ]
 )
+
+
+RAIN_CMAP = [
+    [0, [230, 230, 230, 255]],
+    [3, [40, 16, 158, 20]],
+    [8, [40, 16, 158, 100]],
+    [14, [0, 101, 154, 180]],
+    [20, [0, 144, 147, 220]],
+    [26, [0, 179, 125, 240]],
+    [32, [117, 208, 89, 255]],
+    [36, [220, 220, 30, 255]],
+    [40, [244, 202, 8, 255]],
+    [44, [245, 168, 24, 255]],
+    [48, [236, 130, 63, 255]],
+    [52, [205, 75, 75, 255]],
+    [56, [182, 45, 100, 255]],
+    [60, [156, 16, 109, 255]],
+    [64, [125, 0, 108, 255]],
+    [68, [92, 0, 100, 255]],
+    [100, [0, 0, 0, 255]],
+    [101, [0, 0, 0, 0]],
+    [255, [0, 0, 0, 0]],
+]
+
+
+RAIN_CMAP = np.asarray([x[1] for x in RAIN_CMAP])
 
 
 def georef_nextgems_dataset(ds: xr.Dataset) -> xr.Dataset:
@@ -104,7 +131,11 @@ def parts_to_video(
         cmap_lut = cmap(range(256))
         cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
     else:
-        cmap_lut = None
+        cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
+            "rain", RAIN_CMAP / 255, N=256
+        )
+        cmap_lut = cmap(range(256))
+        cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
     imgs = []
     for _, dataset in parts.items():
         if callable(dataset):
@@ -128,11 +159,11 @@ def parts_to_video(
         grey = np.nan_to_num(grey)
         grey = grey.astype(np.uint8)
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
-        if cmap_lut is None:  # do some shittery with the custom LUT
-            idxs = np.searchsorted(RAIN_CMAP_IDX, grey)
-            np.take(RAIN_CMAP_LUT[..., 0:3], idxs, axis=0, out=result)
-        else:
-            np.take(cmap_lut, grey, axis=0, out=result)
+        # if cmap_lut is None:  # do some shittery with the custom LUT
+        #     idxs = np.searchsorted(RAIN_CMAP_IDX, grey)
+        #     np.take(RAIN_CMAP_LUT[..., 0:3], idxs, axis=0, out=result)
+        # else:
+        np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))
 
     return SequenceVideo(imgs, fps=params.get("fps") or 20, fourcc="h264")
