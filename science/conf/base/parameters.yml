@@ -37,7 +37,7 @@ amazonia_10km_render_params:
         maxy: 10
 
 temperature_10km_render_params:
-    cmap: "YlOrRd"
+    cmap: "inferno"
     scale: 4
     bbox:
         minx: -12.1350
@@ -57,7 +57,7 @@ sst_10km_render_params:
 # ------ SCENARIOS ---------
 
 scenarios:
-    cmap: "YlOrRd"
+    cmap: "inferno"
     scale: 2
     fps: 20
     # we need to fix the temp range so the normal and +2 scenario can be compared side by side
