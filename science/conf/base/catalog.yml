@@ -141,42 +141,43 @@ sst_10km.video:
 # ============= SCENARIOS ==============
 
 
-plus2k.raw:
+europe_plus2k.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
 
-# plus2k.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/plus2k
-#   dataset: 
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
-plus2k.video:
+europe_plus2k.video:
   type: video.VideoDataset
-  filepath: data/03_primary/plus_2k_scenario.mp4
+  filepath: data/03_primary/europe_plus_2k_scenario.mp4
 
-
-hist.raw:
+europe_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
 
-# hist.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/hist
-#   dataset: 
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
-
-hist.video:
+europe_hist.video:
   type: video.VideoDataset
-  filepath: data/03_primary/hist_scenario.mp4
+  filepath: data/03_primary/europe_hist_scenario.mp4
 
-diff.video:
+europe_diff.video:
   type: video.VideoDataset
-  filepath: data/03_primary/diff_video.mp4
+  filepath: data/03_primary/europe_diff_video.mp4
+
+
+iberia_plus2k.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
+
+iberia_plus2k.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/iberia_plus_2k_scenario.mp4
+
+iberia_hist.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
+
+iberia_hist.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/iberia_hist_scenario.mp4
+
+iberia_diff.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/iberia_diff_video.mp4

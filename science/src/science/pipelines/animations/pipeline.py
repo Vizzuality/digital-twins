@@ -155,26 +155,60 @@ def create_pipeline(**kwargs) -> Pipeline:
 
     # ------ Scenarios --------------
 
-    plus2k_pipe = pipeline(
+    europe_plus2k_pipe = pipeline(
         pipe=scenarios_base_pipeline,
-        namespace="plus2k",
+        namespace="europe_plus2k",
         parameters={"video": "params:scenarios"},
         tags=["scenarios"],
     )
-    hist_pipe = pipeline(
+    europe_hist_pipe = pipeline(
         pipe=scenarios_base_pipeline,
-        namespace="hist",
+        namespace="europe_hist",
         parameters={"video": "params:scenarios"},
         tags=["scenarios"],
     )
 
-    diff_scenarios = pipeline(
+    europe_diff_scenarios = pipeline(
         [
-            node(diff, ["plus2k.raw", "hist.raw"], "scenarios_diff"),
-            node(split_by_timestep, "scenarios_diff", "diff_parts"),
-            node(parts_to_video, ["diff_parts", "params:diff_video"], "diff.video"),
+            node(
+                diff, ["europe_plus2k.raw", "europe_hist.raw"], "europe_scenarios_diff"
+            ),
+            node(split_by_timestep, "europe_scenarios_diff", "europe_diff_parts"),
+            node(
+                parts_to_video,
+                ["europe_diff_parts", "params:diff_video"],
+                "europe_diff.video",
+            ),
         ],
-        tags=["scenarios", "diff"],
+        tags=["scenarios", "diff", "europe"],
+    )
+
+    iberia_plus2k_pipe = pipeline(
+        pipe=scenarios_base_pipeline,
+        namespace="iberia_plus2k",
+        parameters={"video": "params:scenarios"},
+        tags=["scenarios", "iberia"],
+    )
+    iberia_hist_pipe = pipeline(
+        pipe=scenarios_base_pipeline,
+        namespace="iberia_hist",
+        parameters={"video": "params:scenarios"},
+        tags=["scenarios", "iberia"],
+    )
+
+    iberia_diff_scenarios = pipeline(
+        [
+            node(
+                diff, ["iberia_plus2k.raw", "iberia_hist.raw"], "iberia_scenarios_diff"
+            ),
+            node(split_by_timestep, "iberia_scenarios_diff", "iberia_diff_parts"),
+            node(
+                parts_to_video,
+                ["iberia_diff_parts", "params:diff_video"],
+                "iberia_diff.video",
+            ),
+        ],
+        tags=["scenarios", "diff", "iberia"],
     )
 
     return (
@@ -184,7 +218,10 @@ def create_pipeline(**kwargs) -> Pipeline:
         + amazonia_precipitation_pipe
         + temp_pipe
         + sst_pipe
-        + plus2k_pipe
-        + hist_pipe
-        + diff_scenarios
+        + europe_plus2k_pipe
+        + europe_hist_pipe
+        + europe_diff_scenarios
+        + iberia_plus2k_pipe
+        + iberia_hist_pipe
+        + iberia_diff_scenarios
     )
