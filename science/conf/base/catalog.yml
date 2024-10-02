@@ -1,0 +1,203 @@
+# ------------- WINDSPEED --------------
+
+wind_speed_global_100km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/ws_global_100km.nc
+
+wind_speed_global_10km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/ws_global_10km.nc
+
+wind_speed_global_100km.parts:
+  type: partitions.PartitionedDataset
+  path: data/03_primary/ws-100-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+wind_speed_global_10km.parts:
+  type: partitions.PartitionedDataset
+  path: data/03_primary/ws-10-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+wind_speed_global_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/wind_speed_global_10km.mp4
+  fourcc: "h264"
+
+wind_speed_global_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/wind_speed_global_100km.mp4
+  fourcc: "h264"
+
+
+# -------------- CLOUD COVER --------------
+
+
+cloud_cover_10km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/lcc_global_10km.nc
+
+cloud_cover_100km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/lcc_global_100km.nc
+
+
+cloud_cover_10km.parts:
+  type: partitions.PartitionedDataset
+  path: data/02_intermediate/amazonia-10-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+cloud_cover_100km.parts:
+  type: partitions.PartitionedDataset
+  path: data/02_intermediate/amazonia-100-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+cloud_cover_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/cloud_cover_10km.mp4
+
+cloud_cover_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/cloud_cover_100km.mp4
+
+
+# -------------- PRECIPITATION --------------
+
+
+total_precipitation_10km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/tp_global_10km.nc
+
+total_precipitation_100km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/tp_global_100km.nc
+
+total_precipitation_10km.parts:
+  type: partitions.PartitionedDataset
+  path: data/02_intermediate/hurricane-10-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+total_precipitation_100km.parts:
+  type: partitions.PartitionedDataset
+  path: data/02_intermediate/hurricane-100-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+
+total_precipitation_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tp_global_10km.mp4
+
+total_precipitation_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tp_global_100km.mp4
+
+
+# -------------- TEMP --------------
+
+
+temp_10km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/tas_global_10km.nc
+
+temp_10km.parts:
+  type: partitions.PartitionedDataset
+  path: data/02_intermediate/tas-10-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+
+temp_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tas_10km.mp4
+
+
+# -------------- SEA SURFACE TEMP --------------
+
+
+sst_10km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/sst_global_10km.nc
+
+sst_10km.parts:
+  type: partitions.PartitionedDataset
+  path: data/02_intermediate/sst-10-parts
+  dataset: 
+    type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+    save_args:
+      compress: zstd
+  filename_suffix: ".tif"
+
+
+sst_10km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/sst_10km.mp4
+
+
+# ============= SCENARIOS ==============
+
+
+plus2k.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+
+# plus2k.parts:
+#   type: partitions.PartitionedDataset
+#   path: data/02_intermediate/plus2k
+#   dataset: 
+#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+#     save_args:
+#       compress: zstd
+#   filename_suffix: ".tif"
+
+plus2k.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/plus_2k_scenario.mp4
+
+
+hist.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+
+# hist.parts:
+#   type: partitions.PartitionedDataset
+#   path: data/02_intermediate/hist
+#   dataset: 
+#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
+#     save_args:
+#       compress: zstd
+#   filename_suffix: ".tif"
+
+
+hist.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/hist_scenario.mp4
+
+diff.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/diff_video.mp4
