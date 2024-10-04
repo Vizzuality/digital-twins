@@ -9,15 +9,12 @@ export const Camera = ({ marker }: {
   marker: MarkerType | undefined
 }) => {
   const cameraControlsRef = useRef<CameraControls>(null!);
-  const [currentMarker, setCurrentMarker] = useState<string | null>(null);
   const [resetControls, setResetControls] = useState<boolean>(true);
 
   useThree(({ controls }) => {
     if (controls) {
-      if (marker !== undefined && currentMarker !== marker.id) {
-        console.log('set', ...convertLatLonToGlobalPosition(marker.lat, marker.lng, 2), cameraControlsRef.current.camera)
+      if (marker !== undefined) {
         cameraControlsRef.current.setPosition(...convertLatLonToGlobalPosition(marker.lat, marker.lng, 2), true);
-        setCurrentMarker(marker.id);
       }
 
       if (resetControls) {
