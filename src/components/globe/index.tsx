@@ -17,8 +17,9 @@ const markers: MarkerType[] = [
 ];
 
 export default function Globe3d() {
-  const [selectedMarker, setSelectedMarker] = useState<string | null>(null);
-  const marker = selectedMarker ? markers.find(m => m.id === selectedMarker) : undefined;
+  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+
+  const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
   return (
     <>
       <div
@@ -37,7 +38,7 @@ export default function Globe3d() {
 
           <Globe />
           {markers.map((marker, index) => (
-            <Marker key={index} id={marker.id} setSelectedMarker={setSelectedMarker} lat={marker.lat} lng={marker.lng}>
+            <Marker key={index} index={markers.indexOf(marker)} id={marker.id} isSelected={selectedMarker === markers.indexOf(marker)} setSelectedMarker={setSelectedMarker} lat={marker.lat} lng={marker.lng}>
               Click to explore the phenomenon
             </Marker>
           ))}
