@@ -1,10 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { CameraControls } from "@react-three/drei";
-import { useThree, RootState } from "@react-three/fiber"
 import { useRef } from "react";
 import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
 import type { MarkerType } from "./marker";
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 
 export const Camera = ({ marker }: {
@@ -20,29 +18,20 @@ export const Camera = ({ marker }: {
     }
   }, [marker]);
 
-  const controls = useThree((state: RootState) => (state.controls as OrbitControls));
-
   useEffect(() => {
-    if (!controls) return;
-    if (controls) {
-      if (marker !== undefined) {
-        const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
-        controls.disconnect()
-        cameraControlsRef.current.setPosition(x, y, z, true);
-      }
-
-      if (resetControls) {
-        if (controls) {
-          controls.connect(canvasElement)
-        }
-        if (cameraControlsRef.current) {
-          cameraControlsRef.current.setPosition(0, 1, 4, true);
-          cameraControlsRef.current.setTarget(0, 0, 0, true);
-        }
-        setResetControls(false);
-      }
+    if (marker !== undefined) {
+      const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
+      cameraControlsRef.current.disconnect()
+      cameraControlsRef.current.setPosition(x, y, z, true);
     }
-  }), [marker, resetControls, controls, canvasElement];
+
+    if (resetControls) {
+      cameraControlsRef.current.connect(canvasElement)
+      cameraControlsRef.current.setPosition(0, 1, 4, true);
+      cameraControlsRef.current.setTarget(0, 0, 0, true);
+      setResetControls(false);
+    }
+  }), [marker, resetControls, canvasElement];
 
   return (
     <CameraControls
