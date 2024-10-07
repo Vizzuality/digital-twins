@@ -15,7 +15,9 @@ const Popup = ({ setSelectedMarker, index }: {
       <div className='h-[350px] pl-8 pr-4 py-8 bg-white/20 backdrop-blur-[15px] gap-6 inline-flex'>
         <div className="gap-6 flex">
           <div className="w-[286px] h-[286px] justify-center items-center flex">
-            <img alt="" className="w-[280px] h-[280px] left-[3px] top-[3px]" src="https://via.placeholder.com/280x280" />
+            <video className="w-[280px] h-[280px] rounded-[50px]" autoPlay loop muted>
+              <source src="/iberia_hist_scenario.mp4" type="video/mp4" />
+            </video>
           </div>
           <div className="flex-col gap-2.5 inline-flex">
             <div className="grow shrink basis-0 flex-col justify-start items-start gap-4 flex">
