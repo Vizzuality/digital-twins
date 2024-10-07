@@ -33,11 +33,11 @@ const Popup = ({ setSelectedMarker, index }: {
                     <div className="rounded-sm items-center gap-0.5 flex">
                       <button onClick={() => setSelectedMarker(index - 1)}>
                         <div className='sr-only'>Previous marker</div>
-                        <ArrowRight className="w-5 h-5 p-[2px] -rotate-180" />
+                        <ArrowRight className="w-5 h-5 p-[2px] -rotate-180 text-white" />
                       </button>
                       <button onClick={() => setSelectedMarker(index + 1)}>
                         <div className='sr-only'>Next marker</div>
-                        <ArrowRight className="w-5 h-5 p-[2px]" />
+                        <ArrowRight className="w-5 h-5 p-[2px] text-white" />
                       </button>
                     </div>
                   </div>
