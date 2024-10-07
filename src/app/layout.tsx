@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google"
 import { cn } from "@/lib/utils"
 import "./globals.css";
+import Header from "@/components/header";
 
 const fontSans = Roboto({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         fontSans.variable
       )}>
         <ContextWrapper>
+          <Header />
           {children}
         </ContextWrapper>
       </body>
