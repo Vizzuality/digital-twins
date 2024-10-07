@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google"
+import { Roboto } from "next/font/google"
 import { cn } from "@/lib/utils"
 import "./globals.css";
 
-const fontSans = FontSans({
+const fontSans = Roboto({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["300", "400", "500", "700", "900"],
 });
+
 import ContextWrapper from "@/app/contextWrapper";
 export const metadata: Metadata = {
   title: "Create Next App",
