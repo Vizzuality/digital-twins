@@ -4,6 +4,8 @@ import { useFrame } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import { convertLatLonToVec3 } from "@/lib/globe-utils";
 import Image from 'next/image';
+import ArrowRight from '@/svg/arrow-right.svg';
+import Close from '@/svg/close.svg';
 
 const Popup = ({ setSelectedMarker, index }: {
   setSelectedMarker:
@@ -31,11 +33,11 @@ const Popup = ({ setSelectedMarker, index }: {
                     <div className="rounded-sm items-center gap-0.5 flex">
                       <button onClick={() => setSelectedMarker(index - 1)}>
                         <div className='sr-only'>Previous marker</div>
-                        <img alt="Previous marker" className="w-5 h-5 p-[2px] -rotate-180" src="/icons/arrow-right.svg" />
+                        <ArrowRight className="w-5 h-5 p-[2px] -rotate-180" />
                       </button>
                       <button onClick={() => setSelectedMarker(index + 1)}>
                         <div className='sr-only'>Next marker</div>
-                        <img alt="Next marker" className="w-5 h-5 p-[2px]" src="/icons/arrow-right.svg" />
+                        <ArrowRight className="w-5 h-5 p-[2px]" />
                       </button>
                     </div>
                   </div>
@@ -62,9 +64,8 @@ const Popup = ({ setSelectedMarker, index }: {
           </div>
         </div>
       </div>
-      <button onClick={() => setSelectedMarker(null)} className="absolute -top-4 p-[9px] bg-[#a9ea98] rounded-full items-center gap-[7px] flex">
-        <Image
-          src="/icons/close.svg"
+      <button onClick={() => setSelectedMarker(null)} className="absolute -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex">
+        <Close
           alt="Close button"
           width={14}
           height={14}

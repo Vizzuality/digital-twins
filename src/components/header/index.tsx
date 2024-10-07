@@ -4,6 +4,8 @@ import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import { useRecoilState } from "recoil";
 import { menuAtom } from "@/store";
 import { MotionButton } from "@/components/button";
+import Menu from "@/svgs/menu.svg";
+import Logo from "@/svgs/logo.svg";
 
 export default function Header() {
   const [, setOpenedMenu] = useRecoilState(menuAtom);
@@ -18,14 +20,14 @@ export default function Header() {
       <HoverRepeatAnimation isChild>
         <div className="text-light-green text-sm font-medium uppercase">MENU</div>
       </HoverRepeatAnimation>
-      <img alt="Menu button" className="w-4 h-4" src="/icons/menu.svg" />
+      <Menu className="w-4 h-4" />
     </MotionButton >
   );
 
   return (
-    <div className="fixed inset-0 w-full h-[90px] py-6 bg-blue-900 flex">
+    <div className="fixed inset-0 w-full h-[90px] py-6 bg-blue-900 flex z-20">
       <div className="container flex justify-between items-center">
-        <img alt="Logo" className="w-60 h-10" src="/logo.svg" />
+        <Logo className="w-60 h-10 text-white" />
         <MenuButton />
       </div>
     </div>

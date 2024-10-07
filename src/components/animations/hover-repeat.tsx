@@ -5,7 +5,7 @@ import { EasingDefinition, Variants, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const ANIMATION_EASE: EasingDefinition = "linear";
-const ANIMATION_DURATION = 0.15;
+const ANIMATION_DURATION = 0.2;
 
 const contentAnimation: Variants = {
   rest: {

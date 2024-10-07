@@ -6,6 +6,10 @@ import { menuAtom } from "@/store";
 import Link from "next/link";
 import { MotionButton } from "@/components/button";
 import { motion } from "framer-motion";
+import CloseSmall from "@/svgs/close-small.svg";
+import Logo from "@/svgs/logo.svg";
+import Instagram from "@/svgs/instagram.svg";
+import Linkedin from "@/svgs/linkedin.svg";
 
 export default function Menu() {
   const [openedMenu, setOpenedMenu] = useRecoilState(menuAtom);
@@ -22,13 +26,13 @@ export default function Menu() {
       <HoverRepeatAnimation isChild>
         <div className="text-green-700 text-sm font-medium uppercase">MENU</div>
       </HoverRepeatAnimation>
-      <img alt="Menu button" className="w-[10px] h-[10px]" src="/icons/close-small.svg" />
+      <CloseSmall className="w-[10px] h-[10px]" />
     </MotionButton>
   );
 
   return (
-    <motion.div
-      className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between"
+    <motion.nav
+      className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-20"
       initial={{ x: "100%" }}
       animate={{ x: openedMenu ? 0 : "100%" }}
       transition={{ type: "linear", duration: 0.3 }}
@@ -52,22 +56,22 @@ export default function Menu() {
         </ul>
       </div>
       <div className="flex justify-between items-end">
-        <img alt="Logo" className="w-60 h-10" src="/logo-green.svg" />
+        <Logo className="w-60 h-10 text-green-900" />
         <ul className="flex gap-[15px]">
           <li>
             <a href="/">
-              <img alt="Instagram" className="w-6 h-6" src="/icons/instagram.svg" />
+              <Instagram className="w-6 h-6" />
               <div className="sr-only">Instagram</div>
             </a>
           </li>
           <li>
             <a href="/">
               <div className="sr-only">Linkedin</div>
-              <img alt="Linkedin" className="w-6 h-6" src="/icons/linkedin.svg" />
+              <Linkedin className="w-6 h-6" />
             </a>
           </li>
         </ul>
       </div>
-    </motion.div>
+    </motion.nav>
   );
 };
