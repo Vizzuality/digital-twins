@@ -2,6 +2,7 @@
 
 import { PropsWithChildren } from "react";
 import { EasingDefinition, Variants, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const ANIMATION_EASE: EasingDefinition = "linear";
 const ANIMATION_DURATION = 0.15;
@@ -28,13 +29,22 @@ const duplicatedContentAnimation: Variants = {
   },
 };
 
-const HoverRepeatAnimation = ({ children }: PropsWithChildren) => {
+interface HoverRepeatAnimationProps {
+  className?: string;
+  isChild?: boolean;
+}
+
+const HoverRepeatAnimation = ({ children, className, isChild }: PropsWithChildren & HoverRepeatAnimationProps) => {
+  const parentProps = isChild ? {} : {
+    initial: "rest",
+    whileHover: "hover",
+    animate: "rest",
+  };
+
   return (
     <motion.div
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
-      className="relative overflow-hidden"
+      {...parentProps}
+      className={cn("relative overflow-hidden", className)}
     >
       <motion.div className="absolute" aria-hidden variants={duplicatedContentAnimation}>
         {children}

@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google"
 import { cn } from "@/lib/utils"
 import "./globals.css";
 import Header from "@/components/header";
+import Menu from "@/components/menu";
 
 const fontSans = Roboto({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
       )}>
         <ContextWrapper>
           <Header />
+          <Menu />
           {children}
         </ContextWrapper>
       </body>
