@@ -3,9 +3,8 @@ import { useState, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import { convertLatLonToVec3 } from "@/lib/globe-utils";
-import Image from 'next/image';
-import ArrowRight from '@/svg/arrow-right.svg';
-import Close from '@/svg/close.svg';
+import ArrowRight from '@/svgs/arrow-right.svg';
+import Close from '@/svgs/close.svg';
 
 const Popup = ({ setSelectedMarker, index }: {
   setSelectedMarker:
@@ -66,7 +65,6 @@ const Popup = ({ setSelectedMarker, index }: {
       </div>
       <button onClick={() => setSelectedMarker(null)} className="absolute -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex">
         <Close
-          alt="Close button"
           width={14}
           height={14}
         />
