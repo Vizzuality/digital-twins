@@ -19,10 +19,10 @@ export default function Intro() {
       if (!vidRef.current) return;
       vidRef.current.style.opacity = '0';
     }
-    if (videoTarget.currentTime >= videoTarget.duration - 0.1) {
+    if (videoTarget.currentTime >= videoTarget.duration - 1) {
       // Start the video again
       if (!vidRef.current) return;
-      vidRef.current.currentTime = 0;
+      vidRef.current.currentTime = 1;
       vidRef.current.play();
       vidRef.current.style.opacity = '0.5';
     }
