@@ -7,7 +7,6 @@ export default function Home() {
       <Intro />
       <div className="text-black text-lg hover:gray-500 space-x-5">
         <Link href="/globe">Globe</Link>
-        <Link href="/grid">Grid</Link>
       </div>
     </main >
   );
