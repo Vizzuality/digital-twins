@@ -17,6 +17,7 @@ const buttonVariants = cva(
         white: "border-2 border-white transition-color duration-200 text-white gap-2.5 uppercase font-medium px-4 py-3 hover:bg-white hover:text-blue-900",
         secondary: "bg-light-green text-green-900 gap-2.5 uppercase font-medium px-4 py-3",
         icon: "gap-2.5",
+        vanilla: '',
       },
       size: {
         default: "h-10 px-4 py-3",

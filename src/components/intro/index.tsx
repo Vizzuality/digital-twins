@@ -10,46 +10,47 @@ import HeroVideo from './hero-video';
 import Lines from '@/components/lines';
 
 export default function Intro() {
-  return (<section className="relative h-screen bg-blue-900">
-    <HeroVideo />
-    <Lines sectionName='intro' columns={[0, 190, 206, 366, 1010]} rows={[204, 444, 516, 559, 598]} />
-    <div className='container relative pt-[198px] space-y-[30px]'>
-      <h1 className='max-w-[1012px]'>
-        <div className="text-light-green text-5xl font-semibold">Digital Twins: </div>
-        <div className="text-white text-5xl font-semibold">Innovative Research for a Sustainable Future</div>
-      </h1>
-      <VerticalCarousel className="text-white text-3xl">
-        <div>
-          Bridging data and discovery with state-of-the-art digital twin technology
+  return (
+    <section className="relative h-[110vh] bg-blue-900">
+      <HeroVideo />
+      <Lines verticalClassName="left-8" sectionName='intro' columns={[64, 254, 270, 430, 1074]} rows={[204, 444, 516, 559, 598]} />
+      <div className='container relative pt-[198px] space-y-[30px] px-24'>
+        <h1 className='max-w-[1012px]'>
+          <div className="text-light-green text-5xl font-semibold">Digital Twins: </div>
+          <div className="text-white text-5xl font-semibold">Innovative Research for a Sustainable Future</div>
+        </h1>
+        <VerticalCarousel className="text-white text-3xl">
+          <div>
+            Bridging data and discovery with state-of-the-art digital twin technology
+          </div>
+          <div>
+            Advancing climate knowledge through digital twins
+          </div>
+          <div>
+            Harnessing advanced simulations to adapt to and mitigate climate impacts
+          </div>
+        </VerticalCarousel>
+        <div className='flex gap-4'>
+          <Button variant="white" className='z-10 group'>
+            <Link href="#">View use cases</Link>
+            <ArrowRightIcon className="w-5 h-5 group-hover:text-blue-900 text-white transform group-hover:translate-x-0.5 transition-transform" />
+          </Button>
+          <MotionButton variant="secondary"
+            initial="rest"
+            whileHover="hover"
+            animate="rest"
+            className='z-10'
+          >
+            <HoverRepeatAnimation isChild>
+              <Link href="#">Keep exploring</Link>
+            </HoverRepeatAnimation>
+          </MotionButton>
         </div>
-        <div>
-          Advancing climate knowledge through digital twins
-        </div>
-        <div>
-          Harnessing advanced simulations to adapt to and mitigate climate impacts
-        </div>
-      </VerticalCarousel>
-      <div className='flex gap-4'>
-        <Button variant="white" className='z-10 group'>
-          <Link href="#">View use cases</Link>
-          <ArrowRightIcon className="w-5 h-5 group-hover:text-blue-900 text-white transform group-hover:translate-x-0.5 transition-transform" />
-        </Button>
-        <MotionButton variant="secondary"
-          initial="rest"
-          whileHover="hover"
-          animate="rest"
-          className='z-10'
-        >
-          <HoverRepeatAnimation isChild>
-            <Link href="#">Keep exploring</Link>
-          </HoverRepeatAnimation>
-        </MotionButton>
       </div>
-    </div>
-    <BouncingMarquee className="w-full text-light-green text-xl gap-12 border-t border-light-green py-4 absolute bottom-0">
-      <div>Bridging data and discovery with state-of-the-art digital twin technology</div>
-      <div>Advancing climate knowledge through digital twins</div>
-      <div>Harnessing advanced simulations to adapt to and mitigate climate impacts</div>
-    </BouncingMarquee>
-  </section>);
+      <BouncingMarquee className="w-full text-light-green text-xl gap-12 border-t border-light-green py-4 absolute bottom-0">
+        <div>Bridging data and discovery with state-of-the-art digital twin technology</div>
+        <div>Advancing climate knowledge through digital twins</div>
+        <div>Harnessing advanced simulations to adapt to and mitigate climate impacts</div>
+      </BouncingMarquee>
+    </section>);
 };

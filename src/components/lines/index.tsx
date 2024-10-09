@@ -2,40 +2,68 @@
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, stagger } from 'framer-motion';
 
+type LinesProps = {
+  sectionName: string;
+  rows?: number[];
+  colorClass?: string;
+  verticalClassName?: string;
+} & (
+    | { hoveringColumnsNumber: number; columns?: never; hoveredIndex: number | null }
+    | { columns: number[]; hoveringColumnsNumber?: never; hoveredIndex?: never }
+  );
+
 const Lines = ({
   sectionName,
   columns = [],
   rows = [],
-  colorClass = 'bg-white/20'
-}: {
-  sectionName: string;
-  columns?: number[];
-  rows?: number[];
-  colorClass?: string;
-}) => {
-
+  colorClass = 'bg-white/20',
+  verticalClassName,
+  hoveringColumnsNumber = 0,
+  hoveredIndex,
+}: LinesProps) => {
+  console.log(hoveringColumnsNumber, Array(hoveringColumnsNumber).fill(null))
+  const gridColumns = {
+    'grid transition-all duration-500': true,
+    'grid-cols-[1.2fr_0.9fr_0.9fr]': hoveredIndex === 0,
+    'grid-cols-[0.9fr_1.2fr_0.9fr]': hoveredIndex === 1,
+    'grid-cols-[0.9fr_0.9fr_1.2fr]': hoveredIndex === 2,
+    'grid-cols-[1fr_1fr_1fr]': hoveredIndex === null,
+  };
   return <>
     <AnimatePresence>
-      <div className='container absolute inset-0 w-full h-full'>
-        <motion.div className='w-full h-full absolute inset-0 left-8 z-10'>
+      {/* Vertical lines */}
+      <div className='vertical-lines container absolute inset-0 w-full h-full'>
+        <motion.div className={cn('w-full h-full absolute inset-0 z-10',
+          verticalClassName,
+          hoveringColumnsNumber && gridColumns)}
+        >
           {
-            columns.map((x, index) => (
-              <motion.div
-                initial={{ x: -1000, opacity: 0 }}
-                animate={{ x, opacity: 1 }}
-                transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
-                key={`line-y-${sectionName}-${index}`}
-                className={cn("h-full w-px  absolute", colorClass)} />
-            ))
+            !!columns?.length ?
+              columns.map((x, index) => (
+                <motion.div
+                  initial={{ x: -1000, opacity: 0 }}
+                  animate={{ x, opacity: 1 }}
+                  transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
+                  key={`line-y-${sectionName}-${index}`}
+                  className={cn("h-full w-px absolute", colorClass)} />
+              )) :
+              (
+                Array(hoveringColumnsNumber).fill(null).map((_, index) => (
+                  <motion.div
+                    key={`line-y-${sectionName}-${index}`}
+                    className={cn("h-full w-px", colorClass)} />
+                ))
+              )
           }
         </motion.div>
       </div>
-      <div className='w-full h-full absolute inset-0 z-10'>
+      {/* Horizontal lines */}
+      <div className='horizontal-lines w-full h-full absolute inset-0 z-10'>
         {rows.map((y, index) => (
           <motion.div
             initial={{ y: -1000, opacity: 0 }}
             animate={{ y, opacity: 1 }}
-            transition={{ delay: 0.5 + index * 0.1, ease: 'linear', duration: 0.1 }}
+            transition={{ delay: 0.1 + index * 0.1, ease: 'linear', duration: 0.1 }}
             key={`line-x-${sectionName}-${index}`}
             className={cn("w-full h-px", colorClass)} />
         ))}
