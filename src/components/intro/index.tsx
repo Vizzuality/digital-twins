@@ -2,7 +2,7 @@
 
 import { MotionButton, Button } from '@/components/button';
 import VerticalCarousel from '@/components/vertical-carousel';
-import BouncingMarquee from '@/components/bouncing-marquee';
+import Marquee from '@/components/animations/marquee';
 import HoverRepeatAnimation from '@/components/animations/hover-repeat';
 import Link from 'next/link';
 import ArrowRightIcon from '@/svgs/arrow-right.svg';
@@ -14,12 +14,12 @@ export default function Intro() {
     <section className="relative h-[110vh] bg-blue-900">
       <HeroVideo />
       <Lines verticalClassName="left-8" sectionName='intro' columns={[64, 254, 270, 430, 1074]} rows={[204, 444, 516, 559, 598]} />
-      <div className='container relative pt-[198px] space-y-[30px] px-24'>
+      <div className='container relative pt-[198px] space-y-[30px] pl-24'>
         <h1 className='max-w-[1012px]'>
           <div className="text-light-green text-5xl font-semibold">Digital Twins: </div>
           <div className="text-white text-5xl font-semibold">Innovative Research for a Sustainable Future</div>
         </h1>
-        <VerticalCarousel className="text-white text-3xl">
+        <VerticalCarousel className="text-white text-2xl 2xl:text-3xl">
           <div>
             Bridging data and discovery with state-of-the-art digital twin technology
           </div>
@@ -47,10 +47,10 @@ export default function Intro() {
           </MotionButton>
         </div>
       </div>
-      <BouncingMarquee className="w-full text-light-green text-xl gap-12 border-t border-light-green py-4 absolute bottom-0">
-        <div>Bridging data and discovery with state-of-the-art digital twin technology</div>
-        <div>Advancing climate knowledge through digital twins</div>
-        <div>Harnessing advanced simulations to adapt to and mitigate climate impacts</div>
-      </BouncingMarquee>
+      <Marquee className="w-full text-light-green text-xl gap-12 border-t border-light-green py-4 absolute bottom-0">
+        <span className='ml-10 pl-10 border-l h-8 border-light-green' >Bridging data and discovery with state-of-the-art digital twin technology</span>
+        <span className='ml-10 pl-10 border-l h-8 border-light-green' >Advancing climate knowledge through digital twins</span>
+        <span className='ml-10 pl-10 border-l h-8 border-light-green' >Harnessing advanced simulations to adapt to and mitigate climate impacts</span>
+      </Marquee>
     </section>);
 };

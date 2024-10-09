@@ -59,13 +59,13 @@ export default function Menu() {
         <Logo className="w-60 h-10 text-green-900" />
         <ul className="flex gap-[15px]">
           <li>
-            <a href="/">
+            <a href="https://www.instagram.com/bsc_cns/" target="_blank">
               <Instagram className="w-6 h-6" />
               <div className="sr-only">Instagram</div>
             </a>
           </li>
           <li>
-            <a href="/">
+            <a href="https://www.linkedin.com/company/barcelona-supercomputing-center/" target="_blank">
               <div className="sr-only">Linkedin</div>
               <Linkedin className="w-6 h-6" />
             </a>
