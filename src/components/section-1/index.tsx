@@ -17,7 +17,7 @@ export default function Section1() {
     'grid-cols-[1fr_1fr_1fr]': hoveredIndex === null,
   };
   return (
-    <section className="relative bg-white py-20 ">
+    <section className="relative bg-white py-20 scroll-mt-8" id="section-1">
       <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-1" rows={[474, (!hoveredIndex || hoveredIndex === 0) ? 1134 : 1154]} colorClass="bg-blue-900/20" hoveringColumnsNumber={3} hoveredIndex={hoveredIndex} />
       <div className="container px-[150px]">
         <div className="max-w-[594px] text-green-700 space-y-5 pb-20">

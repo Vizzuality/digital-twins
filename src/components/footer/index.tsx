@@ -22,13 +22,13 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
               </Link>
             </li>
             <li className="text-white text-base font-bold underline">
-              <Link href="/"><HoverRepeatAnimation>Impact mode: Energy</HoverRepeatAnimation></Link>
+              <Link href="/case-study-energy"><HoverRepeatAnimation>Impact mode: Energy</HoverRepeatAnimation></Link>
             </li>
             <li className="text-white text-base font-bold underline">
-              <Link href="/"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
+              <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
             </li>
             <li className="text-white text-base font-bold underline">
-              <Link href="/"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></Link>
+              <Link href="mailto:#"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></Link>
             </li>
           </ul>
         </div >

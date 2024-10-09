@@ -45,7 +45,7 @@ export default function Header() {
   );
 
   return (
-    <div className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-20 transition-colors duration-500",
+    <header className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-20 transition-colors duration-500",
       {
         "bg-blue-900": isScrolled,
         "bg-transparent": !isScrolled
@@ -55,6 +55,6 @@ export default function Header() {
         <Logo className="w-60 h-10 text-white" />
         <MenuButton />
       </div>
-    </ div >
+    </header>
   );
 };

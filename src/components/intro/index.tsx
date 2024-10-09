@@ -10,6 +10,12 @@ import HeroVideo from './hero-video';
 import Lines from '@/components/lines';
 
 export default function Intro() {
+  const handleAnchor = (anchor: string) => {
+    const element = document.getElementById(anchor);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
   return (
     <section className="relative h-[110vh] bg-blue-900">
       <HeroVideo />
@@ -42,7 +48,7 @@ export default function Intro() {
             className='z-10'
           >
             <HoverRepeatAnimation isChild>
-              <Link href="#">Keep exploring</Link>
+              <Link href="/#section-1" onClick={() => handleAnchor('section-1')} scroll={false}>Keep exploring</Link>
             </HoverRepeatAnimation>
           </MotionButton>
         </div>

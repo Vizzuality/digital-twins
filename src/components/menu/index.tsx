@@ -45,10 +45,10 @@ export default function Menu() {
               <HoverRepeatAnimation>Home</HoverRepeatAnimation></Link>
           </li>
           <li>
-            <Link href="/"><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
+            <Link href="/case-study-energy"><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
           </li>
           <li>
-            <Link href="/"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
+            <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
           </li>
           <li>
             <a href="mailto:#"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
