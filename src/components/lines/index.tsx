@@ -21,7 +21,6 @@ const Lines = ({
   hoveringColumnsNumber = 0,
   hoveredIndex,
 }: LinesProps) => {
-  console.log(hoveringColumnsNumber, Array(hoveringColumnsNumber).fill(null))
   const gridColumns = {
     'grid transition-all duration-500': true,
     'grid-cols-[1.2fr_0.9fr_0.9fr]': hoveredIndex === 0,
