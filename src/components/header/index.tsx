@@ -13,9 +13,15 @@ const useScrolled = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      const mainElement = document?.getElementsByTagName('main')[0];
+      const mainElementOffset = mainElement?.getBoundingClientRect().top || 0;
+      setIsScrolled(mainElementOffset < 0);
     };
+
     window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return isScrolled;
