@@ -13,7 +13,10 @@ function FallbackMaterial({ url }: { url: string }) {
   return <meshStandardMaterial map={texture} toneMapped={false} />
 }
 
-export const Globe = ({ rotate = false }) => {
+export const Globe = ({ rotate = false, videoMaterial }: {
+  rotate?: boolean;
+  videoMaterial: string;
+}) => {
   const sphereMeshRef = useRef<Mesh>(null!);
 
   useFrame(() => {
@@ -29,7 +32,7 @@ export const Globe = ({ rotate = false }) => {
     >
       <sphereGeometry args={[1, 64, 64]} />
       <Suspense fallback={<FallbackMaterial url="10.jpg" />}>
-        <VideoMaterial url="wind_speed_global_10km.mp4" />
+        <VideoMaterial url={videoMaterial} />
       </Suspense>
     </mesh>
   )

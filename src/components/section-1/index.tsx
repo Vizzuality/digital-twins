@@ -16,6 +16,11 @@ export default function Section1() {
     'grid-cols-[0.9fr_0.9fr_1.2fr]': hoveredIndex === 2,
     'grid-cols-[1fr_1fr_1fr]': hoveredIndex === null,
   };
+  const fadeUpProps = {
+    initial: { opacity: 0, y: 100 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.3, ease: "easeOut" }
+  };
   return (
     <section className="relative bg-white py-20 scroll-mt-8" id="section-1">
       <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-1" rows={[474, (!hoveredIndex || hoveredIndex === 0) ? 1134 : 1154]} colorClass="bg-blue-900/20" hoveringColumnsNumber={3} hoveredIndex={hoveredIndex} />
@@ -35,32 +40,39 @@ export default function Section1() {
           </AnimatePresence>
         </div>
         <div className={cn("flex w-full h-[480px] overflow-hidden mb-10", gridColumns)}>
-          {Array(3).fill(null).map((_, index) => (
-            <div key={index}
-              className={cn("relative z-10 flex items-center h-full")}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <Image
-                alt=""
-                src={`/images/home-understanding-${index + 1}.png`}
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          ))}
+          <AnimatePresence>
+            {Array(3).fill(null).map((_, index) => (
+              <motion.div key={index}
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 'auto' }}
+                transition={{ delay: 0.5 + index * 1, duration: 1, ease: "easeInOut" }}
+                className={cn("relative z-10 flex items-center h-full")}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <Image
+                  alt=""
+                  src={`/images/home-understanding-${index + 1}.png`}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
         <div className={cn("text-green-700 grid")}
         >
           <div className={cn(gridColumns)}>
-            <h4 className="text-xl pr-10 mb-4 col-span-1 max-w-[350px]">
+            <motion.h4 className="text-xl pr-10 mb-4 col-span-1 max-w-[350px]"
+              {...fadeUpProps}
+            >
               How the digital twin for climate change adaptation helps research and society?
-            </h4>
+            </motion.h4>
           </div>
-          <div className={cn(gridColumns, 'mb-[30px]')}>
+          <motion.div className={cn(gridColumns, 'mb-[30px]')} {...fadeUpProps}>
             <div className="col-start-2">
               <div className="flex-col gap-4 flex pr-10">
-                <div className="flex-col flex ">
+                <div className="flex-col flex " >
                   <div className="text-lg leading-relaxed">01</div>
                   <div className="text-lg leading-relaxed">Understanding processes:</div>
                 </div>
@@ -76,8 +88,11 @@ export default function Section1() {
                 <div className="text-sm leading-tight max-w-[350px]">The digital twin allows researchers, policy makers and practitioners to develop and test different climate and impact scenarios that help understand what might happen under various conditions.</div>
               </div>
             </div>
-          </div>
-          <div className={cn(gridColumns)}>
+          </motion.div>
+          <motion.div className={cn(gridColumns)}
+            {...fadeUpProps}
+            transition={{ delay: 0.5, duration: 0.3 }}
+          >
             <div className="col-start-2">
               <div className="flex-col gap-4 flex pr-10">
                 <div className="flex-col flex ">
@@ -96,7 +111,7 @@ export default function Section1() {
                 <div className="text-sm leading-tight max-w-[350px]">Virtual models support collaboration among users from different disciplines, impact sectors, and geographical locations, ensuring a holistic approach to studying and solving real climate challenges.</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section >);

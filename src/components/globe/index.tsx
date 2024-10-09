@@ -16,17 +16,14 @@ const markers: MarkerType[] = [
   { id: "Cape Town", lat: -33.9249, lng: 18.4241 },
 ];
 
-export default function Globe3d() {
+export default function Globe3d({ videoMaterial, className }: { videoMaterial: string, className: string }) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
   return (
     <>
       <div
-        style={{
-          width: '100vw',
-          height: '100vh',
-        }}
+        className={className}
       >
         <Canvas
           camera={{ fov: 35 }}
@@ -36,7 +33,7 @@ export default function Globe3d() {
           <ambientLight intensity={7} />
           {/* <directionalLight position={[10, 10, 10]} intensity={5} /> */}
 
-          <Globe />
+          <Globe videoMaterial={videoMaterial} />
           {markers.map((marker, index) => (
             <Marker key={index} index={markers.indexOf(marker)} id={marker.id} isSelected={selectedMarker === markers.indexOf(marker)} setSelectedMarker={setSelectedMarker} lat={marker.lat} lng={marker.lng}>
               Click to explore the phenomenon
