@@ -16,7 +16,7 @@ global_video_100:
 
 hurricane_10km_render_params:
     cmap: "Blues_r"
-    scale: 4
+    scale: 1
     vmin: 0
     vmax: 0.99
     bbox:
@@ -27,7 +27,7 @@ hurricane_10km_render_params:
 
 amazonia_10km_render_params:
     cmap: "rain_custom"
-    scale: 4
+    scale: 1
     vmin: 0
     vmax: 0.1
     bbox:
@@ -58,13 +58,25 @@ sst_10km_render_params:
 
 scenarios:
     cmap: "inferno"
-    scale: 2
+    scale: 20
     fps: 20
     # we need to fix the temp range so the normal and +2 scenario can be compared side by side
-    vmin: 269.56
-    vmax: 324.11
+    # vmin: 269.56
+    # vmax: 324.11
 
 diff_video:
     cmap: "RdBu_r"
     scale: 2
     fps: 20
+
+
+observations:
+    cmap: "inferno"
+    scale: 10
+    fps: 20
+    bbox:
+        minx: -12.772
+        miny: 33.843
+        maxx: 18.9029
+        maxy: 49.2697
+

@@ -28,11 +28,13 @@ wind_speed_global_10km.parts:
 
 wind_speed_global_10km.video:
   type: video.VideoDataset
-  filepath: data/03_primary/wind_speed_global_10km.mp4
+  filepath: data/03_primary/wind_speed_global_10km.mp
+  fourcc: avc1
 
 wind_speed_global_100km.video:
   type: video.VideoDataset
-  filepath: data/03_primary/wind_speed_global_100km.mp4
+  filepath: data/03_primary/wind_speed_global_100km.webm
+  fourcc: avc1
 
 
 # -------------- CLOUD COVER --------------
@@ -68,10 +70,12 @@ cloud_cover_100km.parts:
 cloud_cover_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/cloud_cover_10km.mp4
+  fourcc: avc1
 
 cloud_cover_100km.video:
   type: video.VideoDataset
   filepath: data/03_primary/cloud_cover_100km.mp4
+  fourcc: avc1
 
 
 # -------------- PRECIPITATION --------------
@@ -92,6 +96,7 @@ total_precipitation_10km.parts:
 total_precipitation_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/tp_amazonia_10km.mp4
+  fourcc: avc1
 
 
 # -------------- TEMP --------------
@@ -114,7 +119,7 @@ temp_10km.parts:
 temp_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/tas_10km.mp4
-
+  fourcc: avc1
 
 # -------------- SEA SURFACE TEMP --------------
 
@@ -136,6 +141,7 @@ sst_10km.parts:
 sst_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/sst_10km.mp4
+  fourcc: avc1
 
 
 # ============= SCENARIOS ==============
@@ -148,6 +154,7 @@ europe_plus2k.raw:
 europe_plus2k.video:
   type: video.VideoDataset
   filepath: data/03_primary/europe_plus_2k_scenario.mp4
+  fourcc: avc1
 
 europe_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
@@ -156,11 +163,12 @@ europe_hist.raw:
 europe_hist.video:
   type: video.VideoDataset
   filepath: data/03_primary/europe_hist_scenario.mp4
+  fourcc: avc1
 
 europe_diff.video:
   type: video.VideoDataset
   filepath: data/03_primary/europe_diff_video.mp4
-
+  fourcc: avc1
 
 iberia_plus2k.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
@@ -169,6 +177,7 @@ iberia_plus2k.raw:
 iberia_plus2k.video:
   type: video.VideoDataset
   filepath: data/03_primary/iberia_plus_2k_scenario.mp4
+  fourcc: avc1
 
 iberia_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
@@ -177,7 +186,9 @@ iberia_hist.raw:
 iberia_hist.video:
   type: video.VideoDataset
   filepath: data/03_primary/iberia_hist_scenario.mp4
+  fourcc: avc1
 
 iberia_diff.video:
   type: video.VideoDataset
   filepath: data/03_primary/iberia_diff_video.mp4
+  fourcc: avc1

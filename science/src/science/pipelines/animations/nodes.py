@@ -166,7 +166,7 @@ def parts_to_video(
         np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))
 
-    return SequenceVideo(imgs, fps=params.get("fps") or 20, fourcc="h264")
+    return SequenceVideo(imgs, fps=params.get("fps") or 20)
 
 
 # super slow
