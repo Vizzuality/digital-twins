@@ -28,7 +28,7 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
               <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
             </li>
             <li className="text-white text-base font-bold underline">
-              <Link href="mailto:#"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></Link>
+              <Link href="mailto:earth-communication@bsc.es"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></Link>
             </li>
           </ul>
         </div >

@@ -32,7 +32,7 @@ export default function Menu() {
 
   return (
     <motion.nav
-      className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-20"
+      className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-50"
       initial={{ x: "100%" }}
       animate={{ x: openedMenu ? 0 : "100%" }}
       transition={{ type: "linear", duration: 0.3 }}
@@ -51,7 +51,7 @@ export default function Menu() {
             <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
           </li>
           <li>
-            <a href="mailto:#"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
+            <a href="mailto:earth-communication@bsc.es"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
           </li>
         </ul>
       </div>
