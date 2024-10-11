@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber'
+import { useState, useRef, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber'
 import { Camera } from './camera';
 import { Globe } from './globe';
 import Marker from './marker';
@@ -16,10 +16,31 @@ const markers: MarkerType[] = [
   { id: "Cape Town", lat: -33.9249, lng: 18.4241 },
 ];
 
-export default function Globe3d({ videoMaterial, className }: { videoMaterial: string, className: string }) {
+export default function GlobeMap({ videoMaterial, className, hasMarkers = false, rotate }: { videoMaterial: string, className: string, hasMarkers?: boolean, rotate?: boolean }) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const handleWheel = (event: WheelEvent) => {
+      console.log('weeeee')
+      event.stopPropagation();
+      event.preventDefault();
+    };
+
+    const canvasElement = canvasRef.current;
+    if (canvasElement) {
+      canvasElement.addEventListener('wheel', handleWheel);
+    }
+
+    return () => {
+      if (canvasElement) {
+        canvasElement.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -27,14 +48,15 @@ export default function Globe3d({ videoMaterial, className }: { videoMaterial: s
       >
         <Canvas
           camera={{ fov: 35 }}
+          style={{ width: '100%', height: '100%' }}
+          ref={canvasRef}
+          resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
         >
-          <Camera marker={marker} />
-
+          {hasMarkers && <Camera marker={marker} />}
           <ambientLight intensity={7} />
           {/* <directionalLight position={[10, 10, 10]} intensity={5} /> */}
-
-          <Globe videoMaterial={videoMaterial} />
-          {markers.map((marker, index) => (
+          <Globe videoMaterial={videoMaterial} rotate={rotate} />
+          {hasMarkers && markers.map((marker, index) => (
             <Marker key={index} index={markers.indexOf(marker)} id={marker.id} isSelected={selectedMarker === markers.indexOf(marker)} setSelectedMarker={setSelectedMarker} lat={marker.lat} lng={marker.lng}>
               Click to explore the phenomenon
             </Marker>

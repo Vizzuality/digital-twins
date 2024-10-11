@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
 import type { MarkerType } from "./marker";
 
-
 export const Camera = ({ marker }: {
   marker: MarkerType | undefined
 }) => {
@@ -21,17 +20,17 @@ export const Camera = ({ marker }: {
   useEffect(() => {
     if (marker !== undefined) {
       const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
-      cameraControlsRef.current.disconnect()
+      cameraControlsRef.current.disconnect();
       cameraControlsRef.current.setPosition(x, y, z, true);
     }
 
     if (resetControls) {
-      cameraControlsRef.current.connect(canvasElement)
-      cameraControlsRef.current.setPosition(0, 1, 4, true);
+      cameraControlsRef.current.connect(canvasElement);
+      cameraControlsRef.current.setPosition(0, 1, 4.9, true);
       cameraControlsRef.current.setTarget(0, 0, 0, true);
       setResetControls(false);
     }
-  }), [marker, resetControls, canvasElement];
+  }, [marker, resetControls, canvasElement]);
 
   return (
     <CameraControls
@@ -40,5 +39,5 @@ export const Camera = ({ marker }: {
       dollySpeed={0}
       polarRotateSpeed={0}
     />
-  )
-}
+  );
+};
