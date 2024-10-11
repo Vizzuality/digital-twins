@@ -45,7 +45,7 @@ export default function Header() {
   );
 
   return (
-    <header className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-20 transition-colors duration-500",
+    <header className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-40 transition-colors duration-500",
       {
         "bg-blue-900": isScrolled,
         "bg-transparent": !isScrolled

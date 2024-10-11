@@ -31,7 +31,7 @@ const Lines = ({
   return <>
     <AnimatePresence>
       {/* Vertical lines */}
-      <div className='vertical-lines container absolute inset-0 w-full h-full'>
+      <div className='vertical-lines container absolute inset-0 w-full h-full pointer-events-none'>
         <motion.div className={cn('w-full h-full absolute inset-0 z-10',
           verticalClassName,
           hoveringColumnsNumber && gridColumns)}
@@ -57,7 +57,7 @@ const Lines = ({
         </motion.div>
       </div>
       {/* Horizontal lines */}
-      <div className='horizontal-lines w-full h-full absolute inset-0 z-10'>
+      <div className='horizontal-lines w-full h-full absolute inset-0 z-10 pointer-events-none'>
         {rows.map((y, index) => (
           <motion.div
             initial={{ y: -1000, opacity: 0 }}
