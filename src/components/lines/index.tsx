@@ -40,7 +40,7 @@ const Lines = ({
             !!columns?.length ?
               columns.map((x, index) => (
                 <motion.div
-                  initial={{ x: -1000, opacity: 0 }}
+                  initial={{ x: 1000, opacity: 0 }}
                   animate={{ x, opacity: 1 }}
                   transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
                   key={`line-y-${sectionName}-${index}`}
