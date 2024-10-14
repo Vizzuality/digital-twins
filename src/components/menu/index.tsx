@@ -10,6 +10,7 @@ import CloseSmall from "@/svgs/close-small.svg";
 import Logo from "@/svgs/logo.svg";
 import Instagram from "@/svgs/instagram.svg";
 import Linkedin from "@/svgs/linkedin.svg";
+import MenuLines from "@/components/menu-lines";
 
 export default function Menu() {
   const [openedMenu, setOpenedMenu] = useRecoilState(menuAtom);
@@ -31,47 +32,50 @@ export default function Menu() {
   );
 
   return (
-    <motion.nav
-      className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-50"
-      initial={{ x: "100%" }}
-      animate={{ x: openedMenu ? 0 : "100%" }}
-      transition={{ type: "linear", duration: 0.3 }}
-    >
-      <div className="flex flex-col gap-[72px]">
-        <CloseMenuButton />
-        <ul className="text-3xl text-green-700 font-semibold space-y-8 max-w-[292px]">
-          <li>
-            <Link href="/">
-              <HoverRepeatAnimation>Home</HoverRepeatAnimation></Link>
-          </li>
-          <li>
-            <Link href="/case-study-energy"><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
-          </li>
-          <li>
-            <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
-          </li>
-          <li>
-            <a href="mailto:earth-communication@bsc.es"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
-          </li>
-        </ul>
-      </div>
-      <div className="flex justify-between items-end">
-        <Logo className="w-60 h-10 text-green-900" />
-        <ul className="flex gap-[15px]">
-          <li>
-            <a href="https://www.instagram.com/bsc_cns/" target="_blank">
-              <Instagram className="w-6 h-6" />
-              <div className="sr-only">Instagram</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/company/barcelona-supercomputing-center/" target="_blank">
-              <div className="sr-only">Linkedin</div>
-              <Linkedin className="w-6 h-6" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </motion.nav>
+    <>
+      {openedMenu && <MenuLines verticalClassName="absolute right-0" columns={[0, 254, 270, 430, 1074]} />}
+      <motion.nav
+        className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-50"
+        initial={{ x: "100%" }}
+        animate={{ x: openedMenu ? 0 : "100%" }}
+        transition={{ type: "linear", duration: 0.3 }}
+      >
+        <div className="flex flex-col gap-[72px]">
+          <CloseMenuButton />
+          <ul className="text-3xl text-green-700 font-semibold space-y-8 max-w-[292px]">
+            <li>
+              <Link href="/">
+                <HoverRepeatAnimation>Home</HoverRepeatAnimation></Link>
+            </li>
+            <li>
+              <Link href="/case-study-energy"><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
+            </li>
+            <li>
+              <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
+            </li>
+            <li>
+              <a href="mailto:earth-communication@bsc.es"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
+            </li>
+          </ul>
+        </div>
+        <div className="flex justify-between items-end">
+          <Logo className="w-60 h-10 text-green-900" />
+          <ul className="flex gap-[15px]">
+            <li>
+              <a href="https://www.instagram.com/bsc_cns/" target="_blank">
+                <Instagram className="w-6 h-6" />
+                <div className="sr-only">Instagram</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/barcelona-supercomputing-center/" target="_blank">
+                <div className="sr-only">Linkedin</div>
+                <Linkedin className="w-6 h-6" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </motion.nav>
+    </>
   );
 };
