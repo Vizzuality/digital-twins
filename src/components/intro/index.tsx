@@ -19,7 +19,7 @@ export default function Intro() {
   return (
     <section className="relative h-[110vh] bg-blue-900">
       <HeroVideo />
-      <Lines verticalClassName="left-8" sectionName='intro' columns={[64, 254, 270, 430, 1074]} rows={[204, 444, 516, 559, 598]} />
+      <Lines verticalClassName="left-8 w-[calc(100vh-16px)]" sectionName='intro' columns={[64, 254, 270, 430, 1074]} rows={[204, 444, 516, 559, 598]} />
       <div className='container relative pt-[198px] space-y-[30px] pl-24'>
         <h1 className='max-w-[1012px]'>
           <div className="text-light-green text-5xl font-semibold">Digital Twins: </div>
