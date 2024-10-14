@@ -25,7 +25,7 @@ export default function Intro() {
           <div className="text-light-green text-5xl font-semibold">Digital Twins: </div>
           <div className="text-white text-5xl font-semibold">Innovative Research for a Sustainable Future</div>
         </h1>
-        <VerticalCarousel className="text-white text-2xl 2xl:text-3xl">
+        <VerticalCarousel className="text-white text-2xl">
           <div>
             Bridging data and discovery with state-of-the-art digital twin technology
           </div>
@@ -37,7 +37,7 @@ export default function Intro() {
           </div>
         </VerticalCarousel>
         <div className='flex gap-4'>
-          <Button variant="white" className='z-10 group'>
+          <Button variant="white" size="lg" className='z-10 group'>
             <Link href="#">View use cases</Link>
             <ArrowRightIcon className="w-5 h-5 group-hover:text-blue-900 text-white transform group-hover:translate-x-0.5 transition-transform" />
           </Button>
@@ -45,6 +45,7 @@ export default function Intro() {
             initial="rest"
             whileHover="hover"
             animate="rest"
+            size="lg"
             className='z-10'
           >
             <HoverRepeatAnimation isChild>
