@@ -37,7 +37,14 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
         <div>© Barcelona Supercomputing Center, 2024</div>
         <div className="items-center gap-1 flex">
           <div>Designed and Developed by </div>
-          <Vizzuality />
+          <a
+            href="https://www.vizzuality.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <Vizzuality />
+          </a>
         </div>
       </div>
     </footer >

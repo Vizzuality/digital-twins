@@ -103,7 +103,7 @@ export default function Section1() {
                 <div className="flex-col gap-4 flex pr-10">
                   <div className="flex-col flex">
                     <div className="text-lg leading-relaxed">04</div>
-                    <div className="text-lg leading-relaxed">Enhancing interdisciplinary and transdisciplinarity::</div>
+                    <div className="text-lg leading-relaxed">Enhancing interdisciplinary and transdisciplinarity:</div>
                   </div>
                   <div className="text-sm leading-tight max-w-[350px]">Virtual models support collaboration among users from different disciplines, impact sectors, and geographical locations, ensuring a holistic approach to studying and solving real climate challenges.</div>
                 </div>
