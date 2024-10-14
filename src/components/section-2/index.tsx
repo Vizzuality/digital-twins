@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import Lines from "@/components/lines";
 import GlobeMap from "@/components/globe-map";
 import { Resizable } from 're-resizable';
@@ -23,6 +23,7 @@ const ResizeButton = () => (
     </Button>
   </>
 );
+
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -31,22 +32,40 @@ export default function Section2() {
   const [globePhase, setGlobePhase] = useState(0);
   const [resizableWidth, setResizableWidth] = useState(400);
 
+  const scrollToSection = (section: string) => {
+    const element = document.getElementById(section);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+
+      window.scrollTo({
+        top: rect.top + window.scrollY,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  useEffect(() => {
+    scrollToSection(`globe-phase-${globePhase + 1}`);
+  }, [globePhase]);
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.33 && globePhase !== 0) {
+    if (latest >= 0 && latest < 0.1 && globePhase !== 0) {
       setGlobePhase(0);
       setResizableWidth(400);
     }
-    if (latest >= 0.33 && latest < 0.66 && globePhase !== 1) {
+
+    if (latest >= 0.1 && latest < 0.66 && globePhase !== 1) {
       setGlobePhase(1);
       setResizableWidth(800);
     }
-    if (latest >= 0.66 && globePhase !== 2) {
+
+    if (latest >= 0.66 && globePhase < 2) {
       setGlobePhase(2);
     }
-  })
+  });
 
-  const titleX = useTransform(scrollYProgress, [0, 0.33], [0, -200]);
-  const titleY = useTransform(scrollYProgress, [0, 0.33], [0, -200]);
+  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, -200]);
+  const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, -200]);
   const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [500, 0, 0, -1000]);
 
   return (
@@ -54,11 +73,15 @@ export default function Section2() {
       <div className='relative pointer-events-none'>
         <Lines verticalClassName="left-8" sectionName="section-1" columns={[100]} rows={[100]} colorClass="bg-blue-900/20" />
       </div>
-      <div className="relative h-[600vh]" ref={scrollSectionRef}>
-        <div className='h-screen flex justify-center sticky inset-0'>
+
+      <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef}>
+        <div className='h-screen flex justify-center sticky inset-0 snap-start snap-always' id="globe-phase-1">
           <div className='relative'>
             {/* High globe */}
-            <GlobeMap className='w-[800px] h-full' videoMaterial="videos/wind_speed_global_100km.mp4" />
+            <GlobeMap
+              className='w-[800px] h-full'
+              videoMaterial="videos/wind_speed_global_100km.mp4"
+            />
             <div className="absolute inset-0 w-full z-30">
               <Resizable
                 className={cn("w-full", {
@@ -79,7 +102,11 @@ export default function Section2() {
               >
                 <div className='relative w-full h-full overflow-hidden'>
                   {/* Low globe */}
-                  <GlobeMap className='transform h-full w-[800px]' videoMaterial="videos/wind_speed_global_10km.mp4" hasMarkers={globePhase > 1} rotate={globePhase === 1} />
+                  <GlobeMap
+                    className='transform h-full w-[800px]'
+                    videoMaterial="videos/wind_speed_global_10km.mp4"
+                    hasMarkers={globePhase > 1} rotate={globePhase === 1}
+                  />
                 </div>
               </Resizable>
             </div>
@@ -116,6 +143,10 @@ export default function Section2() {
             </div>
           </motion.div>
         </div>
-      </div >
-    </section >);
+        {/* Empty divs for the snap scroll */}
+        <div className='h-[100vh] snap-start snap-always' id="globe-phase-2"></div>
+        <div className='h-[100vh] snap-start snap-always' id="globe-phase-3"></div>
+      </div>
+    </section>
+  );
 };

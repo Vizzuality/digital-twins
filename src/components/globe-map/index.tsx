@@ -16,7 +16,14 @@ const markers: MarkerType[] = [
   { id: "Cape Town", lat: -33.9249, lng: 18.4241 },
 ];
 
-export default function GlobeMap({ videoMaterial, className, hasMarkers = false, rotate }: { videoMaterial: string, className: string, hasMarkers?: boolean, rotate?: boolean }) {
+export default function GlobeMap({ videoMaterial, className, hasMarkers = false, rotate = false }:
+  {
+    videoMaterial: string,
+    className: string,
+    hasMarkers?: boolean,
+    rotate?: boolean,
+  }
+) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
@@ -24,9 +31,7 @@ export default function GlobeMap({ videoMaterial, className, hasMarkers = false,
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
-      console.log('weeeee')
       event.stopPropagation();
-      event.preventDefault();
     };
 
     const canvasElement = canvasRef.current;
@@ -48,13 +53,11 @@ export default function GlobeMap({ videoMaterial, className, hasMarkers = false,
       >
         <Canvas
           camera={{ fov: 35 }}
-          style={{ width: '100%', height: '100%' }}
           ref={canvasRef}
           resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
         >
           {hasMarkers && <Camera marker={marker} />}
           <ambientLight intensity={7} />
-          {/* <directionalLight position={[10, 10, 10]} intensity={5} /> */}
           <Globe videoMaterial={videoMaterial} rotate={rotate} />
           {hasMarkers && markers.map((marker, index) => (
             <Marker key={index} index={markers.indexOf(marker)} id={marker.id} isSelected={selectedMarker === markers.indexOf(marker)} setSelectedMarker={setSelectedMarker} lat={marker.lat} lng={marker.lng}>

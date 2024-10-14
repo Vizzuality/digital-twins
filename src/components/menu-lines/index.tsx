@@ -17,7 +17,7 @@ const MenuLines = ({
   const initialX = screenWidth - 470;
   return <>
     <AnimatePresence>
-      <div className='menu-vertical-lines container fixed inset-0 w-full h-full pointer-events-none z-50'>
+      <div className='menu-vertical-lines container fixed inset-0 w-full h-full pointer-events-none z-40'>
         <motion.div className={cn('w-full h-full absolute inset-0',
           verticalClassName)}
         >
