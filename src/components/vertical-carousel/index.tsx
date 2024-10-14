@@ -1,7 +1,6 @@
-
 'use client';
 
-import { motion, AnimatePresence, stagger } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, Children } from 'react';
 
 const VerticalCarousel = ({ children, className }:
@@ -30,25 +29,28 @@ const VerticalCarousel = ({ children, className }:
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (index + 1) % content.length;
-      setIndex(nextIndex);
+      setIndex((prevIndex) => (prevIndex + 1) % content.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [content.length, index]);
+  }, [content.length]);
 
   return (
     <div className={className}>
-      <motion.div className="relative h-[3rem] overflow-hidden">
-        <AnimatePresence>
-          <motion.div key={index} className="absolute w-full"
-            variants={contentAnimation}
-            initial="initial"
-            animate="animate"
-            exit="exit">
-            {content[index]}
-          </motion.div>
+      <div className="relative h-[3rem] overflow-hidden">
+        <AnimatePresence initial={false}>
+          {content.map((child, i) => (
+            i === index && (
+              <motion.div key={i} className="absolute w-full"
+                variants={contentAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit">
+                {child}
+              </motion.div>
+            )
+          ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </div>
   );
 }
