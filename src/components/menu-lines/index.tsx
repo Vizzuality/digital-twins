@@ -1,6 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion, stagger } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { createPortal } from 'react-dom';
 
 type MenuLinesProps = {
   colorClass?: string;
@@ -16,8 +17,8 @@ const MenuLines = ({
   const initialX = screenWidth - 470;
   return <>
     <AnimatePresence>
-      <div className='menu-vertical-lines container absolute inset-0 w-full h-full pointer-events-none'>
-        <motion.div className={cn('w-full h-full absolute inset-0 z-10',
+      <div className='menu-vertical-lines container fixed inset-0 w-full h-full pointer-events-none z-50'>
+        <motion.div className={cn('w-full h-full absolute inset-0',
           verticalClassName)}
         >
           {
@@ -36,4 +37,4 @@ const MenuLines = ({
   </>
 };
 
-export default MenuLines;
+export default (props: MenuLinesProps) => createPortal(<MenuLines {...props} />, document.body);
