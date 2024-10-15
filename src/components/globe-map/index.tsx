@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, CSSProperties } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { Camera } from './camera';
 import { Globe } from './globe';
@@ -16,10 +16,11 @@ const markers: MarkerType[] = [
   { id: "Cape Town", lat: -33.9249, lng: 18.4241 },
 ];
 
-export default function GlobeMap({ videoMaterial, className, hasMarkers = false, rotate = false }:
+export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, rotate = false }:
   {
     videoMaterial: string,
     className: string,
+    style?: CSSProperties,
     hasMarkers?: boolean,
     rotate?: boolean,
   }
@@ -50,17 +51,26 @@ export default function GlobeMap({ videoMaterial, className, hasMarkers = false,
     <>
       <div
         className={className}
+        style={style}
       >
         <Canvas
           camera={{ fov: 35 }}
           ref={canvasRef}
           resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
         >
-          {hasMarkers && <Camera marker={marker} />}
+          <Camera marker={marker} disabled={!hasMarkers} />
           <ambientLight intensity={7} />
           <Globe videoMaterial={videoMaterial} rotate={rotate} />
           {hasMarkers && markers.map((marker, index) => (
-            <Marker key={index} index={markers.indexOf(marker)} id={marker.id} isSelected={selectedMarker === markers.indexOf(marker)} setSelectedMarker={setSelectedMarker} lat={marker.lat} lng={marker.lng}>
+            <Marker
+              key={index}
+              index={markers.indexOf(marker)}
+              id={marker.id}
+              isSelected={selectedMarker === markers.indexOf(marker)}
+              setSelectedMarker={setSelectedMarker}
+              lat={marker.lat}
+              lng={marker.lng}
+            >
               Click to explore the phenomenon
             </Marker>
           ))}
