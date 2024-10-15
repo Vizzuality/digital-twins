@@ -33,13 +33,22 @@ export default function Section2() {
     target: scrollSectionRef,
   });
   const [globePhase, setGlobePhase] = useState(0);
-  const [resizableWidth, setResizableWidth] = useState(400);
 
   const screenWidth = useScreenWidthWithResize();
+  const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
 
   useEffect(() => {
-    scrollToSection(`globe-phase-${globePhase + 1}`);
+    if (globePhase) {
+      scrollToSection(`globe-phase-${globePhase + 1}`);
+    }
   }, [globePhase]);
+
+  useEffect(() => {
+    if (screenWidth || resizableWidth === 0) {
+      setResizableWidth(screenWidth / 2);
+    }
+  }
+    , [screenWidth]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest >= 0 && latest < 0.1 && globePhase !== 0) {
