@@ -10,7 +10,6 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
       <div className="justify-center flex">
         <div className="w-1/2 px-[100px] py-20 flex flex-col gap-20">
           <div className="text-sm font-medium uppercase max-w-[258px] tracking-widest">Digital Twins: <div>Innovative Research for a Sustainable Future</div></div>
-          <div className="text-lg font-bold leading-8">Lorem ipsum dolor sit amet consectetur. Sagittis praesent tempus euismod tincidunt duis phasellus aliquam facilisis consectetur.</div>
           <Logo className="text-white" />
         </div>
         <div className="w-1/2 px-[100px] py-20 flex">
