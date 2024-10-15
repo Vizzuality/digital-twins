@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion, stagger } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type LinesProps = {
   sectionName: string;
@@ -21,13 +21,27 @@ const Lines = ({
   hoveringColumnsNumber = 0,
   hoveredIndex,
 }: LinesProps) => {
-  const gridColumns = {
+
+  const gridColumns3 = {
     'grid transition-all duration-500': true,
     'grid-cols-[1.2fr_0.9fr_0.9fr]': hoveredIndex === 0,
     'grid-cols-[0.9fr_1.2fr_0.9fr]': hoveredIndex === 1,
     'grid-cols-[0.9fr_0.9fr_1.2fr]': hoveredIndex === 2,
     'grid-cols-[1fr_1fr_1fr]': hoveredIndex === null,
   };
+
+  const gridColumns5 = {
+    'grid transition-all duration-500': true,
+    'grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr]': hoveredIndex === 0,
+    'grid-cols-[0.9fr_1.4fr_0.9fr_0.9fr_0.9fr]': hoveredIndex === 1,
+    'grid-cols-[0.9fr_0.9fr_1.4fr_0.9fr_0.9fr]': hoveredIndex === 2,
+    'grid-cols-[0.9fr_0.9fr_0.9fr_1.4fr_0.9fr]': hoveredIndex === 3,
+    'grid-cols-[0.9fr_0.9fr_0.9fr_0.9fr_1.4fr]': hoveredIndex === 4,
+    'grid-cols-[1fr_1fr_1fr_1fr_1fr]': hoveredIndex === null,
+  };
+
+  const gridColumns = hoveringColumnsNumber === 3 ? gridColumns3 : gridColumns5;
+
   return <>
     <AnimatePresence>
       {/* Vertical lines */}
