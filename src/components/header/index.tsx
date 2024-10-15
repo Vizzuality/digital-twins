@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from "react";
 import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import { useRecoilState } from "recoil";
 import { menuAtom } from "@/store";
@@ -9,27 +8,9 @@ import { cn } from "@/lib/utils";
 import Menu from "@/svgs/menu.svg";
 import Logo from "@/svgs/logo.svg";
 
-const useScrolled = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const mainElement = document?.getElementsByTagName('main')[0];
-      const mainElementOffset = mainElement?.getBoundingClientRect().top || 0;
-      setIsScrolled(mainElementOffset < 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  return isScrolled;
-}
-
 export default function Header() {
   const [, setOpenedMenu] = useRecoilState(menuAtom);
-  const isScrolled = useScrolled();
+  const isScrolled = true;
   const MenuButton = () => (
     <MotionButton onClick={() => setOpenedMenu(true)}
       variant="light-green"

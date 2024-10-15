@@ -10,7 +10,9 @@ import CloseSmall from "@/svgs/close-small.svg";
 import Logo from "@/svgs/logo.svg";
 import Instagram from "@/svgs/instagram.svg";
 import Linkedin from "@/svgs/linkedin.svg";
-import MenuLines from "@/components/menu-lines";
+import dynamic from "next/dynamic";
+
+const MenuLines = dynamic(() => import("@/components/menu-lines"), { ssr: false });
 
 export default function Menu() {
   const [openedMenu, setOpenedMenu] = useRecoilState(menuAtom);

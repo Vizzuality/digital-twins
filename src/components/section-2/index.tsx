@@ -1,4 +1,5 @@
 'use client';
+
 import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import Lines from "@/components/lines";
 import GlobeMap from "@/components/globe-map";
@@ -7,6 +8,8 @@ import { Button } from "@/components/button";
 import CaretRight from '@/svgs/caret-right.svg';
 import { cn } from "@/lib/utils";
 import { useScroll, useTransform, motion, useMotionValueEvent } from "framer-motion";
+import { useScreenWidthWithResize } from '@/lib/hooks';
+import { scrollToSection } from "@/lib/utils";
 
 const ResizeButton = () => (
   <>
@@ -24,20 +27,6 @@ const ResizeButton = () => (
   </>
 );
 
-const useScreenWidthWithResize = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const handleResize = useCallback(() => {
-    setWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return width;
-}
-
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -47,17 +36,6 @@ export default function Section2() {
   const [resizableWidth, setResizableWidth] = useState(400);
 
   const screenWidth = useScreenWidthWithResize();
-  const scrollToSection = (section: string) => {
-    const element = document.getElementById(section);
-    if (element) {
-      const rect = element.getBoundingClientRect();
-
-      window.scrollTo({
-        top: rect.top + window.scrollY,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   useEffect(() => {
     scrollToSection(`globe-phase-${globePhase + 1}`);
