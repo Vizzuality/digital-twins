@@ -1,7 +1,6 @@
 import { useTexture, useVideoTexture } from "@react-three/drei";
-import { Suspense, useRef } from "react";
-import { Mesh } from "three";
-import { useFrame } from '@react-three/fiber';
+import { Suspense } from "react";
+
 
 function VideoMaterial({ url }: { url: string }) {
   const texture = useVideoTexture(url)
@@ -13,21 +12,12 @@ function FallbackMaterial({ url }: { url: string }) {
   return <meshStandardMaterial map={texture} toneMapped={false} />
 }
 
-export const Globe = ({ rotate = false, videoMaterial }: {
-  rotate?: boolean;
+export const Globe = ({ videoMaterial }: {
   videoMaterial: string;
 }) => {
-  const sphereMeshRef = useRef<Mesh>(null!);
-
-  useFrame(() => {
-    if (rotate && sphereMeshRef.current) {
-      sphereMeshRef.current.rotation.y += 0.01;
-    }
-  });
 
   return (
     <mesh
-      ref={sphereMeshRef}
       position={[0, 0, 0]}
     >
       <sphereGeometry args={[1, 64, 64]} />

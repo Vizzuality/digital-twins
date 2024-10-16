@@ -32,6 +32,7 @@ export default function Section2() {
   const { scrollYProgress } = useScroll({
     target: scrollSectionRef,
   });
+  const [initial, setInitial] = useState(true);
   const [globePhase, setGlobePhase] = useState(0);
 
   const screenWidth = useScreenWidthWithResize();
@@ -39,9 +40,15 @@ export default function Section2() {
 
   useEffect(() => {
     if (globePhase) {
-      scrollToSection(`globe-phase-${globePhase + 1}`);
+      if (initial) {
+        setInitial(false);
+        scrollToSection(`section-2-scroll-parent`);
+      } else {
+        scrollToSection(`globe-phase-${globePhase + 1}`);
+      }
     }
   }, [globePhase]);
+
 
   useEffect(() => {
     if (screenWidth || resizableWidth === 0) {
@@ -90,13 +97,16 @@ export default function Section2() {
       <div className='relative pointer-events-none'>
         <Lines verticalClassName="left-8" sectionName="section-1" columns={[100]} rows={[100]} colorClass="bg-blue-900/10" />
       </div>
-
-      <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef}>
+      <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className='h-screen flex justify-center sticky inset-0 snap-start snap-always' id="globe-phase-1">
           <div className='relative'>
             {/* High globe */}
             <GlobeMap
-              className='h-full'
+              className={cn('h-full', {
+                'opacity-1': globePhase === 0,
+                'opacity-0': globePhase > 0,
+              })}
+
               style={{ width: screenWidth }}
               videoMaterial="videos/wind_speed_global_100km.mp4"
             />

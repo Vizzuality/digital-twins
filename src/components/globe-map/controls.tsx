@@ -3,10 +3,13 @@ import { CameraControls } from "@react-three/drei";
 import { useRef } from "react";
 import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
 import type { MarkerType } from "./marker";
+import { Group } from "three";
 
-export const Camera = ({ marker, disabled = false }: {
+export const Controls = ({ marker, disabled = false, groupRef, resetSelectedMarker }: {
   marker: MarkerType | undefined
   disabled: boolean
+  groupRef: React.MutableRefObject<Group>
+  resetSelectedMarker: () => void
 }) => {
   const cameraControlsRef = useRef<CameraControls>(null!);
   const [resetControls, setResetControls] = useState<boolean>(true);
@@ -18,35 +21,35 @@ export const Camera = ({ marker, disabled = false }: {
     }
   }, [marker]);
 
+  const resetPosition = () => {
+    groupRef.current.rotation.y = 0;
+    cameraControlsRef.current.setPosition(0, 1, 4.9, true);
+    cameraControlsRef.current.setTarget(0, 0, 0, true);
+  };
+
   useEffect(() => {
     if (cameraControlsRef.current) {
       if (marker !== undefined) {
         const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
         cameraControlsRef.current.disconnect();
+        groupRef.current.rotation.y = 0;
         cameraControlsRef.current.setPosition(x, y, z, true);
       }
 
       if (resetControls) {
         cameraControlsRef.current.connect(canvasElement);
-        cameraControlsRef.current.setPosition(0, 1, 4.9, true);
-        cameraControlsRef.current.setTarget(0, 0, 0, true);
+        resetPosition();
         setResetControls(false);
       }
     }
   }, [marker, resetControls, canvasElement]);
 
   useEffect(() => {
-    if (disabled && cameraControlsRef.current) {
-      cameraControlsRef.current.connect(canvasElement);
-      cameraControlsRef.current.setPosition(0, 1, 2, true);
-      cameraControlsRef.current.setTarget(0, 0, 0, true);
-      setResetControls(true);
+    if (disabled) {
+      resetSelectedMarker();
+      resetPosition();
     }
   }, [disabled, cameraControlsRef.current]);
-
-  if (disabled) {
-    return null;
-  }
 
   return (
     <CameraControls
