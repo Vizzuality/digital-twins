@@ -56,6 +56,7 @@ const config = {
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
+          dark: "hsl(var(--popover-dark))",
         },
         card: {
           DEFAULT: "hsl(var(--card))",

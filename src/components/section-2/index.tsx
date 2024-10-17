@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { useScroll, useTransform, motion, useMotionValueEvent, useInView } from "framer-motion";
 import { useScreenWidthWithResize } from '@/lib/hooks';
 import { scrollToSection } from "@/lib/utils";
+import InfoPopover from '../info-popover';
 
 const ResizeButton = () => (
   <>
@@ -148,7 +149,9 @@ export default function Section2() {
             className='absolute left-0 top-0 w-px h-full bg-light-green/30 z-30'
             style={{ x: lineX, opacity: opacityLine }}
           />
-          <motion.div className='absolute w-full h-full z-30 flex flex-col items-center top-[40%] transition-opacity duration-500 pointer-events-none'
+          <motion.div className={cn('absolute w-full h-full z-30 flex flex-col items-center top-[40%] transition-opacity duration-500',
+            { 'pointer-events-none': globePhase !== 1 }
+          )}
             style={{
               opacity: globePhase > 1 ? 0 : 1,
             }}
@@ -170,12 +173,20 @@ export default function Section2() {
                   </div>
                 </div>
                 <motion.div
-                  className="text-light-green leading-relaxed w-[500px] flex flex-col gap-6"
+                  className={cn("text-light-green leading-relaxed w-[500px] flex flex-col gap-6 transition-opacity",
+                    {
+                      'opacity-0': globePhase !== 1,
+                      'opacity-100': globePhase === 1
+                    }
+                  )}
                   style={{ y: descriptionY, x: 710 }}
                   ref={descriptionRef}
                 >
                   <p>
-                    At the resolutions that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
+                    At the <InfoPopover
+                      variant="dark"
+                      content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
+                      resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
                   </p>
                   <p>
                     The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
