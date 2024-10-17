@@ -1,13 +1,13 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import Lines from "@/components/lines";
 import GlobeMap from "@/components/globe-map";
 import { Resizable } from 're-resizable';
 import { Button } from "@/components/button";
 import CaretRight from '@/svgs/caret-right.svg';
 import { cn } from "@/lib/utils";
-import { useScroll, useTransform, motion, useMotionValueEvent } from "framer-motion";
+import { useScroll, useTransform, motion, useMotionValueEvent, useInView } from "framer-motion";
 import { useScreenWidthWithResize } from '@/lib/hooks';
 import { scrollToSection } from "@/lib/utils";
 
@@ -37,9 +37,10 @@ export default function Section2() {
 
   const screenWidth = useScreenWidthWithResize();
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
+  const isInView = useInView(scrollSectionRef);
 
   useEffect(() => {
-    if (globePhase) {
+    if (globePhase && isInView) {
       if (initial) {
         setInitial(false);
         scrollToSection(`section-2-scroll-parent`);
@@ -47,7 +48,7 @@ export default function Section2() {
         scrollToSection(`globe-phase-${globePhase + 1}`);
       }
     }
-  }, [globePhase]);
+  }, [globePhase, isInView]);
 
 
   useEffect(() => {
@@ -93,9 +94,9 @@ export default function Section2() {
 
 
   return (
-    <section className="relative bg-green-700">
+    <section className="relative bg-green-700" id="section-2">
       <div className='relative pointer-events-none'>
-        <Lines verticalClassName="left-8" sectionName="section-1" columns={[100]} rows={[100]} colorClass="bg-blue-900/10" />
+        <Lines verticalClassName="left-8" sectionName="section-2" columns={[100]} rows={[100]} colorClass="bg-blue-900/10" />
       </div>
       <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className='h-screen flex justify-center sticky inset-0 snap-start snap-always' id="globe-phase-1">
