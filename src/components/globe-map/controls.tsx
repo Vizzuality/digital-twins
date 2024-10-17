@@ -5,21 +5,18 @@ import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
 import type { MarkerType } from "./marker";
 import { Group } from "three";
 
-export const Controls = ({ marker, disabled = false, groupRef, resetSelectedMarker }: {
+export const Controls = ({ marker, active = false, enabled = false, groupRef, resetSelectedMarker, setEnabled }: {
   marker: MarkerType | undefined
-  disabled: boolean
+  // Active is used to determine if the globe controls are in a phase that could be enabled even if is temporarily disabled
+  active: boolean
+  // Enabled is used to determine if the globe controls are currently enabled
+  enabled: boolean
+  setEnabled: (enabled: boolean) => void
   groupRef: React.MutableRefObject<Group>
-  resetSelectedMarker: () => void
+  resetSelectedMarker: () => void,
 }) => {
   const cameraControlsRef = useRef<CameraControls>(null!);
-  const [resetControls, setResetControls] = useState<boolean>(true);
-  const canvasElement = useMemo(() => document.getElementsByTagName('canvas')[0], [document]);
-
-  useEffect(() => {
-    if (marker === undefined) {
-      setResetControls(true);
-    }
-  }, [marker]);
+  const [resettingPosition, setResettingPosition] = useState(false);
 
   const resetPosition = () => {
     groupRef.current.rotation.y = 0;
@@ -28,35 +25,41 @@ export const Controls = ({ marker, disabled = false, groupRef, resetSelectedMark
   };
 
   useEffect(() => {
-    if (cameraControlsRef.current) {
-      if (marker !== undefined) {
-        const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
-        cameraControlsRef.current.disconnect();
-        groupRef.current.rotation.y = 0;
-        cameraControlsRef.current.setPosition(x, y, z, true);
-      }
+    if (active && marker !== undefined) {
+      const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
+      groupRef.current.rotation.y = 0;
+      cameraControlsRef.current.setPosition(x, y, z, true).then(() => {
+        setEnabled(false);
+      });
+    }
 
-      if (resetControls) {
-        cameraControlsRef.current.connect(canvasElement);
+    if (enabled) {
+      if (marker === undefined) {
+        resetSelectedMarker();
         resetPosition();
-        setResetControls(false);
       }
     }
-  }, [marker, resetControls, canvasElement]);
 
-  useEffect(() => {
-    if (disabled) {
-      resetSelectedMarker();
-      resetPosition();
+    if (!active && marker !== undefined && !resettingPosition) {
+      setResettingPosition(true);
     }
-  }, [disabled, cameraControlsRef.current]);
 
+    if (resettingPosition) {
+      groupRef.current.rotation.y = 0;
+      cameraControlsRef.current.setTarget(0, 0, 0, true);
+      cameraControlsRef.current.setPosition(0, 1, 4.9, true).then(() => {
+        setResettingPosition(false);
+        setEnabled(false);
+      });
+    }
+  }, [enabled, marker, active, resettingPosition]);
   return (
     <CameraControls
       ref={cameraControlsRef}
       makeDefault
       dollySpeed={0}
       polarRotateSpeed={0}
+      azimuthRotateSpeed={enabled || resettingPosition ? 1 : 0}
     />
   );
 };

@@ -4,11 +4,12 @@ import { useFrame } from '@react-three/fiber';
 import type { markers as MarkerType } from './data';
 import { Group } from 'three';
 
-const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setSelectedMarker, rotate, videoMaterial, groupRef }:
+const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelectedMarker, rotate, videoMaterial, groupRef }:
   {
     hasMarkers: boolean,
     markers: typeof MarkerType,
     selectedMarker: number | null,
+    setEnabled: (enabled: boolean) => void,
     setSelectedMarker: (index: number | null) => void,
     rotate: boolean,
     videoMaterial: string,
@@ -35,8 +36,9 @@ const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setSelectedMarker, ro
             setSelectedMarker={setSelectedMarker}
             lat={marker.lat}
             lng={marker.lng}
+            setControlsEnabled={setEnabled}
           >
-            Click to explore the phenomenon
+            {index === 0 && 'Click to explore the phenomenon'}
           </Marker>
         ))
       }

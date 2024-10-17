@@ -8,9 +8,9 @@ import Close from '@/svgs/close.svg';
 import { popupContent } from './data';
 import { motion } from 'framer-motion';
 
-const Popup = ({ setSelectedMarker, index }: {
-  setSelectedMarker:
-  (index: number | null) => void
+const Popup = ({ closePopup, setSelectedMarker, index }: {
+  closePopup: () => void
+  setSelectedMarker: (index: number) => void
   index: number,
 }) => {
   const { title, subtitle, description, video, legend } = popupContent[index];
@@ -53,7 +53,7 @@ const Popup = ({ setSelectedMarker, index }: {
           </div>
         </div>
       </div>
-      <button onClick={() => setSelectedMarker(null)} className="absolute -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex">
+      <button onClick={closePopup} className="absolute -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex">
         <Close
           width={14}
           height={14}
@@ -63,11 +63,12 @@ const Popup = ({ setSelectedMarker, index }: {
   );
 }
 
-function Marker({ id, index, lat, lng, children, setSelectedMarker, isSelected, ...props }: {
+function Marker({ id, index, lat, lng, children, setSelectedMarker, setControlsEnabled, isSelected, ...props }: {
   id: string
   index: number
   lat: number
   lng: number
+  setControlsEnabled: (enabled: boolean) => void,
   setSelectedMarker: (index: number | null) => void,
   isSelected: boolean,
   children: React.ReactNode
@@ -85,6 +86,11 @@ function Marker({ id, index, lat, lng, children, setSelectedMarker, isSelected, 
     if (range !== isInRange) setInRange(range)
   })
 
+  const closePopup = () => {
+    setControlsEnabled(true);
+    setSelectedMarker(null);
+  };
+
   return (
     <group ref={ref} >
       <Html
@@ -96,7 +102,7 @@ function Marker({ id, index, lat, lng, children, setSelectedMarker, isSelected, 
         // We just interpolate the visible state into css opacity and transforms
         style={{ transition: 'all 0.1s', opacity: isVisible ? 1 : 0, transform: `scale(${isVisible ? 1 : 0.1})` }}
         {...props}>
-        {isSelected ? <Popup setSelectedMarker={setSelectedMarker} index={index} /> :
+        {isSelected ? <Popup closePopup={closePopup} setSelectedMarker={setSelectedMarker} index={index} /> :
           <>
             <button
               type="button"
