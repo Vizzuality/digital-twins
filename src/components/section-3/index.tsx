@@ -23,22 +23,39 @@ export default function Section3() {
   };
 
   const [visibleCircle, setVisibleCircle] = useState<number | null>(null);
+  const [hoveredCircle, setHoveredCircle] = useState<number | null>(null);
   const visualizationRef = useRef(null);
   const isInView = useInView(visualizationRef);
+  const [revealedImageIndex, setRevealedImageIndex] = useState(0);
+
   useEffect(() => {
     if (isInView) {
+      let fullReveal = false;
       let i = 0;
-      const interval = setInterval(() => {
+
+      const runLoop = () => {
         if (i === 3) {
-          clearInterval(interval);
+          // wait 10s before starting the loop again
+          setTimeout(() => {
+            fullReveal = true;
+            i = 0;
+          }, 10000);
+        }
+
+        if (!fullReveal && i < 4) {
+          setRevealedImageIndex(i);
         }
         setVisibleCircle(i);
         i++;
-      }, 1000);
+      };
+
+      runLoop()
+      const interval = setInterval(runLoop, 1000);
 
       return () => clearInterval(interval);
     }
-  }, [isInView]);
+  }, [isInView, setRevealedImageIndex]);
+
   return (
     <section className="relative bg-white py-20 scroll-mt-8" id="section-1">
       <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-1" rows={[1074]} colorClass="bg-blue-900/10" hoveringColumnsNumber={5} hoveredIndex={hoveredIndex} />
@@ -47,37 +64,67 @@ export default function Section3() {
           <div className="relative" ref={visualizationRef}>
             <Image
               alt=""
-              src="/images/home-models.png"
+              src="/images/home-models.svg"
               width={316}
               height={906}
             />
             <div className="absolute top-8 left-8 group">
-              <div onMouseEnter={() => setVisibleCircle(0)} onMouseLeave={() => setVisibleCircle(null)} className={cn("flex h-60 w-60 items-center justify-center rounded-full bg-light-green transition-opacity",
-                {
-                  "opacity-1": visibleCircle === 0,
-                  "opacity-0": visibleCircle !== 0
-                }
-              )} >
+              {revealedImageIndex > 0 && < Image
+                className="absolute inset-0 w-[240px] h-[240px] z-0"
+                alt=""
+                src="/images/home-integrating-1.png"
+                width={240}
+                height={240}
+              />}
+              <div
+                onMouseEnter={() => setHoveredCircle(0)}
+                onMouseLeave={() => setHoveredCircle(null)}
+                className={cn("relative flex h-60 w-60 items-center justify-center rounded-full bg-light-green transition-opacity z-10",
+                  {
+                    "opacity-1": visibleCircle === 0 || hoveredCircle === 0,
+                    "opacity-0": visibleCircle !== 0 && hoveredCircle !== 0
+                  }
+                )} >
                 <div className="text-center text-blue-800 text-lg font-medium uppercase tracking-tight">CLIMATE MODELS SIMULATIONS</div>
               </div>
             </div>
             <div className="absolute top-[318px] left-8">
-              <div onMouseEnter={() => setVisibleCircle(1)} onMouseLeave={() => setVisibleCircle(null)} className={cn("flex h-60 w-60 items-center justify-center rounded-full bg-light-green transition-opacity",
-                {
-                  "opacity-1": visibleCircle === 1,
-                  "opacity-0": visibleCircle !== 1
-                }
-              )} >
+              {revealedImageIndex > 1 && <Image
+                alt=""
+                className="absolute inset-0 w-[240px] h-[240px] z-0"
+                src="/images/home-integrating-2.png"
+                width={217}
+                height={212}
+              />}
+              <div
+                onMouseEnter={() => setHoveredCircle(1)}
+                onMouseLeave={() => setHoveredCircle(null)}
+                className={cn("relative flex h-60 w-60 items-center justify-center rounded-full bg-light-green transition-opacity z-10",
+                  {
+                    "opacity-1": visibleCircle === 1 || hoveredCircle === 1,
+                    "opacity-0": visibleCircle !== 1 && hoveredCircle !== 1
+                  }
+                )} >
                 <div className="text-center text-blue-800 text-lg font-medium uppercase tracking-tight">Data streaming</div>
               </div>
             </div>
             <div className="absolute top-[614px] left-8">
-              <div onMouseEnter={() => setVisibleCircle(2)} onMouseLeave={() => setVisibleCircle(null)} className={cn("flex flex-col h-60 w-60 items-center justify-center rounded-full bg-light-green transition-opacity",
-                {
-                  "opacity-1": visibleCircle === 2,
-                  "opacity-0": visibleCircle !== 2
-                }
-              )} >
+              {revealedImageIndex > 2 && <Image
+                alt=""
+                className="absolute inset-0 w-[240px] h-[240px] z-0 fade-in-100"
+                src="/images/home-integrating-3.png"
+                width={202}
+                height={206}
+              />}
+              <div
+                onMouseEnter={() => setHoveredCircle(2)}
+                onMouseLeave={() => setHoveredCircle(null)}
+                className={cn("relative flex flex-col h-60 w-60 items-center justify-center rounded-full bg-light-green transition-opacity z-10",
+                  {
+                    "opacity-1": visibleCircle === 2 || hoveredCircle === 2,
+                    "opacity-0": visibleCircle !== 2 && hoveredCircle !== 2
+                  }
+                )} >
                 <div className="text-center text-blue-800 text-lg font-medium uppercase tracking-tight pb-1">Impact models</div>
                 <div className="text-center text-blue-800 text-xs font-medium uppercase tracking-tight leading-5">Applications in <br />different sectors</div>
               </div>
