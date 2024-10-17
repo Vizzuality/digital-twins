@@ -20,7 +20,7 @@ export default function Section1() {
 
   return (
     <section className="relative bg-white py-20 scroll-mt-8" id="section-1">
-      <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-1" rows={[474, (!hoveredIndex || hoveredIndex === 0) ? 1108 : 1136]} colorClass="bg-blue-900/10" hoveringColumnsNumber={3} hoveredIndex={hoveredIndex} />
+      <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-1" rows={[openedKnowMore ? 632 : 474, (!hoveredIndex || hoveredIndex === 0) ? 1108 : 1136]} colorClass="bg-blue-900/10" hoveringColumnsNumber={3} hoveredIndex={hoveredIndex} />
       <div className="container px-[150px]">
         <div className="max-w-[594px] text-green-700 space-y-5 pb-20">
           <div className=" text-lg font-medium uppercase">Understanding digital twins</div>
