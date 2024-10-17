@@ -8,8 +8,8 @@ type LinesProps = {
   colorClass?: string;
   verticalClassName?: string;
 } & (
-    | { hoveringColumnsNumber: number; columns?: never; hoveredIndex: number | null }
-    | { columns: number[]; hoveringColumnsNumber?: never; hoveredIndex?: never }
+    | { columnsNumber: number; hoveredIndex?: number | null; columns?: never; }
+    | { columns: number[]; columnsNumber?: never; hoveredIndex?: never }
   );
 
 const Lines = ({
@@ -18,29 +18,34 @@ const Lines = ({
   rows = [],
   colorClass = 'bg-white/20',
   verticalClassName,
-  hoveringColumnsNumber = 0,
+  columnsNumber = 0,
   hoveredIndex,
 }: LinesProps) => {
 
+  const gridColumns2 = 'grid transition-all duration-500 grid-cols-[1fr_1fr_1px]';
   const gridColumns3 = {
     'grid transition-all duration-500': true,
-    'grid-cols-[1.2fr_0.9fr_0.9fr]': hoveredIndex === 0,
-    'grid-cols-[0.9fr_1.2fr_0.9fr]': hoveredIndex === 1,
-    'grid-cols-[0.9fr_0.9fr_1.2fr]': hoveredIndex === 2,
-    'grid-cols-[1fr_1fr_1fr]': hoveredIndex === null,
+    'grid-cols-[1.2fr_0.9fr_0.9fr_1px]': hoveredIndex === 0,
+    'grid-cols-[0.9fr_1.2fr_0.9fr_1px]': hoveredIndex === 1,
+    'grid-cols-[0.9fr_0.9fr_1.2fr_1px]': hoveredIndex === 2,
+    'grid-cols-[1fr_1fr_1fr_1px]': hoveredIndex === null,
   };
 
   const gridColumns5 = {
     'grid transition-all duration-500': true,
-    'grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr]': hoveredIndex === 0,
-    'grid-cols-[0.9fr_1.4fr_0.9fr_0.9fr_0.9fr]': hoveredIndex === 1,
-    'grid-cols-[0.9fr_0.9fr_1.4fr_0.9fr_0.9fr]': hoveredIndex === 2,
-    'grid-cols-[0.9fr_0.9fr_0.9fr_1.4fr_0.9fr]': hoveredIndex === 3,
-    'grid-cols-[0.9fr_0.9fr_0.9fr_0.9fr_1.4fr]': hoveredIndex === 4,
-    'grid-cols-[1fr_1fr_1fr_1fr_1fr]': hoveredIndex === null,
+    'grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr_1px]': hoveredIndex === 0,
+    'grid-cols-[0.9fr_1.4fr_0.9fr_0.9fr_0.9fr_1px]': hoveredIndex === 1,
+    'grid-cols-[0.9fr_0.9fr_1.4fr_0.9fr_0.9fr_1px]': hoveredIndex === 2,
+    'grid-cols-[0.9fr_0.9fr_0.9fr_1.4fr_0.9fr_1px]': hoveredIndex === 3,
+    'grid-cols-[0.9fr_0.9fr_0.9fr_0.9fr_1.4fr_1px]': hoveredIndex === 4,
+    'grid-cols-[1fr_1fr_1fr_1fr_1fr_1px]': hoveredIndex === null,
   };
 
-  const gridColumns = hoveringColumnsNumber === 3 ? gridColumns3 : gridColumns5;
+  const gridColumns = {
+    2: gridColumns2,
+    3: gridColumns3,
+    5: gridColumns5
+  }[columnsNumber];
 
   return <>
     <AnimatePresence>
@@ -48,7 +53,7 @@ const Lines = ({
       <div className='vertical-lines container absolute inset-0 w-full h-full pointer-events-none'>
         <motion.div className={cn('w-full h-full absolute inset-0 z-10',
           verticalClassName,
-          hoveringColumnsNumber && gridColumns)}
+          columnsNumber && gridColumns)}
         >
           {
             !!columns?.length ?
@@ -61,7 +66,7 @@ const Lines = ({
                   className={cn("h-full w-px absolute", colorClass)} />
               )) :
               (
-                Array(hoveringColumnsNumber).fill(null).map((_, index) => (
+                Array(columnsNumber + 1).fill(null).map((_, index) => (
                   <motion.div
                     key={`line-y-${sectionName}-${index}`}
                     className={cn("h-full w-px", colorClass)} />

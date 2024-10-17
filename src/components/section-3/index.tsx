@@ -57,8 +57,8 @@ export default function Section3() {
   }, [isInView, setRevealedImageIndex]);
 
   return (
-    <section className="relative bg-white py-20 scroll-mt-8" id="section-1">
-      <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-1" rows={[1074]} colorClass="bg-blue-900/10" hoveringColumnsNumber={5} hoveredIndex={hoveredIndex} />
+    <section className="relative bg-white pt-20 scroll-mt-8" id="section-3">
+      <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-3" rows={[1074]} colorClass="bg-blue-900/10" columnsNumber={5} hoveredIndex={hoveredIndex} />
       <div className="container px-[150px]">
         <div className="flex pb-[150px] gap-[69px]">
           <div className="relative" ref={visualizationRef}>
