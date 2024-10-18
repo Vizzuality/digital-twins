@@ -50,8 +50,8 @@ export default function Section1() {
                 <Image
                   alt=""
                   src={`/images/home-understanding-${index + 1}.png`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
               </motion.div>
             ))}

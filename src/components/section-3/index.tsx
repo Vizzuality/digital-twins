@@ -25,7 +25,7 @@ export default function Section3() {
   const [visibleCircle, setVisibleCircle] = useState<number | null>(null);
   const [hoveredCircle, setHoveredCircle] = useState<number | null>(null);
   const visualizationRef = useRef(null);
-  const isInView = useInView(visualizationRef);
+  const isInView = useInView(visualizationRef, { once: true });
   const [revealedImageIndex, setRevealedImageIndex] = useState(0);
 
   useEffect(() => {
@@ -160,8 +160,8 @@ export default function Section3() {
                 <Image
                   alt=""
                   src={`/images/home-models-${index + 1}.png`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
               </motion.div>
             ))}
