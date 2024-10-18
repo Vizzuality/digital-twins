@@ -30,9 +30,9 @@ export default function Section3() {
         </div>
         <Image
           alt=""
-          className="pt-6 mr-10"
+          className="mr-10"
           src="/images/home-towards-data.svg"
-          width={337}
+          width={1160}
           height={742}
         />
       </div>
