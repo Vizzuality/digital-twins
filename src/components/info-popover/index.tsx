@@ -20,7 +20,7 @@ const InfoPopover: React.FC<InfoPopoverProps> = ({ children, content, variant = 
         {children}
         <InfoComponent className="absolute -right-2 -top-2.5 h-4 w-4 transform group-hover:rotate-90 transition-transform" />
       </PopoverTrigger>
-      <PopoverContent side="top" sideOffset={24}
+      <PopoverContent className="text-xs" side="top" sideOffset={24}
         variant={variant}
       >{content}</PopoverContent>
     </Popover>
