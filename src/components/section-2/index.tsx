@@ -166,10 +166,14 @@ export default function Section2() {
                 x: titleX,
                 y: titleY,
               }}>
-                <div className='translate-y-3'>
-                  <div className="text-center text-light-green text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
-                  <div className="text-center text-light-green text-4xl max-w-[720px]">
-                    High-quality information from global to local scale
+                <div className={cn('translate-y-3 transition-all duration-500 text-center whitespace-nowrap w-full',
+                  {
+                    'w-0': globePhase === 1,
+                  }
+                )}>
+                  <div className="text-light-green text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
+                  <div className="text-light-green text-4xl max-w-[720px]">
+                    High-quality information <br />from global to local scale
                   </div>
                 </div>
                 <motion.div
