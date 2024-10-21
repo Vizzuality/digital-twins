@@ -4,9 +4,9 @@ import Lines from "@/components/lines";
 import { motion, AnimatePresence } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
 
-export default function Section3() {
-
+export default function Section4() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
   return (
     <section className="relative bg-blue-950 scroll-mt-8 text-white" id="section-4">
@@ -21,10 +21,10 @@ export default function Section3() {
           </div>
         </div>
       </div>
-      <Lines verticalClassName="pl-[152px] pr-[152px] z-0" sectionName="section-5" rows={[1506]} columns={[548]} colorClass="bg-white/10" />
+      <Lines verticalClassName="pl-[152px] pr-[152px] z-0" sectionName="section-4" rows={[1506]} columns={[548]} colorClass="bg-white/10" />
       <div className="container px-[150px]">
         <div className="flex flex-col pb-[120px] gap-[100px]">
-          <div className="max-w-[630px] space-y-5 pb-10 pt-20">
+          <div className="max-w-[630px] space-y-5 pt-20">
             <div className="max-w-[594px]">
               <h3 className="text-2xl pb-5">Through interactive and configurable access to data, models and workflows, the digital twin represents an exciting opportunity to satisfy users’ curiosity.</h3>
             </div>
@@ -47,21 +47,66 @@ export default function Section3() {
 
           </div>
           <div className="text-4xl font-medium tracking-wide">What if ...</div>
-          <Tabs defaultValue="scenario1" className="w-[400px]">
+          <Tabs defaultValue="scenario1">
             <TabsList>
               <TabsTrigger value="scenario1">Scenario 1</TabsTrigger>
               <TabsTrigger value="scenario2">Scenario 2</TabsTrigger>
               <TabsTrigger value="scenario3">Scenario 3</TabsTrigger>
             </TabsList>
-            <TabsContent value="scenario1">
+            <TabsContent value="scenario1" className="pt-10">
               <div className="grid grid-cols-2">
-                <div className="text-light-green">
+                <div className="text-light-green max-w-[320px] text-xl">
                   ... the heatwave that affected Europe in 2018 occurred in a +2ºC warmer world ?
+                </div>
+                <div className="text-white max-w-[466px] text-balance">
+                  The digital twin allows not only to understand the conditions under which the 2018 heatwave had occurred, but also to simulate how much worse could this heatwave be if it occurs under a future warmer world.
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="scenario2"></TabsContent>
-            <TabsContent value="scenario3"></TabsContent>
+            <TabsContent value="scenario2" className="pt-10">
+              <div className="grid grid-cols-2">
+                <div className="text-light-green max-w-[320px] text-xl">
+                  ... forest areas in a region are converted to irrigated cropland?
+                </div>
+                <div className="text-white max-w-[466px] text-balance mb-20">
+                  By allowing the change of land use category from forest to cropland, the digital twin makes it possible for users to explore the effects that the reduced amount of forest land would have on variables such as the soil moisture, local precipitation and temperature.
+                </div>
+                <Image
+                  src="/images/home-what-if-2-1.png"
+                  alt=""
+                  width={580}
+                  height={360}
+                />
+                <Image
+                  src="/images/home-what-if-2-2.png"
+                  alt=""
+                  width={580}
+                  height={360}
+                />
+              </div>
+            </TabsContent>
+            <TabsContent value="scenario3" className="pt-10">
+              <div className="grid grid-cols-2">
+                <div className="text-light-green max-w-[320px] text-xl">
+                  ... a wind farm is built in a particular location?
+                </div>
+                <div className="text-white max-w-[466px] text-balance mb-20">
+                  The digital twin allows simulations of the average energy output of a wind farm built in a particular location. This type of information is key to advising the investment of wind energy planners in the deployment of a new wind farm, which needs to take into account the initial investment and future expected revenues.
+                </div>
+                <Image
+                  src="/images/home-what-if-3-1.png"
+                  alt=""
+                  width={580}
+                  height={360}
+                />
+                <Image
+                  src="/images/home-what-if-3-2.png"
+                  alt=""
+                  width={580}
+                  height={360}
+                />
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
       </div>
