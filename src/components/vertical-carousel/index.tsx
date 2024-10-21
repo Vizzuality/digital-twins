@@ -20,11 +20,6 @@ const VerticalCarousel = ({ children, className }:
       opacity: 1,
       transition: { ease: "linear", duration: 0.5 },
     },
-    exit: {
-      opacity: 0,
-      y: "-100%",
-      transition: { ease: "linear", duration: 0.5 },
-    },
   };
 
   useEffect(() => {
@@ -40,7 +35,7 @@ const VerticalCarousel = ({ children, className }:
         <AnimatePresence initial={false}>
           {content.map((child, i) => (
             i === index && (
-              <motion.div key={i} className="absolute w-full"
+              <motion.div key={`carousel-item-${i}`} className="absolute w-full"
                 variants={contentAnimation}
                 initial="initial"
                 animate="animate"
