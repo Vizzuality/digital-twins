@@ -175,8 +175,13 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(split_by_timestep, "europe_scenarios_diff", "europe_diff_parts"),
             node(
+                func=get_min_max,
+                inputs=["europe_scenarios_diff", "params:diff_video"],
+                outputs="minmax",
+            ),
+            node(
                 parts_to_video,
-                ["europe_diff_parts", "params:diff_video"],
+                ["europe_diff_parts", "params:diff_video", "minmax"],
                 "europe_diff.video",
             ),
         ],
