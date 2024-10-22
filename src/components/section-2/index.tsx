@@ -137,7 +137,7 @@ export default function Section2() {
                     style={{ width: screenWidth }}
                     hasMarkers={globePhase > 1}
                     rotate={globePhase === 1}
-                    videoMaterial={globePhase < 2 ? "videos/wind_speed_global_10km.webm" : undefined}
+                    videoMaterial={globePhase < 2 ? "videos/wind_speed_global_100km.webm" : undefined}
                     globePhase={globePhase}
                   />
                 </div>

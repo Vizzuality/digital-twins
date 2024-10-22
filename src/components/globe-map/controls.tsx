@@ -14,6 +14,7 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
   setEnabled: (enabled: boolean) => void
   groupRef: React.MutableRefObject<Group>
   resetSelectedMarker: () => void,
+  globePhase: number
 }) => {
   const cameraControlsRef = useRef<CameraControls>(null!);
   const [resettingPosition, setResettingPosition] = useState(false);
