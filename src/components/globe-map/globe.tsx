@@ -6,7 +6,7 @@ import { useRef, useMemo } from "react";
 
 function VideoMaterial({ url }: { url: string }) {
   const texture = useVideoTexture(url)
-  return <meshStandardMaterial map={texture} toneMapped={false} />
+  return <meshBasicMaterial map={texture} toneMapped={false} />
 }
 
 
