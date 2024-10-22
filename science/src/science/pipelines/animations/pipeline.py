@@ -61,11 +61,21 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=split_by_timestep,
                 inputs="clipped",
-                outputs="parts",
+                outputs="local_parts",
+            ),
+            node(
+                func=split_by_timestep,
+                inputs="georef",
+                outputs="global_parts",
             ),
             node(
                 func=parts_to_video,
-                inputs=["parts", "params:video", "minmax"],
+                inputs=["local_parts", "params:video", "minmax"],
+                outputs="video",
+            ),
+            node(
+                func=parts_to_video,
+                inputs=["global_parts", "params:video", "minmax"],
                 outputs="video",
             ),
         ]

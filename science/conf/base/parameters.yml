@@ -4,13 +4,13 @@ global_video_10:
     cmap: "viridis"
     scale: 1
     vmin: 0
-    vmax: 55
+    vmax: 20
 
 global_video_100:
     cmap: "viridis"
-    scale: 10
+    scale: 1
     vmin: 0
-    vmax: 55
+    vmax: 20
 
 # ------- ZOOM IN ----------
 
@@ -25,6 +25,10 @@ hurricane_10km_render_params:
         maxx: -51.77
         maxy: 42.37
 
+hurricane_100km_global:
+    cmap: "Blues_r"
+    scale: 1
+
 amazonia_10km_render_params:
     cmap: "rain_custom"
     scale: 1
@@ -36,6 +40,10 @@ amazonia_10km_render_params:
         maxx: -60
         maxy: 10
 
+amazonia_100km_global:
+    cmap: "rain_custom"
+    scale: 1
+
 temperature_10km_render_params:
     cmap: "inferno"
     scale: 4
@@ -45,6 +53,10 @@ temperature_10km_render_params:
         maxx: 4.7930
         maxy: 44.1825
 
+temperature_100km_global:
+    cmap: "inferno"
+    scale: 1
+
 sst_10km_render_params:
     cmap: "thermal"
     scale: 4
@@ -53,6 +65,10 @@ sst_10km_render_params:
         miny: -7
         maxx: -93
         maxy: 8.5
+
+sst_100km_global:
+    cmap: "thermal"
+    scale: 1
 
 # ------ SCENARIOS ---------
 
