@@ -10,7 +10,7 @@ export default function Section3() {
       <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-5" rows={[]} columnsNumber={2} colorClass="bg-blue-900/10" />
       <div className="container px-[150px] flex justify-between items-start">
         <div className="flex pb-[126px] gap-[69px]">
-          <div className="max-w-[630px] text-green-700 space-y-5 pb-10">
+          <div className="w-[630px] text-green-700 space-y-5 pb-10">
             <h2 className="text-4xl font-medium pb-16">Towards data streaming for efficient uptake by users.</h2>
             <div className="max-w-[487px]">
               <h3 className="text-2xl pb-5">Current practice is that data generated from lower-resolution climate models is stored to disk.</h3>

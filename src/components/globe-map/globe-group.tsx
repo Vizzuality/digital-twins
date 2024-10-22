@@ -12,7 +12,7 @@ const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelect
     setEnabled: (enabled: boolean) => void,
     setSelectedMarker: (index: number | null) => void,
     rotate: boolean,
-    videoMaterial: string,
+    videoMaterial?: string,
     groupRef: React.MutableRefObject<Group>
   }
 ) => {

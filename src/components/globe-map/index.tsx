@@ -8,13 +8,14 @@ import { markers } from './data';
 
 import GlobeGroup from './globe-group';
 
-export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, rotate = false }:
+export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, globePhase, rotate = false }:
   {
-    videoMaterial: string,
+    videoMaterial?: string,
     className: string,
     style?: CSSProperties,
     hasMarkers?: boolean,
     rotate?: boolean,
+    globePhase: number
   }
 ) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -66,7 +67,7 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
           ref={canvasRef}
           resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
         >
-          <Controls marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} />
+          <Controls marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
           <ambientLight intensity={7} />
           <GlobeGroup
             groupRef={groupRef}

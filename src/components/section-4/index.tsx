@@ -16,7 +16,7 @@ export default function Section4() {
         </video>
         <div className="relative z-10 text-white text-center">
           <div className="text-center text-lg uppercase tracking-tight">Unlocking Future Possibilities</div>
-          <div className="text-center text-4xl max-w-[720px]">
+          <div className="text-center text-4xl max-w-[830px]">
             Harnessing Digital Twins for on-demand simulations.
           </div>
         </div>

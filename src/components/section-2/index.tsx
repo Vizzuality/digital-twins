@@ -93,7 +93,6 @@ export default function Section2() {
   const lineY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [500, -40, -40, -1000]);
   const lineX = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [resizableWidth, descriptionLeft, descriptionLeft, descriptionLeft]);
 
-
   return (
     <section className="relative bg-green-700" id="section-2">
       <div className='relative pointer-events-none'>
@@ -108,9 +107,9 @@ export default function Section2() {
                 'opacity-1': globePhase === 0,
                 'opacity-0': globePhase > 0,
               })}
-
+              videoMaterial="videos/wind_speed_global_10km.webm"
               style={{ width: screenWidth }}
-              videoMaterial="videos/wind_speed_global_100km.mp4"
+              globePhase={globePhase}
             />
             <div className="absolute inset-0 w-full z-30">
               <Resizable
@@ -136,9 +135,10 @@ export default function Section2() {
                   <GlobeMap
                     className='transform h-full'
                     style={{ width: screenWidth }}
-                    videoMaterial="videos/wind_speed_global_10km.mp4"
                     hasMarkers={globePhase > 1}
                     rotate={globePhase === 1}
+                    videoMaterial={globePhase < 2 ? "videos/wind_speed_global_10km.webm" : undefined}
+                    globePhase={globePhase}
                   />
                 </div>
               </Resizable>
