@@ -100,7 +100,7 @@ export default function Section2() {
       </div>
       <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className='h-screen flex justify-center sticky inset-0 snap-start snap-always' id="globe-phase-1">
-          <div className='relative'>
+          <div className='relative w-full overflow-hidden'>
             {/* High globe */}
             <GlobeMap
               className={cn('h-full', {
@@ -130,14 +130,16 @@ export default function Section2() {
                   right: <ResizeButton />,
                 }}
               >
-                <div className='relative w-full h-full overflow-hidden'>
+                <div className='h-full overflow-hidden'>
                   {/* Low globe */}
                   <GlobeMap
                     className='transform h-full'
                     style={{ width: screenWidth }}
                     hasMarkers={globePhase > 1}
                     rotate={globePhase === 1}
-                    videoMaterial={globePhase < 2 ? "videos/wind_speed_global_100km.webm" : undefined}
+                    videoMaterial={
+                      globePhase === 0 ? "videos/wind_speed_global_100km.webm" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
+                    }
                     globePhase={globePhase}
                   />
                 </div>
@@ -166,20 +168,22 @@ export default function Section2() {
                 x: titleX,
                 y: titleY,
               }}>
-                <div className={cn('translate-y-3 transition-all duration-500 text-center whitespace-nowrap w-full',
-                  {
-                    'w-0': globePhase === 1,
-                  }
-                )}>
+                <motion.div className={cn('translate-y-3 transition-all duration-500 text-center whitespace-nowrap',
+
+                )}
+                  initial={{ width: '100%' }}
+                  animate={{ width: globePhase === 1 ? 0 : '100%' }}
+                  transition={{ duration: 0.1, ease: 'linear' }}
+                >
                   <div className="text-light-green text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
                   <div className="text-light-green text-4xl max-w-[720px]">
                     High-quality information <br />from global to local scale
                   </div>
-                </div>
+                </motion.div>
                 <motion.div
-                  className={cn("text-light-green leading-relaxed w-[500px] flex flex-col gap-6 transition-opacity",
+                  className={cn("absolute text-light-green leading-relaxed w-[500px] flex flex-col gap-6 transition-opacity",
                     {
-                      'opacity-0': globePhase !== 1,
+                      'hidden opacity-0': globePhase !== 1,
                       'opacity-100': globePhase === 1
                     }
                   )}
