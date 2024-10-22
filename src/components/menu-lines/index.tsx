@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
+import { useIsMobile } from '@/lib/hooks';
 
 type MenuLinesProps = {
   colorClass?: string;
@@ -16,6 +17,8 @@ const MenuLines = ({
 }: MenuLinesProps) => {
   const screenWidth = window.innerWidth;
   const initialX = screenWidth - 470;
+  const isMobile = useIsMobile();
+  if (isMobile) return null;
   return <>
     <AnimatePresence>
       <div className='menu-vertical-lines container fixed inset-0 w-full h-full pointer-events-none z-40'>

@@ -33,7 +33,7 @@ export default function Header() {
       })
     }>
       <div className="container flex justify-between items-center">
-        <Logo className="w-60 h-10 text-white" />
+        <Logo className="w-40 lg:w-60 h-10 text-white" />
         <MenuButton />
       </div>
     </header>

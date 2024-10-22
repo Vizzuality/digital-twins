@@ -167,7 +167,7 @@ export default function Section3() {
             ))}
           </AnimatePresence>
         </div>
-        <div className={cn('min-h-[290px]', gridColumns)}>
+        <div className={cn('min-h-[290px]', gridColumns)} id="use-cases">
           <div className="pt-10 pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(0)} onMouseLeave={() => setHoveredIndex(null)}>
             <div className="leading-relaxed">
               <div>01</div>

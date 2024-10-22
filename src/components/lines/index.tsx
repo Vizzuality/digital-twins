@@ -1,6 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useIsMobile } from '@/lib/hooks';
 
 type LinesProps = {
   sectionName: string;
@@ -21,7 +22,6 @@ const Lines = ({
   columnsNumber = 0,
   hoveredIndex,
 }: LinesProps) => {
-
   const gridColumns2 = 'grid transition-all duration-500 grid-cols-[1fr_1fr_1px]';
   const gridColumns3 = {
     'grid transition-all duration-500': true,
@@ -46,6 +46,9 @@ const Lines = ({
     3: gridColumns3,
     5: gridColumns5
   }[columnsNumber];
+
+  const isMobile = useIsMobile();
+  if (isMobile) return null;
 
   return <>
     <AnimatePresence>

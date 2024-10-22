@@ -37,14 +37,14 @@ export default function Menu() {
     <>
       {openedMenu && <MenuLines verticalClassName="absolute right-0" columns={[0, 254, 270, 430, 1074]} />}
       <motion.nav
-        className="fixed top-0 w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-50"
+        className="fixed top-0 w-full overflow-auto lg:w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-50"
         initial={{ x: "100%" }}
         animate={{ x: openedMenu ? 0 : "100%" }}
         transition={{ type: "linear", duration: 0.3 }}
       >
-        <div className="flex flex-col gap-[72px]">
+        <div className="flex flex-col gap-[72px] pb-10">
           <CloseMenuButton />
-          <ul className="text-3xl text-green-700 font-semibold space-y-8 max-w-[292px]">
+          <ul className="text-xl lg:text-3xl text-green-700 font-semibold space-y-8 max-w-[292px]">
             <li>
               <Link href="/">
                 <HoverRepeatAnimation>Home</HoverRepeatAnimation></Link>
