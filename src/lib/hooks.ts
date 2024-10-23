@@ -22,7 +22,8 @@ export const useScreenWidthWithResize = () => {
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
   const handleResize = useCallback(() => {
-    setIsMobile(window.innerWidth < 768);
+    // Use desktop breakpoint to allow for big screen mobiles
+    setIsMobile(window.innerWidth < 1024);
   }, []);
 
   useEffect(() => {

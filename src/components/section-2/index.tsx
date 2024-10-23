@@ -177,14 +177,14 @@ export default function Section2() {
                   animate={{ width: globePhase === 1 ? 0 : '100%' }}
                   transition={{ duration: 0.1, ease: 'linear' }}
                 >
-                  <div className="text-light-green text-base lg:text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
-                  <div className="text-light-green text-2xl lg:text-4xl max-w-[90vw] lg:max-w-[720px]">
+                  <div className="text-light-green text-base xl:text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
+                  <div className="text-light-green text-2xl xl:text-4xl max-w-[90vw] xl:max-w-[720px]">
                     High-quality information <br />from global to local scale
                   </div>
                 </motion.div>
               </motion.div>
               <motion.div
-                className={cn("absolute text-light-green leading-relaxed w-[70vw] lg:w-[500px] flex flex-col gap-2 lg:gap-6 transition-opacity",
+                className={cn("absolute text-light-green leading-relaxed w-[70vw] xl:w-[500px] flex flex-col gap-2 xl:gap-6 transition-opacity",
                   {
                     'hidden opacity-0': globePhase !== 1,
                     'opacity-100': globePhase === 1

@@ -17,15 +17,15 @@ export default function Intro() {
     }
   }
   return (
-    <section className="relative min-h-[600px] lg:h-[110vh] bg-blue-900">
+    <section className="relative min-h-[600px] xl:h-[110vh] bg-blue-900">
       <HeroVideo />
       <Lines verticalClassName="left-8 w-[calc(100vh-16px)]" sectionName='intro' columns={[64, 254, 270, 430, 1074]} rows={[204, 444, 516, 559, 602]} />
-      <div className='container relative pt-[110px] lg:pt-[198px] space-y-[30px] pl-8 lg:pl-24'>
-        <h1 className='lg:max-w-[1012px]'>
-          <div className="text-light-green text-2xl lg:text-5xl font-semibold">Digital Twins: </div>
-          <div className="text-white text-2xl lg:text-5xl font-semibold">Innovative Research for a Sustainable Future</div>
+      <div className='container relative pt-[110px] xl:pt-[198px] space-y-[30px] pl-8 xl:pl-24'>
+        <h1 className='xl:max-w-[1012px]'>
+          <div className="text-light-green text-2xl xl:text-5xl font-semibold">Digital Twins: </div>
+          <div className="text-white text-2xl xl:text-5xl font-semibold">Innovative Research for a Sustainable Future</div>
         </h1>
-        <VerticalCarousel className="text-white text-sm lg:text-2xl">
+        <VerticalCarousel className="text-white text-sm xl:text-2xl">
           <div>
             Bridging data and discovery with state-of-the-art digital twin technology
           </div>
@@ -54,7 +54,7 @@ export default function Intro() {
           </MotionButton>
         </div>
       </div>
-      <Marquee className="w-full text-light-green lg:text-xl gap-12 border-t border-light-green py-4 absolute bottom-0">
+      <Marquee className="w-full text-light-green xl:text-xl gap-12 border-t border-light-green py-4 absolute bottom-0">
         <span className='ml-10 pl-10 border-l h-8 border-light-green' >Bridging data and discovery with state-of-the-art digital twin technology</span>
         <span className='ml-10 pl-10 border-l h-8 border-light-green' >Advancing climate knowledge through digital twins</span>
         <span className='ml-10 pl-10 border-l h-8 border-light-green' >Harnessing advanced simulations to adapt to and mitigate climate impacts</span>

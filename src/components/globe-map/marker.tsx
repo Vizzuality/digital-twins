@@ -16,11 +16,11 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
   const { title, subtitle, description, video, legend } = popupContent[index];
 
   return (
-    <div className="relative -mt-[140px] -ml-[140px] lg:-ml-[140px] flex justify-center">
-      <div className='w-full lg:w-[662px] h-[350px] pl-8 pr-4 py-8 bg-white/20 backdrop-blur-[15px] text-white gap-6 inline-flex'>
+    <div className="relative -mt-[140px] -ml-[140px] xl:-ml-[140px] flex justify-center">
+      <div className='w-full xl:w-[662px] h-[350px] pl-8 pr-4 py-8 bg-white/20 backdrop-blur-[15px] text-white gap-6 inline-flex'>
         <div className="gap-6 flex">
-          <div className="min-w-[143px] w-[143px] h-[143px] lg:min-w-[286px] lg:w-[286px] lg:h-[286px] justify-center items-center flex">
-            <video className="w-[140px] h-[140px] lg:w-[280px] lg:h-[280px] lg:rounded-[50px]" autoPlay loop muted>
+          <div className="min-w-[143px] w-[143px] h-[143px] xl:min-w-[286px] xl:w-[286px] xl:h-[286px] justify-center items-center flex">
+            <video className="w-[140px] h-[140px] xl:w-[280px] xl:h-[280px] xl:rounded-[50px]" autoPlay loop muted>
               <source src={video} type="video/mp4" />
             </video>
           </div>
@@ -48,7 +48,7 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
                 <img src={legend.image} alt="Amazon legend" className="h-3" />
               </div>
             </div>
-            <div className="text-sm h-[160px] overflow-auto leading-tight lg:w-[304px]">
+            <div className="text-sm h-[160px] overflow-auto leading-tight xl:w-[304px]">
               <div className='max-w-[258px]'>
 
                 {description}

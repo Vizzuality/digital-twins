@@ -60,7 +60,7 @@ const CasesText = ({ hoveredIndex, setHoveredIndex, content, index }:
       <ArrowRight className="w-4 h-4" />
     </Link>}</>
   return (
-    <div className="pt-3 pb-4 lg:pt-10 lg:pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
+    <div className="pt-3 pb-4 xl:pt-10 xl:pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
       <div className="leading-relaxed">
         <div>{number}</div>
         <div>{title}</div>
@@ -128,9 +128,9 @@ export default function Section3() {
   const isMobile = useIsMobile();
   return (
     <section className="relative bg-white pt-20 scroll-mt-8" id="section-3">
-      <Lines verticalClassName="lg:px-[152px]" sectionName="section-3" rows={[1074]} colorClass="bg-blue-900/10" columnsNumber={5} hoveredIndex={hoveredIndex} />
-      <div className="container lg:px-[150px] flex flex-col lg:block">
-        <div className="flex flex-col-reverse items-center lg:items-start lg:flex-row pb-[60px] lg:pb-[150px] gap-6 lg:gap-[69px]">
+      <Lines verticalClassName="xl:px-[152px]" sectionName="section-3" rows={[1074]} colorClass="bg-blue-900/10" columnsNumber={5} hoveredIndex={hoveredIndex} />
+      <div className="container xl:px-[150px] flex flex-col xl:block">
+        <div className="flex flex-col-reverse items-center xl:items-start xl:flex-row pb-[60px] xl:pb-[150px] gap-6 xl:gap-[69px]">
           <div className="relative" ref={visualizationRef}>
             <Image
               alt=""
@@ -200,10 +200,10 @@ export default function Section3() {
               </div>
             </div>
           </div>
-          <div className="max-w-[594px] text-green-700 space-y-3 lg:space-y-5 pb-10">
-            <div className="lg:text-lg font-medium uppercase">From data to impact</div>
-            <h2 className="text-2xl lg:text-3xl font-medium pb-8 lg:pb-20">Integrating Climate and Impact Models</h2>
-            <h3 className="text-xl lg:text-2xl pb-4 lg:pb-10">Digital twins offer a powerful capability: integrating the physical processes simulated in climate models with the modelling of aspects relevant for impact sectors.</h3>
+          <div className="max-w-[594px] text-green-700 space-y-3 xl:space-y-5 pb-10">
+            <div className="xl:text-lg font-medium uppercase">From data to impact</div>
+            <h2 className="text-2xl xl:text-3xl font-medium pb-8 xl:pb-20">Integrating Climate and Impact Models</h2>
+            <h3 className="text-xl xl:text-2xl pb-4 xl:pb-10">Digital twins offer a powerful capability: integrating the physical processes simulated in climate models with the modelling of aspects relevant for impact sectors.</h3>
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
               {openedKnowMore && <motion.div
@@ -251,7 +251,7 @@ export default function Section3() {
             ))}
           </AnimatePresence>
         </div>}
-        {!isMobile && <div className={cn('hidden lg:visible min-h-[290px]', gridColumns)} id="use-cases">
+        {!isMobile && <div className={cn('hidden xl:visible min-h-[290px]', gridColumns)} id="use-cases">
           {Array(5).fill(null).map((_, index) => (
             <CasesText content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
           ))}
