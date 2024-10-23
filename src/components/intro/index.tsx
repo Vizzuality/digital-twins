@@ -17,7 +17,7 @@ export default function Intro() {
     }
   }
   return (
-    <section className="relative h-[110vh] bg-blue-900">
+    <section className="relative min-h-[600px] lg:h-[110vh] bg-blue-900">
       <HeroVideo />
       <Lines verticalClassName="left-8 w-[calc(100vh-16px)]" sectionName='intro' columns={[64, 254, 270, 430, 1074]} rows={[204, 444, 516, 559, 602]} />
       <div className='container relative pt-[110px] lg:pt-[198px] space-y-[30px] pl-8 lg:pl-24'>

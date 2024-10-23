@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { useScroll, useTransform, motion, useMotionValueEvent, useInView } from "framer-motion";
 import { useScreenWidthWithResize } from '@/lib/hooks';
 import { scrollToSection } from "@/lib/utils";
+import { useIsMobile } from '@/lib/hooks';
 import InfoPopover from '../info-popover';
 
 const ResizeButton = () => (
@@ -84,10 +85,11 @@ export default function Section2() {
     return 0;
   }, [descriptionRef.current, screenWidth]);
 
+  const isMobile = useIsMobile();
 
-  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, -200]);
-  const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, -204]);
-  const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [500, -4, -4, -1000]);
+  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? 0 : -200]);
+  const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -280 : -204]);
+  const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [1000, isMobile ? -180 : -4, isMobile ? -180 : -4, -1000]);
 
   const opacityLine = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [0, 1, 1, 0]);
   const lineY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [500, -40, -40, -1000]);
@@ -175,34 +177,34 @@ export default function Section2() {
                   animate={{ width: globePhase === 1 ? 0 : '100%' }}
                   transition={{ duration: 0.1, ease: 'linear' }}
                 >
-                  <div className="text-light-green text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
-                  <div className="text-light-green text-4xl max-w-[720px]">
+                  <div className="text-light-green text-base lg:text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
+                  <div className="text-light-green text-2xl lg:text-4xl max-w-[90vw] lg:max-w-[720px]">
                     High-quality information <br />from global to local scale
                   </div>
                 </motion.div>
-                <motion.div
-                  className={cn("absolute text-light-green leading-relaxed w-[500px] flex flex-col gap-6 transition-opacity",
-                    {
-                      'hidden opacity-0': globePhase !== 1,
-                      'opacity-100': globePhase === 1
-                    }
-                  )}
-                  style={{ y: descriptionY, x: 710 }}
-                  ref={descriptionRef}
-                >
-                  <p>
-                    At the <InfoPopover
-                      variant="dark"
-                      content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
-                      resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
-                  </p>
-                  <p>
-                    The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
-                  </p>
-                  <p>
-                    An evaluation of the simulations and a quantification of uncertainties is regularly done to ensure the quality and transparency of the information provided by the digital twin.
-                  </p>
-                </motion.div>
+              </motion.div>
+              <motion.div
+                className={cn("absolute text-light-green leading-relaxed w-[70vw] lg:w-[500px] flex flex-col gap-2 lg:gap-6 transition-opacity",
+                  {
+                    'hidden opacity-0': globePhase !== 1,
+                    'opacity-100': globePhase === 1
+                  }
+                )}
+                style={{ y: descriptionY, x: isMobile ? 0 : 510 }}
+                ref={descriptionRef}
+              >
+                <p>
+                  At the <InfoPopover
+                    variant="dark"
+                    content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
+                    resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
+                </p>
+                <p>
+                  The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
+                </p>
+                <p>
+                  An evaluation of the simulations and a quantification of uncertainties is regularly done to ensure the quality and transparency of the information provided by the digital twin.
+                </p>
               </motion.div>
             </div>
           </motion.div>

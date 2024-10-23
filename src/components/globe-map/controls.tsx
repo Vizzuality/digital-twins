@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
 import type { MarkerType } from "./marker";
 import { Group } from "three";
-
+import { useIsMobile } from "@/lib/hooks";
 export const Controls = ({ marker, active = false, enabled = false, groupRef, resetSelectedMarker, setEnabled, globePhase }: {
   marker: MarkerType | undefined
   // Active is used to determine if the globe controls are in a phase that could be enabled even if is temporarily disabled
@@ -16,6 +16,7 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
   resetSelectedMarker: () => void,
   globePhase: number
 }) => {
+  const isMobile = useIsMobile();
   const cameraControlsRef = useRef<CameraControls>(null!);
   const [resettingPosition, setResettingPosition] = useState(false);
 
@@ -36,7 +37,7 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
       // Position tooltip in the marker
       const [x, y, z] = convertLatLonToGlobalPosition(marker.lat, marker.lng, 2);
 
-      const PADDING_TO_CENTER_GLOBE = -0.17;
+      const PADDING_TO_CENTER_GLOBE = isMobile ? -0.08 : -0.17;
       groupRef.current.rotation.y = PADDING_TO_CENTER_GLOBE;
       cameraControlsRef.current.setPosition(x, y, z, true).then(() => {
         setEnabled(false);
