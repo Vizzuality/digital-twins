@@ -64,18 +64,8 @@ def create_pipeline(**kwargs) -> Pipeline:
                 outputs="local_parts",
             ),
             node(
-                func=split_by_timestep,
-                inputs="georef",
-                outputs="global_parts",
-            ),
-            node(
                 func=parts_to_video,
                 inputs=["local_parts", "params:video", "minmax"],
-                outputs="video",
-            ),
-            node(
-                func=parts_to_video,
-                inputs=["global_parts", "params:video", "minmax"],
                 outputs="video",
             ),
         ]
@@ -121,7 +111,30 @@ def create_pipeline(**kwargs) -> Pipeline:
         parameters={"video": "params:global_video_100"},
         tags=["windspeed", "global", "low_resolution"],
     )
-
+    global_cloud_cover_pipe = pipeline(
+        pipe=global_base_pipeline,
+        namespace="cloud_cover_100km",
+        parameters={"video": "params:cloud_cover_100km_global"},
+        tags=["cloudcover", "global", "low_resolution"],
+    )
+    global_total_precipitation_pipe = pipeline(
+        pipe=global_base_pipeline,
+        namespace="total_precipitation_100km",
+        parameters={"video": "params:total_precipitation_100km_global"},
+        tags=["precipitation", "global", "low_resolution"],
+    )
+    global_temperature_pipe = pipeline(
+        pipe=global_base_pipeline,
+        namespace="temperature_100km",
+        parameters={"video": "params:temperature_100km_global"},
+        tags=["temperature", "global", "low_resolution"],
+    )
+    global_sst_pipe = pipeline(
+        pipe=global_base_pipeline,
+        namespace="sst_100km",
+        parameters={"video": "params:sst_100km_global"},
+        tags=["sst", "global", "low_resolution"],
+    )
     # -------- Zoom ins -------------
     hurricane_cloud_pipe = pipeline(
         pipe=zoom_in_base_pipeline,
@@ -130,7 +143,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             "bbox": "params:hurricane_10km_render_params.bbox",
             "video": "params:hurricane_10km_render_params",
         },
-        tags=["hurricane", "zoomin", "high_resoltuion"],
+        tags=["cloudcover", "zoomin", "high_resoltuion"],
     )
 
     amazonia_precipitation_pipe = pipeline(
@@ -140,12 +153,12 @@ def create_pipeline(**kwargs) -> Pipeline:
             "bbox": "params:amazonia_10km_render_params.bbox",
             "video": "params:amazonia_10km_render_params",
         },
-        tags=["amazonia", "zoomin", "high_resoltuion"],
+        tags=["precipitation", "zoomin", "high_resoltuion"],
     )
 
-    temp_pipe = pipeline(
+    temperature_pipe = pipeline(
         pipe=zoom_in_base_pipeline,
-        namespace="temp_10km",
+        namespace="temperature_10km",
         parameters={
             "bbox": "params:temperature_10km_render_params.bbox",
             "video": "params:temperature_10km_render_params",
@@ -229,9 +242,13 @@ def create_pipeline(**kwargs) -> Pipeline:
     return (
         global_wind_10km_pipe
         + global_wind_100km_pipe
+        + global_cloud_cover_pipe
+        # + global_temperature_pipe
+        + global_total_precipitation_pipe
+        + global_sst_pipe
         + hurricane_cloud_pipe
         + amazonia_precipitation_pipe
-        + temp_pipe
+        + temperature_pipe
         + sst_pipe
         + europe_plus2k_pipe
         + europe_hist_pipe

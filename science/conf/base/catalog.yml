@@ -74,7 +74,7 @@ cloud_cover_10km.video:
 
 cloud_cover_100km.video:
   type: video.VideoDataset
-  filepath: data/03_primary/cloud_cover_100km.mp4
+  filepath: data/03_primary/cloud_cover_global_100km.mp4
   fourcc: avc1
 
 
@@ -83,6 +83,10 @@ cloud_cover_100km.video:
 total_precipitation_10km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/tp_global_10km.nc
+
+total_precipitation_100km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/tp_global_100km.nc
 
 total_precipitation_10km.parts:
   type: partitions.PartitionedDataset
@@ -98,15 +102,23 @@ total_precipitation_10km.video:
   filepath: data/03_primary/tp_amazonia_10km.mp4
   fourcc: avc1
 
+total_precipitation_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tp_global_100km.mp4
+  fourcc: avc1
 
 # -------------- TEMP --------------
 
 
-temp_10km.raw:
+temperature_10km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/tas_global_10km.nc
 
-temp_10km.parts:
+temperature_100km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/tas_global_100km.nc
+
+temperature_10km.parts:
   type: partitions.PartitionedDataset
   path: data/02_intermediate/tas-10-parts
   dataset: 
@@ -116,9 +128,14 @@ temp_10km.parts:
   filename_suffix: ".tif"
 
 
-temp_10km.video:
+temperature_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/tas_10km.mp4
+  fourcc: avc1
+
+temperature_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/tas_global_100km.mp4
   fourcc: avc1
 
 # -------------- SEA SURFACE TEMP --------------
@@ -127,6 +144,11 @@ temp_10km.video:
 sst_10km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/sst_global_10km.nc
+
+
+sst_100km.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/sst_global_100km.nc
 
 sst_10km.parts:
   type: partitions.PartitionedDataset
@@ -143,6 +165,11 @@ sst_10km.video:
   filepath: data/03_primary/sst_10km.mp4
   fourcc: avc1
 
+
+sst_100km.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/sst_global_100km.mp4
+  fourcc: avc1
 
 # ============= SCENARIOS ==============
 
