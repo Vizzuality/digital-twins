@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export const useScreenWidthWithResize = () => {
   const [width, setWidth] = useState(0);
@@ -20,17 +21,8 @@ export const useScreenWidthWithResize = () => {
 };
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const handleResize = useCallback(() => {
-    // Use desktop breakpoint to allow for big screen mobiles
-    setIsMobile(window.innerWidth < 1024);
-  }, []);
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return isMobile;
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  return !isDesktopOrLaptop;
 };
