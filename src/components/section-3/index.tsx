@@ -7,6 +7,76 @@ import KnowMoreButton from "@/components/know-more-button";
 import { cn } from "@/lib/utils";
 import ArrowRight from '@/svgs/arrow-right.svg';
 import Link from "next/link";
+import { useIsMobile } from "@/lib/hooks";
+
+const USE_CASES = [
+  {
+    number: '01',
+    title: 'Energy',
+    description: 'The climate adaptation digital twin in action: simulations to support decisions in the energy sector.',
+    linkTitle: 'Explore Wind Energy',
+    link: '/case-study-energy'
+  },
+  {
+    number: '02',
+    title: 'Wildfires',
+    description: 'Coming soon ...',
+    comingSoon: true
+  },
+  {
+    number: '03',
+    title: 'Urban Environments',
+    description: 'Coming soon ...',
+    comingSoon: true
+  },
+  {
+    number: '04',
+    title: 'Water Management',
+    description: 'Coming soon ...',
+    comingSoon: true
+  },
+  {
+    number: '05',
+    title: 'Agriculture',
+    description: 'Coming soon ...',
+    comingSoon: true
+  },
+];
+
+const CasesText = ({ hoveredIndex, setHoveredIndex, content, index }:
+  {
+    index: number;
+    hoveredIndex: number | null;
+    setHoveredIndex: (index: number | null) => void;
+    content: typeof USE_CASES[0]
+  }
+) => {
+  const { number, title, description, linkTitle, link, comingSoon } = content;
+  const isMobile = useIsMobile();
+  const descriptionText = <>
+    <div className="text-xs leading-tight">{description}</div>
+    {!comingSoon && <Link href={link || '#'} className="pl-1 pb-1.5 gap-2 flex group">
+      <div className="text-xs underline font-medium tracking-tight group-hover:-translate-x-1 transition-transform">{linkTitle}</div>
+      <ArrowRight className="w-4 h-4" />
+    </Link>}</>
+  return (
+    <div className="pt-3 pb-4 lg:pt-10 lg:pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
+      <div className="leading-relaxed">
+        <div>{number}</div>
+        <div>{title}</div>
+      </div>
+      {isMobile ? descriptionText :
+        (hoveredIndex === index) && (
+          <motion.div className="flex flex-col gap-4"
+            initial={{ opacity: isMobile ? 1 : 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            {descriptionText}
+          </motion.div>
+        )}
+    </div>);
+}
 
 export default function Section3() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
@@ -55,12 +125,12 @@ export default function Section3() {
       return () => clearInterval(interval);
     }
   }, [isInView, setRevealedImageIndex]);
-
+  const isMobile = useIsMobile();
   return (
     <section className="relative bg-white pt-20 scroll-mt-8" id="section-3">
-      <Lines verticalClassName="pl-[152px] pr-[152px]" sectionName="section-3" rows={[1074]} colorClass="bg-blue-900/10" columnsNumber={5} hoveredIndex={hoveredIndex} />
-      <div className="container px-[150px]">
-        <div className="flex pb-[150px] gap-[69px]">
+      <Lines verticalClassName="lg:px-[152px]" sectionName="section-3" rows={[1074]} colorClass="bg-blue-900/10" columnsNumber={5} hoveredIndex={hoveredIndex} />
+      <div className="container lg:px-[150px] flex flex-col lg:block">
+        <div className="flex flex-col-reverse items-center lg:items-start lg:flex-row pb-[60px] lg:pb-[150px] gap-6 lg:gap-[69px]">
           <div className="relative" ref={visualizationRef}>
             <Image
               alt=""
@@ -130,10 +200,10 @@ export default function Section3() {
               </div>
             </div>
           </div>
-          <div className="max-w-[594px] text-green-700 space-y-5 pb-10">
-            <div className="text-lg font-medium uppercase">From data to impact</div>
-            <h2 className="text-3xl font-medium pb-20">Integrating Climate and Impact Models</h2>
-            <h3 className="text-2xl pb-10">Digital twins offer a powerful capability: integrating the physical processes simulated in climate models with the modelling of aspects relevant for impact sectors.</h3>
+          <div className="max-w-[594px] text-green-700 space-y-3 lg:space-y-5 pb-10">
+            <div className="lg:text-lg font-medium uppercase">From data to impact</div>
+            <h2 className="text-2xl lg:text-3xl font-medium pb-8 lg:pb-20">Integrating Climate and Impact Models</h2>
+            <h3 className="text-xl lg:text-2xl pb-4 lg:pb-10">Digital twins offer a powerful capability: integrating the physical processes simulated in climate models with the modelling of aspects relevant for impact sectors.</h3>
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
               {openedKnowMore && <motion.div
@@ -146,7 +216,21 @@ export default function Section3() {
             </AnimatePresence>
           </div>
         </div>
-        <div className={cn("flex w-full h-[498px] overflow-hidden", gridColumns)}>
+        {isMobile ? <div className="pb-[60px]">
+          {Array(5).fill(null).map((_, index) => (
+            <>
+              <Image
+                className="w-full h-[130px]"
+                alt=""
+                src={`/images/home-models-${index + 1}.png`}
+                height={130}
+                width={356}
+                style={{ objectFit: "cover" }}
+              />
+              <CasesText content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
+            </>
+          ))}
+        </div> : <div className={cn("flex w-full h-[498px] overflow-hidden", gridColumns)}>
           <AnimatePresence>
             {Array(5).fill(null).map((_, index) => (
               <motion.div key={index}
@@ -166,88 +250,12 @@ export default function Section3() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
-        <div className={cn('min-h-[290px]', gridColumns)} id="use-cases">
-          <div className="pt-10 pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(0)} onMouseLeave={() => setHoveredIndex(null)}>
-            <div className="leading-relaxed">
-              <div>01</div>
-              <div>Energy</div>
-            </div>
-            {hoveredIndex === 0 && (
-              <motion.div className="flex flex-col gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <div className="text-xs leading-tight">The climate adaptation digital twin in action: simulations to support decisions in the energy sector.</div>
-                <Link href="/case-study-energy" className="pl-1 pb-1.5 gap-2 flex group">
-                  <div className="text-xs underline font-medium tracking-tight group-hover:-translate-x-1 transition-transform">Explore Wind Energy</div>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            )}
-          </div>
-          <div className="pt-10 pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(1)} onMouseLeave={() => setHoveredIndex(null)}>
-            <div className="leading-relaxed">
-              <div>02</div>
-              <div>Wildfires</div>
-            </div>
-            {hoveredIndex === 1 && (
-              <motion.div className="flex flex-col gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <div className="text-xs leading-tight">Coming soon ...</div>
-              </motion.div>
-            )}
-          </div>
-          <div className="pt-10 pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(2)} onMouseLeave={() => setHoveredIndex(null)}>
-            <div className="leading-relaxed">
-              <div>03</div>
-              <div>Urban Environments</div>
-            </div>
-            {hoveredIndex === 2 && (
-              <motion.div className="flex flex-col gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <div className="text-xs leading-tight">Coming soon ...</div>
-              </motion.div>
-            )}
-          </div>
-          <div className="pt-10 pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(3)} onMouseLeave={() => setHoveredIndex(null)}>
-            <div className="leading-relaxed">
-              <div>04</div>
-              <div>Water Management</div>
-            </div>
-            {hoveredIndex === 3 && (
-              <motion.div className="flex flex-col gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <div className="text-xs leading-tight">Coming soon ...</div>
-              </motion.div>
-            )}
-          </div>
-          <div className="pt-10 pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(4)} onMouseLeave={() => setHoveredIndex(null)}>
-            <div className="leading-relaxed">
-              <div>05</div>
-              <div>Agriculture</div>
-            </div>
-            {hoveredIndex === 4 && (
-              <motion.div className="flex flex-col gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <div className="text-xs leading-tight">Coming soon ...</div>
-              </motion.div>
-            )}
-          </div>
-        </div>
+        </div>}
+        {!isMobile && <div className={cn('hidden lg:visible min-h-[290px]', gridColumns)} id="use-cases">
+          {Array(5).fill(null).map((_, index) => (
+            <CasesText content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
+          ))}
+        </div>}
       </div>
     </section >);
 };
