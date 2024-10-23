@@ -8,11 +8,11 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
   return (
     <footer className={cn("w-full flex-col flex text-white", backgroundClass)}>
       <div className="justify-center flex">
-        <div className="w-1/2 px-[100px] py-20 flex flex-col gap-20">
+        <div className="w-1/2 px-[20px] xl:px-[100px] py-10 xl:py-20 flex flex-col gap-20">
           <div className="text-sm font-medium uppercase max-w-[258px] tracking-widest">Digital Twins: <div>Innovative Research for a Sustainable Future</div></div>
           <Logo className="text-white" />
         </div>
-        <div className="w-1/2 px-[100px] py-20 flex">
+        <div className="w-1/2 px-[20px] xl:px-[100px] py-10 xl:py-20 flex">
           <ul className="space-y-8">
             <li className="text-white text-base font-bold underline">
               <Link href="/"><HoverRepeatAnimation>
@@ -32,10 +32,10 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
           </ul>
         </div >
       </div>
-      <div className="px-[100px] py-6 w-full gap-10 flex border-t border-white/20 text-white/50 text-lg leading-relaxed">
-        <div>© Barcelona Supercomputing Center, 2024</div>
-        <div className="items-center gap-1 flex">
-          <div>Designed and Developed by </div>
+      <div className="px-[20px] xl:px-[100px] py-6 w-full gap-10 flex border-t border-white/20 text-white/50 text-lg leading-relaxed">
+        <div className="max-w-[calc(50%-20px)]">© Barcelona Supercomputing Center, 2024</div>
+        <div className="xl:items-center gap-3 xl:gap-1 pt-2 xl:pt-0 flex-col xl:flex-row inline-flex text-sm xl:text-base">
+          <span>Designed and Developed by </span>
           <a
             href="https://www.vizzuality.com/"
             target="_blank"
