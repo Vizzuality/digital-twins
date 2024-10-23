@@ -16,7 +16,6 @@ const MenuLines = dynamic(() => import("@/components/menu-lines"), { ssr: false 
 
 export default function Menu() {
   const [openedMenu, setOpenedMenu] = useRecoilState(menuAtom);
-
   const CloseMenuButton = () => (
     <MotionButton
       className="self-end"
@@ -46,17 +45,17 @@ export default function Menu() {
           <CloseMenuButton />
           <ul className="text-xl xl:text-3xl text-green-700 font-semibold space-y-8 max-w-[292px]">
             <li>
-              <Link href="/">
+              <Link href="/" onClick={() => setOpenedMenu(false)}>
                 <HoverRepeatAnimation>Home</HoverRepeatAnimation></Link>
             </li>
             <li>
-              <Link href="/case-study-energy"><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
+              <Link href="/case-study-energy" onClick={() => setOpenedMenu(false)}><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
             </li>
             <li>
-              <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
+              <Link href="/about" onClick={() => setOpenedMenu(false)}><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
             </li>
             <li>
-              <a href="mailto:earth-communication@bsc.es"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
+              <a href="mailto:earth-communication@bsc.es" onClick={() => setOpenedMenu(false)}><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
             </li>
           </ul>
         </div>
