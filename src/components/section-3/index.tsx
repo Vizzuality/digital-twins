@@ -216,7 +216,7 @@ export default function Section3() {
             </AnimatePresence>
           </div>
         </div>
-        {isMobile ? <div className="pb-[60px]">
+        {isMobile ? <div className="pb-[60px] scroll-mt-12 " id="use-cases">
           {Array(5).fill(null).map((_, index) => (
             <>
               <Image
