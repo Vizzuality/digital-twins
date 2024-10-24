@@ -4,6 +4,26 @@ import { cn } from "@/lib/utils";
 import ArrowRight from '@/svgs/arrow-right.svg';
 import Close from '@/svgs/close.svg';
 import { popupContent } from './data';
+const Corners = () => (
+  <>
+    <div className="absolute -top-1 -left-1">
+      <div className="w-8 h-0.5 bg-white"></div>
+      <div className="h-8 w-0.5 bg-white"></div>
+    </div>
+    <div className="absolute -top-1 -right-1">
+      <div className="w-8 h-0.5 bg-white"></div>
+      <div className="h-8 w-0.5 bg-white absolute right-0"></div>
+    </div>
+    <div className="absolute -bottom-1 -left-1">
+      <div className="w-8 h-0.5 bg-white absolute bottom-0"></div>
+      <div className="h-8 w-0.5 bg-white bottom-0"></div>
+    </div>
+    <div className="absolute -bottom-1 -right-1">
+      <div className="w-8 h-0.5 bg-white"></div>
+      <div className="h-8 w-0.5 bg-white absolute bottom-0 right-0"></div>
+    </div>
+  </>
+);
 
 const Popup = ({ closePopup, setSelectedMarker, index }: {
   closePopup: () => void
@@ -19,12 +39,20 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
       "relative -mt-[140px] -ml-[140px] xl:-ml-[140px]": !isMobile,
       "fixed top-0 xs:left-[calc(50%-250px)] sm:left-[calc(50%-325px)] z-50 px-4 w-full h-full items-center justify-center xs:max-w-[500px] sm:max-w-[650px]": isMobile
     })}>
-    <div className='relative w-full xl:w-[662px] h-[350px] pl-8 pr-4 py-8 bg-white/20 backdrop-blur-[15px] text-white gap-6 inline-flex'>
-      <div className="gap-6 flex">
+    <div className={cn('relative w-full xl:w-[662px] h-[350px] pl-8 pr-4 py-8  backdrop-blur-[15px] text-white gap-6 inline-flex',
+      {
+        'bg-white/20': index !== 0,
+        'bg-green-700/60': index === 0
+      }
+    )}>
+      <div className="flex flex-col-reverse xl:flex-row gap-6">
         <div className="justify-center items-center flex">
-          <video className="w-[280px] h-[280px] xl:rounded-[50px]" autoPlay loop muted>
-            <source src={video} type="video/mp4" />
-          </video>
+          <div className="relative w-full h-full">
+            <Corners />
+            <video autoPlay loop muted className="w-[280px] h-[280px]">
+              <source src={video} type="video/mp4" />
+            </video>
+          </div>
         </div>
         <div className="flex-col gap-4 flex">
           <div className="flex-col justify-start items-start gap-2 inline-flex">

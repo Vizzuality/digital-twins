@@ -1,8 +1,10 @@
+import { useMemo } from 'react';
 import { Globe } from './globe';
 import Marker from './marker';
 import { useFrame } from '@react-three/fiber';
 import type { markers as MarkerType } from './data';
 import { Group } from 'three';
+import { BACKGROUND_VIDEOS } from './data';
 
 const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelectedMarker, rotate, videoMaterial, groupRef }:
   {
@@ -17,6 +19,11 @@ const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelect
   }
 ) => {
 
+  const markerBackgroundVideoMaterial = useMemo(() => {
+    if (!hasMarkers || selectedMarker === null) return null;
+    return BACKGROUND_VIDEOS[selectedMarker || 0];
+  }, [selectedMarker, hasMarkers]);
+
   useFrame(() => {
     if (rotate && groupRef.current) {
       groupRef.current.rotation.y += 0.01;
@@ -25,7 +32,7 @@ const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelect
 
   return (
     <group position={[0, 0, 0]} ref={groupRef}>
-      <Globe videoMaterial={videoMaterial} />
+      <Globe videoMaterial={markerBackgroundVideoMaterial || videoMaterial} />
       {
         hasMarkers && markers.map((marker, index) => (
           <Marker
