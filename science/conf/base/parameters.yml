@@ -1,40 +1,51 @@
+# ------- GLOBAL ----------
+
 global_video_10:
     cmap: "viridis"
     scale: 1
+    vmin: 0
+    vmax: 20
 
 global_video_100:
     cmap: "viridis"
-    scale: 10
+    scale: 1
+    vmin: 0
+    vmax: 20
+
+# ------- ZOOM IN ----------
 
 hurricane_10km_render_params:
     cmap: "Blues_r"
-    scale: 4
+    scale: 1
+    vmin: 0
+    vmax: 0.99
     bbox:
         minx: -88.23
         miny: 21.37
         maxx: -51.77
         maxy: 42.37
 
-hurricane_100km_render_params:
-    cmap: "viridis"
-    scale: 20
-    bbox:
-        minx: -84.088
-        miny: 15.89
-        maxx: -55.88
-        maxy: 41.15
+cloud_cover_100km_global:
+    cmap: "Blues_r"
+    scale: 1
 
 amazonia_10km_render_params:
-    cmap: "viridis"
-    scale: 4
+    cmap: "rain_custom"
+    scale: 1
+    vmin: 0
+    vmax: 0.1
     bbox:
-        minx: -79.72
-        miny: -16.60
-        maxx: -45.27
-        maxy: 7.672
+        minx: -85.3
+        miny: -8
+        maxx: -60
+        maxy: 10
+
+total_precipitation_100km_global:
+    cmap: "rain_custom"
+    scale: 1
 
 temperature_10km_render_params:
-    cmap: "winter"
+    cmap: "inferno"
     scale: 4
     bbox:
         minx: -12.1350
@@ -42,18 +53,12 @@ temperature_10km_render_params:
         maxx: 4.7930
         maxy: 44.1825
 
-amazonia_100km_render_params:
-    cmap: "Greens_r"
-    scale: 20
-    bbox:
-        minx: -67.53
-        miny: -8.55
-        maxx: -47.76
-        maxy: 8.64
-
+temperature_100km_global:
+    cmap: "inferno"
+    scale: 1
 
 sst_10km_render_params:
-    cmap: "plasma"
+    cmap: "thermal"
     scale: 4
     bbox:
         minx: -129
@@ -61,10 +66,17 @@ sst_10km_render_params:
         maxx: -93
         maxy: 8.5
 
+sst_100km_global:
+    cmap: "thermal"
+    scale: 1
+
+# ------ SCENARIOS ---------
+
 scenarios:
-    cmap: "winter"
-    scale: 2
+    cmap: "inferno"
+    scale: 20
     fps: 20
+    # we need to fix the temp range so the normal and +2 scenario can be compared side by side
     vmin: 269.56
     vmax: 324.11
 
@@ -72,3 +84,16 @@ diff_video:
     cmap: "RdBu_r"
     scale: 2
     fps: 20
+    vmin: -5
+    vmax: 5
+
+observations:
+    cmap: "inferno"
+    scale: 10
+    fps: 20
+    bbox:
+        minx: -12.772
+        miny: 33.843
+        maxx: 18.9029
+        maxy: 49.2697
+
