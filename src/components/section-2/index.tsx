@@ -7,24 +7,25 @@ import { Resizable } from 're-resizable';
 import { Button } from "@/components/button";
 import CaretRight from '@/svgs/caret-right.svg';
 import { cn } from "@/lib/utils";
-import { useScroll, useTransform, motion, useMotionValueEvent, useInView } from "framer-motion";
+import { useScroll, useTransform, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
 import { useScreenWidthWithResize } from '@/lib/hooks';
 import { scrollToSection } from "@/lib/utils";
 import { useIsMobile } from '@/lib/hooks';
 import InfoPopover from '../info-popover';
+import ArrowRight from '@/svgs/arrow-right.svg';
 
 const ResizeButton = () => (
   <>
     <Button
       className={cn(
-        "absolute z-10 top-2/3 -left-[180px] py-[14px] px-[18px] bg-light-green text-green-700 border-0"
+        "absolute z-10 top-2/3 -left-[130px] xl:-left-[180px] py-[14px] px-[18px] bg-light-green text-green-700 border-0"
       )}
     >
-      <div className="text-center text-green-700 uppercase">low resolution</div>
+      <div className="text-center text-2xs xl:text-sm text-green-700 uppercase">low resolution</div>
       <CaretRight className="h-4 w-4 rotate-180" />
       <div className='bg-green-800/10 w-px h-6'></div>
       <CaretRight className="h-4 w-4" />
-      <div className="text-center text-green-700 uppercase">high resolution</div>
+      <div className="text-center text-2xs xl:text-sm text-green-700 uppercase">high resolution</div>
     </Button>
   </>
 );
@@ -80,21 +81,22 @@ export default function Section2() {
 
   const descriptionLeft = useMemo(() => {
     if (descriptionRef.current) {
-      return descriptionRef.current.getBoundingClientRect().left;
+      return descriptionRef.current.getBoundingClientRect().left - 35;
     }
     return 0;
   }, [descriptionRef.current, screenWidth]);
 
   const isMobile = useIsMobile();
 
-  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? 0 : -200]);
-  const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -280 : -204]);
-  const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [1000, isMobile ? -180 : -4, isMobile ? -180 : -4, -1000]);
+  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -30 : -200]);
+  const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -180 : -204]);
+  const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [1000, isMobile ? -120 : -210, isMobile ? -120 : -210, -1000]);
 
   const opacityLine = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [0, 1, 1, 0]);
   const lineY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [500, -40, -40, -1000]);
   const lineX = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [resizableWidth, descriptionLeft, descriptionLeft, descriptionLeft]);
 
+  const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
   return (
     <section className="relative bg-green-700" id="section-2">
       <div className='relative pointer-events-none'>
@@ -170,41 +172,67 @@ export default function Section2() {
                 x: titleX,
                 y: titleY,
               }}>
-                <motion.div className={cn('translate-y-3 transition-all duration-500 text-center whitespace-nowrap',
-
+                <motion.div className={cn('translate-y-3 transition-all duration-500 text-center',
+                  {
+                    'whitespace-nowrap': !isMobile || globePhase > 0,
+                  }
                 )}
                   initial={{ width: '100%' }}
                   animate={{ width: globePhase === 1 ? 0 : '100%' }}
                   transition={{ duration: 0.1, ease: 'linear' }}
                 >
                   <div className="text-light-green text-base xl:text-lg uppercase tracking-tight">UNLOCKING CLIMATE POTENTIAL</div>
-                  <div className="text-light-green text-2xl xl:text-4xl max-w-[90vw] xl:max-w-[720px]">
+                  <div className="text-light-green text-xl xl:text-4xl max-w-[90vw] xl:max-w-[720px]">
                     High-quality information <br />from global to local scale
                   </div>
                 </motion.div>
               </motion.div>
               <motion.div
-                className={cn("absolute text-light-green leading-relaxed w-[70vw] xl:w-[500px] flex flex-col gap-2 xl:gap-6 transition-opacity",
+                className={cn("text-light-green leading-relaxed max-w-[500px] w-[80vw] xl:w-[500px] flex flex-col gap-2 xl:gap-6 transition-opacity",
                   {
                     'hidden opacity-0': globePhase !== 1,
                     'opacity-100': globePhase === 1
                   }
                 )}
-                style={{ y: descriptionY, x: isMobile ? 0 : 510 }}
+                style={{ y: descriptionY, x: isMobile ? -30 : 495 }}
                 ref={descriptionRef}
               >
-                <p>
-                  At the <InfoPopover
-                    variant="dark"
-                    content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
-                    resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
-                </p>
-                <p>
-                  The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
-                </p>
-                <p>
-                  An evaluation of the simulations and a quantification of uncertainties is regularly done to ensure the quality and transparency of the information provided by the digital twin.
-                </p>
+                {isMobile && <div className="absolute right-0 -top-8 items-center gap-0.5 flex">
+                  <button onClick={() => setMobileGlobeTextIndex(0)}>
+                    <div className='sr-only'>Previous text</div>
+                    <ArrowRight className={cn("w-6 h-6 p-[2px] -rotate-180 text-light-green",
+                      {
+                        'opacity-50': mobileGlobeTextIndex === 0
+                      }
+                    )} />
+                  </button>
+                  <button onClick={() => setMobileGlobeTextIndex(1)}>
+                    <div className='sr-only'>Next text</div>
+                    <ArrowRight className={cn("w-6 h-6 p-[2px] text-light-green",
+                      {
+                        'opacity-50': mobileGlobeTextIndex === 1
+                      }
+                    )} />
+                  </button>
+                </div>}
+                <AnimatePresence>
+                  {(!isMobile || (mobileGlobeTextIndex === 0)) && <motion.div className='flex flex-col gap-2 xl:gap-6'>
+                    <p>
+                      At the <InfoPopover
+                        variant="dark"
+                        content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
+                        resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
+                    </p>
+                  </motion.div>}
+                  {(!isMobile || (mobileGlobeTextIndex === 1)) && <motion.div className='flex flex-col gap-2 xl:gap-6'>
+                    <p>
+                      The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
+                    </p>
+                    <p>
+                      An evaluation of the simulations and a quantification of uncertainties is regularly done to ensure the quality and transparency of the information provided by the digital twin.
+                    </p>
+                  </motion.div>}
+                </AnimatePresence>
               </motion.div>
             </div>
           </motion.div>
