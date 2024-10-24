@@ -1,9 +1,14 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, FC } from "react";
+import { useIsMobile } from "@/lib/hooks";
 
 const FadeIn: FC<{ children: React.ReactNode, delay?: number }> = ({ children, delay }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const isMobile = useIsMobile();
+  if (isMobile) {
+    return children;
+  }
 
   return (
     <AnimatePresence>

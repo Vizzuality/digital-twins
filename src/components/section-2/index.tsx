@@ -88,7 +88,7 @@ export default function Section2() {
 
   const isMobile = useIsMobile();
 
-  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -30 : -200]);
+  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? 0 : -200]);
   const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -180 : -204]);
   const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [1000, isMobile ? -120 : -210, isMobile ? -120 : -210, -1000]);
 
@@ -194,7 +194,7 @@ export default function Section2() {
                     'opacity-100': globePhase === 1
                   }
                 )}
-                style={{ y: descriptionY, x: isMobile ? -30 : 495 }}
+                style={{ y: descriptionY, x: isMobile ? 0 : 495 }}
                 ref={descriptionRef}
               >
                 {isMobile && <div className="absolute right-0 -top-8 items-center gap-0.5 flex">
