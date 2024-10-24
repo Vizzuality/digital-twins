@@ -102,7 +102,7 @@ export default function Section2() {
       </div>
       <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className='h-screen flex justify-center sticky inset-0 snap-start snap-always' id="globe-phase-1">
-          <div className='relative w-full overflow-hidden'>
+          <div className='relative w-full overflow-hidden' id='high-globe-container'>
             {/* High globe */}
             <GlobeMap
               className={cn('h-full', {
