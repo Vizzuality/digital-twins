@@ -7,6 +7,7 @@ import { Controls } from './controls';
 import { markers } from './data';
 
 import GlobeGroup from './globe-group';
+import { useGesture } from '@use-gesture/react';
 
 export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, globePhase, rotate = false }:
   {
@@ -24,23 +25,6 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [enabled, setEnabled] = useState(false);
 
-  useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      event.stopPropagation();
-    };
-
-    const canvasElement = canvasRef.current;
-    if (canvasElement) {
-      canvasElement.addEventListener('wheel', handleWheel);
-    }
-
-    return () => {
-      if (canvasElement) {
-        canvasElement.removeEventListener('wheel', handleWheel);
-      }
-    };
-  }, []);
-
   const resetSelectedMarker = useCallback(() => {
     setSelectedMarker(null);
   }, []);
@@ -56,6 +40,28 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
     }
   }, [hasMarkers]);
 
+  // Handle vertical swipe and wheel events to scroll the page
+  const bind = useGesture(
+    {
+      onDrag: (props) => {
+        const { event, direction, delta } = props;
+        if (direction[1] !== 0) { // Vertical swipe
+          event.stopPropagation();
+          event.preventDefault();
+          window.scrollBy(0, -delta[1] * 2);
+        }
+      },
+      onWheel: (props) => {
+        const { event, direction, delta } = props;
+        if (direction[1] !== 0) {
+          event.stopPropagation();
+          event.preventDefault();
+          window.scrollBy(0, delta[1]);
+        }
+      }
+    }
+  )
+
   return (
     <>
       <div
@@ -66,6 +72,7 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
           camera={{ fov: 35 }}
           ref={canvasRef}
           resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
+          {...bind()}
         >
           <Controls marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
           <GlobeGroup
