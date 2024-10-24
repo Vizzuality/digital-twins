@@ -5,7 +5,8 @@ import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
 import type { MarkerType } from "./marker";
 import { Group } from "three";
 import { useIsMobile } from "@/lib/hooks";
-export const Controls = ({ marker, active = false, enabled = false, groupRef, resetSelectedMarker, setEnabled, globePhase }: {
+import { useInView } from "framer-motion";
+export const Controls = ({ marker, active = false, enabled = false, groupRef, resetSelectedMarker, setEnabled, globePhase, canvasRef }: {
   marker: MarkerType | undefined
   // Active is used to determine if the globe controls are in a phase that could be enabled even if is temporarily disabled
   active: boolean
@@ -14,7 +15,8 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
   setEnabled: (enabled: boolean) => void
   groupRef: React.MutableRefObject<Group>
   resetSelectedMarker: () => void,
-  globePhase: number
+  globePhase: number,
+  canvasRef: React.RefObject<HTMLCanvasElement>
 }) => {
   const isMobile = useIsMobile();
   const cameraControlsRef = useRef<CameraControls>(null!);
@@ -61,9 +63,22 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
       cameraControlsRef.current.setPosition(0, 1, 4.9, true).then(() => {
         setResettingPosition(false);
         setEnabled(false);
+        if (globePhase === 2) {
+          // Scrolling past the globe
+          resetSelectedMarker();
+        }
       });
     }
   }, [enabled, marker, active, resettingPosition]);
+
+  const isInView = useInView(canvasRef);
+
+  useEffect(() => {
+    if (!isInView && globePhase === 2 && marker !== undefined) {
+      setResettingPosition(true);
+    }
+  }), [isInView];
+
   return (
     <CameraControls
       ref={cameraControlsRef}

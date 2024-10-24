@@ -17,7 +17,7 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
     "flex justify-center globe-popup",
     {
       "relative -mt-[140px] -ml-[140px] xl:-ml-[140px]": !isMobile,
-      "fixed top-0 xs:left-[calc(50%-250px)] sm:left-[calc(50%-325px)] z-50 w-full h-full items-center justify-center xs:max-w-[500px] sm:max-w-[650px]": isMobile
+      "fixed top-0 xs:left-[calc(50%-250px)] sm:left-[calc(50%-325px)] z-50 px-4 w-full h-full items-center justify-center xs:max-w-[500px] sm:max-w-[650px]": isMobile
     })}>
     <div className='relative w-full xl:w-[662px] h-[350px] pl-8 pr-4 py-8 bg-white/20 backdrop-blur-[15px] text-white gap-6 inline-flex'>
       <div className="gap-6 flex">
@@ -29,7 +29,7 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
         <div className="flex-col gap-4 flex">
           <div className="flex-col justify-start items-start gap-2 inline-flex">
             <div className='flex justify-between w-full'>
-              <div className="text-base leading-relaxed">{title}</div>
+              <div className="text-sm xl:text-base leading-relaxed">{title}</div>
               <div className="rounded-sm items-center gap-0.5 flex">
                 <button onClick={() => setSelectedMarker(index - 1 < 0 ? (popupContent.length - 1) : index - 1)}>
                   <div className='sr-only'>Previous marker</div>

@@ -3,9 +3,7 @@ import { useState, useRef, useEffect, CSSProperties, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { Group } from "three";
 import { Controls } from './controls';
-
 import { markers } from './data';
-
 import GlobeGroup from './globe-group';
 import { useGesture } from '@use-gesture/react';
 
@@ -74,7 +72,7 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
           resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
           {...bind()}
         >
-          <Controls marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
+          <Controls canvasRef={canvasRef} marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
           <GlobeGroup
             groupRef={groupRef}
             hasMarkers={hasMarkers} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} rotate={rotate}
