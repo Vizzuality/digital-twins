@@ -1,14 +1,20 @@
 import { useTexture, useVideoTexture } from "@react-three/drei";
 import { Suspense } from "react";
-import { ShaderMaterial, DoubleSide } from "three";
+import { ShaderMaterial, DoubleSide, NearestFilter } from "three";
 import { useRef, useMemo } from "react";
 
 
 function VideoMaterial({ url }: { url: string }) {
-  const texture = useVideoTexture(url)
-  return <meshBasicMaterial map={texture} toneMapped={false} />
+  const texture = useVideoTexture(url, {});
+  texture.minFilter = NearestFilter;
+  texture.magFilter = NearestFilter;
+  return <meshBasicMaterial map={texture} toneMapped={false} opacity={0.4} transparent />
 }
 
+function ImageMaterial({ url }: { url: string }) {
+  const texture = useTexture(url);
+  return <meshBasicMaterial map={texture} toneMapped={false} />
+}
 
 const GlobeShaderMaterial = ({ url }: { url: string }) => {
   const texture = useTexture(url);

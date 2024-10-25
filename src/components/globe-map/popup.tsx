@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import ArrowRight from '@/svgs/arrow-right.svg';
 import Close from '@/svgs/close.svg';
 import { popupContent } from './data';
+
 const Corners = () => (
   <>
     <div className="absolute -top-1 -left-1">
@@ -39,7 +40,7 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
       "relative -mt-[140px] -ml-[140px] xl:-ml-[140px]": !isMobile,
       "fixed top-0 xs:left-[calc(50%-250px)] sm:left-[calc(50%-325px)] z-50 px-4 w-full h-full items-center justify-center xs:max-w-[500px] sm:max-w-[650px]": isMobile
     })}>
-    <div className={cn('relative w-full xl:w-[662px] h-[350px] pl-8 pr-4 py-8  backdrop-blur-[15px] text-white gap-6 inline-flex',
+    <div className={cn('relative w-fit xl:w-[662px] xl:h-[350px] pl-8 pr-4 py-8  backdrop-blur-[15px] text-white gap-6 inline-flex',
       {
         'bg-white/20': index !== 0,
         'bg-green-700/60': index === 0

@@ -9,8 +9,9 @@ export const markers: MarkerType[] = [
 
 export const BACKGROUND_VIDEOS = [
   "videos/phase-3/bg/tp_global_100km.mp4",
-  "videos/phase-3/bg/cloud_cover_global_100km.mp4",
-  "videos/phase-3/bg/tas_100km.mp4",
+  // "videos/phase-3/bg/cloud_cover_global_100km.webm",
+  "videos/phase-3/originals/bg/cloud_cover_global_100km.mp4",
+  "videos/phase-3/bg/tas_global_100km.mp4",
   "videos/phase-3/bg/sst_global_100km.mp4",
 ];
 

@@ -98,7 +98,7 @@ export default function Section2() {
 
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
   return (
-    <section className="relative bg-green-700" id="section-2">
+    <section className="relative bg-green-800" id="section-2">
       <div className='relative pointer-events-none'>
         <Lines verticalClassName="left-8" sectionName="section-2" columns={[100]} rows={[100]} colorClass="bg-blue-900/10" />
       </div>
@@ -142,7 +142,7 @@ export default function Section2() {
                     hasMarkers={globePhase > 1}
                     rotate={globePhase === 1}
                     videoMaterial={
-                      globePhase === 0 ? "videos/wind_speed_global_100km.webm" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
+                      globePhase === 0 ? "videos/wind_speed_global_100km.mp4" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
                     }
                     globePhase={globePhase}
                   />
