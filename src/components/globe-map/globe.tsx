@@ -8,7 +8,7 @@ function VideoMaterial({ url }: { url: string }) {
   const texture = useVideoTexture(url, {});
   texture.minFilter = NearestFilter;
   texture.magFilter = NearestFilter;
-  return <meshBasicMaterial map={texture} toneMapped={false} opacity={0.4} transparent />
+  return <meshBasicMaterial map={texture} toneMapped={false} />
 }
 
 function ImageMaterial({ url }: { url: string }) {
