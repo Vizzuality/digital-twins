@@ -24,12 +24,18 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
 
   const resetPosition = () => {
     groupRef.current.rotation.y = 0;
-    cameraControlsRef.current.setPosition(0, 1, 4.9, true);
-    cameraControlsRef.current.setTarget(0, 0, 0, true);
+    if (globePhase < 2) {
+      cameraControlsRef.current.setPosition(0, 1, 2.5, true);
+      cameraControlsRef.current.setTarget(0, 0.3, 0, true);
+    } else {
+      cameraControlsRef.current.setPosition(0, 1, 4, true);
+      cameraControlsRef.current.setTarget(0, 0, 0, true);
+    }
   };
 
+
   useEffect(() => {
-    if (globePhase === 0) {
+    if (globePhase === 0 || globePhase === 1) {
       resetPosition();
     }
   }, [globePhase]);
