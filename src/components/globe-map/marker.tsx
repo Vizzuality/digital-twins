@@ -70,7 +70,7 @@ function Marker({ id, index, lat, lng, children, setSelectedMarker, setControlsE
                 <div className='bg-light-green rounded-full h-3 w-3 group-hover:bg-white'></div>
               </div>
             </button>
-            {!!children && <button type="button" onClick={() => setSelectedMarker(index)} className='mt-6 w-[200px] -ml-[100px]  text-white text-lg text-center bg-gray-500/30 p-2'>
+            {!!children && <button type="button" onClick={() => setSelectedMarker(index)} className='w-[157px] -ml-[78.5px] backdrop-blur-[15px] text-white text-center bg-gray-500/30 p-2'>
               {children}
             </button>}
           </>
