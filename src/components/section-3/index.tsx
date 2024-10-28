@@ -202,7 +202,7 @@ export default function Section3() {
           </div>
           <div className="max-w-[594px] text-green-700 space-y-3 xl:space-y-5 pb-10">
             <div className="xl:text-lg font-medium uppercase">From data to impact</div>
-            <h2 className="text-2xl xl:text-3xl font-medium pb-8 xl:pb-20">Integrating Climate and Impact Models</h2>
+            <h2 className="text-2xl xl:text-4xl font-medium pb-8 xl:pb-20">Integrating Climate and Impact Models</h2>
             <h3 className="text-xl xl:text-2xl pb-4 xl:pb-10">Digital twins offer a powerful capability: integrating the physical processes simulated in climate models with the modelling of aspects relevant for impact sectors.</h3>
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
