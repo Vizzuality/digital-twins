@@ -44,3 +44,5 @@ next-env.d.ts
 
 */data*
 public/videos/phase-3/originals/
+public/videos/originals/
+public/originals/
