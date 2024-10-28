@@ -20,7 +20,7 @@ const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelect
 
   useFrame(() => {
     if (rotate && groupRef.current) {
-      groupRef.current.rotation.y += 0.01;
+      groupRef.current.rotation.y += 0.002;
     }
   });
 
