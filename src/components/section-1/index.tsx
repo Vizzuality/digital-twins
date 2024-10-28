@@ -88,13 +88,13 @@ export default function Section1() {
           </div>}
         <div className={cn("text-green-700 grid mt-6 xl:mt-0")}>
           <div className={cn(gridColumns)}>
-            <FadeIn delay={0.5}>
+            <FadeIn delay={0.2}>
               <h4 className="text-lg xl:text-xl pr-10 mb-4 col-span-1 max-w-[350px]">
                 How the digital twin for climate change adaptation helps research and society?
               </h4>
             </FadeIn>
           </div>
-          <FadeIn delay={1}>
+          <FadeIn delay={0.5}>
             <div className={cn(gridColumns, 'mb-2 xl:mb-[30px]')}>
               <div className="col-start-2">
                 <div className="flex-col gap-2 xl:gap-4 flex pr-10">
@@ -116,7 +116,7 @@ export default function Section1() {
               </div>
             </div>
           </FadeIn>
-          <FadeIn delay={1.3}>
+          <FadeIn delay={0.8}>
             <div className={cn(gridColumns)}>
               <div className="col-start-2">
                 <div className="flex-col gap-2 xl:gap-4 flex pr-10">
