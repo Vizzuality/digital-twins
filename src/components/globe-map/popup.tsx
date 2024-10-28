@@ -40,10 +40,10 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
       "relative -mt-[140px] -ml-[140px] xl:-ml-[140px]": !isMobile,
       "fixed top-0 xs:left-[calc(50%-250px)] sm:left-[calc(50%-325px)] z-50 px-4 w-full h-full items-center justify-center xs:max-w-[500px] sm:max-w-[650px]": isMobile
     })}>
-    <div className={cn('relative w-fit xl:w-[662px] xl:h-[350px] pl-8 pr-4 py-8  backdrop-blur-[15px] text-white gap-6 inline-flex',
+    <div className={cn('relative w-fit xl:w-[662px] xl:h-[350px] pl-8 pr-4 py-8 text-white gap-6 inline-flex bg-green-700/80',
       {
-        'bg-white/20': index !== 0,
-        'bg-green-700/60': index === 0
+        'bg-white/20 backdrop-blur-[15px]': !isMobile,
+        'bg-green-700/60 backdrop-blur-[5px]': isMobile
       }
     )}>
       <div className="flex flex-col-reverse xl:flex-row gap-6">
@@ -87,7 +87,7 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
           </div>
         </div>
       </div>
-      <button onClick={closePopup} className="absolute left-[calc(50%_-_9px)] -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex">
+      <button onClick={closePopup} className="absolute left-[calc(50%_-_9px)] -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex transform hover:rotate-45 transition-transform">
         <Close
           width={14}
           height={14}
