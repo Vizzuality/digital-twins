@@ -9,7 +9,7 @@ export default function Section3() {
     <section className="relative bg-white pt-10 xl:pt-20 scroll-mt-8" id="section-5">
       <Lines verticalClassName="px-[152px]" sectionName="section-5" rows={[]} columnsNumber={2} colorClass="bg-blue-900/10" />
       <div className="container px-[20px] lg:px-[150px] flex flex-col xl:flex-row justify-between items-start">
-        <div className="flex pb-6 xl:pb-[126px] gap-[69px]">
+        <div className="flex pb-6 xl:pb-[120px] gap-[69px]">
           <div className="max-w-[630px] xl:min-w-[630px] text-green-700 space-y-5 xl:pb-10">
             <h2 className="text-3xl xl:text-4xl font-medium pb-10 xl:pb-16">Towards data streaming for efficient uptake by users.</h2>
             <div className="max-w-[487px]">
@@ -30,7 +30,7 @@ export default function Section3() {
         </div>
         <Image
           alt=""
-          className="mr-10 pb-[102px]"
+          className="xl:ml-24 pb-[102px]"
           src="/images/home-towards-data.svg"
           width={1160}
           height={742}
