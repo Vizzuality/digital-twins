@@ -12,6 +12,7 @@ import { useState, useEffect, useRef } from "react";
 export default function Header() {
   const [, setOpenedMenu] = useRecoilState(menuAtom);
   const [isVisible, setIsVisible] = useState(true);
+  const [isAtTop, setIsAtTop] = useState(true);
   const lastScrollY = useRef(0);
 
   const handleScroll = () => {
@@ -24,7 +25,7 @@ export default function Header() {
       // Scrolling up
       setIsVisible(true);
     }
-
+    setIsAtTop(currentScrollY === 0);
     lastScrollY.current = currentScrollY;
   };
 
@@ -51,10 +52,12 @@ export default function Header() {
   );
 
   return (
-    <header className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-40 transition-transform duration-500 bg-blue-900",
+    <header className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-40 transition-transform duration-500",
       {
         "translate-y-0": isVisible,
-        "-translate-y-full": !isVisible
+        "-translate-y-full": !isVisible,
+        "bg-blue-900": !isAtTop,
+        "bg-transparent": isAtTop
       })
     }>
       <div className="container flex justify-between items-center">
