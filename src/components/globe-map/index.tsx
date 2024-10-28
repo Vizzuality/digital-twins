@@ -46,7 +46,7 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
         if (direction[1] !== 0) { // Vertical swipe
           event.stopPropagation();
           event.preventDefault();
-          window.scrollBy(0, -delta[1] * 2);
+          window.scrollBy(0, -delta[1]);
         }
       },
       onWheel: (props) => {
