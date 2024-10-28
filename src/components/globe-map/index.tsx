@@ -6,6 +6,7 @@ import { Controls } from './controls';
 import { markers } from './data';
 import GlobeGroup from './globe-group';
 import { useGesture } from '@use-gesture/react';
+import { useErrorBoundary } from 'use-error-boundary'
 
 export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, globePhase, rotate = false }:
   {
@@ -22,6 +23,18 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener('deviceorientation', handleDeviceOrientation);
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleDeviceOrientation);
+    };
+  }, []);
 
   const resetSelectedMarker = useCallback(() => {
     setSelectedMarker(null);
@@ -59,6 +72,23 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
       }
     }
   )
+  const { onWheel, onDrag } = bind();
+
+  // const dcontrols = new DeviceOrientationControls(camera, renderer.domElement);
+
+
+  // addEventListener('touchstart', function (evt) {
+  //   dcontrols.enabled = false;
+  //   evt.preventDefault();
+  // }, false);
+
+  const { ErrorBoundary, didCatch, error } = useErrorBoundary();
+  useEffect(() => {
+    if (didCatch) {
+      console.log(error)
+    }
+  }
+    , [didCatch, error]);
 
   return (
     <>
@@ -66,21 +96,26 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
         className={className}
         style={style}
       >
-        <Canvas
-          camera={{ fov: 35 }}
-          ref={canvasRef}
-          resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
-          {...bind()}
-        >
-          <Controls canvasRef={canvasRef} marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
-          <GlobeGroup
-            groupRef={groupRef}
-            hasMarkers={hasMarkers} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} rotate={rotate}
-            setEnabled={setEnabled}
-            videoMaterial={videoMaterial}
-          />
-        </Canvas>
-      </div>
+        {!didCatch && (
+          <ErrorBoundary>
+            <Canvas
+              camera={{ fov: 35 }}
+              ref={canvasRef}
+              resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
+              fallback={<div>Sorry no WebGL supported!</div>}
+              onWheel={onWheel}
+              onDrag={onDrag}
+            >
+              <Controls canvasRef={canvasRef} marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
+              <GlobeGroup
+                groupRef={groupRef}
+                hasMarkers={hasMarkers} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} rotate={rotate}
+                setEnabled={setEnabled}
+                videoMaterial={videoMaterial}
+              />
+            </Canvas>
+          </ErrorBoundary>)}
+      </div >
     </>
   );
 }
