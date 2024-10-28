@@ -30,6 +30,8 @@ const ResizeButton = () => (
   </>
 );
 
+const SECTION_STARTS = [0.1, 0.2, 0.6];
+
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -62,17 +64,17 @@ export default function Section2() {
     , [screenWidth]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest >= 0 && latest < 0.1 && globePhase !== 0) {
+    if (latest >= SECTION_STARTS[0] && latest < SECTION_STARTS[1] && globePhase !== 0) {
       setGlobePhase(0);
       setResizableWidth(screenWidth / 2);
     }
 
-    if (latest >= 0.1 && latest < 0.66 && globePhase !== 1) {
+    if (latest >= SECTION_STARTS[1] && latest < SECTION_STARTS[2] && globePhase !== 1) {
       setGlobePhase(1);
       setResizableWidth(screenWidth);
     }
 
-    if (latest >= 0.66 && globePhase < 2) {
+    if (latest >= SECTION_STARTS[2] && globePhase < 2) {
       setGlobePhase(2);
     }
   });
@@ -87,14 +89,13 @@ export default function Section2() {
   }, [descriptionRef.current, screenWidth]);
 
   const isMobile = useIsMobile();
+  const titleX = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13], [0, isMobile ? 0 : -200]);
+  const titleY = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13], [0, isMobile ? -180 : -204]);
+  const descriptionY = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13, SECTION_STARTS[2], SECTION_STARTS[2] + 0.13], [1000, isMobile ? -120 : -210, isMobile ? -120 : -210, -1000]);
 
-  const titleX = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? 0 : -200]);
-  const titleY = useTransform(scrollYProgress, [0.2, 0.33], [0, isMobile ? -180 : -204]);
-  const descriptionY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [1000, isMobile ? -120 : -210, isMobile ? -120 : -210, -1000]);
-
-  const opacityLine = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [0, 1, 1, 0]);
-  const lineY = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [500, -40, -40, -1000]);
-  const lineX = useTransform(scrollYProgress, [0.2, 0.33, 0.6, 0.7], [resizableWidth, descriptionLeft, descriptionLeft, descriptionLeft]);
+  const opacityLine = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13, SECTION_STARTS[2], SECTION_STARTS[2] + 0.13], [0, 1, 1, 0]);
+  const lineY = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13, SECTION_STARTS[2], SECTION_STARTS[2] + 0.13], [500, -40, -40, -1000]);
+  const lineX = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13, SECTION_STARTS[2], SECTION_STARTS[2] + 0.13], [resizableWidth, descriptionLeft, descriptionLeft, descriptionLeft]);
 
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
   return (
@@ -102,9 +103,9 @@ export default function Section2() {
       <div className='relative pointer-events-none'>
         <Lines verticalClassName="left-8" sectionName="section-2" columns={[100]} rows={[100]} colorClass="bg-blue-900/10" />
       </div>
-      <div className="relative h-[300vh] snap-y snap-mandatory" ref={scrollSectionRef} id="section-2-scroll-parent">
-        <div className='h-screen flex justify-center sticky inset-0 snap-start snap-always' id="globe-phase-1">
-          <div className='relative w-full overflow-hidden' id='high-globe-container'>
+      <div className="relative h-[300vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
+        <div className='h-[100vh] flex justify-center sticky inset-0' id="globe-phase-1">
+          <div className='relative h-[100vh] w-full overflow-hidden' id='high-globe-container'>
             {/* High globe */}
             <GlobeMap
               className={cn('h-full', {
@@ -238,8 +239,8 @@ export default function Section2() {
           </motion.div>
         </div>
         {/* Empty divs for the snap scroll */}
-        <div className='h-[100vh] snap-start snap-always' id="globe-phase-2"></div>
-        <div className='h-[100vh] snap-start snap-always' id="globe-phase-3"></div>
+        <div className='h-[100vh]' id="globe-phase-2"></div>
+        <div className='h-[100vh]' id="globe-phase-3"></div>
       </div >
     </section >
   );
