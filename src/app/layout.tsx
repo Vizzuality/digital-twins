@@ -33,7 +33,6 @@ export default function RootLayout({
           <Header />
           <Menu />
           {children}
-          <Footer />
         </ContextWrapper>
       </body>
     </html >
