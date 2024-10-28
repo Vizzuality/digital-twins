@@ -18,7 +18,7 @@ const InfoPopover: React.FC<InfoPopoverProps> = ({ children, content, variant = 
     <Popover>
       <PopoverTrigger className="underline group relative">
         {children}
-        <InfoComponent className="absolute -right-2 -top-2.5 h-4 w-4 transform group-hover:rotate-90 transition-transform" />
+        <InfoComponent className="absolute -right-2 -top-2.5 h-4 w-4 transform group-hover:rotate-45 transition-transform" />
       </PopoverTrigger>
       <PopoverContent className="text-xs" side="top" sideOffset={24}
         variant={variant}
