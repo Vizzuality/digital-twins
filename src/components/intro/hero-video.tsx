@@ -19,10 +19,11 @@ const HeroVideo = () => {
       vidRef.current.style.opacity = '0.5';
     }
   };
-
+  // Added 'transform' class to fix a safari issue with mix-blend-screen
+  // https://gsap.com/community/forums/topic/21802-issues-with-safari-perspective-mix-blend-mode/?do=findComment&comment=102778
   return (
-    <video autoPlay muted playsInline ref={vidRef} onTimeUpdate={handleProgress} className="absolute bottom-0 w-full object-cover mix-blend-screen z-0 opacity-50 transition-opacity duration-2000 ease-in-out">
-      <source src="/videos/hero.webm" type="video/mp4" />
+    <video autoPlay muted playsInline ref={vidRef} onTimeUpdate={handleProgress} className="absolute bottom-0 w-full object-cover transform mix-blend-screen z-0 opacity-50 transition-opacity duration-2000 ease-in-out">
+      <source src="/videos/hero.webm" type="video/webm" />
     </video>
 
   );

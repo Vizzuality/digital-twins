@@ -11,8 +11,8 @@ export default function Section4() {
   return (
     <section className="relative bg-blue-950 scroll-mt-8 text-white" id="section-4">
       <div className="relative xl:h-[548px] overflow-hidden flex items-center justify-center z-10 h-[348px]">
-        <video autoPlay muted playsInline loop className="absolute h-full w-full object-fill z-0">
-          <source src="/videos/section-4.webm" type="video/mp4" />
+        <video autoPlay muted playsInline loop className="absolute w-screen object-fill z-0">
+          <source src="/videos/section-4.webm" type="video/webm" />
         </video>
         <div className="relative z-10 text-white text-center px-2 xl xl:px-0">
           <div className="text-center xl:text-lg uppercase tracking-tight">Unlocking Future Possibilities</div>
