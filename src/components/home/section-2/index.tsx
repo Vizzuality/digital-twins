@@ -11,7 +11,7 @@ import { useScroll, useTransform, motion, useMotionValueEvent, useInView, Animat
 import { useScreenWidthWithResize } from '@/lib/hooks';
 import { scrollToSection } from "@/lib/utils";
 import { useIsMobile } from '@/lib/hooks';
-import InfoPopover from '../info-popover';
+import InfoPopover from '../../info-popover';
 import ArrowRight from '@/svgs/arrow-right.svg';
 
 const ResizeButton = () => (
