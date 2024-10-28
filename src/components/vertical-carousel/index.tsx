@@ -35,7 +35,9 @@ const VerticalCarousel = ({ children, className }:
         <AnimatePresence initial={false}>
           {content.map((child, i) => (
             i === index && (
-              <motion.div key={`carousel-item-${i}`} className="absolute w-full"
+              <motion.div
+                key={`carousel-item-${i}`}
+                className="absolute w-full"
                 variants={contentAnimation}
                 initial="initial"
                 animate="animate"

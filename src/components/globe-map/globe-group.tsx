@@ -30,7 +30,7 @@ const GlobeGroup = ({ hasMarkers, markers, selectedMarker, setEnabled, setSelect
       {
         hasMarkers && markers.map((marker, index) => (
           <Marker
-            key={index}
+            key={`globe-marker-${index}`}
             index={markers.indexOf(marker)}
             id={marker.id}
             isSelected={selectedMarker === markers.indexOf(marker)}

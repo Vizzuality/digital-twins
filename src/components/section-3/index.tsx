@@ -233,7 +233,7 @@ export default function Section3() {
         </div> : <div className={cn("flex w-full h-[498px] overflow-hidden", gridColumns)}>
           <AnimatePresence>
             {Array(5).fill(null).map((_, index) => (
-              <motion.div key={index}
+              <motion.div key={`image-section-3-${index}`}
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: 'auto' }}
                 transition={{ delay: 0.5 + index * 1, duration: 1, ease: "easeInOut" }}
