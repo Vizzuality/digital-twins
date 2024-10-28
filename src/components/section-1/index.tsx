@@ -22,7 +22,7 @@ export default function Section1() {
   return (
     <section className="relative bg-white py-6 pb-[60px] xl:py-20 scroll-mt-8" id="section-1">
       <Lines verticalClassName="px-[152px]" sectionName="section-1" rows={[openedKnowMore ? 632 : 474, (!hoveredIndex || hoveredIndex === 0) ? 1108 : 1136]} colorClass="bg-blue-900/10" columnsNumber={3} hoveredIndex={hoveredIndex} />
-      <div className="container g:px-[150px]">
+      <div className="container xl:px-[150px]">
         <div className="max-w-[594px] text-green-700 space-y-5 mb-6 border-b xl:border-0 xl:mb-0 pb-6 xl:pb-20">
           <div className="text-sm xl:text-lg font-medium uppercase">Understanding digital twins</div>
           <h3 className="text-xl xl:text-2xl">A digital twin is a highly sophisticated virtual replica of a physical system, process, or object. It includes a tight integration between models, data and decisions with applications across multiple areas of science, technology, and society.</h3>
