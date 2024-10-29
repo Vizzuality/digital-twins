@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/lib/hooks";
-const FadeIn = dynamic(() => import('@/components/animations/fade-in'), { ssr: false });
+import FadeIn from "@/components/animations/fade-in";
 const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 
 export default function Section1() {
@@ -39,7 +39,7 @@ export default function Section1() {
       </div>
       <Lines verticalClassName="px-[152px] z-0" sectionName="section-1" rows={[openedKnowMore ? 980 : 830, openedKnowMore ? 1614 : 1468, openedKnowMore ? 2274 : 2124, openedKnowMore ? 2760 : 2600]} colorClass="bg-blue-900/10" columnsNumber={4} hoveredIndex={hoveredIndex} />
       <div className="container xl:px-[150px] xl:pt-20 relative z-10">
-        <div className="max-w-[594px] text-green-700 space-y-5 mb-6 border-b xl:border-0 xl:mb-0 pb-6 xl:pb-20">
+        <div className="max-w-[594px] text-green-700 space-y-5 mb-6 border-b xl:border-0 xl:mb-0 pb-6 xl:pb-20 mt-4 xl:mt-0">
           <h3 className="text-xl xl:text-2xl">The green transition boosts resilience to climate disruptions through renewable energy and advanced digital simulations.</h3>
           <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
           <AnimatePresence>
@@ -111,7 +111,7 @@ export default function Section1() {
               </h4>
             </FadeIn>
           </div>
-          <FadeIn delay={0.5}>
+          <FadeIn delay={0.2}>
             <div className={cn(gridColumns, 'mb-2 xl:mb-[30px]')}>
               <div className="col-start-2">
                 <div className="flex-col gap-2 xl:gap-4 flex pr-10">

@@ -1,12 +1,18 @@
+import { useRef, FC, useState, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useRef, FC } from "react";
 import { useIsMobile } from "@/lib/hooks";
 
 const FadeIn: FC<{ children: React.ReactNode, delay?: number }> = ({ children, delay }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const isMobile = useIsMobile();
-  if (isMobile) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (isMobile || !isClient) {
     return children;
   }
 
