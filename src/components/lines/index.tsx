@@ -31,6 +31,15 @@ const Lines = ({
     'grid-cols-[1fr_1fr_1fr_1px]': hoveredIndex === null,
   };
 
+  const gridColumns4 = {
+    'grid transition-all duration-500': true,
+    'grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr_1px]': hoveredIndex === 0,
+    'grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr_1px]': hoveredIndex === 1,
+    'grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr_1px]': hoveredIndex === 2,
+    'grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr_1px]': hoveredIndex === 3,
+    'grid-cols-[1fr_1fr_1fr_1fr_1px]': hoveredIndex === null
+  };
+
   const gridColumns5 = {
     'grid transition-all duration-500': true,
     'grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr_1px]': hoveredIndex === 0,
@@ -44,6 +53,7 @@ const Lines = ({
   const gridColumns = {
     2: gridColumns2,
     3: gridColumns3,
+    4: gridColumns4,
     5: gridColumns5
   }[columnsNumber];
 
