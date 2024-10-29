@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
-import Lines from "@/components/lines";
+import dynamic from 'next/dynamic';
+const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import { motion, AnimatePresence } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

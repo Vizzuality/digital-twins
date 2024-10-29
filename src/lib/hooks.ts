@@ -21,8 +21,14 @@ export const useScreenWidthWithResize = () => {
 };
 
 export const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });
-  return !isDesktopOrLaptop;
+
+  useEffect(() => {
+    setIsMobile(!isDesktopOrLaptop);
+  }, [isDesktopOrLaptop]);
+
+  return isMobile;
 };

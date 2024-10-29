@@ -1,5 +1,6 @@
 'use client';
-import Lines from "@/components/lines";
+import dynamic from 'next/dynamic';
+const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";

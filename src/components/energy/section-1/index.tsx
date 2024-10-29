@@ -1,12 +1,14 @@
 'use client';
-import Lines from "@/components/lines";
+
+import dynamic from 'next/dynamic';
 import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { cn } from "@/lib/utils";
-import FadeIn from "@/components/animations/fade-in";
 import { useIsMobile } from "@/lib/hooks";
+const FadeIn = dynamic(() => import('@/components/animations/fade-in'), { ssr: false });
+const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 
 export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
@@ -35,13 +37,14 @@ export default function Section1() {
           </div>
         </div>
       </div>
-      <Lines verticalClassName="px-[152px] z-0" sectionName="section-1" rows={[openedKnowMore ? 980 : 830, 1468, 2124, openedKnowMore ? 2760 : 2600]} colorClass="bg-blue-900/10" columnsNumber={4} hoveredIndex={hoveredIndex} />
+      <Lines verticalClassName="px-[152px] z-0" sectionName="section-1" rows={[openedKnowMore ? 980 : 830, openedKnowMore ? 1614 : 1468, openedKnowMore ? 2274 : 2124, openedKnowMore ? 2760 : 2600]} colorClass="bg-blue-900/10" columnsNumber={4} hoveredIndex={hoveredIndex} />
       <div className="container xl:px-[150px] xl:pt-20 relative z-10">
         <div className="max-w-[594px] text-green-700 space-y-5 mb-6 border-b xl:border-0 xl:mb-0 pb-6 xl:pb-20">
           <h3 className="text-xl xl:text-2xl">The green transition boosts resilience to climate disruptions through renewable energy and advanced digital simulations.</h3>
           <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
           <AnimatePresence>
             {openedKnowMore && <motion.div
+              key="know-more-green-transition"
               initial={{ opacity: 0, height: 0 }}
               exit={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
@@ -152,6 +155,7 @@ export default function Section1() {
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
               {openedKnowMore && <motion.div
+                key="know-more-renewable-sector"
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}

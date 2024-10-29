@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef, useEffect, useState, useMemo } from 'react';
-import Lines from "@/components/lines";
+import dynamic from 'next/dynamic';
+const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import GlobeMap from "@/components/globe-map";
 import { Resizable } from 're-resizable';
 import { Button } from "@/components/button";

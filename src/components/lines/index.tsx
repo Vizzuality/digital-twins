@@ -63,7 +63,7 @@ const Lines = ({
   return <>
     <AnimatePresence>
       {/* Vertical lines */}
-      <div className='vertical-lines container absolute inset-0 w-full h-full pointer-events-none'>
+      <div key={`vertical-lines-${sectionName}`} id={`vertical-lines-${sectionName}`} className='container absolute inset-0 w-full h-full pointer-events-none'>
         <motion.div className={cn('w-full h-full absolute inset-0 z-10',
           verticalClassName,
           columnsNumber && gridColumns)}
@@ -72,10 +72,10 @@ const Lines = ({
             !!columns?.length ?
               columns.map((x, index) => (
                 <motion.div
+                  key={`line-y-${sectionName}-${index}`}
                   initial={{ x: 1000, opacity: 0 }}
                   animate={{ x, opacity: 1 }}
                   transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
-                  key={`line-y-${sectionName}-${index}`}
                   className={cn("h-full w-px absolute", colorClass)} />
               )) :
               (
@@ -89,13 +89,13 @@ const Lines = ({
         </motion.div>
       </div>
       {/* Horizontal lines */}
-      <div className='horizontal-lines w-full h-full absolute inset-0 z-10 pointer-events-none'>
+      <div key={`horizontal-lines-${sectionName}`} id={`horizontal-lines-${sectionName}`} className='w-full h-full absolute inset-0 z-10 pointer-events-none'>
         {rows.map((y, index) => (
           <motion.div
+            key={`line-x-${sectionName}-${index}`}
             initial={{ y: -1000, opacity: 0 }}
             animate={{ y, opacity: 1 }}
             transition={{ delay: 0.1 + index * 0.1, ease: 'linear', duration: 0.1 }}
-            key={`line-x-${sectionName}-${index}`}
             className={cn("w-full h-px", colorClass)} />
         ))}
       </div>

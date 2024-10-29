@@ -1,15 +1,9 @@
-'use client';
-
-import Lines from '@/components/lines';
 import Image from 'next/image';
 
+import dynamic from 'next/dynamic'
+const Lines = dynamic(() => import('@/components/lines'), { ssr: false })
+
 export default function Intro() {
-  const handleAnchor = (anchor: string) => {
-    const element = document.getElementById(anchor);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
   return (
     <section className="relative bg-blue-950">
       <Lines verticalClassName="left-8 w-[calc(100vh-16px)]" sectionName='intro' columns={[64, 136, 452, 947]} rows={[220, 286, 302, 364, 468, 764]} />
