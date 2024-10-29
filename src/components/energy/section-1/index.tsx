@@ -30,7 +30,7 @@ export default function Section1() {
         </video>
         <div className="relative z-10 text-white text-center px-2 xl xl:px-0">
           <div className="text-center xl:text-lg uppercase tracking-tight">Wind energy production</div>
-          <div className="text-center text-[36px] xl:text-4xl max-w-[830px]">
+          <div className="text-center text-[36px] leading-[32px] xl:text-4xl max-w-[830px]">
             Advanced simulations for a climate resilient energy sector
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Section1() {
             <Image
               className="h-[141px]"
               alt=""
-              src="/images/home-understanding-1.png"
+              src="/images/energy-section-1-1.png"
               height={141}
               width={353}
               style={{ objectFit: "cover" }}
@@ -64,7 +64,7 @@ export default function Section1() {
             <Image
               className="h-[141px]"
               alt=""
-              src="/images/home-understanding-2.png"
+              src="/images/energy-section-1-2.png"
               height={141}
               width={353}
               style={{ objectFit: "cover" }}
@@ -72,7 +72,7 @@ export default function Section1() {
             <Image
               className="h-[141px]"
               alt=""
-              src="/images/home-understanding-3.png"
+              src="/images/energy-section-1-3.png"
               height={141}
               width={353}
               style={{ objectFit: "cover" }}
@@ -146,7 +146,7 @@ export default function Section1() {
               <source src="/videos/energy-section-1.webm" type="video/webm" />
             </video>
           </div>
-          <div className="max-w-[536px] w-[536px] text-green-700 space-y-3 xl:space-y-5 pb-10">
+          <div className="max-w-[536px] xl:w-[536px] text-green-700 space-y-3 xl:space-y-5 pb-10 pt-10 xl:pt-0">
             <h2 className="text-2xl xl:text-4xl font-medium pb-8 xl:pb-20 xl:-translate-y-1">Transforming wind to energy</h2>
             <h3 className="text-xl xl:text-2xl pb-4 xl:pb-10">The renewable energy sector is significantly impacted by climate variability and change.</h3>
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
