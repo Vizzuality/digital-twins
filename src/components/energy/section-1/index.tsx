@@ -25,7 +25,7 @@ export default function Section1() {
   };
 
   return (
-    <section className="relative bg-white scroll-mt-8" id="section-4">
+    <section className="relative bg-white scroll-mt-8" id="section-1">
       <div className="relative xl:h-[548px] overflow-hidden flex items-center justify-center z-10 h-[348px]">
         <video autoPlay muted playsInline loop className="absolute w-screen object-fill z-0">
           <source src="/videos/energy-intro-bg.webm" type="video/webm" />
@@ -106,7 +106,7 @@ export default function Section1() {
         <div className={cn("text-green-700 grid mt-6 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h4 className="text-lg xl:text-xl pr-10 mb-4 col-span-1 max-w-[350px]">
+              <h4 className="text-lg xl:text-xl pr-10 mb-4 xl:mb-0 col-span-1 max-w-[260px]">
                 How can a digital twin help the energy sector?
               </h4>
             </FadeIn>
@@ -117,27 +117,27 @@ export default function Section1() {
                 <div className="flex-col gap-2 xl:gap-4 flex pr-10">
                   <div className="flex-col flex " >
                     <div className="xl:text-lg leading-relaxed">01</div>
-                    <div className="xl:text-lg leading-relaxed">Predicting renewable energy production:</div>
+                    <div className="xl:text-lg leading-relaxed max-w-[260px]">Predicting renewable energy production:</div>
                   </div>
-                  <div className="text-xs xl:text-sm leading-tight max-w-[350px]">The advanced simulations of the digital twin enable users to explore different climate scenarios and predict renewable energy production according to the variability of climate conditions.</div>
+                  <div className="text-xs xl:text-sm leading-tight max-w-[260px]">The advanced simulations of the digital twin enable users to explore different climate scenarios and predict renewable energy production according to the variability of climate conditions.</div>
                 </div>
               </div>
               <div className="col-start-3">
                 <div className="flex-col gap-2 mt-2 xl:mt-0 xl:gap-4 flex pr-10">
                   <div className="flex-col flex">
                     <div className="xl:text-lg leading-relaxed">02</div>
-                    <div className="xl:text-lg leading-relaxed">Enhancing grid stability and reliability:</div>
+                    <div className="xl:text-lg leading-relaxed max-w-[260px]">Enhancing grid stability and reliability:</div>
                   </div>
-                  <div className="xl:text-xs text-sm leading-tight max-w-[350px]">A more accurate prediction of renewable energy production facilitates a smoother integration of renewable sources to the energy grid, enhancing grid stability and reducing the dependence on less reliable energy sources. This is key to ensure that the energy supply can meet the energy demand.</div>
+                  <div className="xl:text-xs text-sm leading-tight max-w-[260px]">A more accurate prediction of renewable energy production facilitates a smoother integration of renewable sources to the energy grid, enhancing grid stability and reducing the dependence on less reliable energy sources. This is key to ensure that the energy supply can meet the energy demand.</div>
                 </div>
               </div>
               <div className="col-start-4">
                 <div className="flex-col gap-2 mt-2 xl:mt-0 xl:gap-4 flex pr-10">
                   <div className="flex-col flex">
                     <div className="xl:text-lg leading-relaxed">03</div>
-                    <div className="xl:text-lg leading-relaxed">Developing strategies for climate extremes:</div>
+                    <div className="xl:text-lg leading-relaxed max-w-[260px]">Developing strategies for climate extremes:</div>
                   </div>
-                  <div className="xl:text-xs text-sm leading-tight max-w-[350px]">A digital twin allows the analysis of past extreme events to understand the conditions under which they had occurred. This allows the development of more efficient adaptation strategies in the light of the future increase in the frequency and the intensity of extreme events, offering a powerful combination of retrospective and prospective analysis.</div>
+                  <div className="xl:text-xs text-sm leading-tight max-w-[260px]">A digital twin allows the analysis of past extreme events to understand the conditions under which they had occurred. This allows the development of more efficient adaptation strategies in the light of the future increase in the frequency and the intensity of extreme events, offering a powerful combination of retrospective and prospective analysis.</div>
                 </div>
               </div>
             </div>
