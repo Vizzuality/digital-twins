@@ -200,7 +200,11 @@ export default function Section2() {
                 ref={descriptionRef}
               >
                 {isMobile && <div className="absolute right-0 -top-8 items-center gap-0.5 flex">
-                  <button onClick={() => setMobileGlobeTextIndex(0)}>
+                  <button
+                    onClick={() => setMobileGlobeTextIndex(0)}
+                    type="button"
+                    title="Previous text"
+                  >
                     <div className='sr-only'>Previous text</div>
                     <ArrowRight className={cn("w-6 h-6 p-[2px] -rotate-180 text-light-green",
                       {
@@ -208,7 +212,10 @@ export default function Section2() {
                       }
                     )} />
                   </button>
-                  <button onClick={() => setMobileGlobeTextIndex(1)}>
+                  <button onClick={() => setMobileGlobeTextIndex(1)}
+                    type="button"
+                    title="Next text"
+                  >
                     <div className='sr-only'>Next text</div>
                     <ArrowRight className={cn("w-6 h-6 p-[2px] text-light-green",
                       {

@@ -4,7 +4,7 @@ const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import Image from "next/image";
 import InfoPopover from "@/components/info-popover";
 
-export default function Section3() {
+export default function Section5() {
 
   return (
     <section className="relative bg-white pt-10 xl:pt-20 scroll-mt-8" id="section-5">

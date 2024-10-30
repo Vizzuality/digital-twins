@@ -25,16 +25,26 @@ TabsList.displayName = TabsPrimitive.List.displayName
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap pr-10 uppercase font-medium data-[state=active]:underline decoration-4 underline-offset-4 py-1.5 xl:text-lg ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-light-green",
-      className
-    )}
-    {...props}
-  />
-))
+>(({ className, onClick, ...props }, ref) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (props['data-disabled']) {
+      event.preventDefault();
+    }
+    onClick?.(event);
+  };
+
+  return (
+    <TabsPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "inline-flex items-center justify-center whitespace-nowrap pr-10 uppercase font-medium data-[state=active]:underline decoration-4 underline-offset-4 py-1.5 xl:text-lg ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-light-green",
+        className
+      )}
+      onClick={handleClick}
+      {...props}
+    />
+  )
+})
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 const TabsContent = React.forwardRef<
