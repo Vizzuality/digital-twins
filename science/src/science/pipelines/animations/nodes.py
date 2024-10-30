@@ -143,7 +143,9 @@ def parts_to_video(
             dataset = dataset()[0]  # noqa: PLW2901
         # flip array to make the 0,0 origin of the image at the upper corner for PIL
         grey = np.flipud(dataset.values)
-        grey = rescale(grey, params.get("scale"))
+        scale_factor = params.get("scale")
+        if scale_factor and scale_factor > 1:
+            grey = rescale(grey, scale_factor)
         _min = min_max[0] if min_max is not None else np.nanmin(grey)
         _max = min_max[1] if min_max is not None else np.nanmax(grey)
         # scale the values to 0-255

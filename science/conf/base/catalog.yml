@@ -219,3 +219,23 @@ iberia_diff.video:
   type: video.VideoDataset
   filepath: data/03_primary/iberia_diff_video.mp4
   fourcc: avc1
+
+# ============= CAPACITY FACTOR ==============
+
+capacity_factor_100.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/cf_global_100km.nc
+
+capacity_factor_100.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/capacity_factor_100km.mp4
+  fourcc: avc1
+
+capacity_factor_10.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/nextgems/cf_global_10km.nc
+
+capacity_factor_10.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/capacity_factor_10km.mp4
+  fourcc: avc1

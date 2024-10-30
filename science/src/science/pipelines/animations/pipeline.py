@@ -239,11 +239,25 @@ def create_pipeline(**kwargs) -> Pipeline:
         tags=["scenarios", "diff", "iberia"],
     )
 
+    capacity_factor_100 = pipeline(
+        pipe=global_base_pipeline,
+        namespace="capacity_factor_100",
+        parameters={"video": "params:default"},
+        tags=["capacity_factor"],
+    )
+
+    capacity_factor_10 = pipeline(
+        pipe=global_base_pipeline,
+        namespace="capacity_factor_10",
+        parameters={"video": "params:default"},
+        tags=["capacity_factor"],
+    )
+
     return (
         global_wind_10km_pipe
         + global_wind_100km_pipe
         + global_cloud_cover_pipe
-        # + global_temperature_pipe
+        + global_temperature_pipe
         + global_total_precipitation_pipe
         + global_sst_pipe
         + hurricane_cloud_pipe
@@ -256,4 +270,6 @@ def create_pipeline(**kwargs) -> Pipeline:
         + iberia_plus2k_pipe
         + iberia_hist_pipe
         + iberia_diff_scenarios
+        + capacity_factor_100
+        + capacity_factor_10
     )

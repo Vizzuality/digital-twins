@@ -1,4 +1,9 @@
 # ------- GLOBAL ----------
+default:
+    cmap: "YlGn"
+    scale:  1
+    vmin: 0
+    vmax: 1
 
 global_video_10:
     cmap: "viridis"
@@ -16,7 +21,7 @@ global_video_100:
 
 hurricane_10km_render_params:
     cmap: "Blues_r"
-    scale: 1
+    scale: 4
     vmin: 0
     vmax: 0.99
     bbox:
@@ -28,10 +33,12 @@ hurricane_10km_render_params:
 cloud_cover_100km_global:
     cmap: "Blues_r"
     scale: 1
+    vmin: 0
+    vmax: 0.99
 
 amazonia_10km_render_params:
     cmap: "rain_custom"
-    scale: 1
+    scale: 4
     vmin: 0
     vmax: 0.1
     bbox:
@@ -43,10 +50,14 @@ amazonia_10km_render_params:
 total_precipitation_100km_global:
     cmap: "rain_custom"
     scale: 1
+    vmin: 0
+    vmax: 0.1
 
 temperature_10km_render_params:
     cmap: "inferno"
     scale: 4
+    vmin: 277
+    vmax: 319
     bbox:
         minx: -12.1350
         miny: 32.5146
@@ -56,6 +67,8 @@ temperature_10km_render_params:
 temperature_100km_global:
     cmap: "inferno"
     scale: 1
+    vmin: 277
+    vmax: 319
 
 sst_10km_render_params:
     cmap: "thermal"
@@ -69,6 +82,8 @@ sst_10km_render_params:
 sst_100km_global:
     cmap: "thermal"
     scale: 1
+    vmin: 292.329
+    vmax: 304.38
 
 # ------ SCENARIOS ---------
 
@@ -96,4 +111,3 @@ observations:
         miny: 33.843
         maxx: 18.9029
         maxy: 49.2697
-
