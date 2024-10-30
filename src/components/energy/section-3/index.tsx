@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import FadeIn from "@/components/animations/fade-in";
 import { useIsMobile } from "@/lib/hooks";
 
-export default function Section1() {
+export default function Section3() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
   const gridColumns = isMobile ? 'flex flex-col' : {
@@ -19,7 +19,7 @@ export default function Section1() {
     'grid-cols-[1fr_1fr_1fr]': hoveredIndex === null,
   };
   return (
-    <section className="relative bg-white pb-[60px] xl:pb-20 scroll-mt-8" id="section-2">
+    <section className="relative bg-white pb-[60px] xl:pb-20 scroll-mt-8" id="section-3">
       {/* Decorative div to continue previous section */}
       <div className='absolute z-0 bg-green-200 w-screen h-[100px] inset-0'></div>
       <Lines verticalClassName="pt-[100px] px-[152px]" sectionName="section-1" rows={[570]} colorClass="bg-blue-900/10" columnsNumber={3} hoveredIndex={hoveredIndex} />
