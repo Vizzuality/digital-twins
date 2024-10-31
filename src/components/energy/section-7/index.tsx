@@ -21,7 +21,7 @@ const SharedImpactTabs = () => {
 
   return (
     <Tabs onValueChange={handleValueChange} defaultValue="tab1" className="flex gap-20" orientation="vertical">
-      <TabsList className="flex flex-col overflow-hidden h-auto w-[300px] gap-5">
+      <TabsList className="flex flex-col h-auto gap-5 min-w-[300px] max-w-[300px] overflow-hidden flex-1">
         {TAB_DATA.map((tab, index) => (
           <TabsTrigger
             key={index}
