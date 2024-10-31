@@ -45,8 +45,8 @@ cloud_cover_100km_global:
 amazonia_10km_render_params:
     cmap: "rain_custom"
     scale: 4
-    # vmin: 0.05
-    # vmax: 0.2
+    # vmin: 0
+    # vmax: 0.08
     basemap: true
     basemap_style: "dark-v11"
     bbox:

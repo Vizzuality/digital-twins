@@ -70,26 +70,21 @@ def parts_to_video_with_basemap(
         scale_factor = params.get("scale")
         if scale_factor and scale_factor > 1:
             grey = rescale(grey, scale_factor)
+
         _min = min_max[0] if min_max is not None else np.nanmin(grey)
         _max = min_max[1] if min_max is not None else np.nanmax(grey)
 
-        # scale the values to 0-255
-        grey = (grey.astype(float) - _min) * 255 / (_max - _min)
-        grey = np.clip(grey, a_min=0, a_max=255)
-
-        grey = np.nan_to_num(grey)
-        grey = grey.astype(np.uint8)
+        # # scale the values to 0-255
+        # grey = (grey.astype(float) - _min) * 255 / (_max - _min)
+        # grey = np.clip(grey, a_min=0, a_max=255)
+        norm = matplotlib.colors.PowerNorm(0.7, _min, _max, clip=True)
+        grey = (norm(grey) * 255).astype(np.uint8)
         result = np.zeros((*grey.shape, 4), dtype=np.uint8)
-        # color_idx = np.searchsorted(RAIN_CMAP_IDX, grey)
-        # np.take(RAIN_CMAP, color_idx, axis=0, out=result)
         np.take(cmap_lut, grey, axis=0, out=result)
-        # breakpoint()
         foreground_image = Image.fromarray(result, mode="RGBA")
         background_image = basemap.copy().convert("RGBA")
-        # background_image.paste(foreground_image, (0, 0), foreground_image)
-        # imgs.append(background_image.convert("RGB"))
         imgs.append(
             Image.alpha_composite(background_image, foreground_image).convert("RGB")
         )
-
+    log.info(f"Videos has {len(imgs)} frames")
     return SequenceVideo(imgs, fps=params.get("fps") or 20)
