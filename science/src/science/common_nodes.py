@@ -2,15 +2,14 @@
 This is a boilerplate pipeline 'globe_compact'
 generated using Kedro 0.19.6
 """
+
 import logging
 from typing import Any, Callable
 
 import cartopy  # noqa: F401
-import cartopy.crs as ccrs
 import cmocean
 import matplotlib
 import matplotlib.colors
-import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 from kedro_datasets.video.video_dataset import SequenceVideo
@@ -68,7 +67,7 @@ RAIN_CMAP_LUT = np.array(
 )
 
 
-RAIN_CMAP = [
+RAIN_CMAP_RAW = [
     [0, [230, 230, 230, 255]],
     [3, [40, 16, 158, 20]],
     [8, [40, 16, 158, 100]],
@@ -91,7 +90,7 @@ RAIN_CMAP = [
 ]
 
 
-RAIN_CMAP = np.asarray([x[1] for x in RAIN_CMAP])
+RAIN_CMAP = np.asarray([x[1] for x in RAIN_CMAP_RAW])
 
 
 def georef_nextgems_dataset(ds: xr.Dataset) -> xr.Dataset:
@@ -171,32 +170,6 @@ def parts_to_video(
         imgs.append(Image.fromarray(result))
 
     return SequenceVideo(imgs, fps=params.get("fps") or 20)
-
-
-# super slow
-def parts_to_video_matplotlib(
-    parts: dict[str, Callable[[], xr.DataArray]], params: dict[Any:Any]
-) -> SequenceVideo:
-    imgs = []
-    for dataset_id, dataset in parts.items():
-        fig = plt.figure(figsize=params.get("figsize"))
-        ax = fig.add_subplot(1, 1, 1, projection=ccrs.EqualEarth())
-        ax.coastlines()
-        ax.imshow(
-            dataset,
-            transform=ccrs.PlateCarree(),
-            # extent=extent,
-            origin="upper",
-            cmap=params.get("cmap"),
-        )
-        fig.canvas.draw()  # to initialize the renderer and get the img rgba buffer directly from figure
-        imgs.append(
-            Image.frombytes(
-                "RGBa", fig.canvas.get_width_height(), fig.canvas.buffer_rgba()
-            )
-        )
-        plt.close()  # close the figure, I hate matplotlib
-    return SequenceVideo(imgs, fps=20)
 
 
 def diff(a: xr.Dataset, b: xr.Dataset) -> xr.Dataset:

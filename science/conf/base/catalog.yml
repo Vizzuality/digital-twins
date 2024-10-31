@@ -176,7 +176,7 @@ sst_100km.video:
 
 europe_plus2k.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
-  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+  filepath: data/01_raw/destine/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
 
 europe_plus2k.video:
   type: video.VideoDataset
@@ -185,7 +185,7 @@ europe_plus2k.video:
 
 europe_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
-  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+  filepath: data/01_raw/destine/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
 
 europe_hist.video:
   type: video.VideoDataset
@@ -199,7 +199,7 @@ europe_diff.video:
 
 iberia_plus2k.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
-  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
+  filepath: data/01_raw/destine/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
 
 iberia_plus2k.video:
   type: video.VideoDataset
@@ -208,7 +208,7 @@ iberia_plus2k.video:
 
 iberia_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
-  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_new/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
+  filepath: data/01_raw/destine/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
 
 iberia_hist.video:
   type: video.VideoDataset
