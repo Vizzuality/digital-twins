@@ -13,36 +13,52 @@ import matplotlib.colors
 import numpy as np
 import xarray as xr
 from kedro_datasets.video.video_dataset import SequenceVideo
+from matplotlib.colors import LinearSegmentedColormap
 from PIL import Image
 from skimage.transform import rescale
 
 log = logging.getLogger(__name__)
 
 
-RAIN_CMAP_RAW = [
-    [0, [230, 230, 230, 0]],
-    [3, [40, 16, 158, 20]],
-    [8, [40, 16, 158, 100]],
-    [14, [0, 101, 154, 180]],
-    [20, [0, 144, 147, 220]],
-    [26, [0, 179, 125, 240]],
-    [32, [117, 208, 89, 255]],
-    [36, [220, 220, 30, 255]],
-    [40, [244, 202, 8, 255]],
-    [44, [245, 168, 24, 255]],
-    [48, [236, 130, 63, 255]],
-    [52, [205, 75, 75, 255]],
-    [56, [182, 45, 100, 255]],
-    [60, [156, 16, 109, 255]],
-    [64, [125, 0, 108, 255]],
-    [68, [92, 0, 100, 255]],
-    [100, [0, 0, 0, 255]],
-    [101, [0, 0, 0, 0]],
-    [255, [0, 0, 0, 0]],
-]
-
-
-RAIN_CMAP = np.asarray([x[1] for x in RAIN_CMAP_RAW])
+def register_cmaps():
+    GLOBAL_WIND_ATLAS_CMAP = [
+        (153, 51, 102),
+        (165, 47, 90),
+        (176, 43, 77),
+        (188, 39, 65),
+        (199, 35, 52),
+        (211, 31, 40),
+        (226, 63, 40),
+        (232, 78, 41),
+        (238, 92, 41),
+        (245, 106, 41),
+        (246, 137, 53),
+        (247, 160, 63),
+        (248, 184, 73),
+        (249, 208, 82),
+        (250, 232, 92),
+        (212, 221, 87),
+        (178, 211, 83),
+        (145, 202, 79),
+        (111, 192, 75),
+        (73, 181, 70),
+        (73, 173, 99),
+        (73, 165, 124),
+        (72, 158, 148),
+        (72, 150, 173),
+        (72, 142, 202),
+        (90, 158, 212),
+        (106, 173, 220),
+        (123, 187, 229),
+        (141, 204, 238),
+        (178, 226, 249),
+        (197, 233, 250),
+    ]
+    normalized_colors = np.array(GLOBAL_WIND_ATLAS_CMAP) / 255.0
+    cmap = LinearSegmentedColormap.from_list("GWA", normalized_colors)
+    cmap = cmap.reversed()
+    matplotlib.colormaps.register(cmap, force=True)
+    log.info(f"Registered colormap '{cmap.name}'")
 
 
 def georef_nextgems_dataset(ds: xr.Dataset) -> xr.Dataset:
@@ -74,20 +90,14 @@ def parts_to_video(
     params: dict[str, Any],
     min_max: tuple[float, float] | None = None,
 ) -> SequenceVideo:
-    cmap = matplotlib.colormaps.get(params.get("cmap")) or cmocean.cm.cmap_d.get(
-        params.get("cmap")
-    )
-    if cmap is not None:
-        cmap_lut = cmap(range(256))
-        cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
-    else:
-        cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
-            "rain", RAIN_CMAP / 255, N=256
-        )
-        cmap_lut = cmap(range(256))
-        cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
+    register_cmaps()
+    cmap_name = params["cmap"]
+    cmap = matplotlib.colormaps.get(cmap_name) or cmocean.cm.cmap_d.get(cmap_name)
+    if cmap is None:
+        raise ValueError(f"cmap '{cmap_name}' not found")
+    cmap_lut = cmap(range(256))
+    cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
     imgs = []
-
     for _, dataset in parts.items():
         if callable(dataset):
             # This comes from a partition dataset which is a callable only if reading files.

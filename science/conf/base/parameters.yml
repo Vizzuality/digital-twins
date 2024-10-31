@@ -17,6 +17,12 @@ global_wind_video_100:
     vmin: 0
     vmax: 20
 
+capacity_factor:
+    cmap: "GWA_r"
+    scale:  1
+    vmin: 0
+    vmax: 1
+
 # ------- ZOOM IN ----------
 
 hurricane_10km_render_params:
