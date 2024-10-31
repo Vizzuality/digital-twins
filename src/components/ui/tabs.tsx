@@ -27,9 +27,6 @@ const TabsTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
 >(({ className, onClick, ...props }, ref) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (props['data-disabled']) {
-      event.preventDefault();
-    }
     onClick?.(event);
   };
 
