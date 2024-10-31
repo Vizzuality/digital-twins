@@ -42,14 +42,14 @@ def create_pipeline(**kwargs) -> Pipeline:
     global_wind_10km_pipe = pipeline(
         pipe=global_base_pipeline,
         namespace="wind_speed_global_10km",
-        parameters={"video": "params:global_video_10"},
+        parameters={"video": "params:global_wind_video_10"},
         tags=["windspeed", "global", "high_resolution"],
     )
 
     global_wind_100km_pipe = pipeline(
         pipe=global_base_pipeline,
         namespace="wind_speed_global_100km",
-        parameters={"video": "params:global_video_100"},
+        parameters={"video": "params:global_wind_video_100"},
         tags=["windspeed", "global", "low_resolution"],
     )
     global_cloud_cover_pipe = pipeline(

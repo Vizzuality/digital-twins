@@ -5,14 +5,14 @@ default:
     vmin: 0
     vmax: 1
 
-global_video_10:
-    cmap: "viridis"
+global_wind_video_10:
+    cmap: "tempo"
     scale: 1
     vmin: 0
     vmax: 20
 
-global_video_100:
-    cmap: "viridis"
+global_wind_video_100:
+    cmap: "tempo"
     scale: 1
     vmin: 0
     vmax: 20
@@ -39,8 +39,10 @@ cloud_cover_100km_global:
 amazonia_10km_render_params:
     cmap: "rain_custom"
     scale: 4
-    vmin: 0
-    vmax: 0.1
+    # vmin: 0.05
+    # vmax: 0.2
+    basemap: true
+    basemap_style: "dark-v11"
     bbox:
         minx: -85.3
         miny: -8
@@ -59,10 +61,10 @@ temperature_10km_render_params:
     vmin: 277
     vmax: 319
     bbox:
-        minx: -12.1350
-        miny: 32.5146
-        maxx: 4.7930
-        maxy: 44.1825
+        minx: -12
+        miny: 33
+        maxx: 6
+        maxy: 46
 
 temperature_100km_global:
     cmap: "inferno"

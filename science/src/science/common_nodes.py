@@ -19,56 +19,8 @@ from skimage.transform import rescale
 log = logging.getLogger(__name__)
 
 
-# windy rain radar cmap
-RAIN_CMAP_IDX = [
-    0,
-    3,
-    8,
-    14,
-    20,
-    26,
-    32,
-    36,
-    40,
-    44,
-    48,
-    52,
-    56,
-    60,
-    64,
-    68,
-    100,
-    101,
-    255,
-]
-
-RAIN_CMAP_LUT = np.array(
-    [
-        [230, 230, 230],
-        [215, 213, 224],
-        [155, 146, 201],
-        [67, 138, 176],
-        [31, 155, 158],
-        [13, 182, 131],
-        [117, 208, 89],
-        [220, 220, 30],
-        [244, 202, 8],
-        [245, 168, 24],
-        [236, 130, 63],
-        [205, 75, 75],
-        [182, 45, 100],
-        [156, 16, 109],
-        [125, 0, 108],
-        [92, 0, 100],
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-    ]
-)
-
-
 RAIN_CMAP_RAW = [
-    [0, [230, 230, 230, 255]],
+    [0, [230, 230, 230, 0]],
     [3, [40, 16, 158, 20]],
     [8, [40, 16, 158, 100]],
     [14, [0, 101, 154, 180]],
@@ -103,7 +55,7 @@ def clip_to_boundary(raster: xr.Dataset, bbox: dict[str, float]) -> xr.Dataset:
     return raster.rio.clip_box(**bbox)
 
 
-def get_min_max(ds: xr.Dataset, params: dict[Any:Any]) -> tuple[float, float]:
+def get_min_max(ds: xr.Dataset, params: dict[str, Any]) -> tuple[float, float]:
     _min = params.get("vmin") or float(ds.min().to_array().values[0])
     _max = params.get("vmax") or float(ds.max().to_array().values[0])
     log.info(f"Min max is: {_min=}, {_max=}")
@@ -119,7 +71,7 @@ def split_by_timestep(ds: xr.Dataset) -> dict[str, xr.DataArray]:
 
 def parts_to_video(
     parts: dict[str, Callable[[], xr.DataArray]],
-    params: dict[Any:Any],
+    params: dict[str, Any],
     min_max: tuple[float, float] | None = None,
 ) -> SequenceVideo:
     cmap = matplotlib.colormaps.get(params.get("cmap")) or cmocean.cm.cmap_d.get(
@@ -135,6 +87,7 @@ def parts_to_video(
         cmap_lut = cmap(range(256))
         cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
     imgs = []
+
     for _, dataset in parts.items():
         if callable(dataset):
             # This comes from a partition dataset which is a callable only if reading files.
@@ -162,10 +115,6 @@ def parts_to_video(
         grey = np.nan_to_num(grey)
         grey = grey.astype(np.uint8)
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
-        # if cmap_lut is None:  # do some shittery with the custom LUT
-        #     idxs = np.searchsorted(RAIN_CMAP_IDX, grey)
-        #     np.take(RAIN_CMAP_LUT[..., 0:3], idxs, axis=0, out=result)
-        # else:
         np.take(cmap_lut, grey, axis=0, out=result)
         imgs.append(Image.fromarray(result))
 

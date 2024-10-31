@@ -80,6 +80,14 @@ cloud_cover_100km.video:
 
 # -------------- PRECIPITATION --------------
 
+total_precipitation_10km.mapbox_credentials:
+  type: science.datasets.credentials.CredentialsDataset
+  credentials: mapbox
+
+total_precipitation_10km.basemap:
+  type: kedro_datasets.pillow.ImageDataset
+  filepath: data/01_raw/amazonia_basemap.png
+
 total_precipitation_10km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/tp_global_10km.nc
