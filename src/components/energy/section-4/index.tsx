@@ -31,7 +31,7 @@ export default function Section4() {
 
   const variants: Record<string, Variants> = {
     'step-1': {
-      animate: { opacity: 1, textAlign: 'center', transition },
+      animate: { opacity: 1, textAlign: 'center', transition, width: '100%' },
     },
     'step-2': {
       animate: {
