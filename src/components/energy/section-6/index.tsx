@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useScreenWidthWithResize, useContainerWidthWithResize } from "@/lib/hooks";
+import { useContainerWidthWithResize } from "@/lib/hooks";
 import { Resizable } from "re-resizable";
 import { Button } from "@/components/button";
 import CaretRight from "@/svgs/caret-right.svg";
