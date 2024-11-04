@@ -1,5 +1,5 @@
 <svg width="75" height="18" viewBox="0 0 75 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="75" height="18" fill="#F5F5F5"/>
+<rect width="75" height="18" fill="none"/>
 <g id="VISUAL - Prototype">
 <path d="M-1230 -9572H1258V-9592H-1230V-9572ZM1348 -9482V329H1368V-9482H1348ZM1258 419H-1230V439H1258V419ZM-1320 329V-9482H-1340V329H-1320ZM-1230 419C-1279.71 419 -1320 378.706 -1320 329H-1340C-1340 389.751 -1290.75 439 -1230 439V419ZM1348 329C1348 378.705 1307.71 419 1258 419V439C1318.75 439 1368 389.751 1368 329H1348ZM1258 -9572C1307.71 -9572 1348 -9531.71 1348 -9482H1368C1368 -9542.75 1318.75 -9592 1258 -9592V-9572ZM-1230 -9592C-1290.75 -9592 -1340 -9542.75 -1340 -9482H-1320C-1320 -9531.71 -1279.71 -9572 -1230 -9572V-9592Z" fill="#0041AC"/>
 <g id="DTVC VISUAL">
@@ -11,12 +11,12 @@
 <g id="Content">
 <g id="BLOCK2">
 <g id="FOOTER">
-<rect width="1440" height="562" transform="translate(-706 -511)" fill="#2B5A51"/>
+<rect width="1440" height="562" transform="translate(-706 -511)" fill="none"/>
 <g id="Frame 2342006">
 <mask id="path-5-inside-2_752_7781" fill="white">
 <path d="M-706 -35H734V51H-706V-35Z"/>
 </mask>
-<path d="M-706 -35H734V51H-706V-35Z" fill="#2B5A51"/>
+<path d="M-706 -35H734V51H-706V-35Z" fill="none"/>
 <path d="M-706 -34H734V-36H-706V-34Z" fill="white" fill-opacity="0.2" mask="url(#path-5-inside-2_752_7781)"/>
 <g id="Frame 2342005">
 <g id="Frame 2342002">
