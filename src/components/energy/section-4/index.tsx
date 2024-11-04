@@ -1,6 +1,5 @@
 'use client';
 
-import { cn } from "@/lib/utils";
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import ScrollStep from "@/components/scroll-step";
