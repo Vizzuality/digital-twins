@@ -101,9 +101,9 @@ export default function Section6() {
               }}>
               <div>
                 <div className="text-base">SIM. 02</div>
-                <div className="text-xl">Present-day</div>
+                <div className="text-xl">Future scenario: +2ºC</div>
               </div>
-              <div className="text-xs leading-[16px]">In the case of the 2018 heatwave, maximum temperatures were well captured in valley and mountain ridges such as the Pyrinees, while some differences in maximum temperature remained along the Portuguese western coast.</div>
+              <div className="text-xs leading-[16px]">If the same heatwave episode were to take place under a 2°C warmer climate, a larger area of the Iberian Peninsula would be experiencing extreme temperatures, with the highest values nearly hitting 49°C. Increases in maximum temperature in some areas could reach up to 5°C compared to present-day temperatures. Areas undergoing the greatest change in temperature extremes are located in the inland northwestern Iberian Peninsula, with a warming ranging between 3.5 and 5°C.</div>
             </div>
           </div>
         </div >
