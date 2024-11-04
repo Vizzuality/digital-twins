@@ -23,7 +23,7 @@ export default function Section3() {
       {/* Decorative div to continue previous section */}
       <div className='absolute z-0 bg-green-200 w-full h-[100px] inset-0'></div>
       <Lines verticalClassName="pt-[100px] px-[152px]" sectionName="section-3" rows={[570]} colorClass="bg-blue-900/10" columnsNumber={3} hoveredIndex={hoveredIndex} />
-      <div className="container xl:px-[150px]">
+      <div className="container xl:px-[150px] relative z-10">
         {isMobile ?
           <div className="w-full">
             <Image

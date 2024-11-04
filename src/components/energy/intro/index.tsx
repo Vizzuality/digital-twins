@@ -15,9 +15,9 @@ export default function Intro() {
           <ul className='flex flex-row xl:flex-col gap-[10px]'>
             {
               Array(5).fill(0).map((_, i) => (
-                <li key={`intro-images-${i}`} className='flex items-center gap-[9px]'>
+                <li key={`intro-images-${i}`} className='flex items-center gap-[9px] relative'>
                   <Image alt="" src={`/images/energy-thumbs-${i + 1}.png`} width={72} height={79} />
-                  {i === 0 && <span className='bg-white w-[10px] h-[10px] rounded-full' />}
+                  {i === 0 && <span className='bg-white w-[10px] h-[10px] rounded-full hidden xl:block' />}
                 </li>
               ))
             }

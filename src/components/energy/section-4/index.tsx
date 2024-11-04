@@ -89,8 +89,7 @@ export default function Section4() {
   return (
     <section className="relative" id="section-4">
       <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
-        <ScrollStep id="step-1" className='relative h-[100vh]' offset={0} onEnter={setStep} />
-        <div className='sticky h-[100vh] w-full flex justify-center inset-0' id="globe-phase-1">
+        <div className='sticky h-[100vh] w-full flex justify-center inset-0' id="section-4-1">
           <video autoPlay loop muted playsInline className='h-[100vh] w-full object-fill'>
             <source src="/videos/phase-3/tooltip/tas_10km_square.mp4" type="video/mp4" />
           </video>
@@ -186,6 +185,7 @@ export default function Section4() {
             </div>}
           </AnimatePresence>
         </div>
+        <ScrollStep id="step-1" className='relative h-[100vh]' offset={0} onEnter={setStep} />
         <ScrollStep id="step-2" className='h-[100vh]' offset={0.5} onEnter={setStep} />
         <ScrollStep id="step-3" className='h-[200vh]' offset={0.5} onEnter={setStep} />
       </div >
