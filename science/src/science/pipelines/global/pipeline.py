@@ -5,7 +5,7 @@ Global videos pipeline
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
-from science.common_nodes import (
+from science.pipelines.common_nodes import (
     georef_nextgems_dataset,
     get_min_max,
     parts_to_video,
