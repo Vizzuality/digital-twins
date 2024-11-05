@@ -2,13 +2,16 @@ from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
 from science.common_nodes import (
-    clip_to_boundary,
     georef_nextgems_dataset,
     get_min_max,
     parts_to_video,
     split_by_timestep,
 )
-from science.pipelines.zooms.nodes import parts_to_video_with_basemap
+from science.pipelines.zooms.nodes import (
+    clip_to_boundary,
+    get_basemap,
+    parts_to_video_with_basemap,
+)
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -22,7 +25,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=clip_to_boundary,
                 inputs=["georef", "params:bbox"],
-                outputs="clipped",
+                outputs=["clipped", "shape"],
             ),
             node(
                 func=get_min_max,
@@ -53,15 +56,27 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=clip_to_boundary,
                 inputs=[
                     "total_precipitation_10km.georef",
-                    "params:amazonia_10km_render_params.bbox",
+                    "params:total_precipitation_10km.bbox",
                 ],
-                outputs="total_precipitation_10km.clipped",
+                outputs=[
+                    "total_precipitation_10km.clipped",
+                    "total_precipitation_10km.shape",
+                ],
+            ),
+            node(
+                func=get_basemap,
+                inputs=[
+                    "total_precipitation_10km.mapbox_credentials",
+                    "total_precipitation_10km.shape",
+                    "params:total_precipitation_10km",
+                ],
+                outputs="total_precipitation_10km.basemap",
             ),
             node(
                 func=get_min_max,
                 inputs=[
                     "total_precipitation_10km.clipped",
-                    "params:amazonia_10km_render_params",
+                    "params:total_precipitation_10km",
                 ],
                 outputs="total_precipitation_10km.minmax",
             ),
@@ -74,7 +89,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=parts_to_video_with_basemap,
                 inputs=[
                     "total_precipitation_10km.local_parts",
-                    "params:amazonia_10km_render_params",
+                    "params:total_precipitation_10km",
                     "total_precipitation_10km.basemap",
                     "total_precipitation_10km.minmax",
                 ],

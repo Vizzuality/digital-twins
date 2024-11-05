@@ -1,4 +1,5 @@
 import logging
+from io import BytesIO
 from typing import Any, Callable
 
 import httpx
@@ -39,13 +40,28 @@ RAIN_CMAP = np.asarray([x[1] for x in RAIN_CMAP_RAW])
 RAIN_CMAP_IDX = np.asarray([x[0] for x in RAIN_CMAP_RAW])
 
 
-def get_basemap(credentials: dict, params: dict[str, Any]):
+def clip_to_boundary(
+    raster: xr.Dataset, bbox: dict[str, float]
+) -> tuple[xr.Dataset, tuple[int, int]]:
+    """Clip the raster to the boundary area"""
+    log.info(f"Clipping to {bbox=}")
+    clipped_raster = raster.rio.clip_box(**bbox)
+    return clipped_raster, (clipped_raster.sizes["x"], clipped_raster.sizes["y"])
+
+
+def get_basemap(
+    credentials: dict, shape: tuple[int, int], params: dict[str, Any]
+) -> Image.Image:
     bbox_flat = [v for _, v in params["bbox"].items()]
-    w = 1016
-    h = 720
+    w = shape[0] * params["scale"]
+    h = shape[1] * params["scale"]
     url = f"https://api.mapbox.com/styles/v1/bielstela/{params['basemap_style']}/static/{bbox_flat}/{w}x{h}"
-    log.info(f"{url=}")
-    httpx.get(url, params={"acces_token": credentials["token"]})
+    log.info(f"Downloading basemap from: {url}")
+    res = httpx.get(url, params={"access_token": credentials["token"]})
+    assert res.status_code == httpx.codes(
+        200
+    ), f"Failed request with {res.status_code}, {res.content}"
+    return Image.open(BytesIO(res.content)).convert("RGB")
 
 
 def parts_to_video_with_basemap(
@@ -87,4 +103,4 @@ def parts_to_video_with_basemap(
             Image.alpha_composite(background_image, foreground_image).convert("RGB")
         )
     log.info(f"Videos has {len(imgs)} frames")
-    return SequenceVideo(imgs, fps=params.get("fps") or 20)
+    return SequenceVideo(imgs, fps=24)

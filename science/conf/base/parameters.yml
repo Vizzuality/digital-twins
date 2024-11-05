@@ -42,18 +42,18 @@ cloud_cover_100km_global:
     vmin: 0
     vmax: 0.99
 
-amazonia_10km_render_params:
+total_precipitation_10km:
     cmap: "rain_custom"
     scale: 4
     # vmin: 0
     # vmax: 0.08
     basemap: true
-    basemap_style: "dark-v11"
+    basemap_style: "cm2xjiks300pc01qwbgo8a9f4"
     bbox:
-        minx: -85.3
-        miny: -8
-        maxx: -60
-        maxy: 10
+        minx: -75
+        miny: -12
+        maxx: -52
+        maxy: 6
 
 total_precipitation_100km_global:
     cmap: "rain_custom"

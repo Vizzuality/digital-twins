@@ -4,7 +4,7 @@ generated using Kedro 0.19.6
 """
 
 import logging
-from typing import Any, Callable
+from typing import Any, Callable, Generator, TypeAlias
 
 import cartopy  # noqa: F401
 import cmocean
@@ -12,12 +12,14 @@ import matplotlib
 import matplotlib.colors
 import numpy as np
 import xarray as xr
-from kedro_datasets.video.video_dataset import SequenceVideo
+from kedro_datasets.video.video_dataset import GeneratorVideo
 from matplotlib.colors import LinearSegmentedColormap
 from PIL import Image
 from skimage.transform import rescale
 
 log = logging.getLogger(__name__)
+
+Parts: TypeAlias = dict[str, Callable[[], xr.DataArray]]
 
 
 def register_cmaps():
@@ -65,12 +67,6 @@ def georef_nextgems_dataset(ds: xr.Dataset) -> xr.Dataset:
     return ds.rio.write_crs(4326).rename(lon="x", lat="y")
 
 
-def clip_to_boundary(raster: xr.Dataset, bbox: dict[str, float]) -> xr.Dataset:
-    """Clip the raster to the boundary area"""
-    log.info(f"Clipping to {bbox=}")
-    return raster.rio.clip_box(**bbox)
-
-
 def get_min_max(ds: xr.Dataset, params: dict[str, Any]) -> tuple[float, float]:
     _min = params.get("vmin") or float(ds.min().to_array().values[0])
     _max = params.get("vmax") or float(ds.max().to_array().values[0])
@@ -85,19 +81,13 @@ def split_by_timestep(ds: xr.Dataset) -> dict[str, xr.DataArray]:
     }
 
 
-def parts_to_video(
-    parts: dict[str, Callable[[], xr.DataArray]],
-    params: dict[str, Any],
-    min_max: tuple[float, float] | None = None,
-) -> SequenceVideo:
-    register_cmaps()
-    cmap_name = params["cmap"]
-    cmap = matplotlib.colormaps.get(cmap_name) or cmocean.cm.cmap_d.get(cmap_name)
-    if cmap is None:
-        raise ValueError(f"cmap '{cmap_name}' not found")
-    cmap_lut = cmap(range(256))
-    cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
-    imgs = []
+def parts_to_frames(
+    parts: Parts,
+    scale_factor: int,
+    min_max: tuple | None,
+    cmap_lut: np.ndarray,
+    cmap_name: str,
+) -> Generator[Image.Image, None, None]:
     for _, dataset in parts.items():
         if callable(dataset):
             # This comes from a partition dataset which is a callable only if reading files.
@@ -105,13 +95,12 @@ def parts_to_video(
             dataset = dataset()[0]  # noqa: PLW2901
         # flip array to make the 0,0 origin of the image at the upper corner for PIL
         grey = np.flipud(dataset.values)
-        scale_factor = params.get("scale")
         if scale_factor and scale_factor > 1:
             grey = rescale(grey, scale_factor)
         _min = min_max[0] if min_max is not None else np.nanmin(grey)
         _max = min_max[1] if min_max is not None else np.nanmax(grey)
         # scale the values to 0-255
-        if params.get("cmap") == "RdBu_r":
+        if cmap_name == "RdBu_r":
             grey = (
                 matplotlib.colors.TwoSlopeNorm(vmin=_min, vcenter=0, vmax=_max)(grey)
                 * 255
@@ -121,14 +110,27 @@ def parts_to_video(
         else:
             grey = (grey.astype(float) - _min) * 255 / (_max - _min)
             grey = np.clip(grey, a_min=0, a_max=255)
-
         grey = np.nan_to_num(grey)
         grey = grey.astype(np.uint8)
         result = np.zeros((*grey.shape, 3), dtype=np.uint8)
         np.take(cmap_lut, grey, axis=0, out=result)
-        imgs.append(Image.fromarray(result))
+        yield Image.fromarray(result)
 
-    return SequenceVideo(imgs, fps=params.get("fps") or 20)
+
+def parts_to_video(
+    parts: Parts,
+    params: dict[str, Any],
+    min_max: tuple[float, float] | None = None,
+) -> GeneratorVideo:
+    register_cmaps()
+    cmap_name = params["cmap"]
+    cmap = matplotlib.colormaps.get(cmap_name) or cmocean.cm.cmap_d.get(cmap_name)
+    if cmap is None:
+        raise ValueError(f"cmap '{cmap_name}' not found")
+    cmap_lut = cmap(range(256))
+    cmap_lut = (cmap_lut[..., 0:3] * 255).astype(np.uint8)
+    frames = parts_to_frames(parts, params["scale"], min_max, cmap_lut, cmap_name)
+    return GeneratorVideo(frames, length=None, fps=24)
 
 
 def diff(a: xr.Dataset, b: xr.Dataset) -> xr.Dataset:
