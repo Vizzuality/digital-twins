@@ -1,6 +1,5 @@
 'use client';
 import { useState } from "react";
-import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -19,8 +18,8 @@ const SharedImpactTabs = () => {
   }
 
   return (
-    <Tabs onValueChange={handleValueChange} defaultValue="tab1" className="flex gap-20" orientation="vertical">
-      <TabsList className="flex flex-col h-auto gap-5 min-w-[300px] max-w-[300px] overflow-hidden flex-1">
+    <Tabs onValueChange={handleValueChange} defaultValue="tab1" className="flex flex-col xl:flex-row gap-20" orientation="vertical">
+      <TabsList className="flex flex-col h-auto gap-5 w-full xl:min-w-[300px] xl:max-w-[300px] overflow-hidden flex-1">
         {TAB_DATA.map((tab, index) => (
           <TabsTrigger
             key={index}
@@ -39,10 +38,10 @@ const SharedImpactTabs = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      <TabsContent value="tab1" className="pt-6 xl:pt-10 bg-white/5 xl:min-w-[732px] w-[732px] mt-0">
+      <TabsContent value="tab1" className="pt-6 xl:pt-10 bg-white/5 xl:min-w-[732px] xl:w-[732px] mt-0">
         <TabContentItem index={0} />
       </TabsContent>
-      <TabsContent value="tab2" className="pt-6 xl:pt-10 bg-white/5 xl:min-w-[732px] w-[732px] mt-0">
+      <TabsContent value="tab2" className="pt-6 xl:pt-10 bg-white/5 xl:min-w-[732px] xl:w-[732px] mt-0">
         <TabContentItem index={1} />
       </TabsContent>
     </Tabs>);

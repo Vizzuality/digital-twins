@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useMemo } from 'react';
+import { useRef, useEffect, useState, useMemo, forwardRef } from 'react';
 import dynamic from 'next/dynamic';
 const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import GlobeMap from "@/components/globe-map";
@@ -14,6 +14,7 @@ import { scrollToSection } from "@/lib/utils";
 import { useIsMobile } from '@/lib/hooks';
 import InfoPopover from '../../info-popover';
 import ArrowRight from '@/svgs/arrow-right.svg';
+import { useGesture } from "@use-gesture/react";
 
 const ResizeButton = () => (
   <>
@@ -99,6 +100,82 @@ export default function Section2() {
   const lineX = useTransform(scrollYProgress, [SECTION_STARTS[1], SECTION_STARTS[1] + 0.13, SECTION_STARTS[2], SECTION_STARTS[2] + 0.13], [resizableWidth, descriptionLeft, descriptionLeft, descriptionLeft]);
 
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
+
+  const bind = useGesture({
+    onDragEnd: ({ direction: [dx] }) => {
+      if (dx > 0) {
+        setMobileGlobeTextIndex(1);
+      } else if (dx < 0) {
+        setMobileGlobeTextIndex(0);
+      }
+    }
+  });
+
+  console.log(bind())
+
+
+  const Phase2Content = forwardRef<HTMLDivElement, any>((props, ref) => {
+    const { isMobile, globePhase, descriptionY, bind, setMobileGlobeTextIndex, mobileGlobeTextIndex } = props;
+
+    return (
+      <motion.div
+        className={cn("text-light-green leading-relaxed max-w-[500px] w-[80vw] xl:w-[500px] flex flex-col gap-2 xl:gap-6 transition-opacity",
+          {
+            'hidden opacity-0': globePhase !== 1,
+            'opacity-100': globePhase === 1
+          }
+        )}
+        style={{ y: descriptionY, x: isMobile ? 0 : 495 }}
+        ref={ref}
+        {...bind()}
+      >
+        {isMobile && <div className="absolute right-0 -top-8 items-center gap-0.5 flex">
+          <button
+            onClick={() => setMobileGlobeTextIndex(0)}
+            type="button"
+            title="Previous text"
+          >
+            <div className='sr-only'>Previous text</div>
+            <ArrowRight className={cn("w-6 h-6 p-[2px] -rotate-180 text-light-green",
+              {
+                'opacity-50': mobileGlobeTextIndex === 0
+              }
+            )} />
+          </button>
+          <button onClick={() => setMobileGlobeTextIndex(1)}
+            type="button"
+            title="Next text"
+          >
+            <div className='sr-only'>Next text</div>
+            <ArrowRight className={cn("w-6 h-6 p-[2px] text-light-green",
+              {
+                'opacity-50': mobileGlobeTextIndex === 1
+              }
+            )} />
+          </button>
+        </div>}
+        <AnimatePresence>
+          {(!isMobile || (mobileGlobeTextIndex === 0)) && <motion.div className='flex flex-col gap-2 xl:gap-6'>
+            <p>
+              At the <InfoPopover
+                variant="dark"
+                content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
+                resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
+            </p>
+          </motion.div>}
+          {(!isMobile || (mobileGlobeTextIndex === 1)) && <motion.div className='flex flex-col gap-2 xl:gap-6'>
+            <p>
+              The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
+            </p>
+            <p>
+              An evaluation of the simulations and a quantification of uncertainties is regularly done to ensure the quality and transparency of the information provided by the digital twin.
+            </p>
+          </motion.div>}
+        </AnimatePresence>
+      </motion.div>
+    );
+  });
+
   return (
     <section className="relative bg-green-800" id="section-2">
       <div className='relative pointer-events-none'>
@@ -189,60 +266,7 @@ export default function Section2() {
                   </div>
                 </motion.div>
               </motion.div>
-              <motion.div
-                className={cn("text-light-green leading-relaxed max-w-[500px] w-[80vw] xl:w-[500px] flex flex-col gap-2 xl:gap-6 transition-opacity",
-                  {
-                    'hidden opacity-0': globePhase !== 1,
-                    'opacity-100': globePhase === 1
-                  }
-                )}
-                style={{ y: descriptionY, x: isMobile ? 0 : 495 }}
-                ref={descriptionRef}
-              >
-                {isMobile && <div className="absolute right-0 -top-8 items-center gap-0.5 flex">
-                  <button
-                    onClick={() => setMobileGlobeTextIndex(0)}
-                    type="button"
-                    title="Previous text"
-                  >
-                    <div className='sr-only'>Previous text</div>
-                    <ArrowRight className={cn("w-6 h-6 p-[2px] -rotate-180 text-light-green",
-                      {
-                        'opacity-50': mobileGlobeTextIndex === 0
-                      }
-                    )} />
-                  </button>
-                  <button onClick={() => setMobileGlobeTextIndex(1)}
-                    type="button"
-                    title="Next text"
-                  >
-                    <div className='sr-only'>Next text</div>
-                    <ArrowRight className={cn("w-6 h-6 p-[2px] text-light-green",
-                      {
-                        'opacity-50': mobileGlobeTextIndex === 1
-                      }
-                    )} />
-                  </button>
-                </div>}
-                <AnimatePresence>
-                  {(!isMobile || (mobileGlobeTextIndex === 0)) && <motion.div className='flex flex-col gap-2 xl:gap-6'>
-                    <p>
-                      At the <InfoPopover
-                        variant="dark"
-                        content={<>The resolution of a model refers to the size of each grid box. When increasing the resolution, the grid boxes become smaller, allowing for more detailed calculations and the model output to be more relevant to users (source: <a target="_blank" rel="noreferrer noopener" href="https://www.ecmwf.int/">ECMWF</a>)</>}>
-                        resolutions</InfoPopover> that global climate models use today, a number of small-scale processes that are important for the simulation of extreme events and the evolution of the climate system, are not directly represented. Increasing the model resolution (i.e. reducing the size of grid cells used in climate models both horizontally and vertically) allows researchers to represent these processes more directly.
-                    </p>
-                  </motion.div>}
-                  {(!isMobile || (mobileGlobeTextIndex === 1)) && <motion.div className='flex flex-col gap-2 xl:gap-6'>
-                    <p>
-                      The climate adaptation digital twin provides high-quality information at scales that matter to society, based on better simulations performed with more realistic Earth-system models and a better integration of observations and simulations. This unprecedented level of detail, towards the km-scale, allows users to study localised impacts and devise more targeted solutions for climate adaptation and mitigation.
-                    </p>
-                    <p>
-                      An evaluation of the simulations and a quantification of uncertainties is regularly done to ensure the quality and transparency of the information provided by the digital twin.
-                    </p>
-                  </motion.div>}
-                </AnimatePresence>
-              </motion.div>
+              <Phase2Content {...{ isMobile, globePhase, descriptionY, bind, setMobileGlobeTextIndex, mobileGlobeTextIndex }} />
             </div>
           </motion.div>
         </div>

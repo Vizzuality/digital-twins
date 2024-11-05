@@ -13,7 +13,7 @@ const TabTriggerItem = ({ title, subtitle, image, disabled, index, isSelected, i
     isHovered: boolean;
   }
 ) => (
-  <div className={cn("flex gap-3 min-w-[300px] h-fit transition-all duration-500 flex-1",
+  <div className={cn("flex gap-3 w-full min-w-[300px] h-fit transition-all duration-500 flex-1",
     {
       'h-[143px]': isSelected || isHovered,
       'h-[79px]': !isSelected && !isHovered
@@ -34,7 +34,7 @@ const TabTriggerItem = ({ title, subtitle, image, disabled, index, isSelected, i
         alt=""
       />
     </div>
-    <div className={cn("p-1 xl:p-4 xl:pr-0 flex flex-col text-left items-start justify-start max-w-[212px] whitespace-normal w-full",
+    <div className={cn("p-[10px] xl:p-4 xl:pr-0 flex flex-col text-left items-start justify-start w-[calc(100vw_-_140px)] xl:max-w-[212px] whitespace-normal",
       {
         'text-blue-900 bg-light-green': isSelected,
         'text-white bg-white/5': !isSelected && isHovered,
@@ -56,7 +56,7 @@ const TabTriggerItem = ({ title, subtitle, image, disabled, index, isSelected, i
           </div>
           )}
       </div>
-      <div className="text-[22px] leading-[25px] pb-4">
+      <div className="text-[22px] leading-[25px] pb-2 xl:pb-4">
         {title}
       </div>
       <div className={cn("text-xs font-normal leading-[16px] transition-opacity duration-500", {
