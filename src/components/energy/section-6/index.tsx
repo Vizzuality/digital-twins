@@ -88,7 +88,7 @@ export default function Section6() {
                   style={{ width: containerWidth }}
                 >
                   <video autoPlay loop muted playsInline className='xl:h-[550px] w-full'>
-                    <source src='/videos/wind_speed_global_100km.mp4' type='video/mp4' />
+                    <source src='/videos/wind_speed_global_100km.webm' type='video/mp4' />
                   </video>
                 </div>
                 <div className={cn("max-w-[378px] flex-col gap-4 hidden xl:inline-flex transition-opacity duration-500 pt-10 text-green-700 xl:pb-[120px]",

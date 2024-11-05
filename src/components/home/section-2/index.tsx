@@ -221,7 +221,7 @@ export default function Section2() {
                     hasMarkers={globePhase > 1}
                     rotate={globePhase === 1}
                     videoMaterial={
-                      globePhase === 0 ? "videos/wind_speed_global_100km.mp4" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
+                      globePhase === 0 ? "videos/wind_speed_global_100km.webm" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
                     }
                     globePhase={globePhase}
                   />
