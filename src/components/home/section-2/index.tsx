@@ -46,11 +46,11 @@ export default function Section2() {
   const [initial, setInitial] = useState(true);
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
   let screenWidth = useWindowWidth();
-  if (isMobile && screenWidth && screenWidth > 400) {
-    screenWidth = 400;
+  if (!screenWidth) {
+    screenWidth = isMobile ? 400 : 800;
   }
-  if (!screenWidth && !isMobile) {
-    screenWidth = 800;
+  if (isMobile && screenWidth > 400) {
+    screenWidth = 400;
   }
 
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
