@@ -115,21 +115,23 @@ export default function Section4() {
           </motion.div>
           <AnimatePresence>
             {/* Horizontal line */}
-            {step !== 'step-1' && <motion.div
-              key="section-4-horizontal-line"
-              className="hidden xl:block absolute bg-white/30 h-px w-full"
-              initial={{ opacity: 0, top: '100%' }}
-              animate={{ opacity: 1, top: '30%', transition }}
-              exit={{ opacity: 0, top: '100%' }}
-            />}
-            {/* Vertical line */}
-            {step !== 'step-1' && <motion.div
-              key="section-4-vertical-line"
-              className="hidden xl:block absolute bg-white/30 w-px h-full top-0"
-              initial={{ opacity: 0, left: '100%' }}
-              animate={{ opacity: 1, left: '60%', transition }}
-              exit={{ opacity: 0, left: '100%' }}
-            />}
+            {['step-2', 'step-3'].includes(step) && <>
+              <motion.div
+                key="section-4-horizontal-line"
+                className="hidden xl:block absolute bg-white/30 h-px w-full"
+                initial={{ opacity: 0, top: '100%' }}
+                animate={{ opacity: 1, top: '30%', transition }}
+                exit={{ opacity: 0, top: '100%' }}
+              />
+              {/* Vertical line */}
+              <motion.div
+                key="section-4-vertical-line"
+                className="hidden xl:block absolute bg-white/30 w-px h-full top-0"
+                initial={{ opacity: 0, left: '100%' }}
+                animate={{ opacity: 1, left: '60%', transition }}
+                exit={{ opacity: 0, left: '100%' }}
+              />
+            </>}
           </AnimatePresence>
           {step !== 'step-1' && <motion.div
             key="section-4-description-1"

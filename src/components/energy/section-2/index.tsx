@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import ScrollStep from "@/components/scroll-step";
+import GlobeMap from '@/components/globe-map';
 
 const transition = { duration: 0.2, ease: 'linear' };
 
@@ -12,21 +13,25 @@ export default function Section2() {
 
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
-      <div className="relative container h-[300vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
+      <div className="relative xl:container h-[300vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id="step-1" className='relative h-[10vh]' offset={0} onEnter={setStep} />
-        <div className='sticky h-[90vh] w-full flex flex-col-reverse xl:flex-row justify-center inset-0 gap-[94px]' id="section-2-step-1">
+        <div className='sticky h-[100vh] w-full flex flex-col-reverse xl:flex-row justify-center inset-0 xl:gap-[94px]' id="section-2-step-1">
           <div
             key="section-2-title-1"
-            className="w-full xl:w-1/2 flex items-center justify-center">
-            <h3 className="text-base xl:text-lg uppercase tracking-tight">Globe Video</h3>
+            className="w-full h-[50vh] xl:h-full xl:w-1/2 flex items-center justify-center">
+            <GlobeMap
+              className="h-full w-full"
+              videoMaterial={step === 'section-2-step-2' ? "videos/capacity_factor_10km.webm" : "videos/wind_speed_global_10km.webm"}
+              globePhase={step === 'section-2-step-2' ? 5 : 4}
+              rotate={step !== 'section-2-step-2'}
+            />
           </div>
-          <div className="w-full xl:w-1/2 flex flex-col justify-center">
+          <div className="w-full xl:w-1/2 flex flex-col justify-center max-xl:container">
             <AnimatePresence>
               {step !== 'section-2-step-2' ? <motion.div
                 key="section-2-description-1"
                 initial={{ opacity: 0, translateY: '200px' }}
                 animate={{ opacity: 1, translateY: 0, transition }}
-                exit={{ opacity: 0, translateY: '-200px' }}
                 className='space-y-6 max-w-[480px]'
               >
                 <div className='text-[32px]'>
@@ -42,7 +47,6 @@ export default function Section2() {
                 key="section-2-description-2"
                 initial={{ opacity: 0, translateY: '200px' }}
                 animate={{ opacity: 1, translateY: 0, transition }}
-                exit={{ opacity: 0, translateY: '-200px' }}
                 className='space-y-6 max-w-[480px]'
               >
                 <p>

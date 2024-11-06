@@ -66,7 +66,6 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
         const { event, direction, delta } = props;
         if (direction[1] !== 0) {
           event.stopPropagation();
-          event.preventDefault();
           window.scrollBy(0, delta[1]);
         }
       }
@@ -102,14 +101,18 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
               camera={{ fov: 35 }}
               ref={canvasRef}
               resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
-              fallback={<div>Sorry no WebGL supported!</div>}
+              fallback={<div>Sorry, no WebGL supported in your browser</div>}
               onWheel={onWheel}
               onDrag={onDrag}
             >
               <Controls canvasRef={canvasRef} marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
               <GlobeGroup
                 groupRef={groupRef}
-                hasMarkers={hasMarkers} markers={markers} selectedMarker={selectedMarker} setSelectedMarker={setSelectedMarker} rotate={rotate}
+                hasMarkers={hasMarkers}
+                markers={markers}
+                selectedMarker={selectedMarker}
+                setSelectedMarker={setSelectedMarker}
+                rotate={rotate}
                 setEnabled={setEnabled}
                 videoMaterial={videoMaterial}
               />

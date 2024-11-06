@@ -6,9 +6,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
+import ImageSliderWithText from "@/components/image-slider-with-text";
+
+const renderLegend = <div className="legend relative xl:absolute xl:-top-[70px] xl:right-0 w-full xl:w-[258px] xl:h-8 lg:py-1 flex-col gap-2 inline-flex text-2xs pt-6">
+  <div className="justify-between items-start inline-flex">
+    <div>LOW (20º)</div>
+    <div>HIGH (47º)</div>
+  </div>
+  <Image alt="legend" src="/images/home-legend-spectral.svg" className="w-full" width={378} height={100} />
+  <div className="flex w-full justify-between">
+    <div>CONTOUR LINE: +35º C</div>
+    <Image alt="contour line legend" src="/images/home-legend-contour-line.svg" className="w-[200px] xl:w-[91px]" width={91} height={100} />
+  </div>
+</div>;
+
+const renderText1 = <>
+  <div>
+    <div className="text-base">7th AUGUST 2018</div>
+    <div className="text-xl pb-2">Western European heatwave</div>
+    <div className="text-xs">Source: Destination Earth</div>
+  </div>
+</>;
+
+const renderText2 = <>
+  <div>
+    <div className="text-base">PRESENT-DAY CONDITIONS</div>
+    <div className="text-xl pb-2">Warning in a +2ºC world</div>
+    <div className="text-xs">Source: Destination Earth</div>
+  </div>
+</>;
 
 export default function Section4() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
+
+
   return (
     <section className="relative bg-blue-950 scroll-mt-8 text-white" id="section-4">
       <div className="relative xl:h-[548px] overflow-hidden flex items-center justify-center z-10 h-[348px]">
@@ -24,7 +55,7 @@ export default function Section4() {
       </div>
       <Lines verticalClassName="px-[152px] z-0" sectionName="section-4" rows={[1506]} columns={[548]} colorClass="bg-white/10" />
       <div className="container px-[20px] xl:px-[150px]">
-        <div className="flex flex-col pb-[120px] gap-[60px] xl:gap-[100px]">
+        <div className="flex flex-col xl:pb-[120px] gap-[60px] xl:gap-[100px]">
           <div className="max-w-[630px] space-y-5 pt-20">
             <div className="max-w-[594px]">
               <h3 className="text-2xl pb-5">Through interactive and configurable access to data, models and workflows, the digital twin represents an exciting opportunity to satisfy users’ curiosity.</h3>
@@ -55,13 +86,28 @@ export default function Section4() {
               <TabsTrigger value="scenario3">Scenario 3</TabsTrigger>
             </TabsList>
             <TabsContent value="scenario1" className="pt-6 xl:pt-10">
-              <div className="grid xl:grid-cols-2 gap-[48px] xl:gap-0">
+              <div className="grid xl:grid-cols-2 gap-[48px] xl:gap-0 pb-20">
                 <div className="text-light-green max-w-[320px] text-xl">
                   ... the heatwave that affected Europe in 2018 occurred in a +2ºC warmer world ?
                 </div>
                 <div className="text-white max-w-[466px] text-balance">
                   The digital twin allows not only to understand the conditions under which the 2018 heatwave had occurred, but also to simulate how much worse could this heatwave be if it occurs under a future warmer world.
                 </div>
+              </div>
+              <div className="relative mt-16">
+                <div className="hidden xl:block w-full">
+                  {renderLegend}
+                </div>
+                <ImageSliderWithText
+                  text1={renderText1}
+                  text2={renderText2}
+                  legend={renderLegend}
+                  image1="/images/home-europe-hist-scenario.png"
+                  image2="/images/home-europe-plus-2k-scenario.png"
+                  sliderHeightClass={'xl:h-[440px]'}
+                  textClass={'text-white'}
+                  resizeButtonClassName='top-[170px] xl:top-[350px]'
+                />
               </div>
             </TabsContent>
             <TabsContent value="scenario2" className="pt-6 xl:pt-10">

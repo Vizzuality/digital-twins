@@ -6,6 +6,9 @@ import type { MarkerType } from "./marker";
 import { Group } from "three";
 import { useIsMobile } from "@/lib/hooks";
 import { useInView } from "framer-motion";
+
+const MADRID_COORDINATES = { lat: 40.416775, lng: -3.703790 };
+
 export const Controls = ({ marker, active = false, enabled = false, groupRef, resetSelectedMarker, setEnabled, globePhase, canvasRef }: {
   marker: MarkerType | undefined
   // Active is used to determine if the globe controls are in a phase that could be enabled even if is temporarily disabled
@@ -24,6 +27,21 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
 
   const resetPosition = () => {
     groupRef.current.rotation.y = 0;
+    if (globePhase === 4) {
+      cameraControlsRef.current.setPosition(0, 1, isMobile ? 4.5 : 4, true);
+      cameraControlsRef.current.setTarget(0, 0, 0, true);
+      return;
+    }
+
+    if (globePhase === 5) {
+      // Position tooltip in europe
+      const [x, y, z] = convertLatLonToGlobalPosition(MADRID_COORDINATES.lat, MADRID_COORDINATES.lng, isMobile ? 4.5 : 4);
+
+      cameraControlsRef.current.setTarget(0, 0, 0, true);
+      cameraControlsRef.current.setPosition(x, y, z, true)
+      return;
+    }
+
     if (globePhase < 2) {
       cameraControlsRef.current.setPosition(0, 1, 2.5, true);
       cameraControlsRef.current.setTarget(0, 0.3, 0, true);
@@ -35,7 +53,7 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
 
 
   useEffect(() => {
-    if (globePhase === 0 || globePhase === 1) {
+    if (globePhase === 0 || globePhase === 1 || globePhase === 4 || globePhase === 5) {
       resetPosition();
     }
   }, [globePhase]);
