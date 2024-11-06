@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, useEffect, CSSProperties, useCallback } from 'react';
+import { useState, useRef, useEffect, CSSProperties, useCallback, use } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { Group } from "three";
 import { Controls } from './controls';
@@ -8,14 +8,13 @@ import GlobeGroup from './globe-group';
 import { useGesture } from '@use-gesture/react';
 import { useErrorBoundary } from 'use-error-boundary'
 
-export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, globePhase, rotate = false }:
+export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, rotate = false }:
   {
     videoMaterial?: string,
     className: string,
     style?: CSSProperties,
     hasMarkers?: boolean,
     rotate?: boolean,
-    globePhase: number
   }
 ) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -105,7 +104,7 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
               onWheel={onWheel}
               onDrag={onDrag}
             >
-              <Controls canvasRef={canvasRef} marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} globePhase={globePhase} />
+              <Controls canvasRef={canvasRef} marker={marker} active={hasMarkers} enabled={enabled} setEnabled={setEnabled} groupRef={groupRef} resetSelectedMarker={resetSelectedMarker} />
               <GlobeGroup
                 groupRef={groupRef}
                 hasMarkers={hasMarkers}

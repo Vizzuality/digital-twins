@@ -1,15 +1,27 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import ScrollStep from "@/components/scroll-step";
 import GlobeMap from '@/components/globe-map';
+import { useRecoilState } from "recoil";
+import { globePhaseAtom } from "@/store";
 
 const transition = { duration: 0.2, ease: 'linear' };
 
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState('section-2-step-1');
+  const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
+
+  useEffect(() => {
+    if (globePhase !== 1 && step === 'section-2-step-2') {
+      setGlobePhase(1);
+    }
+    if (globePhase !== 0 && step !== 'section-2-step-2') {
+      setGlobePhase(0);
+    }
+  }, [step, globePhase, setGlobePhase]);
 
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
@@ -22,7 +34,6 @@ export default function Section2() {
             <GlobeMap
               className="h-full w-full"
               videoMaterial={step === 'section-2-step-2' ? "videos/capacity_factor_10km.webm" : "videos/wind_speed_global_10km.webm"}
-              globePhase={step === 'section-2-step-2' ? 5 : 4}
               rotate={step !== 'section-2-step-2'}
             />
           </div>

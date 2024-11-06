@@ -15,6 +15,8 @@ import { useIsMobile } from '@/lib/hooks';
 import InfoPopover from '../../info-popover';
 import ArrowRight from '@/svgs/arrow-right.svg';
 import { useGesture } from "@use-gesture/react";
+import { useRecoilState } from "recoil";
+import { globePhaseAtom } from "@/store";
 
 const ResizeButton = () => (
   <>
@@ -42,8 +44,7 @@ export default function Section2() {
   const isMobile = useIsMobile();
 
   const [initial, setInitial] = useState(true);
-  const [globePhase, setGlobePhase] = useState(0);
-
+  const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
   const screenWidth = useScreenWidthWithResize();
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
   const isInView = useInView(scrollSectionRef);
@@ -195,7 +196,6 @@ export default function Section2() {
               })}
               videoMaterial="videos/wind_speed_global_10km.webm"
               style={{ width: screenWidth }}
-              globePhase={globePhase}
             />
             <div className="absolute inset-0 w-full z-30">
               <Resizable
@@ -226,7 +226,6 @@ export default function Section2() {
                     videoMaterial={
                       globePhase === 0 ? "videos/wind_speed_global_100km.webm" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
                     }
-                    globePhase={globePhase}
                   />
                 </div>
               </Resizable>
