@@ -43,8 +43,8 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
     }
 
     if (globePhase < 2) {
-      cameraControlsRef.current.setPosition(0, 1, 2.5, true);
-      cameraControlsRef.current.setTarget(0, 0.3, 0, true);
+      cameraControlsRef.current.setPosition(0, 1, 2.8, true);
+      cameraControlsRef.current.setTarget(0, 0.4, 0, true);
     } else {
       cameraControlsRef.current.setPosition(0, 1, 4, true);
       cameraControlsRef.current.setTarget(0, 0, 0, true);
