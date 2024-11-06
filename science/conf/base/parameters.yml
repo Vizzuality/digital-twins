@@ -103,6 +103,19 @@ scenarios:
     vmin: 269.56
     vmax: 324.11
 
+europe_scenario:
+    cmap: "inferno"
+    scale: 10
+    date: "2018-08-07"
+    vmin: 285.15  # 12 C
+    vmax: 318.15  # 45 C
+    bbox:
+        minx: -20
+        miny: 35
+        maxx: 20
+        maxy: 55
+
+
 diff_video:
     cmap: "RdBu_r"
     scale: 2

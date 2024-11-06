@@ -7,10 +7,12 @@ from science.pipelines.common_nodes import (
     parts_to_video,
     split_by_timestep,
 )
+from science.pipelines.scenarios.nodes import plot_array, select_by_date
+from science.pipelines.zooms.nodes import clip_to_boundary
 
 
 def create_pipeline(**kwargs) -> Pipeline:
-    scenarios_base_pipeline = pipeline(
+    scenarios_base_video_pipeline = pipeline(
         [
             node(
                 func=georef_nextgems_dataset,
@@ -35,27 +37,63 @@ def create_pipeline(**kwargs) -> Pipeline:
         ]
     )
 
+    static_image_base_pipeline = pipeline(
+        [
+            node(
+                func=georef_nextgems_dataset,
+                inputs="raw",
+                outputs="georef",
+            ),
+            node(
+                func=select_by_date,
+                inputs=["georef", "params:image"],
+                outputs="selection",
+            ),
+            node(
+                func=clip_to_boundary,
+                inputs=["selection", "params:bbox"],
+                outputs=["crop", "_"],
+            ),
+            node(
+                func=get_min_max,
+                inputs=["crop", "params:image"],
+                outputs="minmax",
+            ),
+            node(
+                func=plot_array,
+                inputs=["crop", "minmax", "params:image"],
+                outputs="image",
+            ),
+        ]
+    )
+
     europe_plus2k_pipe = pipeline(
-        pipe=scenarios_base_pipeline,
+        pipe=static_image_base_pipeline,
         namespace="europe_plus2k",
-        parameters={"video": "params:scenarios"},
-        tags=["scenarios"],
+        parameters={
+            "image": "params:europe_scenario",
+            "bbox": "params:europe_scenario.bbox",
+        },
+        tags=["europe"],
     )
     europe_hist_pipe = pipeline(
-        pipe=scenarios_base_pipeline,
+        pipe=static_image_base_pipeline,
         namespace="europe_hist",
-        parameters={"video": "params:scenarios"},
-        tags=["scenarios"],
+        parameters={
+            "image": "params:europe_scenario",
+            "bbox": "params:europe_scenario.bbox",
+        },
+        tags=["europe"],
     )
 
     iberia_plus2k_pipe = pipeline(
-        pipe=scenarios_base_pipeline,
+        pipe=scenarios_base_video_pipeline,
         namespace="iberia_plus2k",
         parameters={"video": "params:scenarios"},
         tags=["scenarios", "iberia"],
     )
     iberia_hist_pipe = pipeline(
-        pipe=scenarios_base_pipeline,
+        pipe=scenarios_base_video_pipeline,
         namespace="iberia_hist",
         parameters={"video": "params:scenarios"},
         tags=["scenarios", "iberia"],
