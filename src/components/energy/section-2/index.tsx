@@ -9,7 +9,7 @@ const transition = { duration: 0.2, ease: 'linear' };
 
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
-  const [step, setStep] = useState('section-2-step-2');
+  const [step, setStep] = useState('section-2-step-1');
 
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
