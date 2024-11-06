@@ -1,24 +1,24 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
-export const useScreenWidthWithResize = () => {
-  const [width, setWidth] = useState(0);
-  // Set initial width on mount. Window is not available on server side.
-  useEffect(() => {
-    setWidth(window.innerWidth);
-  }, []);
+export function useWindowWidth() {
+  const [size, setSize] = useState<number | null>(null);
 
-  const handleResize = useCallback(() => {
-    setWidth(window.innerWidth);
-  }, []);
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setSize(window.innerWidth);
+    };
 
-  useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  return width;
-};
+  return size;
+}
 
 export const useContainerWidthWithResize = (containerRef: React.RefObject<HTMLDivElement>) => {
   const [containerWidth, setContainerWidth] = useState(0);

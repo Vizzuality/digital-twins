@@ -1,8 +1,9 @@
 'use client';
+
 import dynamic from 'next/dynamic';
 const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Fragment } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import KnowMoreButton from "@/components/know-more-button";
 import { cn } from "@/lib/utils";
@@ -61,7 +62,9 @@ const CasesText = ({ hoveredIndex, setHoveredIndex, content, index }:
       <ArrowRight className="w-4 h-4" />
     </Link>}</>
   return (
-    <div className="pt-3 pb-4 xl:pt-10 xl:pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
+    <div
+      key={`use-case-${index}`}
+      className="pt-3 pb-4 xl:pt-10 xl:pb-20 pl-1 flex-col gap-4 flex text-green-700 text-base" onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
       <div className="leading-relaxed">
         <div>{number}</div>
         <div>{title}</div>
@@ -69,6 +72,7 @@ const CasesText = ({ hoveredIndex, setHoveredIndex, content, index }:
       {isMobile ? descriptionText :
         (hoveredIndex === index) && (
           <motion.div className="flex flex-col gap-4"
+            key={`use-case-description-${index}`}
             initial={{ opacity: isMobile ? 1 : 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -208,6 +212,7 @@ export default function Section3() {
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
               {openedKnowMore && <motion.div
+                key="section-3-know-more-description"
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
@@ -219,7 +224,7 @@ export default function Section3() {
         </div>
         {isMobile ? <div className="pb-[60px] scroll-mt-12 " id="use-cases">
           {Array(5).fill(null).map((_, index) => (
-            <>
+            <Fragment key={`home-models-${index}`}>
               <Image
                 className="w-full h-[130px]"
                 alt=""
@@ -228,8 +233,8 @@ export default function Section3() {
                 width={356}
                 style={{ objectFit: "cover" }}
               />
-              <CasesText content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
-            </>
+              <CasesText key={`cases-text-${index}`} content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
+            </Fragment>
           ))}
         </div> : <div className={cn("flex w-full h-[498px] overflow-hidden", gridColumns)}>
           <AnimatePresence>
@@ -254,7 +259,7 @@ export default function Section3() {
         </div>}
         {!isMobile && <div className={cn('hidden xl:visible min-h-[290px]', gridColumns)} id="use-cases">
           {Array(5).fill(null).map((_, index) => (
-            <CasesText content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
+            <CasesText key={`cases-text-${index}`} content={USE_CASES[index]} index={index} hoveredIndex={hoveredIndex} setHoveredIndex={setHoveredIndex} />
           ))}
         </div>}
       </div>

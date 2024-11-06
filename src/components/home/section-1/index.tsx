@@ -42,30 +42,31 @@ export default function Section1() {
         {isMobile ?
           <div className="w-full">
             <Image
-              className="h-[141px]"
+              className="w-full h-[498px]"
               alt=""
               src="/images/home-understanding-1.png"
-              height={141}
-              width={353}
+              height={498}
+              width={386}
               style={{ objectFit: "cover" }}
+
             />
             <Image
-              className="h-[141px]"
+              className="w-full h-[498px]"
               alt=""
               src="/images/home-understanding-2.png"
-              height={141}
-              width={353}
+              height={498}
+              width={386}
               style={{ objectFit: "cover" }}
             />
             <Image
-              className="h-[141px]"
+              className="w-full h-[498px]"
               alt=""
               src="/images/home-understanding-3.png"
-              height={141}
-              width={353}
+              height={498}
+              width={386}
               style={{ objectFit: "cover" }}
             />
-          </div> : <div className={cn("flex w-full h-[480px] overflow-hidden mb-10", gridColumns)}>
+          </div> : <div className={cn("flex w-full h-[498px] overflow-hidden mb-10", gridColumns)}>
             <AnimatePresence>
               {Array(3).fill(null).map((_, index) => (
                 <motion.div

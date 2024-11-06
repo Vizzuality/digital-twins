@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useMemo, forwardRef } from 'react';
+import { useRef, useEffect, useState, forwardRef } from 'react';
 import dynamic from 'next/dynamic';
 const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
 import GlobeMap from "@/components/globe-map";
@@ -9,7 +9,7 @@ import { Button } from "@/components/button";
 import CaretRight from '@/svgs/caret-right.svg';
 import { cn } from "@/lib/utils";
 import { useScroll, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
-import { useScreenWidthWithResize } from '@/lib/hooks';
+import { useWindowWidth } from '@/lib/hooks';
 import { scrollToSection } from "@/lib/utils";
 import { useIsMobile } from '@/lib/hooks';
 import InfoPopover from '../../info-popover';
@@ -45,7 +45,14 @@ export default function Section2() {
 
   const [initial, setInitial] = useState(true);
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
-  const screenWidth = useScreenWidthWithResize();
+  let screenWidth = useWindowWidth();
+  if (isMobile && screenWidth && screenWidth > 400) {
+    screenWidth = 400;
+  }
+  if (!screenWidth && !isMobile) {
+    screenWidth = 800;
+  }
+
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
   const isInView = useInView(scrollSectionRef);
 
