@@ -113,9 +113,9 @@ export default function Section2() {
   const bind = useGesture({
     onDragEnd: ({ direction: [dx] }) => {
       if (dx > 0) {
-        setMobileGlobeTextIndex(1);
-      } else if (dx < 0) {
         setMobileGlobeTextIndex(0);
+      } else if (dx < 0) {
+        setMobileGlobeTextIndex(1);
       }
     }
   });
