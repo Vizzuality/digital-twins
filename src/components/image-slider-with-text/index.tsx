@@ -61,25 +61,6 @@ const ImageSliderWithText = ({
   );
   const isMobile = useIsMobile();
 
-  useEffect(() => {
-    const handleTouchMove = (event: TouchEvent) => {
-      if (event.cancelable) {
-        event.preventDefault();
-      }
-    };
-
-    const containerElement = containerRef.current;
-    if (containerElement) {
-      containerElement.addEventListener('touchmove', handleTouchMove, { passive: false });
-    }
-
-    return () => {
-      if (containerElement) {
-        containerElement.removeEventListener('touchmove', handleTouchMove);
-      }
-    };
-  }, []);
-
   return (
     <div className={cn("relative flex flex-col overflow-hidden", className)}>
       <div className='relative w-full' ref={containerRef} id="container">
