@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 import "./globals.css";
 import Header from "@/components/header";
 import Menu from "@/components/menu";
-import Footer from "@/components/footer";
 
 const fontSans = Roboto({
   subsets: ["latin"],
