@@ -26,7 +26,7 @@ export default function Section2() {
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
       <div className="relative xl:container h-[300vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
-        <ScrollStep id="step-1" className='relative h-[10vh]' offset={0} onEnter={setStep} />
+        <ScrollStep id="step-1" className='relative h-[100vh]' offset={0.5} onEnter={setStep} />
         <div className='sticky h-[100vh] w-full flex flex-col-reverse xl:flex-row justify-center inset-0 xl:gap-[94px]' id="section-2-step-1">
           <div
             key="section-2-title-1"
@@ -70,7 +70,7 @@ export default function Section2() {
             </AnimatePresence>
           </div>
         </div>
-        <ScrollStep id="section-2-step-2" className='h-[100vh]' offset={0.5} onEnter={setStep} />
+        <ScrollStep id="section-2-step-2" className='h-[200vh]' offset={0.5} onEnter={setStep} />
       </div >
     </section >
   );
