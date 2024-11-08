@@ -6,10 +6,10 @@ import ImageSliderWithText from "@/components/image-slider-with-text";
 
 const renderLegend = <div className="relative xl:absolute xl:-top-14 xl:right-[152px] w-full xl:w-[258px] xl:h-8 lg:py-1 flex-col gap-1 inline-flex text-2xs pt-6">
   <div className="self-stretch justify-between items-start inline-flex">
-    <div>LOW (XXº)</div>
-    <div>HIGH (XXº)</div>
+    <div>LOW (20º)</div>
+    <div>HIGH (47º)</div>
   </div>
-  <Image alt="legend" src="/images/home-legend-3.svg" className="w-full" width={378} height={100} />
+  <Image alt="legend" src="/images/energy-legend-observations.svg" className="w-full" width={378} height={100} />
 </div>;
 
 const renderText1 = <>
@@ -34,20 +34,18 @@ export default function Section6() {
       <div className='relative pointer-events-none'>
         <Lines verticalClassName="left-8" sectionName="section-6" columns={[100]} rows={[100]} colorClass="bg-blue-900/10" />
       </div>
-      <div className="relative">
-        <div className="hidden xl:block w-full">
-          {renderLegend}
-        </div>
-        <ImageSliderWithText
-          text1={renderText1}
-          text2={renderText2}
-          legend={renderLegend}
-          video1="/videos/iberia_hist_scenario.webm"
-          video2="/videos/iberia_plus_2k_scenario.webm"
-          sliderHeightClass={'xl:h-[730px]'}
-          resizeButtonClassName='top-[80%] xl:top-[600px]'
-          className='container px-[20px] xl:px-[150px]'
-        />
+      <div className="relative hidden xl:block w-full container">
+        {renderLegend}
       </div>
+      <ImageSliderWithText
+        text1={renderText1}
+        text2={renderText2}
+        legend={renderLegend}
+        video1="/videos/iberia_hist_scenario.webm"
+        video2="/videos/iberia_plus_2k_scenario.webm"
+        sliderHeightClass={'xl:h-[730px]'}
+        resizeButtonClassName='top-[80%] xl:top-[600px]'
+        className='container px-[20px] xl:px-[150px]'
+      />
     </section >);
 };
