@@ -42,7 +42,7 @@ export default function Section1() {
         {isMobile ?
           <div className="w-full">
             <Image
-              className="w-full h-[498px]"
+              className="w-full h-[142px]"
               alt=""
               src="/images/home-understanding-1.png"
               height={498}
@@ -51,7 +51,7 @@ export default function Section1() {
 
             />
             <Image
-              className="w-full h-[498px]"
+              className="w-full h-[142px]"
               alt=""
               src="/images/home-understanding-2.png"
               height={498}
@@ -59,7 +59,7 @@ export default function Section1() {
               style={{ objectFit: "cover" }}
             />
             <Image
-              className="w-full h-[498px]"
+              className="w-full h-[142px]"
               alt=""
               src="/images/home-understanding-3.png"
               height={498}
