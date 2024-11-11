@@ -38,7 +38,7 @@ export default function Intro() {
         </VerticalCarousel>
         <div className='flex gap-4 flex-wrap'>
           <Button variant="white" size="lg" className='z-10 group'>
-            <Link href="#use-cases">View use cases</Link>
+            <Link href="/case-study-energy">View use cases</Link>
             <ArrowRightIcon className="w-5 h-5 group-hover:text-blue-900 text-white transform group-hover:translate-x-0.5 transition-transform" />
           </Button>
           <MotionButton variant="secondary"
