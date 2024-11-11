@@ -22,7 +22,7 @@ const InfoPopover: React.FC<InfoPopoverProps> = ({ children, content, variant = 
         {children}
         <InfoComponent className="absolute -right-2 -top-2.5 h-4 w-4 transform group-hover:rotate-45 transition-transform" />
       </PopoverTrigger>
-      <PopoverContent className="text-xs" side="top" sideOffset={isMobile ? 20 : 0} align="end"
+      <PopoverContent className="text-xs" side="top" sideOffset={isMobile ? 20 : 0} align="start"
         variant={variant}
       >{content}</PopoverContent>
     </Popover>
