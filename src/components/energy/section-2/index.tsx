@@ -45,7 +45,7 @@ export default function Section2() {
                 animate={{ opacity: 1, translateY: 0, transition }}
                 className='space-y-3 xl:space-y-6 max-w-[480px]'
               >
-                <div className='text-xl xl:text-[32px]'>
+                <div className='text-xl xl:2xl'>
                   Digital twins are revolutionising the way to approach wind farm development and energy management.
                 </div>
                 <p className='text-sm leading-tight'>
