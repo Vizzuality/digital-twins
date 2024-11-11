@@ -106,7 +106,7 @@ export default function Section4() {
               initial="initial"
               animate="animate"
               variants={variantsDescription[step]}
-              className="absolute bottom-0 w-full text-green-950 max-w-[459px] left-8 xl:left-[60%] h-full"
+              className="absolute bottom-0 w-full text-green-950 max-w-[80vw] xl:max-w-[459px] left-8 xl:left-[60%] h-full"
             >
               {step === 'step-2' && <motion.div
                 key="section-4-description-2"
@@ -120,7 +120,7 @@ export default function Section4() {
               {step === 'step-3' && <div
                 className='h-full flex items-center justify-center'
                 key="section-4-description-3" >
-                <motion.div className="w-full text-base xl:min-w-[498px] max-w-[498px] p-6 bg-white/30 backdrop-blur-lg h-fit"
+                <motion.div className="w-full text-base xl:min-w-[498px] max-w-[80vw] xl:max-w-[498px] p-6 bg-white/30 backdrop-blur-lg h-fit"
                   initial={{ opacity: 0, top: '200px' }}
                   animate={{ opacity: 1, top: 0, transition }}
                   exit={{ opacity: 0, top: '-200px' }}

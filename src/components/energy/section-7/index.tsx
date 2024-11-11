@@ -59,7 +59,7 @@ export default function Section7() {
         </video>
         <div className="relative z-10 text-white text-center px-2 xl xl:px-0">
           <div className="text-center xl:text-lg uppercase tracking-tight">Unlocking Future Possibilities</div>
-          <div className="text-center text-[36px] xl:text-4xl max-w-[830px]">
+          <div className="text-center text-[36px] max-xl:leading-[42px] xl:text-4xl max-w-[830px]">
             Harnessing Digital Twins for on-demand simulations.
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function Section7() {
         <div className="flex flex-col pb-[120px] gap-[60px] xl:gap-[100px]">
           <div className="max-w-[630px] space-y-5 pt-4 xl:pt-20">
             <div className="max-w-[594px]">
-              <h3 className="text-2xl pb-5">Climate change affects various aspects of our lives, making it essential to understand its wide-ranging impacts, this way strategies for adaptation can be prepared.</h3>
+              <h3 className="text-xl xl:text-2xl pb-5">Climate change affects various aspects of our lives, making it essential to understand its wide-ranging impacts, this way strategies for adaptation can be prepared.</h3>
             </div>
             <KnowMoreButton className="text-white" onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
@@ -85,7 +85,7 @@ export default function Section7() {
           </div>
           <div className="xl:space-y-4">
             <div className="text-[36px] xl:text-4xl font-medium tracking-wide">Our shared impact</div>
-            <h3 className="text-2xl pb-5 xl:max-w-[503px]">Discover the faces behind climate impacts on energy</h3>
+            <h3 className="text-xl xl:text-2xl pb-5 xl:max-w-[503px]">Discover the faces behind climate impacts on energy</h3>
           </div>
           <SharedImpactTabs />
         </div>
