@@ -27,10 +27,10 @@ export default function Section2() {
     <section className="relative bg-green-200 text-green-700" id="section-2">
       <div className="relative xl:container h-[200vh] xl:h-[300vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id="step-1" className='relative h-[10vh] xl:h-[100vh]' offset={0.5} onEnter={setStep} />
-        <div className='sticky h-[100vh] w-full flex flex-col-reverse xl:flex-row justify-center inset-0 xl:gap-[94px]' id="section-2-step-1">
+        <div className='sticky h-[100vh] w-full flex flex-col-reverse xl:flex-row justify-center items-center inset-0 xl:gap-[94px]' id="section-2-step-1">
           <div
             key="section-2-title-1"
-            className="w-full h-[50vh] xl:h-full xl:w-1/2 flex items-center justify-center">
+            className="w-full h-[50vh] xl:h-full xl:w-1/2 flex items-center justify-center max-h-[936px]">
             <GlobeMap
               className="h-full w-full"
               videoMaterial={step === 'section-2-step-2' ? "videos/capacity_factor_10km.webm" : "videos/wind_speed_global_10km.webm"}
