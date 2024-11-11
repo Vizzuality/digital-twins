@@ -86,7 +86,7 @@ export default function Section4() {
               <TabsTrigger value="scenario3">Scenario 3</TabsTrigger>
             </TabsList>
             <TabsContent value="scenario1" className="pt-6 xl:pt-10">
-              <div className="grid xl:grid-cols-2 gap-[48px] xl:gap-0 pb-20">
+              <div className="grid xl:grid-cols-2 gap-[48px] xl:gap-0 pb-10 xl:pb-20">
                 <div className="text-light-green max-w-[320px] text-xl">
                   ... the heatwave that affected Europe in 2018 occurred in a +2ºC warmer world ?
                 </div>
@@ -94,7 +94,7 @@ export default function Section4() {
                   The digital twin allows not only to understand the conditions under which the 2018 heatwave had occurred, but also to simulate how much worse could this heatwave be if it occurs under a future warmer world.
                 </div>
               </div>
-              <div className="relative mt-16">
+              <div className="relative xl:mt-16">
                 <div className="hidden xl:block w-full">
                   {renderLegend}
                 </div>
@@ -118,18 +118,20 @@ export default function Section4() {
                 <div className="text-white max-w-[466px] text-balance xl:mb-20">
                   By allowing the change of land use category from forest to cropland, the digital twin makes it possible for users to explore the effects that the reduced amount of forest land would have on variables such as the soil moisture, local precipitation and temperature.
                 </div>
-                <Image
-                  src="/images/home-what-if-2-1.png"
-                  alt=""
-                  width={580}
-                  height={360}
-                />
-                <Image
-                  src="/images/home-what-if-2-2.png"
-                  alt=""
-                  width={580}
-                  height={360}
-                />
+                <div className="pb-6">
+                  <Image
+                    src="/images/home-what-if-2-1.png"
+                    alt=""
+                    width={580}
+                    height={360}
+                  />
+                  <Image
+                    src="/images/home-what-if-2-2.png"
+                    alt=""
+                    width={580}
+                    height={360}
+                  />
+                </div>
               </div>
             </TabsContent>
             <TabsContent value="scenario3" className="pt-6 xl:pt-10">
@@ -140,18 +142,20 @@ export default function Section4() {
                 <div className="text-white max-w-[466px] text-balance xl:mb-20">
                   The digital twin allows simulations of the average energy output of a wind farm built in a particular location. This type of information is key to advising the investment of wind energy planners in the deployment of a new wind farm, which needs to take into account the initial investment and future expected revenues.
                 </div>
-                <Image
-                  src="/images/home-what-if-3-1.png"
-                  alt=""
-                  width={580}
-                  height={360}
-                />
-                <Image
-                  src="/images/home-what-if-3-2.png"
-                  alt=""
-                  width={580}
-                  height={360}
-                />
+                <div className="pb-6">
+                  <Image
+                    src="/images/home-what-if-3-1.png"
+                    alt=""
+                    width={580}
+                    height={360}
+                  />
+                  <Image
+                    src="/images/home-what-if-3-2.png"
+                    alt=""
+                    width={580}
+                    height={360}
+                  />
+                </div>
               </div>
             </TabsContent>
           </Tabs>
