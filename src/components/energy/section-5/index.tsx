@@ -13,8 +13,8 @@ export default function Section5() {
     <section className="relative bg-white pt-10 xl:pt-20 scroll-mt-8" id="section-5">
       <Lines verticalClassName="px-[152px]" sectionName="section-5" rows={[]} columnsNumber={2} colorClass="bg-blue-900/10" />
       <div className="container px-[20px] xl:px-[150px] flex flex-col xl:flex-row justify-between items-start">
-        <div className="flex pb-6 xl:pb-[120px] gap-[69px]">
-          <div className="max-w-[540px] xl:min-w-[540px] text-green-700 space-y-5 xl:pb-10">
+        <div className="flex pb-6 xl:pb-[120px] xl:pr-[40px]">
+          <div className="max-w-[540px] xl:min-w-[500px] text-green-700 space-y-5 xl:pb-10">
             <h2 className="text-3xl xl:text-4xl font-medium pb-10 xl:pb-16">Why storylines for energy futures?</h2>
             <h3 className="text-xl xl:text-2xl pb-5">Storylines in climate science make climate information more relevant and understandable, aiding decision-making, especially when used with digital twin simulations.</h3>
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
@@ -48,7 +48,7 @@ export default function Section5() {
         />
       </div>
       <div className="container px-[20px] xl:px-[150px] pb-4 xl:pb-[100px] flex flex-col xl:flex-row justify-between items-start">
-        <div className="max-w-[540px] xl:min-w-[540px] text-green-700 space-y-5 xl:pb-10">
+        <div className="max-w-[540px] xl:min-w-[500px] text-green-700 space-y-5 xl:pb-10">
           <h3 className="text-xl xl:text-2xl pb-5">Using storylines to simulate the 2018 heatwave under current and future conditions to understand their potential impacts.</h3>
           <KnowMoreButton onClick={() => setOpenedKnowMore2(!openedKnowMore2)} opened={openedKnowMore2} />
           <AnimatePresence>
