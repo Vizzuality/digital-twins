@@ -12,7 +12,7 @@ export default function Section5() {
       <div className="container px-[20px] xl:px-[150px] flex flex-col xl:flex-row justify-between items-start">
         <div className="flex pb-6 xl:pb-[120px] gap-[69px]">
           <div className="max-w-[630px] xl:min-w-[630px] text-green-700 space-y-5 xl:pb-10">
-            <h2 className="text-3xl xl:text-4xl font-medium pb-10 xl:pb-16">Towards data streaming for efficient uptake by users.</h2>
+            <h2 className="text-3xl xl:text-4xl font-medium pb-6 xl:pb-16">Towards data streaming for efficient uptake by users.</h2>
             <div className="max-w-[487px]">
               <h3 className="text-xl xl:text-2xl pb-5">Current practice is that data generated from lower-resolution climate models is stored to disk.</h3>
               <div>

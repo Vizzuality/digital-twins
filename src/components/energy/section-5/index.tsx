@@ -15,7 +15,7 @@ export default function Section5() {
       <div className="container px-[20px] xl:px-[150px] flex flex-col xl:flex-row justify-between items-start">
         <div className="flex pb-6 xl:pb-[120px] xl:pr-[40px]">
           <div className="max-w-[540px] xl:min-w-[500px] text-green-700 space-y-5 xl:pb-10">
-            <h2 className="text-3xl xl:text-4xl font-medium pb-10 xl:pb-16">Why storylines for energy futures?</h2>
+            <h2 className="text-3xl xl:text-4xl font-medium pb-6 xl:pb-16">Why storylines for energy futures?</h2>
             <h3 className="text-xl xl:text-2xl pb-5">Storylines in climate science make climate information more relevant and understandable, aiding decision-making, especially when used with digital twin simulations.</h3>
             <KnowMoreButton onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>

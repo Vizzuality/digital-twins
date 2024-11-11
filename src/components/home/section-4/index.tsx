@@ -48,7 +48,7 @@ export default function Section4() {
         </video>
         <div className="relative z-10 text-white text-center px-2 xl xl:px-0">
           <div className="text-center xl:text-lg uppercase tracking-tight">Unlocking Future Possibilities</div>
-          <div className="text-center text-[36px] xl:text-4xl max-w-[830px]">
+          <div className="text-center text-[36px] max-xl:leading-[42px] xl:text-4xl max-w-[830px]">
             Harnessing Digital Twins for on-demand simulations.
           </div>
         </div>
@@ -56,9 +56,9 @@ export default function Section4() {
       <Lines verticalClassName="px-[152px] z-0" sectionName="section-4" rows={[1506]} columns={[548]} colorClass="bg-white/10" />
       <div className="container px-[20px] xl:px-[150px]">
         <div className="flex flex-col xl:pb-[120px] gap-[60px] xl:gap-[100px]">
-          <div className="max-w-[630px] space-y-5 pt-20">
+          <div className="max-w-[630px] space-y-5 xl:pt-20">
             <div className="max-w-[594px]">
-              <h3 className="text-2xl pb-5">Through interactive and configurable access to data, models and workflows, the digital twin represents an exciting opportunity to satisfy users’ curiosity.</h3>
+              <h3 className="text-xl xl:text-2xl pb-5">Through interactive and configurable access to data, models and workflows, the digital twin represents an exciting opportunity to satisfy users’ curiosity.</h3>
             </div>
             <KnowMoreButton className="text-white" onClick={() => setOpenedKnowMore(!openedKnowMore)} opened={openedKnowMore} />
             <AnimatePresence>
