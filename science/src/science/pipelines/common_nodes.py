@@ -4,7 +4,7 @@ generated using Kedro 0.19.6
 """
 
 import logging
-from typing import Any, Callable, Generator, TypeAlias
+from typing import Any, Callable, Sequence, TypeAlias
 
 import cartopy  # noqa: F401
 import cmocean
@@ -12,7 +12,7 @@ import matplotlib
 import matplotlib.colors
 import numpy as np
 import xarray as xr
-from kedro_datasets.video.video_dataset import GeneratorVideo
+from kedro_datasets.video.video_dataset import SequenceVideo
 from matplotlib.colors import LinearSegmentedColormap
 from PIL import Image
 from skimage.transform import rescale
@@ -70,13 +70,13 @@ def georef_nextgems_dataset(ds: xr.Dataset) -> xr.Dataset:
 def get_min_max(
     ds: xr.Dataset | xr.DataArray, params: dict[str, Any]
 ) -> tuple[float, float]:
-    _min = params.get("vmin") or float(np.min(ds))
-    _max = params.get("vmax") or float(np.max(ds))
+    _min = params.get("vmin") or float(ds.min().to_dataarray().values[0])
+    _max = params.get("vmax") or float(ds.max().to_dataarray().values[0])
     log.info(f"Min max is: {_min=}, {_max=}")
     return _min, _max
 
 
-def split_by_timestep(ds: xr.Dataset) -> dict[str, xr.DataArray]:
+def split_by_timestep(ds: xr.DataArray) -> dict[str, xr.DataArray]:
     return {
         f"{ts.item()}": ds.sel(time=ts).to_dataarray().squeeze(drop=True)
         for ts in ds.coords["time"].data
@@ -89,7 +89,9 @@ def parts_to_frames(
     min_max: tuple | None,
     cmap_lut: np.ndarray,
     cmap_name: str,
-) -> Generator[Image.Image, None, None]:
+) -> Sequence[Image.Image]:
+    frames = []
+    log.info("Computing frames...")
     for _, dataset in parts.items():
         if callable(dataset):
             # This comes from a partition dataset which is a callable only if reading files.
@@ -98,7 +100,7 @@ def parts_to_frames(
         # flip array to make the 0,0 origin of the image at the upper corner for PIL
         grey = np.flipud(dataset.values)
         if scale_factor and scale_factor > 1:
-            grey = rescale(grey, scale_factor)
+            grey = rescale(grey, scale_factor, order=3)
         _min = min_max[0] if min_max is not None else np.nanmin(grey)
         _max = min_max[1] if min_max is not None else np.nanmax(grey)
         # scale the values to 0-255
@@ -116,19 +118,21 @@ def parts_to_frames(
         grey = grey.astype(np.uint8)
         img_array = np.zeros((*grey.shape, 3), dtype=np.uint8)
         np.take(cmap_lut, grey, axis=0, out=img_array)
-        yield Image.fromarray(img_array)
+        frames.append(Image.fromarray(img_array))
+    return frames
 
 
 def parts_to_video(
     parts: Parts,
     params: dict[str, Any],
     min_max: tuple[float, float] | None = None,
-) -> GeneratorVideo:
+) -> SequenceVideo:
     register_cmaps()
     cmap_name = params["cmap"]
     cmap_lut = get_cmap_lut(cmap_name)
     frames = parts_to_frames(parts, params["scale"], min_max, cmap_lut, cmap_name)
-    return GeneratorVideo(frames, length=None, fps=24)
+    log.info(f"Video has {len(frames)} frames")
+    return SequenceVideo(frames, fps=24)
 
 
 def get_cmap_lut(cmap_name: str) -> np.ndarray:

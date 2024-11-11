@@ -62,7 +62,7 @@ total_precipitation_100km_global:
     vmax: 0.1
 
 temperature_10km_render_params:
-    cmap: "inferno"
+    cmap: "Spectral_r"
     scale: 4
     vmin: 277
     vmax: 319
@@ -96,15 +96,14 @@ sst_100km_global:
 # ------ SCENARIOS ---------
 
 scenarios:
-    cmap: "inferno"
-    scale: 20
-    fps: 20
+    cmap: "Spectral_r"
+    scale: 10
     # we need to fix the temp range so the normal and +2 scenario can be compared side by side
     vmin: 269.56
     vmax: 324.11
 
 europe_scenario:
-    cmap: "inferno"
+    cmap: "Spectral_r"
     scale: 10
     date: "2018-08-07"
     vmin: 285.15  # 12 C
@@ -115,20 +114,18 @@ europe_scenario:
         maxx: 20
         maxy: 55
 
-
 diff_video:
     cmap: "RdBu_r"
     scale: 2
-    fps: 20
     vmin: -5
     vmax: 5
 
 observations:
-    cmap: "inferno"
+    cmap: "Spectral_r"
     scale: 10
-    fps: 20
+    dataset_name: "tasmax"
     bbox:
-        minx: -12.772
-        miny: 33.843
-        maxx: 18.9029
-        maxy: 49.2697
+      minx: -10
+      miny: 35
+      maxx: 15
+      maxy: 45

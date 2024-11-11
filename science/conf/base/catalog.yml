@@ -12,24 +12,6 @@ wind_speed_global_10km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/ws_global_10km.nc
 
-# wind_speed_global_100km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/03_primary/ws-100-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
-# wind_speed_global_10km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/03_primary/ws-10-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
 wind_speed_global_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/wind_speed_global_10km.mp4
@@ -51,25 +33,6 @@ cloud_cover_10km.raw:
 cloud_cover_100km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/lcc_global_100km.nc
-
-
-# cloud_cover_10km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/amazonia-10-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
-# cloud_cover_100km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/amazonia-100-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
 
 cloud_cover_10km.video:
   type: video.VideoDataset
@@ -100,15 +63,6 @@ total_precipitation_100km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/tp_global_100km.nc
 
-# total_precipitation_10km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/amazonia-10-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
 total_precipitation_10km.video:
   type: video.VideoDataset
   filepath: data/03_primary/tp_amazonia_10km.mp4
@@ -129,16 +83,6 @@ temperature_10km.raw:
 temperature_100km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/tas_global_100km.nc
-
-# temperature_10km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/tas-10-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
 
 temperature_10km.video:
   type: video.VideoDataset
@@ -162,15 +106,6 @@ sst_100km.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/nextgems/sst_global_100km.nc
 
-# sst_10km.parts:
-#   type: partitions.PartitionedDataset
-#   path: data/02_intermediate/sst-10-parts
-#   dataset:
-#     type: kedro_datasets_experimental.rioxarray.GeoTIFFDataset
-#     save_args:
-#       compress: zstd
-#   filename_suffix: ".tif"
-
 
 sst_10km.video:
   type: video.VideoDataset
@@ -185,10 +120,8 @@ sst_100km.video:
 
 # ============= SCENARIOS ==============
 
-
 europe_plus2k.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
-#  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_old_aliasing_error/IFS_FESOM_storyline_plus2K/2018_08_04_T00_00_to_2018_08_10_T23_00_2t_raw_data.nc
   filepath: data/01_raw/destine/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
 
 europe_plus2k.image:
@@ -197,7 +130,6 @@ europe_plus2k.image:
 
 europe_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
-#  filepath: data/01_raw/destine/IFS_FESOM_storyline/latlon_old_aliasing_error/IFS_FESOM_storyline_hist/2018_08_04_T00_00_to_2018_08_10_T23_00_2t_raw_data.nc
   filepath: data/01_raw/destine/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
 
 
@@ -222,6 +154,15 @@ iberia_hist.raw:
 iberia_hist.video:
   type: video.VideoDataset
   filepath: data/03_primary/iberia_hist_scenario.mp4
+  fourcc: avc1
+
+observations.raw:
+  type: kedro_datasets_experimental.netcdf.NetCDFDataset
+  filepath: data/01_raw/destine/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_europe.nc
+
+observations.video:
+  type: video.VideoDataset
+  filepath: data/03_primary/observations.mp4
   fourcc: avc1
 
 # ============= CAPACITY FACTOR ==============

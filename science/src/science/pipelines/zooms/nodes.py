@@ -41,10 +41,12 @@ RAIN_CMAP_IDX = np.asarray([x[0] for x in RAIN_CMAP_RAW])
 
 
 def clip_to_boundary(
-    raster: xr.Dataset, bbox: dict[str, float]
+    raster: xr.Dataset, bbox: dict[str, float] | None = None
 ) -> tuple[xr.Dataset, tuple[int, int]]:
     """Clip the raster to the boundary area"""
     log.info(f"Clipping to {bbox=}")
+    if not bbox:
+        return raster, (raster.sizes["x"], raster.sizes["y"])
     clipped_raster = raster.rio.clip_box(**bbox)
     return clipped_raster, (clipped_raster.sizes["x"], clipped_raster.sizes["y"])
 
