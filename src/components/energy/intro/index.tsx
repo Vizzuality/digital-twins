@@ -9,7 +9,8 @@ export default function Intro() {
       <Lines verticalClassName="left-8 w-[calc(100vh-16px)]" sectionName='intro' columns={[64, 136, 452, 947]} rows={[220, 286, 302, 364, 468, 764]} />
       <div className='container relative pt-[110px] xl:pt-[177px] pl-8 xl:pl-24 flex flex-col-reverse xl:grid xl:grid-cols-[250px_1fr_250px] pb-[60px]'>
         <div className='space-y-10 pt-[41px]'>
-          <div className='text-white text-balanced leading-[18px] pt-4 xl:pt-0'>
+          {/* Text and images removed for now - May be recovered on the future */}
+          {/* <div className='text-white text-balanced leading-[18px] pt-4 xl:pt-0'>
             The Climate Adaptation <br />Digital Twin in Action: <br />Climate simulations to support decisions in the energy sector.
           </div>
           <ul className='flex flex-row xl:flex-col gap-[10px]'>
@@ -21,7 +22,7 @@ export default function Intro() {
                 </li>
               ))
             }
-          </ul>
+          </ul> */}
         </div>
         <div className='text-center space-y-[30px] xl:space-y-[94px]'>
           <div>
