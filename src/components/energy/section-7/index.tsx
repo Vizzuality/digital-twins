@@ -6,32 +6,34 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TabContentItem from "./tab-content-item";
 import TabTriggerItem from "./tab-trigger-item";
 import { TAB_DATA } from "./data";
+import { cn } from "@/lib/utils";
 
 const SharedImpactTabs = () => {
   const [selectedValue, setSelectedValue] = useState(TAB_DATA[0].value);
   const [hoveredValue, setHoveredValue] = useState<string | null>(null);
   const handleValueChange = (value: string) => {
-    if (TAB_DATA.find(tab => tab.value === value)?.disabled) {
-      return;
+    if (!(TAB_DATA.find(tab => tab.value === value)?.disabled)) {
+      setSelectedValue(value);
     }
-    setSelectedValue(value);
   }
 
   return (
-    <Tabs onValueChange={handleValueChange} defaultValue="tab1" className="flex flex-col xl:flex-row gap-20" orientation="vertical">
+    <Tabs onValueChange={handleValueChange} value={selectedValue} defaultValue="tab1" className="flex flex-col xl:flex-row gap-20" orientation="vertical">
       <TabsList className="flex flex-col h-auto gap-5 w-full xl:min-w-[300px] xl:max-w-[300px] overflow-hidden flex-1">
         {TAB_DATA.map((tab, index) => (
           <TabsTrigger
             key={index}
             value={tab.value}
             onFocus={() => {
-              setSelectedValue(tab.value)
+              handleValueChange(tab.value)
             }}
             onMouseEnter={() => {
               setHoveredValue(tab.value)
             }}
             onMouseLeave={() => setHoveredValue(null)}
-            className="normal-case data-[state=active]:no-underline p-0 relative"
+            className={cn("normal-case data-[state=active]:no-underline p-0 relative", {
+              "cursor-default": tab.disabled,
+            })}
 
           >
             <TabTriggerItem {...tab} index={index} isHovered={tab.value === hoveredValue} isSelected={tab.value === selectedValue} />
