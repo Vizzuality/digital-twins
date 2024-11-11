@@ -40,10 +40,10 @@ const SharedImpactTabs = () => {
           </TabsTrigger>
         ))}
       </TabsList>
-      <TabsContent value="tab1" className="bg-white/5 xl:min-w-[780px] xl:w-[780px] mt-0">
+      <TabsContent value="tab1" className="bg-white/5 xl:min-w-[780px] xl:w-[780px] xl:max-h-[440px] mt-0">
         <TabContentItem index={0} />
       </TabsContent>
-      <TabsContent value="tab2" className="bg-white/5 xl:min-w-[780px] xl:w-[780px] mt-0">
+      <TabsContent value="tab2" className="bg-white/5 xl:min-w-[780px] xl:w-[780px] xl:max-h-[440px] mt-0">
         <TabContentItem index={1} />
       </TabsContent>
     </Tabs>);
