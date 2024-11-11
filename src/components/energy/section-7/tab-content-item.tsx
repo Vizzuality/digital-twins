@@ -83,7 +83,7 @@ const TabContentItem = ({ index = 0 }: { index: number }) => {
         />
         {isMobile && <Arrows textIndex={textIndex} changeTextIndex={changeTextIndex} isMaxIndex={textIndex === maxIndex} />}
       </div>
-      <div className="text-sm xl:text-base relative flex flex-col justify-between h-full gap-4 leading-[24px] xl:min-h-[470px]">
+      <div className="text-sm xl:text-base relative flex flex-col justify-between h-full gap-4 leading-[24px] xl:min-h-[392px]">
         {content.text}
         <div className="flex items-center justify-center xl:justify-start gap-2 xl:gap-0.5">
           {Array(TAB_CONTENT[index].length).fill(null).map((_, idx) => (
