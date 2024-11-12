@@ -5,7 +5,7 @@ import { Resizable } from "re-resizable";
 import Image from "next/image";
 import { Button } from "@/components/button";
 import CaretRight from "@/svgs/caret-right.svg";
-
+import VideoPlayer from "@/components/video-player";
 
 const ImageSliderWithText = ({
   text1,
@@ -86,9 +86,9 @@ const ImageSliderWithText = ({
                 className={sliderHeightClass}
                 style={{ width: containerWidth }}
               >
-                {video1 && <video autoPlay loop muted playsInline className={cn('w-full', sliderHeightClass)}>
-                  <source src={video1} type='video/mp4' />
-                </video>}
+                {video1 &&
+                  <VideoPlayer src={video1} className={cn('w-full', sliderHeightClass)} />
+                }
                 {image1 && <Image
                   alt={alt1 || ''}
                   src={image1}
@@ -111,9 +111,9 @@ const ImageSliderWithText = ({
 
         {/* Right video or image */}
         <div className='h-full w-full relative'>
-          {video2 && <video autoPlay loop muted playsInline className={cn('h-full w-full object-fit', sliderHeightClass)}>
-            <source src={video2} type='video/mp4' />
-          </video>}
+          {video2 &&
+            <VideoPlayer src={video2} className={cn('h-full w-full object-fit', sliderHeightClass)} />
+          }
           {image2 && <Image
             alt={alt2 || ''}
             src={image2}

@@ -5,7 +5,7 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import ScrollStep from "@/components/scroll-step";
 import Image from "next/image";
 import Chart from "@/svgs/chart.svg";
-import { useIsMobile } from "@/lib/hooks";
+import VideoPlayer from "@/components/video-player";
 
 export interface DebugOffsetProps {
   offset: number;
@@ -27,7 +27,6 @@ const transition = { duration: 0.5, ease: 'linear' };
 export default function Section4() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState('step1');
-  const isMobile = useIsMobile();
 
   const variantsDescription: Record<string, Variants> = {
     'step-2': {
@@ -78,9 +77,7 @@ export default function Section4() {
       <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id="step-1" className='relative h-[50vh]' offset={0.5} onEnter={setStep} />
         <div className='sticky h-[100vh] w-full flex justify-center inset-0' id="section-4-1">
-          <video autoPlay loop muted playsInline className='h-[100vh] w-full object-fill'>
-            <source src="/videos/observations.webm" type="video/webm" />
-          </video>
+          <VideoPlayer src="/videos/stream-videos/observations/index.m3u8" className="'h-[100vh] w-full object-fill" />
           <motion.div
             className='absolute left-0 top-[calc(50%_-_100px)] w-full h-full text-green-950 flex flex-col gap-4'
             initial="initial"

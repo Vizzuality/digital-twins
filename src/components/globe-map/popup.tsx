@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import ArrowRight from '@/svgs/arrow-right.svg';
 import Close from '@/svgs/close.svg';
 import { popupContent } from './data';
+import VideoPlayer from "@/components/video-player";
 
 const Corners = () => (
   <>
@@ -50,9 +51,7 @@ const Popup = ({ closePopup, setSelectedMarker, index }: {
         <div className="justify-center items-center flex">
           <div className="relative w-full h-full">
             <Corners />
-            <video autoPlay loop muted className="w-[280px] h-[280px]">
-              <source src={video} type="video/mp4" />
-            </video>
+            <VideoPlayer src={video} className="w-[280px] h-[280px]" />
           </div>
         </div>
         <div className="flex-col gap-4 flex">

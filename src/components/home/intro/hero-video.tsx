@@ -1,4 +1,5 @@
 import { useRef, SyntheticEvent } from 'react';
+import VideoPlayer from "@/components/video-player";
 
 const HeroVideo = () => {
   const vidRef = useRef<HTMLVideoElement>(null);
@@ -22,10 +23,7 @@ const HeroVideo = () => {
   // Added 'transform' class to fix a safari issue with mix-blend-screen
   // https://gsap.com/community/forums/topic/21802-issues-with-safari-perspective-mix-blend-mode/?do=findComment&comment=102778
   return (
-    <video autoPlay muted playsInline ref={vidRef} onTimeUpdate={handleProgress} className="absolute bottom-0 w-full object-cover transform mix-blend-screen z-0 opacity-50 transition-opacity duration-2000 ease-in-out">
-      <source src="/videos/hero.webm" type="video/webm" />
-    </video>
-
+    <VideoPlayer src={"/videos/stream-videos/hero/index.m3u8"} onTimeUpdate={handleProgress} className="absolute bottom-0 w-full object-cover transform mix-blend-screen z-0 opacity-50 transition-opacity duration-2000 ease-in-out" />
   );
 }
 

@@ -57,10 +57,13 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
         const { event, direction, delta } = props;
         if (direction[1] !== 0) {
           event.stopPropagation();
-          event.preventDefault();
+          // event.preventDefault();
           window.scrollBy(0, delta[1]);
         }
       }
+    },
+    {
+      eventOptions: { passive: false }
     }
   )
   const { onWheel } = bind();

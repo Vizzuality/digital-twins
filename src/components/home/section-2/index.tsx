@@ -201,7 +201,7 @@ export default function Section2() {
                 'opacity-1': globePhase === 0,
                 'opacity-0': globePhase > 0,
               })}
-              videoMaterial="videos/wind_speed_global_10km.webm"
+              videoMaterial="videos/stream-videos/wind_speed_global_10km/index.m3u8"
               style={{ width: screenWidth }}
             />
             <div className="absolute inset-0 w-full z-30">
@@ -231,7 +231,8 @@ export default function Section2() {
                     hasMarkers={globePhase > 1}
                     rotate={globePhase === 1}
                     videoMaterial={
-                      globePhase === 0 ? "videos/wind_speed_global_100km.webm" : (globePhase === 1 ? "videos/wind_speed_global_10km.webm" : undefined)
+                      // 100km is not compressed to keep the lofi look
+                      globePhase === 0 ? "videos/wind_speed_global_100km.mp4" : (globePhase === 1 ? "videos/stream-videos/wind_speed_global_10km/index.m3u8" : undefined)
                     }
                   />
                 </div>

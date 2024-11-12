@@ -7,6 +7,7 @@ import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import ImageSliderWithText from "@/components/image-slider-with-text";
+import VideoPlayer from "@/components/video-player";
 
 const renderLegend = <div className="legend relative xl:absolute xl:-top-[70px] xl:right-0 w-full xl:w-[258px] xl:h-8 lg:py-1 flex-col gap-2 inline-flex text-2xs pt-6">
   <div className="justify-between items-start inline-flex">
@@ -43,9 +44,7 @@ export default function Section4() {
   return (
     <section className="relative bg-blue-950 scroll-mt-8 text-white" id="section-4">
       <div className="relative xl:h-[548px] overflow-hidden flex items-center justify-center z-10 h-[348px]">
-        <video autoPlay muted playsInline loop className="absolute w-screen object-fill z-0">
-          <source src="/videos/section-4.webm" type="video/webm" />
-        </video>
+        <VideoPlayer src="/videos/stream-videos/section-4/index.m3u8" className="absolute w-screen object-fill z-0" />
         <div className="relative z-10 text-white text-center px-2 xl xl:px-0">
           <div className="text-center xl:text-lg uppercase tracking-tight">Unlocking Future Possibilities</div>
           <div className="text-center text-[36px] max-xl:leading-[42px] xl:text-4xl max-w-[830px]">

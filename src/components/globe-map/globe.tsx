@@ -5,14 +5,21 @@ import { useRef, useMemo } from "react";
 
 
 function VideoMaterial({ url }: { url: string }) {
-  const texture = useVideoTexture(url, {});
+  const texture = useVideoTexture(url, {
+    playsInline: true,
+    hls: {
+      maxBufferLength: 30,          // Maximum buffer length in seconds
+      maxMaxBufferLength: 60,       // Maximum buffer size
+      backBufferLength: 10,         // How much to keep in buffer behind current time
+      levelLoadingTimeOut: 10000,    // Timeout for loading segments
+      fragLoadingTimeOut: 20000,     // Timeout for loading fragments
+      enableWorker: true,            // Enable web worker for better performance
+      startLevel: -1,                // Start with lowest quality
+      abrEwmaDefaultEstimate: 500000, // Conservative bandwidth estimate
+    }
+  });
   texture.minFilter = NearestFilter;
   texture.magFilter = NearestFilter;
-  return <meshBasicMaterial map={texture} toneMapped={false} />
-}
-
-function ImageMaterial({ url }: { url: string }) {
-  const texture = useTexture(url);
   return <meshBasicMaterial map={texture} toneMapped={false} />
 }
 

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/lib/hooks";
 import FadeIn from "@/components/animations/fade-in";
 const Lines = dynamic(() => import('@/components/lines'), { ssr: false });
+import VideoPlayer from "@/components/video-player";
 
 export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
@@ -27,9 +28,7 @@ export default function Section1() {
   return (
     <section className="relative bg-white scroll-mt-8" id="section-1">
       <div className="relative xl:h-[548px] overflow-hidden flex items-center justify-center z-10 h-[348px]">
-        <video autoPlay muted playsInline loop className="absolute w-screen object-fill z-0">
-          <source src="/videos/energy-intro-bg.webm" type="video/webm" />
-        </video>
+        <VideoPlayer src="videos/stream-videos/energy-intro-bg/index.m3u8" className="absolute w-screen object-fill z-0" />
         <div className="relative z-10 text-white text-center px-2 xl xl:px-0">
           <div className="text-center xl:text-lg uppercase tracking-tight">Wind energy production</div>
           <div className="text-center text-[36px] leading-[32px] xl:text-4xl max-w-[830px]">
@@ -145,9 +144,7 @@ export default function Section1() {
         </div>
         <div className="flex flex-col-reverse items-center xl:items-start xl:flex-row pb-[60px] xl:mt-[184px] xl:pb-[150px] gap-6 xl:gap-[69px]">
           <div className="xl:pt-[121px]">
-            <video autoPlay muted playsInline loop className="w-full xl:ml-0.5 xl:min-w-[546px]">
-              <source src="/videos/energy-section-1.webm" type="video/webm" />
-            </video>
+            <VideoPlayer src="/videos/stream-videos/energy-section-1/index.m3u8" className="w-full xl:ml-0.5 xl:min-w-[546px]" />
           </div>
           <div className="max-w-[536px] xl:w-[536px] text-green-700 space-y-3 xl:space-y-5 pb-10 pt-10 xl:pt-0">
             <h2 className="text-2xl xl:text-4xl font-medium pb-8 xl:pb-20 xl:-translate-y-1">Transforming wind to energy</h2>

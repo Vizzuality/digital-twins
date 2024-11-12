@@ -33,7 +33,7 @@ export default function Section2() {
             className="w-full h-[50vh] xl:h-full xl:w-1/2 flex items-center justify-center max-h-[936px]">
             <GlobeMap
               className="h-full w-full"
-              videoMaterial={step === 'section-2-step-2' ? "videos/capacity_factor_10km.webm" : "videos/wind_speed_global_10km.webm"}
+              videoMaterial={step === 'section-2-step-2' ? "videos/stream-videos/capacity_factor_10km/index.m3u8" : "videos/stream-videos/wind_speed_global_10km/index.m3u8"}
               rotate={step !== 'section-2-step-2'}
             />
           </div>

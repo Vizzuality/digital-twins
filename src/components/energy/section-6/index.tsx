@@ -41,8 +41,8 @@ export default function Section6() {
         text1={renderText1}
         text2={renderText2}
         legend={renderLegend}
-        video1="/videos/iberia_hist_scenario.webm"
-        video2="/videos/iberia_plus_2k_scenario.webm"
+        video1="/videos/stream-videos/iberia_hist_scenario/index.m3u8"
+        video2="/videos/stream-videos/iberia_plus_2k_scenario/index.m3u8"
         sliderHeightClass={'xl:h-[730px]'}
         resizeButtonClassName='top-[80%] xl:top-[600px]'
         className='container px-[20px] xl:px-[150px]'
