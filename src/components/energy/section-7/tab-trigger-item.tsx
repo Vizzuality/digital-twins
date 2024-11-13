@@ -2,71 +2,76 @@ import Image from "next/image";
 import CursorSelect from "@/svgs/cursor-select.svg";
 import { cn } from "@/lib/utils";
 
-const TabTriggerItem = ({ title, subtitle, image, disabled, index, isSelected, isHovered }:
-  {
-    title: string;
-    subtitle: string;
-    image: string;
-    index: number;
-    disabled?: boolean;
-    isSelected: boolean;
-    isHovered: boolean;
-  }
-) => (
-  <div className={cn("flex gap-3 w-full min-w-[300px] h-fit transition-all duration-500 flex-1",
-    {
-      'h-[143px]': isSelected || isHovered,
-      'h-[79px]': !isSelected && !isHovered
-    }
-  )} >
-    <div className={cn("w-[80px] overflow-hidden relative transition-all duration-500")}>
+const TabTriggerItem = ({
+  title,
+  subtitle,
+  image,
+  disabled,
+  index,
+  isSelected,
+  isHovered,
+}: {
+  title: string;
+  subtitle: string;
+  image: string;
+  index: number;
+  disabled?: boolean;
+  isSelected: boolean;
+  isHovered: boolean;
+}) => (
+  <div
+    className={cn("flex h-fit w-full min-w-[300px] flex-1 gap-3 transition-all duration-500", {
+      "h-[143px]": isSelected || isHovered,
+      "h-[79px]": !isSelected && !isHovered,
+    })}
+  >
+    <div className={cn("relative w-[80px] overflow-hidden transition-all duration-500")}>
       <Image
-        className={cn(
-          {
-            'opacity-80': !isSelected && !isHovered,
-          }
-        )}
+        className={cn({
+          "opacity-80": !isSelected && !isHovered,
+        })}
         height={143}
         width={90}
         objectFit="cover"
-        style={{ objectPosition: 'center' }}
+        style={{ objectPosition: "center" }}
         src={image}
         alt=""
       />
     </div>
-    <div className={cn("p-[10px] xl:p-4 xl:pr-0 flex flex-col text-left items-start justify-start w-[calc(100vw_-_140px)] xl:max-w-[212px] whitespace-normal",
-      {
-        'text-blue-900 bg-light-green': isSelected,
-        'text-white bg-white/5': !isSelected && isHovered,
-        'text-white': !isSelected && !isHovered
-
-      }
-    )}>
-      <div className="text-[18px] leading-[21px] flex justify-between w-full items-center xl:pr-4">
+    <div
+      className={cn(
+        "flex w-[calc(100vw_-_140px)] flex-col items-start justify-start whitespace-normal p-[10px] text-left xl:max-w-[212px] xl:p-4 xl:pr-0",
+        {
+          "bg-light-green text-blue-900": isSelected,
+          "bg-white/5 text-white": !isSelected && isHovered,
+          "text-white": !isSelected && !isHovered,
+        },
+      )}
+    >
+      <div className="flex w-full items-center justify-between text-[18px] leading-[21px] xl:pr-4">
         <div>
-          {'0'}{index + 1}
+          {"0"}
+          {index + 1}
         </div>
-        {isSelected && <div className="text-blue-950/30 text-2xs">
-          Selected profile
-        </div>}
-        {(isHovered && !isSelected && !disabled) &&
-          (<div className="text-light-green text-2xs flex items-center gap-2">
+        {isSelected && <div className="text-2xs text-blue-950/30">Selected profile</div>}
+        {isHovered && !isSelected && !disabled && (
+          <div className="flex items-center gap-2 text-2xs text-light-green">
             Select profile
             <CursorSelect />
           </div>
-          )}
+        )}
       </div>
-      <div className="text-[22px] leading-[25px] pb-2 xl:pb-4">
-        {title}
-      </div>
-      <div className={cn("text-xs font-normal leading-[16px] transition-opacity duration-500", {
-        'opacity-1': isSelected || isHovered,
-        'opacity-0': !isSelected && !isHovered
-      })}>
+      <div className="pb-2 text-[22px] leading-[25px] xl:pb-4">{title}</div>
+      <div
+        className={cn("text-xs font-normal leading-[16px] transition-opacity duration-500", {
+          "opacity-1": isSelected || isHovered,
+          "opacity-0": !isSelected && !isHovered,
+        })}
+      >
         {subtitle}
       </div>
     </div>
-  </div >
+  </div>
 );
 
 export default TabTriggerItem;

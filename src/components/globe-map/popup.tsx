@@ -1,109 +1,122 @@
-import { createPortal } from 'react-dom';
-import { useIsMobile } from '@/lib/hooks';
+import { createPortal } from "react-dom";
+import { useIsMobile } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
-import ArrowRight from '@/svgs/arrow-right.svg';
-import Close from '@/svgs/close.svg';
-import { popupContent } from './data';
+import ArrowRight from "@/svgs/arrow-right.svg";
+import Close from "@/svgs/close.svg";
+import { popupContent } from "./data";
 import VideoPlayer from "@/components/video-player";
 
 const Corners = () => (
   <>
-    <div className="absolute -top-1 -left-1">
-      <div className="w-8 h-0.5 bg-white"></div>
+    <div className="absolute -left-1 -top-1">
+      <div className="h-0.5 w-8 bg-white"></div>
       <div className="h-8 w-0.5 bg-white"></div>
     </div>
-    <div className="absolute -top-1 -right-1">
-      <div className="w-8 h-0.5 bg-white"></div>
-      <div className="h-8 w-0.5 bg-white absolute right-0"></div>
+    <div className="absolute -right-1 -top-1">
+      <div className="h-0.5 w-8 bg-white"></div>
+      <div className="absolute right-0 h-8 w-0.5 bg-white"></div>
     </div>
     <div className="absolute -bottom-1 -left-1">
-      <div className="w-8 h-0.5 bg-white absolute bottom-0"></div>
-      <div className="h-8 w-0.5 bg-white bottom-0"></div>
+      <div className="absolute bottom-0 h-0.5 w-8 bg-white"></div>
+      <div className="bottom-0 h-8 w-0.5 bg-white"></div>
     </div>
     <div className="absolute -bottom-1 -right-1">
-      <div className="w-8 h-0.5 bg-white"></div>
-      <div className="h-8 w-0.5 bg-white absolute bottom-0 right-0"></div>
+      <div className="h-0.5 w-8 bg-white"></div>
+      <div className="absolute bottom-0 right-0 h-8 w-0.5 bg-white"></div>
     </div>
   </>
 );
 
-const Popup = ({ closePopup, setSelectedMarker, index }: {
-  closePopup: () => void
-  setSelectedMarker: (index: number) => void
-  index: number,
+const Popup = ({
+  closePopup,
+  setSelectedMarker,
+  index,
+}: {
+  closePopup: () => void;
+  setSelectedMarker: (index: number) => void;
+  index: number;
 }) => {
   const { title, subtitle, description, video, legend } = popupContent[index];
   const isMobile = useIsMobile();
 
-  const renderPopup = (<div className={cn(
-    "flex justify-center globe-popup",
-    {
-      "relative -mt-[140px] -ml-[140px] xl:-ml-[140px]": !isMobile,
-      "fixed top-0 xs:left-[calc(50%-250px)] sm:left-[calc(50%-325px)] z-50 px-4 w-full h-full items-center justify-center xs:max-w-[500px] sm:max-w-[650px]": isMobile
-    })}>
-    <div className={cn('relative w-fit xl:w-[662px] xl:h-[344px] pl-8 pr-4 py-8 text-white gap-6 inline-flex bg-green-700/80',
-      {
-        'bg-white/20 backdrop-blur-[15px]': !isMobile,
-        'bg-green-700/60 backdrop-blur-[5px]': isMobile
-      }
-    )}>
-      <div className="flex flex-col-reverse xl:flex-row gap-6">
-        <div className="justify-center items-center flex">
-          <div className="relative w-full h-full">
-            <Corners />
-            <VideoPlayer src={video} className="w-[280px] h-[280px]" />
+  const renderPopup = (
+    <div
+      className={cn("globe-popup flex justify-center", {
+        "relative -ml-[140px] -mt-[140px] xl:-ml-[140px]": !isMobile,
+        "xs:left-[calc(50%-250px)] xs:max-w-[500px] fixed top-0 z-50 h-full w-full items-center justify-center px-4 sm:left-[calc(50%-325px)] sm:max-w-[650px]":
+          isMobile,
+      })}
+    >
+      <div
+        className={cn(
+          "relative inline-flex w-fit gap-6 bg-green-700/80 py-8 pl-8 pr-4 text-white xl:h-[344px] xl:w-[662px]",
+          {
+            "bg-white/20 backdrop-blur-[15px]": !isMobile,
+            "bg-green-700/60 backdrop-blur-[5px]": isMobile,
+          },
+        )}
+      >
+        <div className="flex flex-col-reverse gap-6 xl:flex-row">
+          <div className="flex items-center justify-center">
+            <div className="relative h-full w-full">
+              <Corners />
+              <VideoPlayer src={video} className="h-[280px] w-[280px]" />
+            </div>
           </div>
-        </div>
-        <div className="flex-col gap-4 flex">
-          <div className="flex-col justify-start items-start gap-2 inline-flex">
-            <div className='flex justify-between w-full'>
-              <div className="text-sm xl:text-base leading-relaxed">{title}</div>
-              <div className="rounded-sm items-center gap-0.5 flex">
-                <button onClick={() => setSelectedMarker(index - 1 < 0 ? (popupContent.length - 1) : index - 1)}>
-                  <div className='sr-only'>Previous marker</div>
-                  <ArrowRight className="w-5 h-5 p-[2px] -rotate-180" />
-                </button>
-                <button onClick={() => setSelectedMarker(index + 1 > popupContent.length - 1 ? 0 : index + 1)}>
-                  <div className='sr-only'>Next marker</div>
-                  <ArrowRight className="w-5 h-5 p-[2px]" />
-                </button>
+          <div className="flex flex-col gap-4">
+            <div className="inline-flex flex-col items-start justify-start gap-2">
+              <div className="flex w-full justify-between">
+                <div className="text-sm leading-relaxed xl:text-base">{title}</div>
+                <div className="flex items-center gap-0.5 rounded-sm">
+                  <button
+                    onClick={() =>
+                      setSelectedMarker(index - 1 < 0 ? popupContent.length - 1 : index - 1)
+                    }
+                  >
+                    <div className="sr-only">Previous marker</div>
+                    <ArrowRight className="h-5 w-5 -rotate-180 p-[2px]" />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setSelectedMarker(index + 1 > popupContent.length - 1 ? 0 : index + 1)
+                    }
+                  >
+                    <div className="sr-only">Next marker</div>
+                    <ArrowRight className="h-5 w-5 p-[2px]" />
+                  </button>
+                </div>
+              </div>
+              <div className="max-w-[258px] text-xl uppercase">{subtitle}</div>
+              <div className="flex w-[258px] flex-col gap-1">
+                <div className="flex w-full justify-between gap-1">
+                  <div className="text-[10px] leading-3">LOW ({legend.low})</div>
+                  <div className="text-[10px] leading-3">HIGH ({legend.high})</div>
+                </div>
+                <img src={legend.image} alt="Amazon legend" className="h-3" />
               </div>
             </div>
-            <div className="text-xl uppercase max-w-[258px]">{subtitle}</div>
-            <div className="w-[258px] flex flex-col gap-1">
-              <div className="flex justify-between w-full gap-1">
-                <div className="text-[10px] leading-3">LOW ({legend.low})</div>
-                <div className="text-[10px] leading-3">HIGH ({legend.high})</div>
-              </div>
-              <img src={legend.image} alt="Amazon legend" className="h-3" />
-            </div>
-          </div>
-          <div className="text-sm h-[160px] overflow-auto leading-tight xl:w-[304px]">
-            <div className='max-w-[258px]'>
-
-              {description}
+            <div className="h-[160px] overflow-auto text-sm leading-tight xl:w-[304px]">
+              <div className="max-w-[258px]">{description}</div>
             </div>
           </div>
         </div>
+        <button
+          onClick={closePopup}
+          className="absolute -top-4 left-[calc(50%_-_9px)] flex transform items-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
+        >
+          <Close width={14} height={14} />
+        </button>
       </div>
-      <button onClick={closePopup} className="absolute left-[calc(50%_-_9px)] -top-4 p-[9px] bg-light-green rounded-full items-center gap-[7px] flex transform hover:rotate-45 transition-transform">
-        <Close
-          width={14}
-          height={14}
-        />
-      </button>
     </div>
-  </div>
   );
 
   if (isMobile) {
-    const canvasContainer = document.getElementById('high-globe-container');
+    const canvasContainer = document.getElementById("high-globe-container");
     if (canvasContainer) {
       return createPortal(renderPopup, canvasContainer);
     }
   }
   return renderPopup;
-
-}
+};
 
 export default Popup;

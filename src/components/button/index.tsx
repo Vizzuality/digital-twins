@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -14,10 +14,11 @@ const buttonVariants = cva(
         default: "border-2 border-white gap-2.5",
         "light-green": "border-2 border-light-green gap-2.5",
         green: "border-2 border-green-700 gap-2.5",
-        white: "border-2 border-white transition-color duration-200 text-white gap-2.5 uppercase font-medium px-4 py-3 hover:bg-white hover:text-blue-900",
+        white:
+          "border-2 border-white transition-color duration-200 text-white gap-2.5 uppercase font-medium px-4 py-3 hover:bg-white hover:text-blue-900",
         secondary: "bg-light-green text-green-900 gap-2.5 uppercase font-medium px-4 py-3",
         icon: "gap-2.5",
-        vanilla: '',
+        vanilla: "",
       },
       size: {
         default: "h-10 px-4 py-3",
@@ -36,7 +37,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
@@ -56,12 +57,15 @@ type MotionButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonP
 const MotionButton = React.forwardRef<HTMLButtonElement, MotionButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     return (
-      <motion.button className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+      <motion.button
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
     );
-  }
+  },
 );
 
 MotionButton.displayName = "MotionButton";
-
 
 export { Button, buttonVariants, MotionButton };

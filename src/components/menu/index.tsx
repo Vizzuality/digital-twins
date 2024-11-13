@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import { useRecoilState } from "recoil";
@@ -26,52 +26,64 @@ export default function Menu() {
       animate="rest"
     >
       <HoverRepeatAnimation isChild>
-        <div className="text-green-700 text-sm font-medium uppercase">MENU</div>
+        <div className="text-sm font-medium uppercase text-green-700">MENU</div>
       </HoverRepeatAnimation>
-      <CloseSmall className="w-[10px] h-[10px]" />
+      <CloseSmall className="h-[10px] w-[10px]" />
     </MotionButton>
   );
 
   return (
     <>
-      {openedMenu && <MenuLines verticalClassName="absolute right-0" columns={[0, 254, 270, 430, 1074]} />}
+      {openedMenu && (
+        <MenuLines verticalClassName="absolute right-0" columns={[0, 254, 270, 430, 1074]} />
+      )}
       <motion.nav
-        className="fixed top-0 w-full overflow-auto xl:w-[470px] right-0 h-full bg-light-green flex flex-col p-10 justify-between z-50"
+        className="fixed right-0 top-0 z-50 flex h-full w-full flex-col justify-between overflow-auto bg-light-green p-10 xl:w-[470px]"
         initial={{ x: "100%" }}
         animate={{ x: openedMenu ? 0 : "100%" }}
         transition={{ type: "linear", duration: 0.3 }}
       >
         <div className="flex flex-col gap-[72px] pb-10">
           <CloseMenuButton />
-          <ul className="text-xl xl:text-3xl text-green-700 font-semibold space-y-8 max-w-[292px]">
+          <ul className="max-w-[292px] space-y-8 text-xl font-semibold text-green-700 xl:text-3xl">
             <li>
               <Link href="/" onClick={() => setOpenedMenu(false)}>
-                <HoverRepeatAnimation>Home</HoverRepeatAnimation></Link>
+                <HoverRepeatAnimation>Home</HoverRepeatAnimation>
+              </Link>
             </li>
             <li>
-              <Link href="/case-study-energy" onClick={() => setOpenedMenu(false)}><HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation></Link>
+              <Link href="/case-study-energy" onClick={() => setOpenedMenu(false)}>
+                <HoverRepeatAnimation className="pb-1">Case Studies: Energy</HoverRepeatAnimation>
+              </Link>
             </li>
             <li>
-              <Link href="/about" onClick={() => setOpenedMenu(false)}><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
+              <Link href="/about" onClick={() => setOpenedMenu(false)}>
+                <HoverRepeatAnimation>About Us</HoverRepeatAnimation>
+              </Link>
             </li>
             <li>
-              <a href="mailto:earth-communication@bsc.es" onClick={() => setOpenedMenu(false)}><HoverRepeatAnimation>Contact</HoverRepeatAnimation></a>
+              <a href="mailto:earth-communication@bsc.es" onClick={() => setOpenedMenu(false)}>
+                <HoverRepeatAnimation>Contact</HoverRepeatAnimation>
+              </a>
             </li>
           </ul>
         </div>
-        <div className="flex justify-between items-end">
-          <Logo className="w-60 h-10 text-green-900" />
+        <div className="flex items-end justify-between">
+          <Logo className="h-10 w-60 text-green-900" />
           <ul className="flex gap-[15px]">
             <li>
               <a href="https://www.instagram.com/bsc_cns/" target="_blank">
-                <Instagram className="w-6 h-6" />
+                <Instagram className="h-6 w-6" />
                 <div className="sr-only">Instagram</div>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/company/barcelona-supercomputing-center/" target="_blank">
+              <a
+                href="https://www.linkedin.com/company/barcelona-supercomputing-center/"
+                target="_blank"
+              >
                 <div className="sr-only">Linkedin</div>
-                <Linkedin className="w-6 h-6" />
+                <Linkedin className="h-6 w-6" />
               </a>
             </li>
           </ul>
@@ -79,4 +91,4 @@ export default function Menu() {
       </motion.nav>
     </>
   );
-};
+}

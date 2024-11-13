@@ -6,12 +6,16 @@ import Image from "next/image";
 import { useIsMobile } from "@/lib/hooks";
 import { useGesture } from "@use-gesture/react";
 
-const Arrows = ({ changeTextIndex, textIndex, isMaxIndex }: {
-  changeTextIndex: (index: number) => void,
+const Arrows = ({
+  changeTextIndex,
+  textIndex,
+  isMaxIndex,
+}: {
+  changeTextIndex: (index: number) => void;
   textIndex: number;
   isMaxIndex: boolean;
 }) => (
-  <div className="items-start gap-0.5 flex mt-1">
+  <div className="mt-1 flex items-start gap-0.5">
     <button
       type="button"
       onClick={() => changeTextIndex(-1)}
@@ -19,12 +23,12 @@ const Arrows = ({ changeTextIndex, textIndex, isMaxIndex }: {
       disabled={textIndex === 0}
       aria-disabled={textIndex === 0}
     >
-      <div className='sr-only'>Previous text</div>
-      <ArrowRight className={cn("w-6 h-6 p-[2px] -rotate-180 text-white",
-        {
-          'opacity-50': textIndex === 0
-        }
-      )} />
+      <div className="sr-only">Previous text</div>
+      <ArrowRight
+        className={cn("h-6 w-6 -rotate-180 p-[2px] text-white", {
+          "opacity-50": textIndex === 0,
+        })}
+      />
     </button>
     <button
       type="button"
@@ -33,12 +37,12 @@ const Arrows = ({ changeTextIndex, textIndex, isMaxIndex }: {
       disabled={isMaxIndex}
       aria-disabled={isMaxIndex}
     >
-      <div className='sr-only'>Next text</div>
-      <ArrowRight className={cn("w-6 h-6 p-[2px] text-white",
-        {
-          'opacity-50': isMaxIndex
-        }
-      )} />
+      <div className="sr-only">Next text</div>
+      <ArrowRight
+        className={cn("h-6 w-6 p-[2px] text-white", {
+          "opacity-50": isMaxIndex,
+        })}
+      />
     </button>
   </div>
 );
@@ -68,33 +72,53 @@ const TabContentItem = ({ index = 0 }: { index: number }) => {
       } else if (dx < 0) {
         changeTextIndex(1);
       }
-    }
+    },
   });
 
   return (
-    <div {...bind()} className="relative text-white text-xl h-full w-full flex flex-col xl:flex-row p-6 gap-6">
-      <div className="min-w-[225px] p-3 flex-1 flex h-full items-start xl:items-center justify-between">
+    <div
+      {...bind()}
+      className="relative flex h-full w-full flex-col gap-6 p-6 text-xl text-white xl:flex-row"
+    >
+      <div className="flex h-full min-w-[225px] flex-1 items-start justify-between p-3 xl:items-center">
         <Image
-          className="w-[225px] h-[256px]"
+          className="h-[256px] w-[225px]"
           alt=""
           src={content.image}
           height={256}
           width={225}
         />
-        {isMobile && <Arrows textIndex={textIndex} changeTextIndex={changeTextIndex} isMaxIndex={textIndex === maxIndex} />}
+        {isMobile && (
+          <Arrows
+            textIndex={textIndex}
+            changeTextIndex={changeTextIndex}
+            isMaxIndex={textIndex === maxIndex}
+          />
+        )}
       </div>
-      <div className="text-sm xl:text-base relative flex flex-col justify-between h-full gap-4 leading-[24px] xl:min-h-[392px]">
+      <div className="relative flex h-full flex-col justify-between gap-4 text-sm leading-[24px] xl:min-h-[392px] xl:text-base">
         {content.text}
-        <div className="flex items-center justify-center xl:justify-start gap-2 xl:gap-0.5">
-          {Array(TAB_CONTENT[index].length).fill(null).map((_, idx) => (
-            <div key={idx} className={cn("rounded-full bg-white", {
-              'w-[14px] h-[14px]': textIndex === idx,
-              'w-2 h-2': textIndex !== idx
-            })} />
-          ))}
+        <div className="flex items-center justify-center gap-2 xl:justify-start xl:gap-0.5">
+          {Array(TAB_CONTENT[index].length)
+            .fill(null)
+            .map((_, idx) => (
+              <div
+                key={idx}
+                className={cn("rounded-full bg-white", {
+                  "h-[14px] w-[14px]": textIndex === idx,
+                  "h-2 w-2": textIndex !== idx,
+                })}
+              />
+            ))}
         </div>
       </div>
-      {!isMobile && <Arrows textIndex={textIndex} changeTextIndex={changeTextIndex} isMaxIndex={textIndex === maxIndex} />}
+      {!isMobile && (
+        <Arrows
+          textIndex={textIndex}
+          changeTextIndex={changeTextIndex}
+          isMaxIndex={textIndex === maxIndex}
+        />
+      )}
     </div>
   );
 };

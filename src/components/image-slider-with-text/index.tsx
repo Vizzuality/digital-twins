@@ -18,10 +18,10 @@ const ImageSliderWithText = ({
   video1,
   video2,
   sliderHeightClass,
-  textClass = 'text-green-700',
+  textClass = "text-green-700",
   className,
   resizeButtonClassName,
-  initialPosition = 500
+  initialPosition = 500,
 }: {
   text1: JSX.Element;
   text2: JSX.Element;
@@ -47,15 +47,15 @@ const ImageSliderWithText = ({
     <>
       <Button
         className={cn(
-          "z-50 absolute -left-[53px] xl:-left-[103px] h-[25px] xl:h-fit py-[5px] xl:py-[14px] px-[7px] xl:px-[18px] bg-white text-green-700 border-0 max-xl:gap-1",
-          resizeButtonClassName
+          "absolute -left-[53px] z-50 h-[25px] border-0 bg-white px-[7px] py-[5px] text-green-700 max-xl:gap-1 xl:-left-[103px] xl:h-fit xl:px-[18px] xl:py-[14px]",
+          resizeButtonClassName,
         )}
       >
-        <div className="text-center text-2xs xl:text-sm text-green-700 uppercase">Sim. 01</div>
-        <CaretRight className="w-2.5 h-2.5 xl:h-4 xl:w-4 rotate-180" />
-        <div className='bg-green-800/10 w-px h-6'></div>
-        <CaretRight className="w-2.5 h-2.5 xl:h-4 xl:w-4" />
-        <div className="text-center text-2xs xl:text-sm text-green-700 uppercase">Sim. 02</div>
+        <div className="text-center text-2xs uppercase text-green-700 xl:text-sm">Sim. 01</div>
+        <CaretRight className="h-2.5 w-2.5 rotate-180 xl:h-4 xl:w-4" />
+        <div className="h-6 w-px bg-green-800/10"></div>
+        <CaretRight className="h-2.5 w-2.5 xl:h-4 xl:w-4" />
+        <div className="text-center text-2xs uppercase text-green-700 xl:text-sm">Sim. 02</div>
       </Button>
     </>
   );
@@ -63,11 +63,11 @@ const ImageSliderWithText = ({
 
   return (
     <div className={cn("relative flex flex-col overflow-hidden", className)}>
-      <div className='relative w-full' ref={containerRef} id="container">
-        <div className="absolute inset-0 w-full z-30">
+      <div className="relative w-full" ref={containerRef} id="container">
+        <div className="absolute inset-0 z-30 w-full">
           <Resizable
-            className={cn("border-blue-900/10 border-r z-50 ")}
-            size={{ width: resizableWidth, height: '100%' }}
+            className={cn("z-50 border-r border-blue-900/10")}
+            size={{ width: resizableWidth, height: "100%" }}
             onResize={(e, direction, ref, d) => {
               setResizableCurrentWidth(resizableWidth + d.width);
             }}
@@ -80,29 +80,29 @@ const ImageSliderWithText = ({
               right: ResizeButton ? <ResizeButton /> : undefined,
             }}
           >
-            <div className='h-full w-full overflow-hidden'>
+            <div className="h-full w-full overflow-hidden">
               {/* Left video or image */}
-              <div
-                className={sliderHeightClass}
-                style={{ width: containerWidth }}
-              >
-                {video1 &&
-                  <VideoPlayer src={video1} className={cn('w-full', sliderHeightClass)} />
-                }
-                {image1 && <Image
-                  alt={alt1 || ''}
-                  src={image1}
-                  className={cn('w-full', sliderHeightClass)}
-                  height={440}
-                  width={1160}
-                />}
+              <div className={sliderHeightClass} style={{ width: containerWidth }}>
+                {video1 && <VideoPlayer src={video1} className={cn("w-full", sliderHeightClass)} />}
+                {image1 && (
+                  <Image
+                    alt={alt1 || ""}
+                    src={image1}
+                    className={cn("w-full", sliderHeightClass)}
+                    height={440}
+                    width={1160}
+                  />
+                )}
               </div>
-              <div className={cn("max-w-[378px] flex-col gap-4 hidden xl:inline-flex transition-opacity duration-500 pt-10  xl:pb-[120px]",
-                textClass,
-                {
-                  'opacity-0': resizableCurrentWidth < 400,
-                }
-              )}>
+              <div
+                className={cn(
+                  "hidden max-w-[378px] flex-col gap-4 pt-10 transition-opacity duration-500 xl:inline-flex xl:pb-[120px]",
+                  textClass,
+                  {
+                    "opacity-0": resizableCurrentWidth < 400,
+                  },
+                )}
+              >
                 {text1}
               </div>
             </div>
@@ -110,30 +110,40 @@ const ImageSliderWithText = ({
         </div>
 
         {/* Right video or image */}
-        <div className='h-full w-full relative'>
-          {video2 &&
-            <VideoPlayer src={video2} className={cn('h-full w-full object-fit', sliderHeightClass)} />
-          }
-          {image2 && <Image
-            alt={alt2 || ''}
-            src={image2}
-            className={cn('w-full', sliderHeightClass)}
-            height={440}
-            width={1160}
-          />}
-          <div className={cn("max-w-[378px] flex-col gap-4 hidden xl:inline-flex transition-opacity duration-500 pt-10 xl:pb-[120px]", textClass,
-            {
-              'opacity-0': resizableCurrentWidth > ((containerWidth || 800) - 400),
-            })}
+        <div className="relative h-full w-full">
+          {video2 && (
+            <VideoPlayer
+              src={video2}
+              className={cn("object-fit h-full w-full", sliderHeightClass)}
+            />
+          )}
+          {image2 && (
+            <Image
+              alt={alt2 || ""}
+              src={image2}
+              className={cn("w-full", sliderHeightClass)}
+              height={440}
+              width={1160}
+            />
+          )}
+          <div
+            className={cn(
+              "hidden max-w-[378px] flex-col gap-4 pt-10 transition-opacity duration-500 xl:inline-flex xl:pb-[120px]",
+              textClass,
+              {
+                "opacity-0": resizableCurrentWidth > (containerWidth || 800) - 400,
+              },
+            )}
             style={{
-              transform: `translateX(${resizableCurrentWidth}px)`
-            }}>
+              transform: `translateX(${resizableCurrentWidth}px)`,
+            }}
+          >
             {text2}
           </div>
         </div>
       </div>
       {legend}
-      <div className={cn("xl:hidden pt-10 flex flex-col gap-4 pb-10", textClass)}>
+      <div className={cn("flex flex-col gap-4 pb-10 pt-10 xl:hidden", textClass)}>
         {text1}
         {text2}
       </div>

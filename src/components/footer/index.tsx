@@ -6,48 +6,50 @@ import Vizzuality from "@/svgs/vizzuality.svg";
 
 const Footer = ({ backgroundClass = "bg-green-700" }) => {
   return (
-    <footer className={cn("w-full flex-col flex text-white", backgroundClass)}>
-      <div className="justify-center flex">
-        <div className="w-1/2 px-[20px] xl:px-[100px] py-10 xl:py-20 flex flex-col gap-20">
-          <div className="text-sm font-medium uppercase max-w-[258px] tracking-widest">Digital Twins: <div>Innovative Research for a Sustainable Future</div></div>
-          <Logo className="text-white min-w-40 w-40 xl:w-60 xl:min-w-60" />
+    <footer className={cn("flex w-full flex-col text-white", backgroundClass)}>
+      <div className="flex justify-center">
+        <div className="flex w-1/2 flex-col gap-20 px-[20px] py-10 xl:px-[100px] xl:py-20">
+          <div className="max-w-[258px] text-sm font-medium uppercase tracking-widest">
+            Digital Twins: <div>Innovative Research for a Sustainable Future</div>
+          </div>
+          <Logo className="w-40 min-w-40 text-white xl:w-60 xl:min-w-60" />
         </div>
-        <div className="w-1/2 px-[20px] xl:px-[100px] py-10 xl:py-20 flex">
+        <div className="flex w-1/2 px-[20px] py-10 xl:px-[100px] xl:py-20">
           <ul className="space-y-8">
-            <li className="text-white text-base font-bold underline">
-              <Link href="/"><HoverRepeatAnimation>
-                Home
-              </HoverRepeatAnimation>
+            <li className="text-base font-bold text-white underline">
+              <Link href="/">
+                <HoverRepeatAnimation>Home</HoverRepeatAnimation>
               </Link>
             </li>
-            <li className="text-white text-base font-bold underline">
-              <Link href="/case-study-energy"><HoverRepeatAnimation>Case studies: Energy</HoverRepeatAnimation></Link>
+            <li className="text-base font-bold text-white underline">
+              <Link href="/case-study-energy">
+                <HoverRepeatAnimation>Case studies: Energy</HoverRepeatAnimation>
+              </Link>
             </li>
-            <li className="text-white text-base font-bold underline">
-              <Link href="/about"><HoverRepeatAnimation>About Us</HoverRepeatAnimation></Link>
+            <li className="text-base font-bold text-white underline">
+              <Link href="/about">
+                <HoverRepeatAnimation>About Us</HoverRepeatAnimation>
+              </Link>
             </li>
-            <li className="text-white text-base font-bold underline">
-              <Link href="mailto:earth-communication@bsc.es"><HoverRepeatAnimation>Contact</HoverRepeatAnimation></Link>
+            <li className="text-base font-bold text-white underline">
+              <Link href="mailto:earth-communication@bsc.es">
+                <HoverRepeatAnimation>Contact</HoverRepeatAnimation>
+              </Link>
             </li>
           </ul>
-        </div >
+        </div>
       </div>
-      <div className="px-[20px] xl:px-[100px] py-6 w-full gap-10 flex border-t border-white/20 text-white/50 text-xs xl:text-lg leading-relaxed">
+      <div className="flex w-full gap-10 border-t border-white/20 px-[20px] py-6 text-xs leading-relaxed text-white/50 xl:px-[100px] xl:text-lg">
         <div className="max-w-[calc(50%-20px)]">© Barcelona Supercomputing Center, 2024</div>
-        <div className="xl:items-center gap-3 xl:gap-1 flex-col xl:flex-row inline-flex xl:text-base">
+        <div className="inline-flex flex-col gap-3 xl:flex-row xl:items-center xl:gap-1 xl:text-base">
           <span>Designed and Developed by </span>
-          <a
-            href="https://www.vizzuality.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
+          <a href="https://www.vizzuality.com/" target="_blank" rel="noopener noreferrer">
             <Vizzuality />
           </a>
         </div>
       </div>
-    </footer >
+    </footer>
   );
-}
+};
 
 export default Footer;

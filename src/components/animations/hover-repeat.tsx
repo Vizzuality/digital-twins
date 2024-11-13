@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { PropsWithChildren } from "react";
 import { EasingDefinition, Variants, motion } from "framer-motion";
@@ -34,18 +34,21 @@ interface HoverRepeatAnimationProps {
   isChild?: boolean;
 }
 
-const HoverRepeatAnimation = ({ children, className, isChild }: PropsWithChildren & HoverRepeatAnimationProps) => {
-  const parentProps = isChild ? {} : {
-    initial: "rest",
-    whileHover: "hover",
-    animate: "rest",
-  };
+const HoverRepeatAnimation = ({
+  children,
+  className,
+  isChild,
+}: PropsWithChildren & HoverRepeatAnimationProps) => {
+  const parentProps = isChild
+    ? {}
+    : {
+        initial: "rest",
+        whileHover: "hover",
+        animate: "rest",
+      };
 
   return (
-    <motion.div
-      {...parentProps}
-      className={cn("relative overflow-hidden", className)}
-    >
+    <motion.div {...parentProps} className={cn("relative overflow-hidden", className)}>
       <motion.div className="absolute" aria-hidden variants={duplicatedContentAnimation}>
         {children}
       </motion.div>

@@ -8,42 +8,50 @@ import { useIsMobile } from "@/lib/hooks";
 import { useInView } from "framer-motion";
 import { useRecoilState } from "recoil";
 import { globePhaseAtom } from "@/store";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
-const MADRID_COORDINATES = { lat: 40.416775, lng: -3.703790 };
+const MADRID_COORDINATES = { lat: 40.416775, lng: -3.70379 };
 
 const ZOOMS = {
-  'home': {
-    'initial': {
-      'mobile': 2.8,
-      'desktop': 2.8
+  home: {
+    initial: {
+      mobile: 2.8,
+      desktop: 2.8,
     },
-    'phase3': {
-      'mobile': 4,
-      'desktop': 4
-    }
+    phase3: {
+      mobile: 4,
+      desktop: 4,
+    },
   },
-  'energy': {
-    'initial': {
-      'mobile': 4.5,
-      'desktop': 4.75
-    }
-  }
+  energy: {
+    initial: {
+      mobile: 4.5,
+      desktop: 4.75,
+    },
+  },
 };
 
-export const Controls = ({ marker, active = false, enabled = false, groupRef, resetSelectedMarker, setEnabled, canvasRef }: {
-  marker: MarkerType | undefined
+export const Controls = ({
+  marker,
+  active = false,
+  enabled = false,
+  groupRef,
+  resetSelectedMarker,
+  setEnabled,
+  canvasRef,
+}: {
+  marker: MarkerType | undefined;
   // Active is used to determine if the globe controls are in a phase that could be enabled even if is temporarily disabled
-  active: boolean
+  active: boolean;
   // Enabled is used to determine if the globe controls are currently enabled
-  enabled: boolean
-  setEnabled: (enabled: boolean) => void
-  groupRef: React.MutableRefObject<Group>
-  resetSelectedMarker: () => void,
-  canvasRef: React.RefObject<HTMLCanvasElement>
+  enabled: boolean;
+  setEnabled: (enabled: boolean) => void;
+  groupRef: React.MutableRefObject<Group>;
+  resetSelectedMarker: () => void;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
 }) => {
-  const pathname = usePathname()
-  const isEnergyPage = useMemo(() => pathname === '/case-study-energy', [pathname])
+  const pathname = usePathname();
+  const isEnergyPage = useMemo(() => pathname === "/case-study-energy", [pathname]);
 
   const [globePhase] = useRecoilState(globePhaseAtom);
   const isMobile = useIsMobile();
@@ -54,29 +62,47 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
     groupRef.current.rotation.y = 0;
     if (isEnergyPage) {
       if (globePhase === 0) {
-        cameraControlsRef.current.setPosition(0, 1, isMobile ? ZOOMS.energy.initial.mobile : ZOOMS.energy.initial.desktop, true);
+        cameraControlsRef.current.setPosition(
+          0,
+          1,
+          isMobile ? ZOOMS.energy.initial.mobile : ZOOMS.energy.initial.desktop,
+          true,
+        );
         cameraControlsRef.current.setTarget(0, 0, 0, true);
         return;
       }
 
       if (globePhase === 1) {
         // Position tooltip in europe
-        const [x, y, z] = convertLatLonToGlobalPosition(MADRID_COORDINATES.lat, MADRID_COORDINATES.lng, isMobile ? ZOOMS.energy.initial.mobile : ZOOMS.energy.initial.desktop);
-        cameraControlsRef.current.setPosition(x, y, z, true)
+        const [x, y, z] = convertLatLonToGlobalPosition(
+          MADRID_COORDINATES.lat,
+          MADRID_COORDINATES.lng,
+          isMobile ? ZOOMS.energy.initial.mobile : ZOOMS.energy.initial.desktop,
+        );
+        cameraControlsRef.current.setPosition(x, y, z, true);
         cameraControlsRef.current.setTarget(0, 0, 0, true);
         return;
       }
     } else {
       if (globePhase < 2) {
-        cameraControlsRef.current.setPosition(0, 1, isMobile ? ZOOMS.home.initial.mobile : ZOOMS.home.initial.mobile, true);
+        cameraControlsRef.current.setPosition(
+          0,
+          1,
+          isMobile ? ZOOMS.home.initial.mobile : ZOOMS.home.initial.mobile,
+          true,
+        );
         cameraControlsRef.current.setTarget(0, 0.4, 0, true);
       } else {
-        cameraControlsRef.current.setPosition(0, 1, isMobile ? ZOOMS.home.phase3.mobile : ZOOMS.home.phase3.mobile, true);
+        cameraControlsRef.current.setPosition(
+          0,
+          1,
+          isMobile ? ZOOMS.home.phase3.mobile : ZOOMS.home.phase3.mobile,
+          true,
+        );
         cameraControlsRef.current.setTarget(0, 0, 0, true);
       }
-    };
-  }
-
+    }
+  };
 
   useEffect(() => {
     if (globePhase === 0 || globePhase === 1) {
@@ -109,11 +135,13 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
 
       groupRef.current.rotation.y = 0;
       cameraControlsRef.current.setTarget(0, 0.4, 0, true);
-      cameraControlsRef.current.setPosition(0, 1, isMobile ? ZOOMS.home.initial.mobile : ZOOMS.home.initial.desktop, true).then(() => {
-        setResettingPosition(false);
-        resetSelectedMarker();
-        setEnabled(false);
-      });
+      cameraControlsRef.current
+        .setPosition(0, 1, isMobile ? ZOOMS.home.initial.mobile : ZOOMS.home.initial.desktop, true)
+        .then(() => {
+          setResettingPosition(false);
+          resetSelectedMarker();
+          setEnabled(false);
+        });
     }
   }, [enabled, marker, active, resettingPosition]);
 
@@ -124,12 +152,15 @@ export const Controls = ({ marker, active = false, enabled = false, groupRef, re
     if (!isInView && globePhase === 2 && marker !== undefined) {
       groupRef.current.rotation.y = 0;
       cameraControlsRef.current.setTarget(0, 0, 0, true);
-      cameraControlsRef.current.setPosition(0, 1, isMobile ? ZOOMS.home.phase3.mobile : ZOOMS.home.phase3.desktop, true).then(() => {
-        resetSelectedMarker();
-        setEnabled(true);
-      });
+      cameraControlsRef.current
+        .setPosition(0, 1, isMobile ? ZOOMS.home.phase3.mobile : ZOOMS.home.phase3.desktop, true)
+        .then(() => {
+          resetSelectedMarker();
+          setEnabled(true);
+        });
     }
-  }), [isInView];
+  }),
+    [isInView];
 
   return (
     <CameraControls

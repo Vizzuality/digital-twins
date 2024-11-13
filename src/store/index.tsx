@@ -1,11 +1,11 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const menuAtom = atom({
-  key: 'openedMenu',
+  key: "openedMenu",
   default: false,
 });
 
 export const globePhaseAtom = atom({
-  key: 'globePhase',
+  key: "globePhase",
   default: 0,
 });

@@ -1,22 +1,26 @@
-'use client';
-import { useState, useRef, useEffect, CSSProperties, useCallback, use } from 'react';
-import { Canvas } from '@react-three/fiber'
+"use client";
+import { useState, useRef, useEffect, CSSProperties, useCallback, use } from "react";
+import { Canvas } from "@react-three/fiber";
 import { Group } from "three";
-import { Controls } from './controls';
-import { markers } from './data';
-import GlobeGroup from './globe-group';
-import { useGesture } from '@use-gesture/react';
-import { useErrorBoundary } from 'use-error-boundary'
+import { Controls } from "./controls";
+import { markers } from "./data";
+import GlobeGroup from "./globe-group";
+import { useGesture } from "@use-gesture/react";
+import { useErrorBoundary } from "use-error-boundary";
 
-export default function GlobeMap({ videoMaterial, className, style, hasMarkers = false, rotate = false }:
-  {
-    videoMaterial?: string,
-    className: string,
-    style?: CSSProperties,
-    hasMarkers?: boolean,
-    rotate?: boolean,
-  }
-) {
+export default function GlobeMap({
+  videoMaterial,
+  className,
+  style,
+  hasMarkers = false,
+  rotate = false,
+}: {
+  videoMaterial?: string;
+  className: string;
+  style?: CSSProperties;
+  hasMarkers?: boolean;
+  rotate?: boolean;
+}) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const groupRef = useRef<Group>(null!);
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
@@ -28,17 +32,16 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
       e.preventDefault();
     };
 
-    window.addEventListener('deviceorientation', handleDeviceOrientation);
+    window.addEventListener("deviceorientation", handleDeviceOrientation);
 
     return () => {
-      window.removeEventListener('deviceorientation', handleDeviceOrientation);
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
     };
   }, []);
 
   const resetSelectedMarker = useCallback(() => {
     setSelectedMarker(null);
   }, []);
-
 
   useEffect(() => {
     if (hasMarkers && !enabled) {
@@ -60,12 +63,12 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
           // event.preventDefault();
           window.scrollBy(0, delta[1]);
         }
-      }
+      },
     },
     {
-      eventOptions: { passive: false }
-    }
-  )
+      eventOptions: { passive: false },
+    },
+  );
   const { onWheel } = bind();
 
   useEffect(() => {
@@ -82,10 +85,11 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
     const handleTouchEnd = (event: TouchEvent) => {
       const touchPositionEnd = event.changedTouches[0].clientY;
       const delta = touchPosition ? touchPositionEnd - touchPosition : 0;
-      if (delta) { // Vertical swipe
+      if (delta) {
+        // Vertical swipe
         event.stopPropagation();
         event.preventDefault();
-        window.scrollBy({ top: -delta * 2, behavior: 'smooth' });
+        window.scrollBy({ top: -delta * 2, behavior: "smooth" });
       }
       if (event.cancelable) {
         event.preventDefault();
@@ -94,20 +98,19 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
 
     const containerElement = canvasRef.current;
     if (containerElement) {
-      containerElement.addEventListener('touchstart', handleTouchStart, { passive: false });
-      containerElement.addEventListener('touchend', handleTouchEnd, { passive: false });
+      containerElement.addEventListener("touchstart", handleTouchStart, { passive: false });
+      containerElement.addEventListener("touchend", handleTouchEnd, { passive: false });
     }
 
     return () => {
       if (containerElement) {
-        containerElement.removeEventListener('touchstart', handleTouchStart);
-        containerElement.removeEventListener('touchstart', handleTouchEnd);
+        containerElement.removeEventListener("touchstart", handleTouchStart);
+        containerElement.removeEventListener("touchstart", handleTouchEnd);
       }
     };
   }, []);
 
   // const dcontrols = new DeviceOrientationControls(camera, renderer.domElement);
-
 
   // addEventListener('touchstart', function (evt) {
   //   dcontrols.enabled = false;
@@ -117,16 +120,12 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
   useEffect(() => {
     if (didCatch) {
-      console.error('Globe error', error)
+      console.error("Globe error", error);
     }
-  }
-    , [didCatch, error]);
+  }, [didCatch, error]);
   return (
     <>
-      <div
-        className={className}
-        style={style}
-      >
+      <div className={className} style={style}>
         {!didCatch && (
           <ErrorBoundary>
             <Canvas
@@ -156,8 +155,9 @@ export default function GlobeMap({ videoMaterial, className, style, hasMarkers =
                 videoMaterial={videoMaterial}
               />
             </Canvas>
-          </ErrorBoundary>)}
-      </div >
+          </ErrorBoundary>
+        )}
+      </div>
     </>
   );
 }

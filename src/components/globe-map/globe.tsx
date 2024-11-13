@@ -3,24 +3,23 @@ import { Suspense } from "react";
 import { ShaderMaterial, DoubleSide, NearestFilter } from "three";
 import { useRef, useMemo } from "react";
 
-
 function VideoMaterial({ url }: { url: string }) {
   const texture = useVideoTexture(url, {
     playsInline: true,
     hls: {
-      maxBufferLength: 30,          // Maximum buffer length in seconds
-      maxMaxBufferLength: 60,       // Maximum buffer size
-      backBufferLength: 10,         // How much to keep in buffer behind current time
-      levelLoadingTimeOut: 10000,    // Timeout for loading segments
-      fragLoadingTimeOut: 20000,     // Timeout for loading fragments
-      enableWorker: true,            // Enable web worker for better performance
-      startLevel: -1,                // Start with lowest quality
+      maxBufferLength: 30, // Maximum buffer length in seconds
+      maxMaxBufferLength: 60, // Maximum buffer size
+      backBufferLength: 10, // How much to keep in buffer behind current time
+      levelLoadingTimeOut: 10000, // Timeout for loading segments
+      fragLoadingTimeOut: 20000, // Timeout for loading fragments
+      enableWorker: true, // Enable web worker for better performance
+      startLevel: -1, // Start with lowest quality
       abrEwmaDefaultEstimate: 500000, // Conservative bandwidth estimate
-    }
+    },
   });
   texture.minFilter = NearestFilter;
   texture.magFilter = NearestFilter;
-  return <meshBasicMaterial map={texture} toneMapped={false} />
+  return <meshBasicMaterial map={texture} toneMapped={false} />;
 }
 
 const GlobeShaderMaterial = ({ url }: { url: string }) => {
@@ -32,7 +31,7 @@ const GlobeShaderMaterial = ({ url }: { url: string }) => {
       uTexture: { value: texture },
       uOpacity: { value: 1 }, // Adjust for transparency (0 fully transparent, 1 fully opaque)
     }),
-    [texture]
+    [texture],
   );
 
   return (
@@ -90,16 +89,16 @@ const GlobeShaderMaterial = ({ url }: { url: string }) => {
   );
 };
 
-export const Globe = ({ videoMaterial }: {
-  videoMaterial?: string;
-}) => {
+export const Globe = ({ videoMaterial }: { videoMaterial?: string }) => {
   return (
     <mesh position={[0, 0, 0]}>
       <sphereGeometry args={[1, 64, 64]} />
       <Suspense fallback={null}>
-        {videoMaterial ?
-          <VideoMaterial url={videoMaterial} /> :
-          <GlobeShaderMaterial url="images/coastline.png" />}
+        {videoMaterial ? (
+          <VideoMaterial url={videoMaterial} />
+        ) : (
+          <GlobeShaderMaterial url="images/coastline.png" />
+        )}
       </Suspense>
     </mesh>
   );

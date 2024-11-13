@@ -2,7 +2,7 @@ import { useRef, FC, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/lib/hooks";
 
-const FadeIn: FC<{ children: React.ReactNode, delay?: number }> = ({ children, delay }) => {
+const FadeIn: FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay }) => {
   const ref = useRef(null);
   const isMobile = useIsMobile();
   const [isClient, setIsClient] = useState(false);
@@ -21,7 +21,7 @@ const FadeIn: FC<{ children: React.ReactNode, delay?: number }> = ({ children, d
         ref={ref}
         initial={{ opacity: 0, y: 100 }}
         viewport={{ once: true }}
-        whileInView={{ opacity: 1, y: 0, transition: { delay, ease: 'easeIn', duration: 0.5 } }}
+        whileInView={{ opacity: 1, y: 0, transition: { delay, ease: "easeIn", duration: 0.5 } }}
       >
         {children}
       </motion.div>

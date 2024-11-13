@@ -1,6 +1,6 @@
-import Intro from '@/components/about/intro';
-import Section1 from '@/components/about/section-1';
-import Project1 from '@/components/about/project-1';
+import Intro from "@/components/about/intro";
+import Section1 from "@/components/about/section-1";
+import Project1 from "@/components/about/project-1";
 
 export default function About() {
   return (
@@ -8,6 +8,6 @@ export default function About() {
       <Intro />
       <Section1 />
       <Project1 />
-    </main >
+    </main>
   );
 }

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import { useRecoilState } from "recoil";
@@ -38,32 +38,36 @@ export default function Header() {
   }, []);
 
   const MenuButton = () => (
-    <MotionButton onClick={() => setOpenedMenu(true)}
+    <MotionButton
+      onClick={() => setOpenedMenu(true)}
       variant="light-green"
       initial="rest"
       whileHover="hover"
       animate="rest"
     >
       <HoverRepeatAnimation isChild>
-        <div className="text-light-green text-sm font-medium uppercase">MENU</div>
+        <div className="text-sm font-medium uppercase text-light-green">MENU</div>
       </HoverRepeatAnimation>
-      <Menu className="w-4 h-4" />
-    </MotionButton >
+      <Menu className="h-4 w-4" />
+    </MotionButton>
   );
 
   return (
-    <header className={cn("fixed inset-0 w-full h-[90px] py-6 flex z-40 transition-transform duration-500",
-      {
-        "translate-y-0": isVisible,
-        "-translate-y-full": !isVisible,
-        "bg-blue-900": !isAtTop,
-        "bg-transparent": isAtTop
-      })
-    }>
-      <div className="container flex justify-between items-center">
-        <Logo className="w-40 xl:w-60 h-10 text-white" />
+    <header
+      className={cn(
+        "fixed inset-0 z-40 flex h-[90px] w-full py-6 transition-transform duration-500",
+        {
+          "translate-y-0": isVisible,
+          "-translate-y-full": !isVisible,
+          "bg-blue-900": !isAtTop,
+          "bg-transparent": isAtTop,
+        },
+      )}
+    >
+      <div className="container flex items-center justify-between">
+        <Logo className="h-10 w-40 text-white xl:w-60" />
         <MenuButton />
       </div>
     </header>
   );
-};
+}

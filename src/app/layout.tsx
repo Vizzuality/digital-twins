@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google"
-import { cn } from "@/lib/utils"
+import { Roboto } from "next/font/google";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 import Header from "@/components/header";
 import Menu from "@/components/menu";
@@ -24,16 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-x-hidden">
-      <body className={cn(
-        "min-h-screen bg-background font-sans antialiased scroll-smooth",
-        fontSans.variable
-      )}>
+      <body
+        className={cn(
+          "min-h-screen scroll-smooth bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <ContextWrapper>
           <Header />
           <Menu />
           {children}
         </ContextWrapper>
       </body>
-    </html >
+    </html>
   );
 }
