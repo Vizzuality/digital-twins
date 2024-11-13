@@ -51,8 +51,11 @@ export const VideoPlayer = ({ src, className, videoClassName, onTimeUpdate, flui
       if (videoClassName && videoTagElement) {
         const videoClassNames = videoClassName.split(' ');
         videoTagElement[0].classList.add(...videoClassNames);
-
       }
+
+      player.on('error', (e: Error) => {
+        console.error('Video error:', e);
+      });
 
       player.on('timeupdate', (e: SyntheticEvent<HTMLVideoElement>) => {
         onTimeUpdate && onTimeUpdate(e);
