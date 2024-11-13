@@ -48,7 +48,7 @@ export default function Section2() {
               className="h-full w-full"
               videoMaterial={
                 step === "section-2-step-2"
-                  ? "videos/stream-videos/capacity_factor_10km/index.m3u8"
+                  ? "videos/capacity_factor_10km.mp4"
                   : "videos/stream-videos/wind_speed_global_10km/index.m3u8"
               }
               rotate={step !== "section-2-step-2"}
