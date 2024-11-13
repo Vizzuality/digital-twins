@@ -2,25 +2,25 @@ import { useEffect, useRef, SyntheticEvent } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
-export const VideoPlayer = ({ src, className, onTimeUpdate }: {
+export const VideoPlayer = ({ src, className, videoClassName, onTimeUpdate, fluid = true }: {
   src: string;
   className?: string;
-  onTimeUpdate?: (e: SyntheticEvent<HTMLVideoElement>) => void
+  onTimeUpdate?: (e: SyntheticEvent<HTMLVideoElement>) => void,
+  videoClassName?: string;
+  fluid?: boolean;
 }) => {
   const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<typeof videojs.players | null>(null);
-
   useEffect(() => {
     if (videoRef.current && !playerRef.current) {
       const videoElement = document.createElement("video-js");
 
-      videoElement.classList.add('vjs-big-play-centered');
       videoRef.current.appendChild(videoElement);
 
       const player = playerRef.current = videojs(videoElement, {
         autoplay: true,
         responsive: true,
-        fluid: true,
+        fluid,
         muted: true,
         loop: true,
         html5: {
@@ -42,8 +42,17 @@ export const VideoPlayer = ({ src, className, onTimeUpdate }: {
         sources: [{
           src: src,
           type: 'application/x-mpegURL'
-        }]
+        }],
       });
+
+      // Add classes to video tag element
+      // https://github.com/videojs/video.js/issues/2806#issuecomment-156575414
+      const videoTagElement = videoElement.getElementsByTagName('video');
+      if (videoClassName && videoTagElement) {
+        const videoClassNames = videoClassName.split(' ');
+        videoTagElement[0].classList.add(...videoClassNames);
+
+      }
 
       player.on('timeupdate', (e: SyntheticEvent<HTMLVideoElement>) => {
         onTimeUpdate && onTimeUpdate(e);
@@ -59,9 +68,7 @@ export const VideoPlayer = ({ src, className, onTimeUpdate }: {
   }, [src]);
 
   return (
-    <div data-vjs-player className={className}>
-      <div ref={videoRef} />
-    </div>
+    <div data-vjs-player ref={videoRef} className={className} />
   );
 }
 

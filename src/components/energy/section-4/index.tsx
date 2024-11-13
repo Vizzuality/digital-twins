@@ -77,7 +77,12 @@ export default function Section4() {
       <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id="step-1" className='relative h-[50vh]' offset={0.5} onEnter={setStep} />
         <div className='sticky h-[100vh] w-full flex justify-center inset-0' id="section-4-1">
-          <VideoPlayer src="/videos/stream-videos/observations/index.m3u8" className="'h-[100vh] w-full object-fill" />
+          <VideoPlayer
+            src="/videos/stream-videos/observations/index.m3u8"
+            className="h-screen w-full"
+            fluid
+            videoClassName="object-fill !h-screen"
+          />
           <motion.div
             className='absolute left-0 top-[calc(50%_-_100px)] w-full h-full text-green-950 flex flex-col gap-4'
             initial="initial"
