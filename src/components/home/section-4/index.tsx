@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { motion, AnimatePresence } from "framer-motion";
 
+import Arrows from "@/components/arrows";
 import ImageSliderWithText from "@/components/image-slider-with-text";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -61,6 +62,10 @@ const renderText2 = (
 
 export default function Section4() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
+  const [tabsValue, setTabsValue] = useState("scenario1");
+  const handleValueChange = (value: string) => {
+    setTabsValue(value);
+  };
 
   return (
     <section className="relative scroll-mt-8 bg-blue-950 text-white" id="section-4">
@@ -129,7 +134,7 @@ export default function Section4() {
             </AnimatePresence>
           </div>
           <div className="text-[36px] font-medium tracking-wide xl:text-4xl">What if ...</div>
-          <Tabs defaultValue="scenario1">
+          <Tabs defaultValue="scenario1" value={tabsValue} onValueChange={handleValueChange}>
             <TabsList>
               <TabsTrigger value="scenario1">Scenario 1</TabsTrigger>
               <TabsTrigger value="scenario2">Scenario 2</TabsTrigger>
@@ -140,10 +145,16 @@ export default function Section4() {
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... the heatwave that affected Europe in 2018 occurred in a +2ºC warmer world ?
                 </div>
-                <div className="max-w-[466px] text-balance text-white">
-                  The digital twin allows not only to understand the conditions under which the 2018
-                  heatwave had occurred, but also to simulate how much worse could this heatwave be
-                  if it occurs under a future warmer world.
+                <div className="flex">
+                  <div className="max-w-[466px] text-balance text-white max-xl:pb-12">
+                    The digital twin allows not only to understand the conditions under which the
+                    2018 heatwave had occurred, but also to simulate how much worse could this
+                    heatwave be if it occurs under a future warmer world.
+                  </div>
+                  <Arrows
+                    textIndex={0}
+                    changeTextIndex={(index: number) => index > 0 && handleValueChange("scenario2")}
+                  />
                 </div>
               </div>
               <div className="relative xl:mt-16">
@@ -165,11 +176,19 @@ export default function Section4() {
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... forest areas in a region are converted to irrigated cropland?
                 </div>
-                <div className="max-w-[466px] text-balance text-white xl:mb-20">
-                  By allowing the change of land use category from forest to cropland, the digital
-                  twin makes it possible for users to explore the effects that the reduced amount of
-                  forest land would have on variables such as the soil moisture, local precipitation
-                  and temperature.
+                <div className="flex">
+                  <div className="max-w-[466px] text-balance text-white xl:mb-20">
+                    By allowing the change of land use category from forest to cropland, the digital
+                    twin makes it possible for users to explore the effects that the reduced amount
+                    of forest land would have on variables such as the soil moisture, local
+                    precipitation and temperature.
+                  </div>
+                  <Arrows
+                    textIndex={1}
+                    changeTextIndex={(index: number) =>
+                      index > 0 ? handleValueChange("scenario3") : handleValueChange("scenario1")
+                    }
+                  />
                 </div>
                 <div className="pb-6 xl:hidden">
                   <Image src="/images/home-what-if-2-1.png" alt="" width={580} height={360} />
@@ -196,11 +215,18 @@ export default function Section4() {
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... a wind farm is built in a particular location?
                 </div>
-                <div className="max-w-[466px] text-balance text-white xl:mb-20">
-                  The digital twin allows simulations of the average energy output of a wind farm
-                  built in a particular location. This type of information is key to advising the
-                  investment of wind energy planners in the deployment of a new wind farm, which
-                  needs to take into account the initial investment and future expected revenues.
+                <div className="flex">
+                  <div className="max-w-[466px] text-balance text-white xl:mb-20">
+                    The digital twin allows simulations of the average energy output of a wind farm
+                    built in a particular location. This type of information is key to advising the
+                    investment of wind energy planners in the deployment of a new wind farm, which
+                    needs to take into account the initial investment and future expected revenues.
+                  </div>
+                  <Arrows
+                    textIndex={2}
+                    changeTextIndex={(index: number) => index < 0 && handleValueChange("scenario2")}
+                    isMaxIndex
+                  />
                 </div>
                 <div className="pb-6 xl:hidden">
                   <Image src="/images/home-what-if-3-1.png" alt="" width={580} height={360} />
