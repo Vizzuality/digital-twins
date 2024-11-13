@@ -9,8 +9,8 @@ export default function Intro() {
       <Lines
         verticalClassName="left-8 w-[calc(100vh-16px)]"
         sectionName="intro"
-        columns={[64, 136, 452, 947]}
-        rows={[220, 286, 302, 364, 468, 764]}
+        columns={[349, 1050]}
+        rows={[220, 286, 302, 364, 468, 713]}
       />
       <div className="container relative flex flex-col-reverse pb-[60px] pl-8 pt-[110px] xl:grid xl:grid-cols-[250px_1fr_250px] xl:pl-24 xl:pt-[177px]">
         <div className="xl:space-y-10 xl:pt-[41px]">
@@ -46,7 +46,7 @@ export default function Intro() {
             </h1>
           </div>
           <div className="flex items-center justify-center">
-            <Image alt="" src="/images/energy-intro.png" width={494} height={297} />
+            <Image alt="" src="/images/energy-intro.png" className="xl:w-[702px] xl:h-[247px] object-cover" width={494} height={297} />
           </div>
         </div>
       </div>
