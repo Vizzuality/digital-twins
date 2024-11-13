@@ -1,12 +1,16 @@
 "use client";
 import { useState } from "react";
+
 import dynamic from "next/dynamic";
+
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
+import Image from "next/image";
+
 import { motion, AnimatePresence } from "framer-motion";
+
+import ImageSliderWithText from "@/components/image-slider-with-text";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Image from "next/image";
-import ImageSliderWithText from "@/components/image-slider-with-text";
 import VideoPlayer from "@/components/video-player";
 
 const renderLegend = (
@@ -77,7 +81,7 @@ export default function Section4() {
       <Lines
         verticalClassName="px-[152px] z-0"
         sectionName="section-4"
-        rows={[1506]}
+        rows={[1142]}
         columns={[548]}
         colorClass="bg-white/10"
       />
@@ -132,7 +136,7 @@ export default function Section4() {
               <TabsTrigger value="scenario3">Scenario 3</TabsTrigger>
             </TabsList>
             <TabsContent value="scenario1" className="pt-6 xl:pt-10">
-              <div className="grid gap-[48px] pb-10 xl:grid-cols-2 xl:gap-0 xl:pb-20">
+              <div className="grid gap-[48px] xl:grid-cols-2 xl:gap-0 xl:pb-20">
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... the heatwave that affected Europe in 2018 occurred in a +2ºC warmer world ?
                 </div>
@@ -167,10 +171,24 @@ export default function Section4() {
                   forest land would have on variables such as the soil moisture, local precipitation
                   and temperature.
                 </div>
-                <div className="pb-6">
+                <div className="pb-6 xl:hidden">
                   <Image src="/images/home-what-if-2-1.png" alt="" width={580} height={360} />
                   <Image src="/images/home-what-if-2-2.png" alt="" width={580} height={360} />
                 </div>
+                <Image
+                  src="/images/home-what-if-2-1.png"
+                  alt=""
+                  className="hidden xl:block"
+                  width={580}
+                  height={360}
+                />
+                <Image
+                  src="/images/home-what-if-2-2.png"
+                  alt=""
+                  className="hidden xl:block"
+                  width={580}
+                  height={360}
+                />
               </div>
             </TabsContent>
             <TabsContent value="scenario3" className="pt-6 xl:pt-10">
@@ -184,10 +202,24 @@ export default function Section4() {
                   investment of wind energy planners in the deployment of a new wind farm, which
                   needs to take into account the initial investment and future expected revenues.
                 </div>
-                <div className="pb-6">
+                <div className="pb-6 xl:hidden">
                   <Image src="/images/home-what-if-3-1.png" alt="" width={580} height={360} />
                   <Image src="/images/home-what-if-3-2.png" alt="" width={580} height={360} />
                 </div>
+                <Image
+                  src="/images/home-what-if-3-1.png"
+                  alt=""
+                  className="hidden xl:block"
+                  width={580}
+                  height={360}
+                />
+                <Image
+                  src="/images/home-what-if-3-2.png"
+                  alt=""
+                  className="hidden xl:block"
+                  width={580}
+                  height={360}
+                />
               </div>
             </TabsContent>
           </Tabs>

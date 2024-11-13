@@ -1,31 +1,37 @@
 "use client";
 
+import { useState } from "react";
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
-import KnowMoreButton from "@/components/know-more-button";
-import { cn } from "@/lib/utils";
+
 import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+
 import FadeIn from "@/components/animations/fade-in";
+import KnowMoreButton from "@/components/know-more-button";
+
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import VideoPlayer from "@/components/video-player";
 
 export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
+  const [openedKnowMoreWind, setOpenedKnowMoreWind] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
 
   const gridColumns = isMobile
     ? "flex flex-col"
     : {
-        "grid transition-all duration-500": true,
-        "grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]": hoveredIndex === 0,
-        "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr]": hoveredIndex === 1,
-        "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr]": hoveredIndex === 2,
-        "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr]": hoveredIndex === 3,
-        "grid-cols-[1fr_1fr_1fr_1fr]": hoveredIndex === null,
-      };
+      "grid transition-all duration-500": true,
+      "grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]": hoveredIndex === 0,
+      "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr]": hoveredIndex === 1,
+      "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr]": hoveredIndex === 2,
+      "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr]": hoveredIndex === 3,
+      "grid-cols-[1fr_1fr_1fr_1fr]": hoveredIndex === null,
+    };
 
   return (
     <section className="relative scroll-mt-8 bg-white" id="section-1">
@@ -49,8 +55,8 @@ export default function Section1() {
         rows={[
           openedKnowMore ? 980 : 830,
           openedKnowMore ? 1614 : 1468,
-          openedKnowMore ? 2274 : 2124,
-          openedKnowMore ? 2760 : 2600,
+          openedKnowMore ? 2274 : 2108,
+          openedKnowMore ? 2760 : 2574,
         ]}
         colorClass="bg-blue-900/10"
         columnsNumber={4}
@@ -199,14 +205,14 @@ export default function Section1() {
             </div>
           </FadeIn>
         </div>
-        <div className="flex flex-col-reverse items-center gap-6 pb-[60px] xl:mt-[184px] xl:flex-row xl:items-start xl:gap-[69px] xl:pb-[150px]">
+        <div className="flex flex-col-reverse items-center gap-6 pb-[20px] xl:mt-[184px] xl:flex-row xl:items-start xl:gap-[69px] xl:pb-[150px]">
           <div className="xl:pt-[121px]">
             <VideoPlayer
               src="/videos/stream-videos/energy-section-1/index.m3u8"
               className="w-full xl:ml-0.5 xl:min-w-[546px]"
             />
           </div>
-          <div className="max-w-[536px] space-y-3 pb-10 pt-10 text-green-700 xl:w-[536px] xl:space-y-5 xl:pt-0">
+          <div className="max-w-[536px] space-y-3 pt-10 text-green-700 xl:w-[536px] xl:space-y-5 xl:pt-0">
             <h2 className="pb-8 text-2xl font-medium xl:-translate-y-1 xl:pb-20 xl:text-4xl">
               Transforming wind to energy
             </h2>
@@ -215,11 +221,11 @@ export default function Section1() {
               change.
             </h3>
             <KnowMoreButton
-              onClick={() => setOpenedKnowMore(!openedKnowMore)}
-              opened={openedKnowMore}
+              onClick={() => setOpenedKnowMoreWind(!openedKnowMoreWind)}
+              opened={openedKnowMoreWind}
             />
             <AnimatePresence>
-              {openedKnowMore && (
+              {openedKnowMoreWind && (
                 <motion.div
                   key="know-more-renewable-sector"
                   initial={{ opacity: 0, height: 0 }}
