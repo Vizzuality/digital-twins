@@ -26,6 +26,7 @@ export const VideoPlayer = ({
       const player = (playerRef.current = videojs(videoElement, {
         autoplay: true,
         responsive: true,
+        playsInline: true,
         fluid,
         muted: true,
         loop: true,
@@ -68,6 +69,7 @@ export const VideoPlayer = ({
       player.on("timeupdate", (e: SyntheticEvent<HTMLVideoElement>) => {
         onTimeUpdate && onTimeUpdate(e);
       });
+      player.play();
     }
 
     return () => {
