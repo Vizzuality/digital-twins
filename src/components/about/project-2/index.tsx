@@ -21,7 +21,7 @@ export default function Section1() {
         <div className="container flex flex-col gap-4 max-xl:pb-[60px] xl:flex-row xl:gap-[140px]">
           <div className="relative space-y-6 py-6 pb-6 xl:space-y-[60px] xl:py-[100px] xl:pl-[65px]">
             <h2 className="flex w-full flex-col xl:gap-4">
-              <div className="uppercase xl:text-lg">Project 2</div>
+              <div className="uppercase xl:text-lg">Project 02</div>
               <div className="text-2xl xl:text-4xl">Destination Earth</div>
             </h2>
             <div className="max-w-[660px] space-y-4 text-sm xl:text-base">

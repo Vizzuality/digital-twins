@@ -1,15 +1,21 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import ExternalLink from "@/svgs/icon-external-link.svg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import KnowMoreButton from "@/components/know-more-button";
-const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
-import { cn } from "@/lib/utils";
+
+import { motion, AnimatePresence } from "framer-motion";
+
 import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+
+import KnowMoreButton from "@/components/know-more-button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import ExternalLink from "@/svgs/icon-external-link.svg";
+
+const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 
 export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
@@ -514,7 +520,7 @@ export default function Section1() {
         />
         <div className="container relative space-y-6 py-6 pb-[60px] pl-8 xl:space-y-[60px] xl:py-[100px] xl:pl-24">
           <h2 className="items center flex w-full flex-col xl:text-center">
-            <div className="uppercase xl:text-lg">Project 1</div>
+            <div className="uppercase xl:text-lg">Project 01</div>
             <div className="text-2xl uppercase xl:text-4xl">Gloria</div>
           </h2>
           <div className="max-w-[760px] space-y-4 text-sm xl:text-base">
