@@ -15,7 +15,7 @@ export default function Section1() {
           verticalClassName="left-8 w-[calc(100vh-16px)]"
           sectionName="project-2"
           columns={[66]}
-          colorClass="bg-white/10"
+          colorClass="bg-blue-900/10"
         />
         <div className="container flex flex-col gap-4 max-xl:pb-[60px] xl:flex-row xl:gap-[140px]">
           <div className="relative space-y-6 py-6 pb-6 xl:space-y-[60px] xl:py-[100px] xl:pl-[65px]">

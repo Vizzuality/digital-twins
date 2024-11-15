@@ -9,9 +9,9 @@ type LinesProps = {
   colorClass?: string;
   verticalClassName?: string;
 } & (
-  | { columnsNumber: number; hoveredIndex?: number | null; columns?: never }
-  | { columns: number[]; columnsNumber?: never; hoveredIndex?: never }
-);
+    | { columnsNumber: number; hoveredIndex?: number | null; columns?: never }
+    | { columns?: number[]; columnsNumber?: never; hoveredIndex?: never }
+  );
 
 const Lines = ({
   sectionName,
@@ -28,7 +28,7 @@ const Lines = ({
     "grid-cols-[1.2fr_0.9fr_0.9fr_1px]": hoveredIndex === 0,
     "grid-cols-[0.9fr_1.2fr_0.9fr_1px]": hoveredIndex === 1,
     "grid-cols-[0.9fr_0.9fr_1.2fr_1px]": hoveredIndex === 2,
-    "grid-cols-[1fr_1fr_1fr_1px]": hoveredIndex === null,
+    "grid-cols-[1fr_1fr_1fr_1px]": hoveredIndex === null || hoveredIndex === undefined,
   };
 
   const gridColumns4 = {
@@ -37,7 +37,7 @@ const Lines = ({
     "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr_1px]": hoveredIndex === 1,
     "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr_1px]": hoveredIndex === 2,
     "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr_1px]": hoveredIndex === 3,
-    "grid-cols-[1fr_1fr_1fr_1fr_1px]": hoveredIndex === null,
+    "grid-cols-[1fr_1fr_1fr_1fr_1px]": hoveredIndex === null || hoveredIndex === undefined,
   };
 
   const gridColumns5 = {
@@ -47,7 +47,7 @@ const Lines = ({
     "grid-cols-[0.9fr_0.9fr_1.4fr_0.9fr_0.9fr_1px]": hoveredIndex === 2,
     "grid-cols-[0.9fr_0.9fr_0.9fr_1.4fr_0.9fr_1px]": hoveredIndex === 3,
     "grid-cols-[0.9fr_0.9fr_0.9fr_0.9fr_1.4fr_1px]": hoveredIndex === 4,
-    "grid-cols-[1fr_1fr_1fr_1fr_1fr_1px]": hoveredIndex === null,
+    "grid-cols-[1fr_1fr_1fr_1fr_1fr_1px]": hoveredIndex === null || hoveredIndex === undefined,
   };
 
   const gridColumns = {
@@ -76,24 +76,24 @@ const Lines = ({
               columnsNumber && gridColumns,
             )}
           >
-            {!!columns?.length
-              ? columns.map((x, index) => (
+            {columnsNumber
+              ? Array(columnsNumber + 1)
+                .fill(null)
+                .map((_, index) => (
                   <motion.div
                     key={`line-y-${sectionName}-${index}`}
-                    initial={{ x: 1000, opacity: 0 }}
-                    animate={{ x, opacity: 1 }}
-                    transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
-                    className={cn("absolute h-full w-px", colorClass)}
+                    className={cn("h-full w-px", colorClass)}
                   />
                 ))
-              : Array(columnsNumber + 1)
-                  .fill(null)
-                  .map((_, index) => (
-                    <motion.div
-                      key={`line-y-${sectionName}-${index}`}
-                      className={cn("h-full w-px", colorClass)}
-                    />
-                  ))}
+              : columns.map((x, index) => (
+                <motion.div
+                  key={`line-y-${sectionName}-${index}`}
+                  initial={{ x: 1000, opacity: 0 }}
+                  animate={{ x, opacity: 1 }}
+                  transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
+                  className={cn("absolute h-full w-px", colorClass)}
+                />
+              ))}
           </motion.div>
         </div>
         {/* Horizontal lines */}

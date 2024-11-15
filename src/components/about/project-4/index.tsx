@@ -13,11 +13,11 @@ export default function Section1() {
         <Lines
           verticalClassName="left-8 w-[calc(100vh-16px)]"
           sectionName="project-2"
-          columns={[66]}
-          colorClass="bg-white/10"
+          columns={[730]}
+          colorClass="bg-blue-900/10"
         />
         <div className="container flex flex-col-reverse gap-4 max-xl:pb-[60px] xl:flex-row xl:gap-[140px]">
-          <div className="relative xl:pt-[100px]">
+          <div className="relative xl:pt-[100px] xl:ml-[66px]">
             <Image
               src="/images/about-eerie.png"
               alt="EERIE"

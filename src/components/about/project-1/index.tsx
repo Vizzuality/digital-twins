@@ -22,12 +22,20 @@ export default function Section1() {
   const [openedKnowMoreInsurance, setOpenedKnowMoreInsurance] = useState(false);
   const isMobile = useIsMobile();
   const gridColumns = isMobile ? "flex flex-col gap-4" : "grid grid-cols-[274px_1fr_1fr_1px]";
+  const [selectedTab, setSelectedTab] = useState("agriculture");
 
   const agricultureContent = (
     <TabsContent
       value="agriculture"
       className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
     >
+      <Lines
+        verticalClassName="conatiner left-8 xl:left-24"
+        sectionName="project-1-agriculture"
+        rows={[]}
+        columns={[274, 772, 1262]}
+        colorClass="bg-blue-900/10"
+      />
       <div className="flex flex-col justify-between gap-8 xl:flex-row">
         <div className="relative space-y-[18px]">
           <div className="max-w-[680px] pb-4 text-xl xl:pb-10 xl:text-2xl">
@@ -209,6 +217,13 @@ export default function Section1() {
       value="energy"
       className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
     >
+      <Lines
+        verticalClassName="conatiner left-8 xl:left-24"
+        sectionName="project-1-energy"
+        rows={[]}
+        columns={[274, 772, 1262]}
+        colorClass="bg-blue-900/10"
+      />
       <div className="flex flex-col justify-between gap-8 xl:flex-row">
         <div className="relative space-y-[18px]">
           <div className="max-w-[680px] pb-4 text-xl xl:pb-10 xl:text-2xl">
@@ -508,14 +523,16 @@ export default function Section1() {
     </TabsContent>
   );
 
+  const AGRICULTURE_ROWS = [1760, 1980];
+  console.log([180, 560, ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : [])])
   return (
-    <section>
+    <section className="relative">
       <div className="relative bg-blue-950 text-white">
         <Lines
-          verticalClassName="left-8 w-[calc(100vh-16px)]"
+          verticalClassName="left-8 xl:left-24 w-[calc(100vh-16px)] z-10 w-full"
           sectionName="project-1"
-          columnsNumber={3}
-          rows={[180, 600]}
+          columns={[0, 450, 904]}
+          rows={[180, 560]}
           colorClass="bg-white/10"
         />
         <div className="container relative space-y-6 py-6 pb-[60px] pl-8 xl:space-y-[60px] xl:py-[100px] xl:pl-24">
@@ -579,9 +596,8 @@ export default function Section1() {
         <Lines
           verticalClassName="left-8 w-[calc(100vh-16px)]"
           sectionName="project-1"
-          columnsNumber={3}
-          rows={[180, 600]}
-          colorClass="bg-white/10"
+          rows={[510, 570, ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : [])]}
+          colorClass="bg-blue-900/10"
         />
         <div className="container relative space-y-6 py-6 pb-[60px] pl-8 xl:space-y-[80px] xl:py-[100px] xl:pl-24">
           <div className="max-w-[760px] space-y-4 text-sm xl:text-base">
@@ -596,7 +612,7 @@ export default function Section1() {
           <h3 className="max-w-[572px] text-xl xl:text-[52px] xl:leading-[61px]">
             Sectorial applications in GLORIA
           </h3>
-          <Tabs defaultValue="agriculture">
+          <Tabs defaultValue="agriculture" value={selectedTab} onValueChange={setSelectedTab}>
             <TabsList className="h-fit flex-col xl:flex-row">
               <TabsTrigger value="agriculture" variant="about">Agriculture</TabsTrigger>
               <TabsTrigger value="energy" variant="about">Energy</TabsTrigger>

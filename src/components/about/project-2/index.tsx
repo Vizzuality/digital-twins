@@ -52,7 +52,7 @@ export default function Section1() {
               </a>
             </div>
           </div>
-          <div className="relative h-full">
+          <div className="relative h-full pr-2.5">
             <Image
               src="/images/about-destination-earth.png"
               alt="Destination Earth"
