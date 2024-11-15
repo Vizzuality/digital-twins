@@ -1,13 +1,17 @@
 "use client";
 import { useState } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
+
+import { cn } from "@/lib/utils";
+
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import VideoPlayer from "@/components/video-player";
+
+import { TAB_DATA } from "./data";
 import TabContentItem from "./tab-content-item";
 import TabTriggerItem from "./tab-trigger-item";
-import { TAB_DATA } from "./data";
-import { cn } from "@/lib/utils";
-import VideoPlayer from "@/components/video-player";
 
 const SharedImpactTabs = () => {
   const [selectedValue, setSelectedValue] = useState(TAB_DATA[0].value);
