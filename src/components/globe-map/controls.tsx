@@ -159,8 +159,8 @@ export const Controls = ({
           setEnabled(true);
         });
     }
-  }),
-    [isInView];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView]);
 
   return (
     <CameraControls

@@ -1,11 +1,16 @@
-import { useRef, useEffect, useState, ReactElement } from "react";
-import { cn } from "@/lib/utils";
-import { useContainerWidthWithResize, useIsMobile } from "@/lib/hooks";
-import { Resizable } from "re-resizable";
+import { useRef, useState } from "react";
+
 import Image from "next/image";
+
+import { Resizable } from "re-resizable";
+
+import { useContainerWidthWithResize, useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/button";
-import CaretRight from "@/svgs/caret-right.svg";
 import VideoPlayer from "@/components/video-player";
+
+import CaretRight from "@/svgs/caret-right.svg";
 
 const ImageSliderWithText = ({
   text1,

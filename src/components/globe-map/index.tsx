@@ -1,12 +1,14 @@
 "use client";
-import { useState, useRef, useEffect, CSSProperties, useCallback, use } from "react";
+import { useState, useRef, useEffect, CSSProperties, useCallback } from "react";
+
 import { Canvas } from "@react-three/fiber";
+import { useGesture } from "@use-gesture/react";
 import { Group } from "three";
+import { useErrorBoundary } from "use-error-boundary";
+
 import { Controls } from "./controls";
 import { markers } from "./data";
 import GlobeGroup from "./globe-group";
-import { useGesture } from "@use-gesture/react";
-import { useErrorBoundary } from "use-error-boundary";
 
 export default function GlobeMap({
   videoMaterial,

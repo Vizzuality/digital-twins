@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion, MotionProps } from "framer-motion";
@@ -55,7 +56,7 @@ Button.displayName = "Button";
 type MotionButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps & MotionProps;
 
 const MotionButton = React.forwardRef<HTMLButtonElement, MotionButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, ...props }, ref) => {
     return (
       <motion.button
         className={cn(buttonVariants({ variant, size, className }))}

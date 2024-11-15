@@ -5,11 +5,11 @@ import ArrowRight from "@/svgs/arrow-right.svg";
 const Arrows = ({
   changeTextIndex,
   textIndex,
-  isMaxIndex,
+  isMaxIndex = false,
 }: {
   changeTextIndex: (index: number) => void;
   textIndex: number;
-  isMaxIndex: boolean;
+  isMaxIndex?: boolean;
 }) => (
   <div className="mt-1 flex items-start gap-0.5">
     <button

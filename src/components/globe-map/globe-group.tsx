@@ -1,9 +1,9 @@
-import { useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Group } from "three";
+
+import type { markers as MarkerType } from "./data";
 import { Globe } from "./globe";
 import Marker from "./marker";
-import { useFrame } from "@react-three/fiber";
-import type { markers as MarkerType } from "./data";
-import { Group } from "three";
 
 const GlobeGroup = ({
   hasMarkers,
@@ -38,7 +38,6 @@ const GlobeGroup = ({
           <Marker
             key={`globe-marker-${index}`}
             index={markers.indexOf(marker)}
-            id={marker.id}
             isSelected={selectedMarker === markers.indexOf(marker)}
             setSelectedMarker={setSelectedMarker}
             lat={marker.lat}

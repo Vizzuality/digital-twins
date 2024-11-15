@@ -1,13 +1,15 @@
-import { Group, Vector3 } from "three";
 import { useState, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+
 import { Html } from "@react-three/drei";
-import { convertLatLonToVec3 } from "@/lib/globe-utils";
+import { useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
+import { Group, Vector3 } from "three";
+
+import { convertLatLonToVec3 } from "@/lib/globe-utils";
+
 import Popup from "./popup";
 
 function Marker({
-  id,
   index,
   lat,
   lng,
@@ -17,7 +19,6 @@ function Marker({
   isSelected,
   ...props
 }: {
-  id: string;
   index: number;
   lat: number;
   lng: number;
