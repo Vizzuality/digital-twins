@@ -1,4 +1,5 @@
 import { useEffect, useRef, SyntheticEvent } from "react";
+
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
@@ -67,9 +68,17 @@ export const VideoPlayer = ({
       });
 
       player.on("timeupdate", (e: SyntheticEvent<HTMLVideoElement>) => {
-        onTimeUpdate && onTimeUpdate(e);
+        if (onTimeUpdate) {
+          onTimeUpdate(e);
+        }
       });
+
+      // Autoplay
       player.play();
+      if (videoTagElement) {
+        videoTagElement[0].setAttribute("autoplay", "true");
+        videoTagElement[0].setAttribute("playsinline", "true");
+      }
     }
 
     return () => {
