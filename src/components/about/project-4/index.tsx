@@ -5,8 +5,6 @@ import Image from "next/image";
 
 import ExternalLink from "@/svgs/icon-external-link.svg";
 
-import EerieLogo from "@/svgs/eerie-logo.svg";
-
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 export default function Section1() {
   return (
@@ -30,7 +28,7 @@ export default function Section1() {
             <Image
               src="/images/about-eerie-logo.png"
               alt="EERIE"
-              className="absolute bottom-[64px] right-6 h-[43px] w-[87px]"
+              className="absolute bottom-[66px] right-6 h-[43px] w-[87px] xl:bottom-[150px]"
               width={87}
               height={43}
             />
