@@ -1,3 +1,4 @@
+import { useInView } from "framer-motion";
 import { useEffect, useRef, SyntheticEvent } from "react";
 
 import videojs from "video.js";
@@ -18,17 +19,22 @@ export const VideoPlayer = ({
 }) => {
   const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<typeof videojs.players | null>(null);
+  const isInView = useInView(videoRef, {
+    margin: "200% 0px 50% 0px",
+    once: true
+  });
+
   useEffect(() => {
-    if (videoRef.current && !playerRef.current) {
+    if (videoRef.current && !playerRef.current && isInView) {
       const videoElement = document.createElement("video-js");
 
       videoRef.current.appendChild(videoElement);
-
       const player = (playerRef.current = videojs(videoElement, {
-        autoplay: true,
+        autoplay: 'muted',
         responsive: true,
-        playsInline: true,
+        playsinline: true,
         fluid,
+        preload: 'metadata',
         muted: true,
         loop: true,
         html5: {
@@ -72,13 +78,6 @@ export const VideoPlayer = ({
           onTimeUpdate(e);
         }
       });
-
-      // Autoplay
-      player.play();
-      if (videoTagElement) {
-        videoTagElement[0].setAttribute("autoplay", "true");
-        videoTagElement[0].setAttribute("playsinline", "true");
-      }
     }
 
     return () => {
@@ -87,7 +86,7 @@ export const VideoPlayer = ({
         playerRef.current = null;
       }
     };
-  }, [src]);
+  }, [src, isInView]);
 
   return <div data-vjs-player ref={videoRef} className={className} />;
 };
