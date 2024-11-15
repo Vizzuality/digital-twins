@@ -250,7 +250,7 @@ export default function Section1() {
             )}
           </AnimatePresence>
         </div>
-        <div className="flex h-fit min-w-[376px] max-w-[376px] flex-1 items-end gap-4">
+        <div className="flex h-fit xl:min-w-[376px] max-w-[376px] flex-1 items-end gap-4">
           <Image
             width={201}
             height={44}
@@ -597,10 +597,10 @@ export default function Section1() {
             Sectorial applications in GLORIA
           </h3>
           <Tabs defaultValue="agriculture">
-            <TabsList>
-              <TabsTrigger value="agriculture">Agriculture</TabsTrigger>
-              <TabsTrigger value="energy">Energy</TabsTrigger>
-              <TabsTrigger value="insurance">Insurance</TabsTrigger>
+            <TabsList className="h-fit flex-col xl:flex-row">
+              <TabsTrigger value="agriculture" variant="about">Agriculture</TabsTrigger>
+              <TabsTrigger value="energy" variant="about">Energy</TabsTrigger>
+              <TabsTrigger value="insurance" variant="about">Insurance</TabsTrigger>
             </TabsList>
             {agricultureContent}
             {energyContent}
