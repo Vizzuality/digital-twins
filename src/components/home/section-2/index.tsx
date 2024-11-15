@@ -1,22 +1,28 @@
 "use client";
 
 import { useRef, useEffect, useState, forwardRef } from "react";
+
 import dynamic from "next/dynamic";
+
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
-import GlobeMap from "@/components/globe-map";
-import { Resizable } from "re-resizable";
-import { Button } from "@/components/button";
-import CaretRight from "@/svgs/caret-right.svg";
-import { cn } from "@/lib/utils";
-import { useScroll, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
-import { useWindowWidth } from "@/lib/hooks";
-import { scrollToSection } from "@/lib/utils";
-import { useIsMobile } from "@/lib/hooks";
-import InfoPopover from "../../info-popover";
-import ArrowRight from "@/svgs/arrow-right.svg";
 import { useGesture } from "@use-gesture/react";
+import { useScroll, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
+import { Resizable } from "re-resizable";
 import { useRecoilState } from "recoil";
+
+import { useWindowWidth } from "@/lib/hooks";
+import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+
 import { globePhaseAtom } from "@/store";
+
+import { Button } from "@/components/button";
+import GlobeMap from "@/components/globe-map";
+
+import ArrowRight from "@/svgs/arrow-right.svg";
+import CaretRight from "@/svgs/caret-right.svg";
+
+import InfoPopover from "../../info-popover";
 
 const ResizeButton = () => (
   <>
@@ -34,7 +40,7 @@ const ResizeButton = () => (
   </>
 );
 
-const SECTION_STARTS = [0.1, 0.2, 0.6];
+const SECTION_STARTS = [0.1, 0.3, 0.6];
 
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
@@ -43,7 +49,6 @@ export default function Section2() {
   });
   const isMobile = useIsMobile();
 
-  const [initial, setInitial] = useState(true);
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
   let screenWidth = useWindowWidth();
   if (!screenWidth) {
@@ -74,20 +79,10 @@ export default function Section2() {
   }, [isInView]);
 
   useEffect(() => {
-    if (globePhase && isInView) {
-      if (initial) {
-        setInitial(false);
-        scrollToSection(`section-2-scroll-parent`);
-      } else {
-        scrollToSection(`globe-phase-${globePhase + 1}`);
-      }
-    }
-  }, [globePhase, isInView]);
-
-  useEffect(() => {
     if (screenWidth || resizableWidth === 0) {
       setResizableWidth(screenWidth / 2);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screenWidth]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -118,7 +113,14 @@ export default function Section2() {
     },
   });
 
-  const Phase2Content = forwardRef<HTMLDivElement, any>((props, ref) => {
+  type Phase2ContentProps = {
+    isMobile: boolean;
+    bind: ReturnType<typeof useGesture>;
+    setMobileGlobeTextIndex: (index: number) => void;
+    mobileGlobeTextIndex: number;
+  };
+
+  const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref) => {
     const { isMobile, bind, setMobileGlobeTextIndex, mobileGlobeTextIndex } = props;
 
     return (
@@ -214,6 +216,7 @@ export default function Section2() {
     );
   });
 
+  Phase2Content.displayName = "Phase2Content";
   return (
     <section className="relative bg-green-800" id="section-2">
       <div className="pointer-events-none relative">
@@ -225,7 +228,7 @@ export default function Section2() {
           colorClass="bg-blue-900/10"
         />
       </div>
-      <div className="relative h-[300vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
+      <div className="relative h-[500vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
           <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
             {/* High globe */}
@@ -323,9 +326,6 @@ export default function Section2() {
             )}
           </AnimatePresence>
         </div>
-        {/* Empty divs for the snap scroll */}
-        <div className="h-[100vh] snap-center" id="globe-phase-2"></div>
-        <div className="h-[100vh] snap-center" id="globe-phase-3"></div>
       </div>
     </section>
   );

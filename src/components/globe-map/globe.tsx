@@ -1,7 +1,8 @@
-import { useTexture, useVideoTexture } from "@react-three/drei";
 import { Suspense } from "react";
-import { ShaderMaterial, DoubleSide, NearestFilter } from "three";
 import { useRef, useMemo } from "react";
+
+import { useTexture, useVideoTexture } from "@react-three/drei";
+import { ShaderMaterial, DoubleSide, NearestFilter } from "three";
 
 function VideoMaterial({ url }: { url: string }) {
   const texture = useVideoTexture(url, {
