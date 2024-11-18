@@ -17,7 +17,7 @@ export default function Section1() {
           colorClass="bg-blue-900/10"
         />
         <div className="container flex flex-col-reverse gap-4 max-xl:pb-[60px] xl:flex-row xl:gap-[140px]">
-          <div className="relative xl:pt-[100px] xl:ml-[66px]">
+          <div className="relative xl:ml-[66px] xl:pt-[100px]">
             <Image
               src="/images/about-eerie.png"
               alt="EERIE"
@@ -28,7 +28,7 @@ export default function Section1() {
             <Image
               src="/images/about-eerie-logo.png"
               alt="EERIE"
-              className="absolute bottom-[66px] right-6 h-[43px] w-[87px] xl:bottom-[150px]"
+              className="absolute bottom-[66px] left-6 h-[43px] w-[87px] xl:bottom-[150px]"
               width={87}
               height={43}
             />

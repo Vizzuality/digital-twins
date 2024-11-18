@@ -18,7 +18,7 @@ export default function Section1() {
           columns={[66]}
           colorClass="bg-white/10"
         />
-        <div className="container flex flex-col gap-4 max-xl:pb-[60px] xl:flex-row xl:gap-[140px]">
+        <div className="container flex flex-col gap-4 max-xl:pb-[60px] xl:flex-row xl:gap-[105px]">
           <div className="relative space-y-6 py-6 pb-6 xl:space-y-[60px] xl:py-[100px] xl:pl-[65px]">
             <h2 className="flex w-full flex-col xl:gap-4">
               <div className="uppercase xl:text-lg">Project 02</div>
@@ -53,15 +53,18 @@ export default function Section1() {
             </div>
           </div>
           <div className="relative h-full pr-2.5">
-            <Image
-              src="/images/about-destination-earth.png"
-              alt="Destination Earth"
-              className="object-cover max-xl:max-h-[141px]"
-              width={500}
-              height={795}
-            />
-            <DestinationEarthLogo className="h-[25px] w-[194px] max-xl:mt-4 xl:absolute xl:bottom-[66px] xl:right-6" />
+            <div className="relative h-full w-full xl:absolute xl:w-screen">
+              <Image
+                src="/images/about-destination-earth.png"
+                alt="Destination Earth"
+                className="h-[885px] w-full object-cover object-right max-xl:max-h-[141px] xl:w-[47vw]"
+                width={2760}
+                height={1751}
+              />
+              <DestinationEarthLogo className="absolute bottom-4 right-6 h-[25px] w-[194px] xl:hidden" />
+            </div>
           </div>
+          <DestinationEarthLogo className="absolute bottom-[100px] hidden h-[25px] w-[194px] xl:right-6 xl:block" />
         </div>
       </div>
     </section>

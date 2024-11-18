@@ -56,11 +56,11 @@ export default function Section1() {
           <Image
             src="/images/about-nextgems.png"
             alt="nextGEMS"
-            className="max-h-[141px] w-full object-cover xl:max-h-[447px]"
+            className="max-h-[141px] w-full object-cover xl:max-h-[548px]"
             width={1440}
-            height={773}
+            height={548}
           />
-          <NextGemsLogo className="absolute bottom-[64px] right-6 h-[44px] w-[96px]" />
+          <NextGemsLogo className="absolute bottom-6 left-6 h-[44px] w-[96px] xl:left-auto xl:right-6" />
         </div>
       </div>
     </section>

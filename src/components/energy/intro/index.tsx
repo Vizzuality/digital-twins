@@ -46,7 +46,13 @@ export default function Intro() {
             </h1>
           </div>
           <div className="flex items-center justify-center">
-            <Image alt="" src="/images/energy-intro.png" className="xl:w-[702px] xl:h-[247px] object-cover" width={494} height={297} />
+            <Image
+              alt=""
+              src="/images/energy-intro.png"
+              className="object-cover xl:h-[247px] xl:w-[702px]"
+              width={494}
+              height={297}
+            />
           </div>
         </div>
       </div>

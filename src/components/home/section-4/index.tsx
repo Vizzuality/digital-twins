@@ -69,7 +69,7 @@ export default function Section4() {
 
   return (
     <section className="relative scroll-mt-8 bg-blue-950 text-white" id="section-4">
-      <div className="relative z-10 flex h-[255px] items-center justify-center overflow-hidden max-xl:mb-6       xl:h-[548px]">
+      <div className="relative z-10 flex h-[255px] items-center justify-center overflow-hidden max-xl:mb-6 xl:h-[548px]">
         <VideoPlayer
           src="/videos/stream-videos/section-4/index.m3u8"
           className="absolute z-0 w-screen object-fill"

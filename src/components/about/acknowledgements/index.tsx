@@ -37,19 +37,35 @@ export default function Section1() {
               width={349}
               height={76}
             />
-            <Image
-              src="/images/about-ack-2.png"
-              alt="acknowledgements"
-              className="h-[48px] w-[330px]"
-              width={330}
-              height={48}
-            />
+            <div className="flex max-w-[349px] items-start gap-2 pt-1">
+              <Image
+                src="/images/about-logo-eu.png"
+                alt="acknowledgements"
+                className="w-[44%] xl:w-[175px]"
+                width={1280}
+                height={285}
+              />
+              <Image
+                src="/images/about-logo-eerie.png"
+                alt="acknowledgements"
+                className="w-[25%] xl:w-[125px]"
+                width={842}
+                height={418}
+              />
+              <Image
+                src="/images/about-logo-next-gems.png"
+                alt="acknowledgements"
+                className="w-[25%] xl:w-[125px]"
+                width={500}
+                height={232}
+              />
+            </div>
             <Image
               src="/images/about-ack-3.png"
               alt="acknowledgements"
-              className="h-[28px] w-[402px]"
-              width={402}
-              height={28}
+              className="w-[358px]"
+              width={358}
+              height={80}
             />
           </div>
         </div>

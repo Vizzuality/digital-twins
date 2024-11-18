@@ -21,7 +21,7 @@ export const VideoPlayer = ({
   const playerRef = useRef<typeof videojs.players | null>(null);
   const isInView = useInView(videoRef, {
     margin: "200% 0px 50% 0px",
-    once: true
+    once: true,
   });
 
   useEffect(() => {
@@ -30,11 +30,11 @@ export const VideoPlayer = ({
 
       videoRef.current.appendChild(videoElement);
       const player = (playerRef.current = videojs(videoElement, {
-        autoplay: 'muted',
+        autoplay: "muted",
         responsive: true,
         playsinline: true,
         fluid,
-        preload: 'metadata',
+        preload: "metadata",
         muted: true,
         loop: true,
         html5: {

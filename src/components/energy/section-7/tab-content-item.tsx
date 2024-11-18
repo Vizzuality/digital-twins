@@ -44,13 +44,13 @@ const TabContentItem = ({ index = 0 }: { index: number }) => {
       {...bind()}
       className="relative flex h-full w-full flex-col gap-6 p-6 text-xl text-white xl:flex-row"
     >
-      <div className="flex h-full min-w-[225px] flex-1 items-start justify-between p-3 xl:items-center">
+      <div className="flex h-full min-w-[225px] flex-1 items-start justify-between xl:items-center">
         <Image
-          className="h-[256px] w-[225px]"
+          className="h-[392px] w-[249px]"
           alt=""
           src={content.image}
-          height={256}
-          width={225}
+          width={635}
+          height={793}
         />
         {isMobile && (
           <Arrows

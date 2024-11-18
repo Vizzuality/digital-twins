@@ -10,7 +10,8 @@
     "test": "pnpm exec playwright test",
     "test:watch": "pnpm exec playwright test --watch",
     "test:codegen": "exec playwright codegen",
-    "test:report": "pnpm exec playwright show-report"
+    "test:report": "pnpm exec playwright show-report",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.2",

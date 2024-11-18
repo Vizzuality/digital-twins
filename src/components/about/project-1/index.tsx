@@ -21,7 +21,12 @@ export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
   const [openedKnowMoreInsurance, setOpenedKnowMoreInsurance] = useState(false);
   const isMobile = useIsMobile();
-  const gridColumns = isMobile ? "flex flex-col gap-4" : "grid grid-cols-[274px_1fr_1fr_1px]";
+  const gridColumnsAgriculture = isMobile
+    ? "flex flex-col gap-4"
+    : "grid grid-cols-[1fr_374px_502px_1px]";
+  const gridColumnsEnergy = isMobile
+    ? "flex flex-col gap-4"
+    : "grid grid-cols-[1fr_438px_438px_1px]";
   const [selectedTab, setSelectedTab] = useState("agriculture");
 
   const agricultureContent = (
@@ -30,10 +35,10 @@ export default function Section1() {
       className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
     >
       <Lines
-        verticalClassName="conatiner left-8 xl:left-24"
+        verticalClassName="left-8 xl:left-24"
         sectionName="project-1-agriculture"
         rows={[]}
-        columns={[274, 772, 1262]}
+        columns={[395, 765, 1270]}
         colorClass="bg-blue-900/10"
       />
       <div className="flex flex-col justify-between gap-8 xl:flex-row">
@@ -112,21 +117,23 @@ export default function Section1() {
               className="h-[213px]"
               alt=""
               src="/images/about-gloria-agriculture-1.png"
-              height={426}
-              width={432}
+              height={374}
+              width={360}
               style={{ objectFit: "cover" }}
             />
             <Image
               className="h-[213px]"
               alt=""
               src="/images/about-gloria-agriculture-2.png"
-              height={426}
-              width={432}
+              height={502}
+              width={360}
               style={{ objectFit: "cover" }}
             />
           </div>
         ) : (
-          <div className={cn("mb-10 flex h-[432px] w-full overflow-hidden", gridColumns)}>
+          <div
+            className={cn("mb-10 flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}
+          >
             <AnimatePresence>
               {Array(2)
                 .fill(null)
@@ -153,12 +160,12 @@ export default function Section1() {
           </div>
         )}
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
-          <div className={cn(gridColumns)}>
+          <div className={cn(gridColumnsAgriculture)}>
             <h4 className="col-span-1 mb-4 max-w-[274px] text-lg xl:mb-0 xl:text-xl">
               Climate and geographic indicators for wine production in Spain
             </h4>
           </div>
-          <div className={cn(gridColumns, "mb-2 xl:mb-[30px]")}>
+          <div className={cn(gridColumnsAgriculture, "mb-2 xl:mb-[30px]")}>
             <div className="col-start-2">
               <div className="max-w-[338px] text-xs leading-tight xl:text-sm">
                 <a
@@ -218,10 +225,10 @@ export default function Section1() {
       className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
     >
       <Lines
-        verticalClassName="conatiner left-8 xl:left-24"
+        verticalClassName="left-8 xl:left-24"
         sectionName="project-1-energy"
         rows={[]}
-        columns={[274, 772, 1262]}
+        columns={[394, 830, 1270]}
         colorClass="bg-blue-900/10"
       />
       <div className="flex flex-col justify-between gap-8 xl:flex-row">
@@ -265,7 +272,7 @@ export default function Section1() {
             )}
           </AnimatePresence>
         </div>
-        <div className="flex h-fit xl:min-w-[376px] max-w-[376px] flex-1 items-end gap-4">
+        <div className="flex h-fit max-w-[376px] flex-1 items-end gap-4 xl:min-w-[376px]">
           <Image
             width={201}
             height={44}
@@ -298,12 +305,12 @@ export default function Section1() {
           converted to capacity factor, which can be adjusted for different types of turbines.
         </div>
       </div>
-      <div className="flex flex-col max-xl:pt-6 xl:flex-row xl:gap-[140px]">
-        <h2 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
+      <div className="flex flex-col justify-between max-xl:pt-6 xl:flex-row xl:gap-[140px]">
+        <h2 className="max-w-[530px] pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
           Capacity Factors and Energy System Resilience
         </h2>
-        <div className="inline-flex flex-col gap-8 xl:max-w-[500px]">
-          <div className="text-xl xl:text-3xl">
+        <div className="inline-flex flex-col gap-8 xl:max-w-[438px]">
+          <div className="text-xl xl:text-2xl">
             Capacity factors are a measure of how much energy can be produced by a turbine over a
             specific period of time, as a fraction of its rated power.
           </div>
@@ -325,8 +332,8 @@ export default function Section1() {
               className="h-[213px]"
               alt=""
               src="/images/about-gloria-energy-1.png"
-              height={426}
-              width={432}
+              height={438}
+              width={313}
               style={{ objectFit: "cover" }}
             />
             <Image
@@ -339,7 +346,7 @@ export default function Section1() {
             />
           </div>
         ) : (
-          <div className={cn("mb-10 flex h-[432px] w-full overflow-hidden", gridColumns)}>
+          <div className={cn("mb-10 flex h-[313px] w-full overflow-hidden", gridColumnsEnergy)}>
             <AnimatePresence>
               {Array(2)
                 .fill(null)
@@ -366,12 +373,12 @@ export default function Section1() {
           </div>
         )}
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
-          <div className={cn(gridColumns)}>
+          <div className={cn(gridColumnsEnergy)}>
             <h4 className="col-span-1 mb-4 max-w-[274px] text-lg xl:mb-0 xl:text-xl">
               Projected wind energy capacity factors for Europe and the Iberian Peninsula
             </h4>
           </div>
-          <div className={cn(gridColumns, "mb-2 xl:mb-[30px]")}>
+          <div className={cn(gridColumnsEnergy, "mb-2 xl:mb-[30px]")}>
             <div className="col-start-2">
               <div className="max-w-[382px] text-xs xl:text-sm">
                 Capacity factor (CF) for a class I/II Siemens-Gamesa G80 wind turbine at 1-hourly
@@ -523,8 +530,8 @@ export default function Section1() {
     </TabsContent>
   );
 
-  const AGRICULTURE_ROWS = [1760, 1980];
-  console.log([180, 560, ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : [])])
+  const AGRICULTURE_ROWS = [openedKnowMore ? 1978 : 1690, openedKnowMore ? 2280 : 1910];
+  const INSURANCE_ROWS = [openedKnowMore ? 1100 : 950, openedKnowMore ? 1800 : 1650];
   return (
     <section className="relative">
       <div className="relative bg-blue-950 text-white">
@@ -596,7 +603,12 @@ export default function Section1() {
         <Lines
           verticalClassName="left-8 w-[calc(100vh-16px)]"
           sectionName="project-1"
-          rows={[510, 570, ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : [])]}
+          rows={[
+            510,
+            570,
+            ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : []),
+            ...(selectedTab === "insurance" ? INSURANCE_ROWS : []),
+          ]}
           colorClass="bg-blue-900/10"
         />
         <div className="container relative space-y-6 py-6 pb-[60px] pl-8 xl:space-y-[80px] xl:py-[100px] xl:pl-24">
@@ -614,9 +626,15 @@ export default function Section1() {
           </h3>
           <Tabs defaultValue="agriculture" value={selectedTab} onValueChange={setSelectedTab}>
             <TabsList className="h-fit flex-col xl:flex-row">
-              <TabsTrigger value="agriculture" variant="about">Agriculture</TabsTrigger>
-              <TabsTrigger value="energy" variant="about">Energy</TabsTrigger>
-              <TabsTrigger value="insurance" variant="about">Insurance</TabsTrigger>
+              <TabsTrigger value="agriculture" variant="about">
+                Agriculture
+              </TabsTrigger>
+              <TabsTrigger value="energy" variant="about">
+                Energy
+              </TabsTrigger>
+              <TabsTrigger value="insurance" variant="about">
+                Insurance
+              </TabsTrigger>
             </TabsList>
             {agricultureContent}
             {energyContent}
