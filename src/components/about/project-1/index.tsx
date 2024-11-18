@@ -194,24 +194,13 @@ export default function Section1() {
           Digital Twin Technology for Climate Change Adaptation
         </h4>
         <div className="inline-flex flex-col gap-8 xl:max-w-[500px]">
-          <div className="text-xl xl:text-3xl">
+          <div className="text-xl xl:text-2xl">
             The digital twin for climate change adaptation allows the integration of climate models
             and impact models.{" "}
           </div>
           <div className="space-y-4 xl:text-lg">
             <p>
-              This not only offers the Spanish wine sector the opportunity to have quick access to
-              climate data on the past, present and future, but also the possibility of defining
-              their own climate-related indicators.
-            </p>
-            <p>
-              Such indicators include the average maximum temperature in summer, spring frost, or
-              SPEI, which can be calculated as the climate model runs. This allows wineries to have
-              regularly updated information on the risks of spring frost, heatwaves, and droughts
-              that may affect their vineyards in the long-term future. Additionally, the digital
-              twin offers a unified climate information source for those producers that own farms
-              not only in the Spanish territory but also in other world regions suitable for grape
-              and wine production, like California or South America to name a few.
+              This not only offers the Spanish wine sector the opportunity to have quick access to climate data on the past, present and future, but also the possibility of defining their own climate-related indicators, such as the average maximum temperature in summer, spring frost or SPEI, that can be calculated as the climate model runs. This allows wineries to have regularly updated information on the risks of spring frost, heatwaves and droughts that may affect their vineyards in the long-term future. Additionally, the digital twin offers a unified climate information source for those producers that own farms not only in the Spanish territory but also in other world regions suitable for grape and wine production, like California or South America to name a few.
             </p>
           </div>
         </div>

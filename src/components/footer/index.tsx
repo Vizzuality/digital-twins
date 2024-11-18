@@ -8,7 +8,7 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
   return (
     <footer className={cn("flex w-full flex-col text-white", backgroundClass)}>
       <div className="flex justify-center">
-        <div className="flex w-1/2 flex-col gap-20 px-[20px] py-10 xl:px-[100px] xl:py-20">
+        <div className="flex w-1/2 flex-col gap-20 px-[20px] py-10 xl:px-[100px] max-xl:container sm:py-10 xl:py-20">
           <div className="max-w-[258px] text-sm font-medium uppercase tracking-widest">
             Digital Twins: <div>Innovative Research for a Sustainable Future</div>
           </div>

@@ -21,7 +21,7 @@ export default function Section1() {
           <div className="relative space-y-6 py-6 pb-6 xl:space-y-[60px] xl:py-[100px] xl:pl-[65px]">
             <h2 className="flex w-full flex-col xl:gap-4">
               <div className="uppercase xl:text-lg">Project 03</div>
-              <div className="text-2xl xl:text-4xl">next GEMS</div>
+              <div className="text-2xl xl:text-4xl">nextGEMS</div>
             </h2>
             <div className="max-w-[760px] space-y-4 text-sm xl:text-base">
               <p>
@@ -47,7 +47,7 @@ export default function Section1() {
                 className="flex items-center gap-1 leading-relaxed underline hover:opacity-70"
               >
                 <ExternalLink className="text-green-700" />
-                Visit NextGEMS
+                Visit nextGEMS
               </a>
             </div>
           </div>

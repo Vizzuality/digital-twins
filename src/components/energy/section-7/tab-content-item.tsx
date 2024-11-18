@@ -44,7 +44,7 @@ const TabContentItem = ({ index = 0 }: { index: number }) => {
       {...bind()}
       className="relative flex h-full w-full flex-col gap-6 p-6 text-xl text-white xl:flex-row"
     >
-      <div className="flex h-full min-w-[225px] flex-1 items-start justify-between xl:items-center">
+      <div className="flex h-full min-w-[225px] flex-1 items-start sm:max-xl:w-full justify-between xl:items-center">
         <Image
           className="h-[392px] w-[249px]"
           alt=""

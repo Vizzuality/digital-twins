@@ -1,13 +1,16 @@
 "use client";
 
-import { MotionButton, Button } from "@/components/button";
-import VerticalCarousel from "@/components/vertical-carousel";
-import Marquee from "@/components/animations/marquee";
-import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import Link from "next/link";
-import ArrowRightIcon from "@/svgs/arrow-right.svg";
-import HeroVideo from "./hero-video";
+
+import HoverRepeatAnimation from "@/components/animations/hover-repeat";
+import Marquee from "@/components/animations/marquee";
+import { MotionButton, Button } from "@/components/button";
 import Lines from "@/components/lines";
+import VerticalCarousel from "@/components/vertical-carousel";
+
+import ArrowRightIcon from "@/svgs/arrow-right.svg";
+
+import HeroVideo from "./hero-video";
 
 export default function Intro() {
   const handleAnchor = (anchor: string) => {
@@ -27,12 +30,12 @@ export default function Intro() {
       />
       <div className="container relative space-y-[30px] pl-8 pt-[110px] xl:pl-24 xl:pt-[198px]">
         <h1 className="xl:max-w-[1012px]">
-          <div className="text-2xl font-semibold text-light-green xl:text-5xl">Digital Twins: </div>
-          <div className="text-2xl font-semibold text-white xl:text-5xl">
+          <div className="text-2xl font-semibold text-light-green sm:text-3xl xl:text-5xl">Digital Twins: </div>
+          <div className="text-2xl font-semibold text-white sm:text-3xl xl:text-5xl">
             Innovative Research for a Sustainable Future
           </div>
         </h1>
-        <VerticalCarousel className="text-sm text-white xl:text-2xl">
+        <VerticalCarousel className="text-sm text-white sm:text-lg xl:text-2xl">
           <div>Bridging data and discovery with state-of-the-art digital twin technology</div>
           <div>Advancing climate knowledge through digital twins</div>
           <div>Harnessing advanced simulations to adapt to and mitigate climate impacts</div>

@@ -40,7 +40,7 @@ const TabTriggerItem = ({
     </div>
     <div
       className={cn(
-        "flex w-[calc(100vw_-_140px)] flex-col items-start justify-start whitespace-normal p-[10px] text-left xl:max-w-[212px] xl:p-4 xl:pr-0",
+        "flex sm:w-[400px] sm:max-w-full xl:w-[calc(100vw_-_140px)] flex-col items-start justify-start whitespace-normal p-[10px] text-left xl:max-w-[212px] xl:p-4 xl:pr-0",
         {
           "bg-light-green text-blue-900": isSelected,
           "bg-white/5 text-white": !isSelected && isHovered,

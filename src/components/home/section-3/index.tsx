@@ -86,16 +86,16 @@ const CasesText = ({
       {isMobile
         ? descriptionText
         : hoveredIndex === index && (
-            <motion.div
-              className="flex flex-col gap-4"
-              key={`use-case-description-${index}`}
-              initial={{ opacity: isMobile ? 1 : 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              {descriptionText}
-            </motion.div>
-          )}
+          <motion.div
+            className="flex flex-col gap-4"
+            key={`use-case-description-${index}`}
+            initial={{ opacity: isMobile ? 1 : 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            {descriptionText}
+          </motion.div>
+        )}
     </div>
   );
 };

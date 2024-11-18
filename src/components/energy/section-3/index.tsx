@@ -14,12 +14,12 @@ export default function Section3() {
   const gridColumns = isMobile
     ? "flex flex-col"
     : {
-        "grid transition-all duration-500": true,
-        "grid-cols-[1.2fr_0.9fr_0.9fr]": hoveredIndex === 0,
-        "grid-cols-[0.9fr_1.2fr_0.9fr]": hoveredIndex === 1,
-        "grid-cols-[0.9fr_0.9fr_1.2fr]": hoveredIndex === 2,
-        "grid-cols-[1fr_1fr_1fr]": hoveredIndex === null,
-      };
+      "grid transition-all duration-500": true,
+      "grid-cols-[1.2fr_0.9fr_0.9fr]": hoveredIndex === 0,
+      "grid-cols-[0.9fr_1.2fr_0.9fr]": hoveredIndex === 1,
+      "grid-cols-[0.9fr_0.9fr_1.2fr]": hoveredIndex === 2,
+      "grid-cols-[1fr_1fr_1fr]": hoveredIndex === null,
+    };
   return (
     <section className="relative scroll-mt-8 bg-white pb-[60px] xl:pb-20" id="section-3">
       {/* Decorative div to continue previous section */}
@@ -36,7 +36,7 @@ export default function Section3() {
         {isMobile ? (
           <div className="w-full">
             <Image
-              className="h-[141px]"
+              className="h-[141px] w-full"
               alt=""
               src="/images/energy-section-2-1.png"
               height={141}
@@ -44,7 +44,7 @@ export default function Section3() {
               style={{ objectFit: "cover" }}
             />
             <Image
-              className="h-[141px]"
+              className="h-[141px] w-full"
               alt=""
               src="/images/energy-section-2-2.png"
               height={141}
@@ -52,7 +52,7 @@ export default function Section3() {
               style={{ objectFit: "cover" }}
             />
             <Image
-              className="h-[141px]"
+              className="h-[141px] w-full"
               alt=""
               src="/images/energy-section-2-3.png"
               height={141}

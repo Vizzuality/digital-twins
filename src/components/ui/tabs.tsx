@@ -14,7 +14,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex h-10 max-w-full items-center overflow-auto text-muted-foreground",
+      "inline-flex h-10 max-w-full xl:items-center overflow-auto text-muted-foreground",
       className,
     )}
     {...props}
@@ -42,7 +42,7 @@ const tabsTriggerVariants = cva(
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> &
-    VariantProps<typeof tabsTriggerVariants>
+  VariantProps<typeof tabsTriggerVariants>
 >(({ className, onClick, variant, ...props }, ref) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(event);

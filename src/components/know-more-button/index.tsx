@@ -18,7 +18,7 @@ const KnowMoreButton = ({
     onClick={onClick}
   >
     <div className="flex items-center justify-center gap-4">
-      <div className="text-base tracking-tight underline xl:text-lg">
+      <div className="text-base tracking-tight underline sm:text-lg">
         {opened ? "Show less" : "Know more"}
       </div>
       <ArrowDown
