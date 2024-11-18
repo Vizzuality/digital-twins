@@ -14,7 +14,7 @@ export default function Section1() {
           columns={[66]}
           colorClass="bg-white/10"
         />
-        <div className="container flex flex-col gap-6 py-6 xl:py-[100px]">
+        <div className="container flex flex-col gap-6 py-6 pl-8 xl:py-[100px] xl:pl-24">
           <h3 className="uppercase xl:text-lg">Acknowledgements</h3>
           <div className="grid gap-6 xl:grid-cols-3">
             <div className="">
@@ -37,25 +37,25 @@ export default function Section1() {
               width={349}
               height={76}
             />
-            <div className="flex max-w-[349px] items-start gap-2 pt-1">
+            <div className="flex max-w-[425px] items-start gap-2 pt-1">
               <Image
                 src="/images/about-logo-eu.png"
                 alt="acknowledgements"
-                className="w-[44%] xl:w-[175px]"
+                className="w-[44%]"
                 width={1280}
                 height={285}
               />
               <Image
                 src="/images/about-logo-eerie.png"
                 alt="acknowledgements"
-                className="w-[25%] xl:w-[125px]"
+                className="w-[25%]"
                 width={842}
                 height={418}
               />
               <Image
                 src="/images/about-logo-next-gems.png"
                 alt="acknowledgements"
-                className="w-[25%] xl:w-[125px]"
+                className="w-[25%]"
                 width={500}
                 height={232}
               />
