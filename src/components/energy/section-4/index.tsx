@@ -1,11 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
-import ScrollStep from "@/components/scroll-step";
+
 import Image from "next/image";
-import Chart from "@/svgs/chart.svg";
+
+import { AnimatePresence, motion, Variants } from "framer-motion";
+
+import { useIsMobile } from "@/lib/hooks";
+
+import ScrollStep from "@/components/scroll-step";
 import VideoPlayer from "@/components/video-player";
+
+import Chart from "@/svgs/chart.svg";
 
 export interface DebugOffsetProps {
   offset: number;
@@ -26,11 +32,11 @@ const transition = { duration: 0.5, ease: "linear" };
 export default function Section4() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState("step1");
-
+  const isMobile = useIsMobile();
   const variantsDescription: Record<string, Variants> = {
     "step-2": {
       initial: { top: "100%", opacity: 0 },
-      animate: { top: "30%", opacity: 1, transition },
+      animate: { top: isMobile ? "10%" : "30%", opacity: 1, transition },
       exit: { top: 0, opacity: 0 },
     },
     "step-3": {
@@ -57,12 +63,12 @@ export default function Section4() {
 
   const renderChart = (
     <div className="relative">
-      <Chart className="max-w-[100%] xl:max-h-[253px]" />
+      <Chart className="max-h-[200px] max-w-[100%] xl:max-h-[253px]" />
       <motion.svg
         width="492"
         height="253"
         viewBox="0 0 492 253"
-        className="absolute left-0 top-0 max-w-[100%] xl:max-h-[253px]"
+        className="absolute left-0 top-0 max-h-[200px] max-w-[100%] xl:max-h-[253px]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <motion.path
@@ -145,12 +151,12 @@ export default function Section4() {
                     key="section-4-description-3"
                   >
                     <motion.div
-                      className="h-fit w-full max-w-[80vw] bg-white/30 p-6 text-base backdrop-blur-lg xl:min-w-[498px] xl:max-w-[498px]"
+                      className="h-fit max-h-screen w-full max-w-[80vw] bg-white/30 p-6 text-base backdrop-blur-lg xl:min-w-[498px] xl:max-w-[498px]"
                       initial={{ opacity: 0, top: "200px" }}
                       animate={{ opacity: 1, top: 0, transition }}
                       exit={{ opacity: 0, top: "-200px" }}
                     >
-                      <div className="xl:pb-10">
+                      <div className="text-xs xl:pb-10 xl:text-base">
                         According to observations, it can be seen that during the first week of
                         August 2018, temperatures reached 40°C in the southwestern part of the
                         Iberian Peninsula due to a warm air intrusion that moved up from Africa. Two
@@ -161,7 +167,7 @@ export default function Section4() {
                         be mitigated by the use of air conditioning, but this caused a 10% rise in
                         Iberian energy consumption and blackouts in Lisbon suburbs.
                       </div>
-                      <div className="block">{renderChart}</div>
+                      <div className="block max-xl:max-h-[250px]">{renderChart}</div>
                       <div className="flex items-end justify-between gap-4">
                         <div className="max-w-[258px]">{legend}</div>
                         <div className="text-xs">Source: Destination Earth</div>
