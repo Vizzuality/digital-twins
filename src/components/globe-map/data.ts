@@ -42,9 +42,9 @@ export const popupContent = [
       "The diurnal temperature cycle over the Pyrenees in the Iberian Peninsula describes the significant temperature fluctuations between day and night. During the day, sunlight heats the region, while at night, temperatures drop rapidly due to clear skies and high altitude, creating a marked difference in daily and nightly temperatures.",
     video: "videos/stream-videos/tooltip-tas_10km_square/index.m3u8",
     legend: {
-      image: "/images/home-legend-3.svg",
-      low: "4º",
-      high: "46º",
+      image: "/images/home-legend-spectral.svg",
+      low: "20º",
+      high: "47º",
     },
   },
   {
