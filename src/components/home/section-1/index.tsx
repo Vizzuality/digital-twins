@@ -34,14 +34,12 @@ export default function Section1() {
       />
       <div className="container xl:px-[150px]">
         <div className="mb-6 max-w-[594px] space-y-5 border-b pb-6 text-green-700 xl:mb-0 xl:border-0 xl:pb-20">
-          <div className="text-sm font-medium uppercase xl:text-lg">
-            Understanding digital twins
-          </div>
-          <h3 className="text-xl xl:text-2xl">
+          <h2 className="text-sm font-medium uppercase xl:text-lg">Understanding digital twins</h2>
+          <div className="text-xl xl:text-2xl">
             A digital twin is a highly sophisticated virtual replica of a physical system, process,
             or object. It includes a tight integration between models, data and decisions with
             applications across multiple areas of science, technology, and society.
-          </h3>
+          </div>
           <KnowMoreButton
             onClick={() => setOpenedKnowMore(!openedKnowMore)}
             opened={openedKnowMore}
@@ -120,9 +118,9 @@ export default function Section1() {
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h4 className="col-span-1 mb-4 max-w-[350px] pr-10 text-lg xl:mb-0 xl:text-xl">
+              <h3 className="col-span-1 mb-4 max-w-[350px] pr-10 text-lg xl:mb-0 xl:text-xl">
                 How the digital twin for climate change adaptation helps research and society?
-              </h4>
+              </h3>
             </FadeIn>
           </div>
           <FadeIn delay={0.5}>

@@ -305,9 +305,9 @@ export default function Section2() {
                     className="pointer-events-none flex h-full w-full items-center justify-center text-center"
                   >
                     <div>
-                      <div className="text-base font-bold uppercase tracking-tight text-green-950 xl:text-lg xl:font-normal">
+                      <h2 className="text-base font-bold uppercase tracking-tight text-green-950 xl:text-lg xl:font-normal">
                         UNLOCKING CLIMATE POTENTIAL
-                      </div>
+                      </h2>
                       <div className="max-w-[90vw] text-2xl font-bold text-green-950 xl:max-w-[720px] xl:text-4xl xl:font-normal">
                         High-quality information <br />
                         from global to local scale

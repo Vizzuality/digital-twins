@@ -75,12 +75,12 @@ export default function Section4() {
           className="absolute z-0 w-screen object-fill"
         />
         <div className="xl relative z-10 px-2 text-center text-white xl:px-0">
-          <div className="text-center uppercase tracking-tight xl:text-lg">
+          <h2 className="text-center uppercase tracking-tight xl:text-lg">
             Unlocking Future Possibilities
-          </div>
-          <div className="max-w-[830px] text-center text-[36px] max-xl:leading-[42px] xl:text-4xl">
+          </h2>
+          <h3 className="max-w-[830px] text-center text-[36px] max-xl:leading-[42px] xl:text-4xl">
             Harnessing Digital Twins for on-demand simulations.
-          </div>
+          </h3>
         </div>
       </div>
       <Lines
@@ -133,7 +133,7 @@ export default function Section4() {
               )}
             </AnimatePresence>
           </div>
-          <div className="text-[36px] font-medium tracking-wide xl:text-4xl">What if ...</div>
+          <h3 className="text-[36px] font-medium tracking-wide xl:text-4xl">What if ...</h3>
           <Tabs defaultValue="scenario1" value={tabsValue} onValueChange={handleValueChange}>
             <TabsList>
               <TabsTrigger value="scenario1">Scenario 1</TabsTrigger>

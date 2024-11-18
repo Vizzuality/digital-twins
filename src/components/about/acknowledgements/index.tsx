@@ -15,7 +15,7 @@ export default function Section1() {
           colorClass="bg-white/10"
         />
         <div className="container flex flex-col gap-6 py-6 pl-8 xl:py-[100px] xl:pl-24">
-          <h3 className="uppercase xl:text-lg">Acknowledgements</h3>
+          <h2 className="uppercase xl:text-lg">Acknowledgements</h2>
           <div className="grid gap-6 xl:grid-cols-3">
             <div className="">
               Spanish Ministry of Science and Innovation/National Research

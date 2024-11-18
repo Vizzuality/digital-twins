@@ -246,10 +246,10 @@ export default function Section3() {
             </div>
           </div>
           <div className="max-w-[594px] space-y-3 pb-10 text-green-700 xl:space-y-5">
-            <div className="font-medium uppercase xl:text-lg">From data to impact</div>
-            <h2 className="pb-8 text-2xl font-medium xl:pb-20 xl:text-4xl">
+            <h2 className="font-medium uppercase xl:text-lg">From data to impact</h2>
+            <div className="pb-8 text-2xl font-medium xl:pb-20 xl:text-4xl">
               Integrating Climate and Impact Models
-            </h2>
+            </div>
             <h3 className="pb-4 text-xl xl:pb-10 xl:text-2xl">
               Digital twins offer a powerful capability: integrating the physical processes
               simulated in climate models with the modelling of aspects relevant for impact sectors.

@@ -112,13 +112,13 @@ export default function Section4() {
                   exit={{ opacity: 0, translateY: "-200px" }}
                   className="flex w-full flex-col"
                 >
-                  <h3 className="mx-auto text-base uppercase tracking-tight xl:text-lg">
+                  <h2 className="mx-auto text-base uppercase tracking-tight xl:text-lg">
                     Exploring energy futures
-                  </h3>
-                  <div className="mx-auto max-w-[80vw] text-[36px] xl:max-w-[720px] xl:text-4xl">
+                  </h2>
+                  <h3 className="mx-auto max-w-[80vw] text-[36px] xl:max-w-[720px] xl:text-4xl">
                     Inside the 2018 heatwave
                     <br /> on the Iberian Peninsula
-                  </div>
+                  </h3>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -63,10 +63,10 @@ export default function Section2() {
                   animate={{ opacity: 1, translateY: 0, transition }}
                   className="max-w-[480px] space-y-3 xl:space-y-6"
                 >
-                  <div className="xl:2xl text-xl">
+                  <h2 className="xl:2xl text-xl">
                     Digital twins are revolutionising the way to approach wind farm development and
                     energy management.
-                  </div>
+                  </h2>
                   <p className="text-sm leading-tight">
                     By allowing users to perform simulations that replicate real-world conditions,
                     digital twins can help energy practitioners to map the wind potential of

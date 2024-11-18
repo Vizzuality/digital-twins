@@ -190,9 +190,9 @@ export default function Section1() {
         </div>
       </div>
       <div className="flex flex-col max-xl:pt-6 xl:flex-row xl:gap-[140px]">
-        <h2 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
+        <h4 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
           Digital Twin Technology for Climate Change Adaptation
-        </h2>
+        </h4>
         <div className="inline-flex flex-col gap-8 xl:max-w-[500px]">
           <div className="text-xl xl:text-3xl">
             The digital twin for climate change adaptation allows the integration of climate models
@@ -306,9 +306,9 @@ export default function Section1() {
         </div>
       </div>
       <div className="flex flex-col justify-between max-xl:pt-6 xl:flex-row xl:gap-[140px]">
-        <h2 className="max-w-[530px] pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
+        <h4 className="max-w-[530px] pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
           Capacity Factors and Energy System Resilience
-        </h2>
+        </h4>
         <div className="inline-flex flex-col gap-8 xl:max-w-[438px]">
           <div className="text-xl xl:text-2xl">
             Capacity factors are a measure of how much energy can be produced by a turbine over a
@@ -476,9 +476,9 @@ export default function Section1() {
         </div>
       </div>
       <div className="flex flex-col max-xl:pt-6 xl:flex-row xl:gap-[140px]">
-        <h2 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
+        <h4 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
           Digital twin for climate change adaptation
-        </h2>
+        </h4>
         <div className="inline-flex flex-col gap-8 xl:max-w-[500px]">
           <div className="text-xl xl:text-3xl">
             It allows a more accurate simulation of peak rainfall events like storm Gloria.

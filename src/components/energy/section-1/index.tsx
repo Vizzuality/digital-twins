@@ -41,12 +41,12 @@ export default function Section1() {
           className="absolute z-0 w-screen object-fill"
         />
         <div className="xl relative z-10 px-2 text-center text-white xl:px-0">
-          <div className="text-center uppercase tracking-tight xl:text-lg">
+          <h2 className="text-center uppercase tracking-tight xl:text-lg">
             Wind energy production
-          </div>
-          <div className="max-w-[830px] text-center text-[36px] leading-[32px] xl:text-4xl">
+          </h2>
+          <h3 className="max-w-[830px] text-center text-[36px] leading-[32px] xl:text-4xl">
             Advanced simulations for a climate resilient energy sector
-          </div>
+          </h3>
         </div>
       </div>
       <Lines
@@ -147,9 +147,9 @@ export default function Section1() {
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h4 className="col-span-1 mb-4 max-w-[260px] pr-10 text-lg xl:mb-0 xl:text-xl">
+              <h3 className="col-span-1 mb-4 max-w-[260px] pr-10 text-lg xl:mb-0 xl:text-xl">
                 How can a digital twin help the energy sector?
-              </h4>
+              </h3>
             </FadeIn>
           </div>
           <FadeIn delay={0.2}>
@@ -213,13 +213,13 @@ export default function Section1() {
             />
           </div>
           <div className="max-w-[536px] space-y-3 pt-10 text-green-700 xl:w-[536px] xl:space-y-5 xl:pt-0">
-            <h2 className="pb-8 text-2xl font-medium xl:-translate-y-1 xl:pb-20 xl:text-4xl">
+            <h3 className="pb-8 text-2xl font-medium xl:-translate-y-1 xl:pb-20 xl:text-4xl">
               Transforming wind to energy
-            </h2>
-            <h3 className="pb-4 text-xl xl:pb-10 xl:text-2xl">
+            </h3>
+            <h4 className="pb-4 text-xl xl:pb-10 xl:text-2xl">
               The renewable energy sector is significantly impacted by climate variability and
               change.
-            </h3>
+            </h4>
             <KnowMoreButton
               onClick={() => setOpenedKnowMoreWind(!openedKnowMoreWind)}
               opened={openedKnowMoreWind}

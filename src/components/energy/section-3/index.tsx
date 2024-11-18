@@ -89,9 +89,9 @@ export default function Section3() {
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h4 className="col-span-1 mb-4 max-w-[300px] pr-10 text-lg xl:mb-0 xl:text-xl">
+              <h3 className="col-span-1 mb-4 max-w-[300px] pr-10 text-lg xl:mb-0 xl:text-xl">
                 Planning decisions in the wind energy sector
-              </h4>
+              </h3>
             </FadeIn>
           </div>
           <FadeIn delay={0.5}>

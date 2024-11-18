@@ -81,12 +81,12 @@ export default function Section7() {
           className="absolute z-0 w-screen object-fill"
         />
         <div className="xl relative z-10 px-2 text-center text-white xl:px-0">
-          <div className="text-center uppercase tracking-tight xl:text-lg">
+          <h2 className="text-center uppercase tracking-tight xl:text-lg">
             Unlocking Future Possibilities
-          </div>
-          <div className="max-w-[830px] text-center text-[36px] max-xl:leading-[42px] xl:text-4xl">
+          </h2>
+          <h3 className="max-w-[830px] text-center text-[36px] max-xl:leading-[42px] xl:text-4xl">
             Harnessing Digital Twins for on-demand simulations.
-          </div>
+          </h3>
         </div>
       </div>
       <div className="container px-[20px] xl:px-[150px]">
@@ -123,9 +123,7 @@ export default function Section7() {
             </AnimatePresence>
           </div>
           <div className="xl:space-y-4">
-            <div className="text-[36px] font-medium tracking-wide xl:text-4xl">
-              Our shared impact
-            </div>
+            <h2 className="text-[36px] font-medium tracking-wide xl:text-4xl">Our shared impact</h2>
             <h3 className="pb-5 text-xl xl:max-w-[503px] xl:text-2xl">
               Discover the faces behind climate impacts on energy
             </h3>
