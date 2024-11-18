@@ -79,11 +79,15 @@ export default function Section2() {
   }, [isInView]);
 
   useEffect(() => {
-    if (screenWidth || resizableWidth === 0) {
+    if (globePhase !== 0 && screenWidth) {
+      // Prevent errors on reload
+      setResizableWidth(screenWidth);
+    } else if (screenWidth || resizableWidth === 0) {
+      // Set the resizable width to initial half the size
       setResizableWidth(screenWidth / 2);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [screenWidth]);
+  }, [screenWidth, globePhase]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest >= SECTION_STARTS[0] && latest < SECTION_STARTS[1] && globePhase !== 0) {
