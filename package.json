@@ -7,10 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "pnpm exec playwright test",
-    "test:watch": "pnpm exec playwright test --watch",
-    "test:codegen": "exec playwright codegen",
-    "test:report": "pnpm exec playwright show-report",
     "prettier": "prettier --write ."
   },
   "dependencies": {
@@ -39,7 +35,6 @@
     "video.js": "^8.19.1"
   },
   "devDependencies": {
-    "@playwright/test": "1.45.1",
     "@types/node": "20",
     "@types/react": "18",
     "@types/react-dom": "18",
