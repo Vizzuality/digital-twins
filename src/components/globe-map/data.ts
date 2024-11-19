@@ -31,6 +31,7 @@ export const popupContent = [
     legend: {
       image: "/images/home-legend-2.svg",
       low: "0%",
+      center: 'CLOUD COVER',
       high: "100%",
     },
   },

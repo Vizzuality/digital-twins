@@ -135,10 +135,10 @@ export default function Section4() {
           </div>
           <h3 className="text-[36px] font-medium tracking-wide xl:text-4xl">What if ...</h3>
           <Tabs defaultValue="scenario1" value={tabsValue} onValueChange={handleValueChange}>
-            <TabsList>
-              <TabsTrigger value="scenario1">Scenario 1</TabsTrigger>
-              <TabsTrigger value="scenario2">Scenario 2</TabsTrigger>
-              <TabsTrigger value="scenario3">Scenario 3</TabsTrigger>
+            <TabsList className="h-auto">
+              <TabsTrigger value="scenario1" variant="whatif">Scenario 1</TabsTrigger>
+              <TabsTrigger value="scenario2" variant="whatif">Scenario 2</TabsTrigger>
+              <TabsTrigger value="scenario3" variant="whatif">Scenario 3</TabsTrigger>
             </TabsList>
             <TabsContent value="scenario1" className="pt-6 xl:pt-10">
               <div className="grid gap-[48px] xl:grid-cols-2 xl:gap-0 xl:pb-20">

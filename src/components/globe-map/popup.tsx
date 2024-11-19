@@ -1,10 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import { createPortal } from "react-dom";
+
 import { useIsMobile } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
+
+import VideoPlayer from "@/components/video-player";
+
 import ArrowRight from "@/svgs/arrow-right.svg";
 import Close from "@/svgs/close.svg";
+
 import { popupContent } from "./data";
-import VideoPlayer from "@/components/video-player";
 
 const Corners = () => (
   <>
@@ -90,6 +95,7 @@ const Popup = ({
               <div className="flex w-[258px] flex-col gap-1">
                 <div className="flex w-full justify-between gap-1">
                   <div className="text-[10px] leading-3">LOW ({legend.low})</div>
+                  {legend.center && <div className="text-[10px] leading-3">{legend.center}</div>}
                   <div className="text-[10px] leading-3">HIGH ({legend.high})</div>
                 </div>
                 <img src={legend.image} alt="Amazon legend" className="h-3" />

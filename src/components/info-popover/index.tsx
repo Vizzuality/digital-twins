@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import Info from "@/svgs/info.svg";
+
 import InfoDark from "@/svgs/info-dark.svg";
-import { useIsMobile } from "@/lib/hooks";
+import Info from "@/svgs/info.svg";
 
 type InfoPopoverProps = {
   children: React.ReactNode;
@@ -11,7 +11,6 @@ type InfoPopoverProps = {
 
 const InfoPopover: React.FC<InfoPopoverProps> = ({ children, content, variant = "light" }) => {
   const InfoComponent = variant === "light" ? Info : InfoDark;
-  const isMobile = useIsMobile();
   return (
     <Popover>
       <PopoverTrigger className="group relative underline">
@@ -21,7 +20,7 @@ const InfoPopover: React.FC<InfoPopoverProps> = ({ children, content, variant = 
       <PopoverContent
         className="text-xs"
         side="top"
-        sideOffset={isMobile ? 20 : 0}
+        sideOffset={20}
         align="start"
         variant={variant}
       >
