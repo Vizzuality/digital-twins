@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function Section5() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
-  const [openedKnowMore2, setOpenedKnowMore2] = useState(false);
   return (
     <section className="relative scroll-mt-8 bg-white pt-10 xl:pt-20" id="section-5">
       <Lines
@@ -80,48 +79,13 @@ export default function Section5() {
       </div>
       <div className="container flex flex-col items-start justify-between px-[20px] pb-4 xl:flex-row xl:px-[150px] xl:pb-[100px]">
         <div className="max-w-[540px] space-y-5 text-green-700 xl:min-w-[500px] xl:pb-10">
-          <h3 className="pb-5 text-xl xl:text-2xl">
+          <h3 className="text-xl xl:text-2xl">
             Using storylines to simulate the 2018 heatwave under current and future conditions to
             understand their potential impacts.
           </h3>
-          <KnowMoreButton
-            onClick={() => setOpenedKnowMore2(!openedKnowMore2)}
-            opened={openedKnowMore2}
-          />
-          <AnimatePresence>
-            {openedKnowMore2 && (
-              <motion.div
-                key="know-more-green-transition"
-                initial={{ opacity: 0, height: 0 }}
-                exit={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base"
-              >
-                <p>
-                  Climate and impact sector modelling is done in the same modelling chain, meaning
-                  that impact sector models access all the climate-related information they need
-                  (rather than just a subset of model outputs) while the digital twin is running.
-                  This allows for a detailed analysis of how climate variability and change affect
-                  different impact sectors, such as energy, agriculture or health, helping these
-                  sectors understand and anticipate risks and implement proactive measures to
-                  enhance societal resilience.
-                </p>
-                <p>
-                  For instance, understanding how wind energy fluctuates at a certain location under
-                  particular storm conditions or looking at water availability in a river basin in
-                  the next 30 years, can be extremely valuable for planning renewable energy
-                  deployment or investments in irrigation systems or water resource management.
-                </p>
-                <p>
-                  The integration of climate models with impact models constitutes a step towards
-                  the operationalisation of climate services, since it offers the possibility to
-                  transform climate-related information into information that is fit-for-purpose,
-                  including sectoral indicators or risk indices considering local vulnerability or
-                  adaptation tipping points.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <p className="text-base">
+            Present-day plots represent the simulation of an event under current conditions, covering the last few decades, to ensure that the model accurately captures the event. Future scenario plots simulate the same event under different levels of global warming to explore how it might manifest in various future climates.
+          </p>
         </div>
       </div>
     </section>
