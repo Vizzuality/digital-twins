@@ -162,7 +162,7 @@ export default function Section1() {
                       Predicting renewable energy production:
                     </div>
                   </div>
-                  <div className="xl:max-w-[260px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[260px] text-sm leading-tight xl:text-xs">
                     The advanced simulations of the digital twin enable users to explore different
                     climate scenarios and predict renewable energy production according to the
                     variability of climate conditions.
