@@ -118,7 +118,7 @@ export default function Section1() {
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h3 className="col-span-1 mb-4 max-w-[350px] pr-10 text-lg xl:mb-0 sm:text-xl">
+              <h3 className="col-span-1 mb-4 xl:max-w-[350px] xl:pr-10 text-lg xl:mb-0 sm:text-xl">
                 How the digital twin for climate change adaptation helps research and society?
               </h3>
             </FadeIn>
@@ -126,12 +126,12 @@ export default function Section1() {
           <FadeIn delay={0.5}>
             <div className={cn(gridColumns, "mb-2 xl:mb-[30px]")}>
               <div className="col-start-2">
-                <div className="flex flex-col gap-2 pr-10 xl:gap-4">
+                <div className="flex flex-col gap-2 xl:pr-10 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">01</div>
                     <div className="leading-relaxed xl:text-lg">Understanding processes:</div>
                   </div>
-                  <div className="max-w-[350px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[350px] text-xs leading-tight xl:text-sm">
                     The digital twin produces simulations that allow researchers to understand the
                     complex interactions of phenomena in the Earth-system that determine how our
                     planet evolves.
@@ -139,12 +139,12 @@ export default function Section1() {
                 </div>
               </div>
               <div className="col-start-3">
-                <div className="mt-2 flex flex-col gap-2 pr-10 xl:mt-0 xl:gap-4">
+                <div className="mt-2 flex flex-col gap-2 xl:pr-10 xl:mt-0 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">02</div>
                     <div className="leading-relaxed xl:text-lg">Simulating scenarios:</div>
                   </div>
-                  <div className="max-w-[350px] text-sm leading-tight xl:text-xs">
+                  <div className="xl:max-w-[350px] text-sm leading-tight xl:text-xs">
                     The digital twin allows researchers, policy makers and practitioners to develop
                     and test different climate and impact scenarios that help understand what might
                     happen under various conditions.
@@ -156,12 +156,12 @@ export default function Section1() {
           <FadeIn delay={0.8}>
             <div className={cn(gridColumns)}>
               <div className="col-start-2">
-                <div className="flex flex-col gap-2 pr-10 xl:gap-4">
+                <div className="flex flex-col gap-2 xl:pr-10 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">03</div>
                     <div className="leading-relaxed xl:text-lg">Improving decision-making:</div>
                   </div>
-                  <div className="max-w-[350px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[350px] text-xs leading-tight xl:text-sm">
                     By providing clear and accurate insights on the past, present and future, the
                     digital twin can support decision-makers, policy-makers and world leaders make
                     better informed decisions to address climate-related risks effectively and
@@ -170,14 +170,14 @@ export default function Section1() {
                 </div>
               </div>
               <div className="col-start-3">
-                <div className="mt-2 flex flex-col gap-2 pr-10 xl:mt-0 xl:gap-4">
+                <div className="mt-2 flex flex-col gap-2 xl:pr-10 xl:mt-0 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">04</div>
                     <div className="leading-relaxed xl:text-lg">
                       Enhancing interdisciplinary and transdisciplinarity:
                     </div>
                   </div>
-                  <div className="max-w-[350px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[350px] text-xs leading-tight xl:text-sm">
                     Virtual models support collaboration among users from different disciplines,
                     impact sectors, and geographical locations, ensuring a holistic approach to
                     studying and solving real climate challenges.

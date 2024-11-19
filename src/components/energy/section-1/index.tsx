@@ -147,7 +147,7 @@ export default function Section1() {
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h3 className="col-span-1 mb-4 max-w-[260px] pr-10 text-lg xl:mb-0 xl:text-xl">
+              <h3 className="col-span-1 mb-4 xl:max-w-[260px] xl:pr-10 text-lg xl:mb-0 xl:text-xl">
                 How can a digital twin help the energy sector?
               </h3>
             </FadeIn>
@@ -155,14 +155,14 @@ export default function Section1() {
           <FadeIn delay={0.2}>
             <div className={cn(gridColumns, "mb-2 xl:mb-[30px]")}>
               <div className="col-start-2">
-                <div className="flex flex-col gap-2 pr-10 xl:gap-4">
+                <div className="flex flex-col gap-2 xl:pr-10 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">01</div>
-                    <div className="max-w-[260px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[260px] leading-relaxed xl:text-lg">
                       Predicting renewable energy production:
                     </div>
                   </div>
-                  <div className="max-w-[260px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[260px] text-xs leading-tight xl:text-sm">
                     The advanced simulations of the digital twin enable users to explore different
                     climate scenarios and predict renewable energy production according to the
                     variability of climate conditions.
@@ -170,14 +170,14 @@ export default function Section1() {
                 </div>
               </div>
               <div className="col-start-3">
-                <div className="mt-2 flex flex-col gap-2 pr-10 xl:mt-0 xl:gap-4">
+                <div className="mt-2 flex flex-col gap-2 xl:pr-10 xl:mt-0 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">02</div>
-                    <div className="max-w-[260px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[260px] leading-relaxed xl:text-lg">
                       Enhancing grid stability and reliability:
                     </div>
                   </div>
-                  <div className="max-w-[260px] text-sm leading-tight xl:text-xs">
+                  <div className="xl:max-w-[260px] text-sm leading-tight xl:text-xs">
                     A more accurate prediction of renewable energy production facilitates a smoother
                     integration of renewable sources to the energy grid, enhancing grid stability
                     and reducing the dependence on less reliable energy sources. This is key to
@@ -186,14 +186,14 @@ export default function Section1() {
                 </div>
               </div>
               <div className="col-start-4">
-                <div className="mt-2 flex flex-col gap-2 pr-10 xl:mt-0 xl:gap-4">
+                <div className="mt-2 flex flex-col gap-2 xl:pr-10 xl:mt-0 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">03</div>
-                    <div className="max-w-[260px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[260px] leading-relaxed xl:text-lg">
                       Developing strategies for climate extremes:
                     </div>
                   </div>
-                  <div className="max-w-[260px] text-sm leading-tight xl:text-xs">
+                  <div className="xl:max-w-[260px] text-sm leading-tight xl:text-xs">
                     A digital twin allows the analysis of past extreme events to understand the
                     conditions under which they had occurred. This allows the development of more
                     efficient adaptation strategies in the light of the future increase in the

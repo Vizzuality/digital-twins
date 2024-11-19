@@ -89,7 +89,7 @@ export default function Section3() {
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumns)}>
             <FadeIn delay={0.2}>
-              <h3 className="col-span-1 mb-4 max-w-[300px] pr-10 text-lg xl:mb-0 xl:text-xl">
+              <h3 className="col-span-1 mb-4 xl:max-w-[300px] xl:pr-10 text-lg xl:mb-0 xl:text-xl">
                 Planning decisions in the wind energy sector
               </h3>
             </FadeIn>
@@ -97,14 +97,14 @@ export default function Section3() {
           <FadeIn delay={0.5}>
             <div className={cn(gridColumns, "mb-2 xl:mb-[30px]")}>
               <div className="col-start-2">
-                <div className="flex flex-col gap-2 pr-10 xl:gap-4">
+                <div className="flex flex-col gap-2 xl:pr-10 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">01</div>
-                    <div className="max-w-[300px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[300px] leading-relaxed xl:text-lg">
                       Real-time access to capacity factor data:
                     </div>
                   </div>
-                  <div className="max-w-[300px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[300px] text-xs leading-tight xl:text-sm">
                     Real-time access to capacity factor data revolutionises energy supply
                     management, boosting memory use efficiency and enhancing the integration with
                     climate models.
@@ -112,14 +112,14 @@ export default function Section3() {
                 </div>
               </div>
               <div className="col-start-3">
-                <div className="mt-2 flex flex-col gap-2 pr-10 xl:mt-0 xl:gap-4">
+                <div className="mt-2 flex flex-col gap-2 xl:pr-10 xl:mt-0 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">02</div>
-                    <div className="max-w-[300px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[300px] leading-relaxed xl:text-lg">
                       Capacity factor as a universal metric:
                     </div>
                   </div>
-                  <div className="max-w-[300px] text-sm leading-tight xl:text-xs">
+                  <div className="xl:max-w-[300px] text-sm leading-tight xl:text-xs">
                     The capacity factor allows a safe comparison between different power plants,
                     irrespective of their size and type, being a relevant metric for wind farm
                     owners, operation and maintenance teams, energy traders and transmission system
@@ -132,28 +132,28 @@ export default function Section3() {
           <FadeIn delay={0.8}>
             <div className={cn(gridColumns)}>
               <div className="col-start-2">
-                <div className="flex flex-col gap-2 pr-10 xl:gap-4">
+                <div className="flex flex-col gap-2 xl:pr-10 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">03</div>
-                    <div className="max-w-[300px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[300px] leading-relaxed xl:text-lg">
                       Impact of future climate conditions:
                     </div>
                   </div>
-                  <div className="max-w-[300px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[300px] text-xs leading-tight xl:text-sm">
                     Exploring the changes in the capacity factor under different future climate
                     conditions is important for making decisions at both the asset and farm levels.
                   </div>
                 </div>
               </div>
               <div className="col-start-3">
-                <div className="mt-2 flex flex-col gap-2 pr-10 xl:mt-0 xl:gap-4">
+                <div className="mt-2 flex flex-col gap-2 xl:pr-10 xl:mt-0 xl:gap-4">
                   <div className="flex flex-col">
                     <div className="leading-relaxed xl:text-lg">04</div>
-                    <div className="max-w-[300px] leading-relaxed xl:text-lg">
+                    <div className="xl:max-w-[300px] leading-relaxed xl:text-lg">
                       Strategic importance for European energy systems:
                     </div>
                   </div>
-                  <div className="max-w-[300px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[300px] text-xs leading-tight xl:text-sm">
                     Understanding how the capacity factor may change under different climate
                     conditions is, more broadly, also vital for assessing the risks for the European
                     energy systems and planning the future energy grid.
