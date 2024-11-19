@@ -27,9 +27,9 @@ process_videos() {
     # Run the ffmpeg command
     ffmpeg -i "$input_file" \
       -filter_complex "[0:v]split=3[vid0][vid1][vid2]; \
-                       [vid0]scale=640x360[b0]; \
-                       [vid1]scale=842x480[b1]; \
-                       [vid2]scale=1280x720[b2]" \
+                       [vid0]scale=ceil(iw/2)*2:ceil(ih/2)*2[b0]; \
+                       [vid1]scale=ceil(iw*2/3)*2:ceil(ih*2/3)*2[b1]; \
+                       [vid2]scale=iw:ih[b2]" \
       -map "[b0]" -b:v:0 800k -c:v:0 libx264 -profile:v:0 baseline -level:v:0 3.0 -g 48 -keyint_min 48 \
       -map "[b1]" -b:v:1 1400k -c:v:1 libx264 -profile:v:1 main -level:v:1 3.1 -g 48 -keyint_min 48 \
       -map "[b2]" -b:v:2 3000k -c:v:2 libx264 -profile:v:2 high -level:v:2 4.0 -g 48 -keyint_min 48 \
