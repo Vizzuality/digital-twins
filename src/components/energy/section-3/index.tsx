@@ -104,7 +104,7 @@ export default function Section3() {
                       Real-time access to capacity factor data:
                     </div>
                   </div>
-                  <div className="xl:max-w-[300px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[300px] text-sm leading-tight xl:text-xs">
                     Real-time access to capacity factor data revolutionises energy supply
                     management, boosting memory use efficiency and enhancing the integration with
                     climate models.
@@ -139,7 +139,7 @@ export default function Section3() {
                       Impact of future climate conditions:
                     </div>
                   </div>
-                  <div className="xl:max-w-[300px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[300px] text-sm leading-tight xl:text-xs">
                     Exploring the changes in the capacity factor under different future climate
                     conditions is important for making decisions at both the asset and farm levels.
                   </div>
@@ -153,7 +153,7 @@ export default function Section3() {
                       Strategic importance for European energy systems:
                     </div>
                   </div>
-                  <div className="xl:max-w-[300px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[300px] text-sm leading-tight xl:text-xs">
                     Understanding how the capacity factor may change under different climate
                     conditions is, more broadly, also vital for assessing the risks for the European
                     energy systems and planning the future energy grid.

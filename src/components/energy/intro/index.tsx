@@ -10,7 +10,7 @@ export default function Intro() {
         verticalClassName="left-8 w-[calc(100vh-16px)]"
         sectionName="intro"
         columns={[349, 1050]}
-        rows={[220, 286, 302, 364, 468, 713]}
+        rows={[220, 286, 302, 364]}
       />
       <div className="container relative flex flex-col-reverse pb-[60px] pl-8 pt-[110px] xl:grid xl:grid-cols-[250px_1fr_250px] xl:pl-24 xl:pt-[177px]">
         <div className="xl:space-y-10 xl:pt-[41px]">
@@ -29,7 +29,7 @@ export default function Intro() {
             }
           </ul> */}
         </div>
-        <div className="space-y-[30px] text-center xl:space-y-[94px]">
+        <div className="space-y-[30px] text-center xl:space-y-[94px] pb-[206px]">
           <div>
             <div className="inline-flex items-center pb-4 text-xs text-light-green">
               Case study
@@ -44,15 +44,6 @@ export default function Intro() {
                 Energy
               </div>
             </h1>
-          </div>
-          <div className="flex items-center justify-center">
-            <Image
-              alt=""
-              src="/images/energy-intro.png"
-              className="object-cover xl:h-[247px] xl:w-[702px]"
-              width={494}
-              height={297}
-            />
           </div>
         </div>
       </div>

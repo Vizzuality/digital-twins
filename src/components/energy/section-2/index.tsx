@@ -80,6 +80,9 @@ export default function Section2() {
                     whereas wind turbines are normally placed at around 100 metres height, and this
                     requires an interpolation to convert wind speed from 10 to 100 metres.
                   </p>
+                  <p className="text-xs leading-tight">
+                    Legend: wind energy. Data source: nextGEMS
+                  </p>
                 </motion.div>
               ) : (
                 <motion.div
@@ -105,6 +108,9 @@ export default function Section2() {
                     functionality greatly facilitates the interactivity between the results from the
                     climate models with impact model applications, such as applications used by the
                     energy sector.
+                  </p>
+                  <p className="text-xs leading-tight">
+                    Legend: capacity factor. Data source: nextGEMS
                   </p>
                 </motion.div>
               )}
