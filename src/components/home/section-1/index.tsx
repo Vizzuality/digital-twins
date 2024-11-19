@@ -1,13 +1,19 @@
 "use client";
+
+import { useState } from "react";
+
 import dynamic from "next/dynamic";
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
-import { useState } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
-import KnowMoreButton from "@/components/know-more-button";
-import { cn } from "@/lib/utils";
-import FadeIn from "@/components/animations/fade-in";
+
 import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+
+import FadeIn from "@/components/animations/fade-in";
+import KnowMoreButton from "@/components/know-more-button";
+
 
 export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
@@ -27,7 +33,7 @@ export default function Section1() {
       <Lines
         verticalClassName="px-[152px]"
         sectionName="section-1"
-        rows={[openedKnowMore ? 632 : 474, !hoveredIndex || hoveredIndex === 0 ? 1108 : 1136]}
+        rows={[openedKnowMore ? 632 : 474, !hoveredIndex || hoveredIndex === 0 ? 1130 : 1154]}
         colorClass="bg-blue-900/10"
         columnsNumber={3}
         hoveredIndex={hoveredIndex}
@@ -131,7 +137,7 @@ export default function Section1() {
                     <div className="leading-relaxed xl:text-lg">01</div>
                     <div className="leading-relaxed xl:text-lg">Understanding processes:</div>
                   </div>
-                  <div className="xl:max-w-[350px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[350px] text-sm leading-tight xl:text-xs">
                     The digital twin produces simulations that allow researchers to understand the
                     complex interactions of phenomena in the Earth-system that determine how our
                     planet evolves.
@@ -161,7 +167,7 @@ export default function Section1() {
                     <div className="leading-relaxed xl:text-lg">03</div>
                     <div className="leading-relaxed xl:text-lg">Improving decision-making:</div>
                   </div>
-                  <div className="xl:max-w-[350px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[350px] text-sm leading-tight xl:text-xs">
                     By providing clear and accurate insights on the past, present and future, the
                     digital twin can support decision-makers, policy-makers and world leaders make
                     better informed decisions to address climate-related risks effectively and
@@ -177,7 +183,7 @@ export default function Section1() {
                       Enhancing interdisciplinary and transdisciplinarity:
                     </div>
                   </div>
-                  <div className="xl:max-w-[350px] text-xs leading-tight xl:text-sm">
+                  <div className="xl:max-w-[350px] text-sm leading-tight xl:text-xs">
                     Virtual models support collaboration among users from different disciplines,
                     impact sectors, and geographical locations, ensuring a holistic approach to
                     studying and solving real climate challenges.
