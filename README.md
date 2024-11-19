@@ -41,5 +41,6 @@ Please refer to the following link for more information on how to make the websi
 https://tailwindcss.com/docs/responsive-design
 
 The used breakpoints are:
+
 - `sm`: 640px
 - `xl`: 1280px

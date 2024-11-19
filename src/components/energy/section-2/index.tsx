@@ -54,7 +54,7 @@ export default function Section2() {
               rotate={step !== "section-2-step-2"}
             />
           </div>
-          <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] xl:max-w-[612px] max-xl:pt-10 xl:h-full xl:w-1/2 xl:justify-center">
+          <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-10 xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center">
             <AnimatePresence>
               {step !== "section-2-step-2" ? (
                 <motion.div
@@ -63,17 +63,17 @@ export default function Section2() {
                   animate={{ opacity: 1, translateY: 0, transition }}
                   className="max-w-[480px] space-y-3 xl:space-y-6"
                 >
-                  <h2 className="xl:text-2xl text-xl">
+                  <h2 className="text-xl xl:text-2xl">
                     Digital twins are revolutionising the way to approach wind farm development and
                     energy management.
                   </h2>
-                  <p className="text-sm xl:text-base leading-tight">
+                  <p className="text-sm leading-tight xl:text-base">
                     By allowing users to perform simulations that replicate real-world conditions,
                     digital twins can help energy practitioners to map the wind potential of
                     different regions, optimise the location of wind turbines, and predict energy
                     generation.
                   </p>
-                  <p className="text-sm xl:text-base leading-tight">
+                  <p className="text-sm leading-tight xl:text-base">
                     The energy output of a wind turbine depends on a variety of factors, the most
                     important being the wind speed at the height at which the turbines are placed.
                     Current state-of-the-art models only provide wind information at 10 metres,
@@ -91,7 +91,7 @@ export default function Section2() {
                   animate={{ opacity: 1, translateY: 0, transition }}
                   className="max-w-[480px] space-y-4 xl:space-y-6"
                 >
-                  <p className="text-sm xl:text-base leading-tight">
+                  <p className="text-sm leading-tight xl:text-base">
                     A wind turbine has a specific power curve that is provided by the manufacturer
                     and depends on several factors (e.g. rotor diameter, rated wind speed, etc.).
                     The measure of how much energy a turbine produces compared to its maximum
@@ -101,7 +101,7 @@ export default function Section2() {
                     access to information about the capacity factor to be able to assess energy
                     supply and meet the demand.
                   </p>
-                  <p className="text-sm xl:text-base leading-tight">
+                  <p className="text-sm leading-tight xl:text-base">
                     Classic energy models require full time series to generate histograms of the
                     capacity factor, which makes using the outputs of the digital twin challenging.
                     However, a streaming setup allows histograms to be built on the fly. This

@@ -62,8 +62,8 @@ export default function Section4() {
   );
 
   const renderChart = (
-    <div className=" sm:max-xl:py-6 relative max-xl:flex max-xl:justify-center max-xl:w-full">
-      <div className="relative w-[492px] xl:w-[462px] h-[253px]">
+    <div className="relative max-xl:flex max-xl:w-full max-xl:justify-center sm:max-xl:py-6">
+      <div className="relative h-[253px] w-[492px] xl:w-[462px]">
         <Chart className="max-h-[200px] max-w-[100%] xl:max-h-[253px]" />
         <motion.svg
           width="492"
@@ -114,11 +114,10 @@ export default function Section4() {
                   exit={{ opacity: 0, translateY: "-200px" }}
                   className="flex w-full flex-col items-center justify-center text-center"
                 >
-
-                  <h2 className="sm:mx-auto text-base uppercase tracking-tight xl:text-lg">
+                  <h2 className="text-base uppercase tracking-tight sm:mx-auto xl:text-lg">
                     Exploring energy futures
                   </h2>
-                  <h3 className="sm:mx-auto max-w-[80vw] text-[36px] xl:max-w-[720px] xl:text-4xl">
+                  <h3 className="max-w-[80vw] text-[36px] sm:mx-auto xl:max-w-[720px] xl:text-4xl">
                     Inside the 2018 heatwave
                     <br /> on the Iberian Peninsula
                   </h3>

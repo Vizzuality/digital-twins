@@ -27,7 +27,7 @@ export default function Intro() {
             }
           </ul> */}
         </div>
-        <div className="space-y-[30px] text-center xl:space-y-[94px] pb-[206px]">
+        <div className="space-y-[30px] pb-[206px] text-center xl:space-y-[94px]">
           <div>
             <div className="inline-flex items-center pb-4 text-xs text-light-green">
               Case study

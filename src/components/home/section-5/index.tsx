@@ -64,7 +64,7 @@ export default function Section5() {
         </div>
         <Image
           alt=""
-          className="max-xl:max-h-[600px] pb-[102px] xl:ml-24"
+          className="pb-[102px] max-xl:max-h-[600px] xl:ml-24"
           src="/images/home-towards-data.svg"
           width={1160}
           height={742}

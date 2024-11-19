@@ -64,7 +64,7 @@ export default function Header() {
         },
       )}
     >
-      <div className="container px-10 flex items-center justify-between">
+      <div className="container flex items-center justify-between px-10">
         <Logo className="h-10 w-40 text-white xl:w-60" />
         <MenuButton />
       </div>

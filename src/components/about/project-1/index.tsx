@@ -61,7 +61,7 @@ export default function Section1() {
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base xl:max-w-[594px]"
+                className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
               >
                 <p>
                   There are many moments during the vineyard cycle where climate plays a key role.
@@ -174,7 +174,8 @@ export default function Section1() {
                   rel="noreferrer"
                   href="https://www.mapa.gob.es/es/cartografia-y-sig/ide/descargas/alimentacion/vinos.aspx"
                 >
-                  Wine quality areas in Spain. Credit: Spanish Ministry of Agriculture, Fishing and Food
+                  Wine quality areas in Spain. Credit: Spanish Ministry of Agriculture, Fishing and
+                  Food
                 </a>
               </div>
             </div>
@@ -200,7 +201,16 @@ export default function Section1() {
           </div>
           <div className="space-y-4 xl:text-lg">
             <p>
-              This not only offers the Spanish wine sector the opportunity to have quick access to climate data on the past, present and future, but also the possibility of defining their own climate-related indicators, such as the average maximum temperature in summer, spring frost or SPEI, that can be calculated as the climate model runs. This allows wineries to have regularly updated information on the risks of spring frost, heatwaves and droughts that may affect their vineyards in the long-term future. Additionally, the digital twin offers a unified climate information source for those producers that own farms not only in the Spanish territory but also in other world regions suitable for grape and wine production, like California or South America to name a few.
+              This not only offers the Spanish wine sector the opportunity to have quick access to
+              climate data on the past, present and future, but also the possibility of defining
+              their own climate-related indicators, such as the average maximum temperature in
+              summer, spring frost or SPEI, that can be calculated as the climate model runs. This
+              allows wineries to have regularly updated information on the risks of spring frost,
+              heatwaves and droughts that may affect their vineyards in the long-term future.
+              Additionally, the digital twin offers a unified climate information source for those
+              producers that own farms not only in the Spanish territory but also in other world
+              regions suitable for grape and wine production, like California or South America to
+              name a few.
             </p>
           </div>
         </div>
@@ -239,7 +249,7 @@ export default function Section1() {
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base xl:max-w-[594px]"
+                className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
               >
                 Wind energy is particularly exposed, emphasising the need for accurate
                 representations of future wind resources. Such climate information will allow us to
@@ -414,7 +424,7 @@ export default function Section1() {
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base xl:max-w-[594px]"
+                className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
               >
                 During 18th - 24th January heavy coastal flooding occurred, due to large storm
                 swells and record breaking precipitation. This caused significant impacts on

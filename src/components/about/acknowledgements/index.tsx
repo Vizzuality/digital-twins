@@ -16,7 +16,7 @@ export default function Section1() {
         />
         <div className="container flex flex-col gap-6 py-6 pl-8 xl:py-[100px] xl:pl-24">
           <h2 className="uppercase xl:text-lg">Acknowledgements</h2>
-          <div className="grid gap-6 xl:grid-cols-3 text-base">
+          <div className="grid gap-6 text-base xl:grid-cols-3">
             <div>
               Spanish Ministry of Science and Innovation/National Research
               Agency/10.13039/501100011033 and the European Union ‘NextGenerationEU/PRTR’ (GLORIA)

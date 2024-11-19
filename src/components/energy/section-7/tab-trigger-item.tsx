@@ -25,9 +25,13 @@ const TabTriggerItem = ({
       "h-[79px]": !isSelected && !isHovered,
     })}
   >
-    <div className={cn("relative w-[80px] overflow-hidden transition-all duration-500 max-xl:min-w-[80px]")}>
+    <div
+      className={cn(
+        "relative w-[80px] overflow-hidden transition-all duration-500 max-xl:min-w-[80px]",
+      )}
+    >
       <Image
-        className={cn('max-xl:min-h-[143px] max-xl:min-w-[80px]', {
+        className={cn("max-xl:min-h-[143px] max-xl:min-w-[80px]", {
           "opacity-80": !isSelected && !isHovered,
         })}
         height={143}
@@ -40,7 +44,7 @@ const TabTriggerItem = ({
     </div>
     <div
       className={cn(
-        "flex sm:w-[400px] sm:max-w-full max-xl:w-full xl:w-[calc(100vw_-_140px)] flex-col items-start justify-start whitespace-normal p-[10px] text-left xl:max-w-[212px] xl:p-4 xl:pr-0",
+        "flex flex-col items-start justify-start whitespace-normal p-[10px] text-left max-xl:w-full sm:w-[400px] sm:max-w-full xl:w-[calc(100vw_-_140px)] xl:max-w-[212px] xl:p-4 xl:pr-0",
         {
           "bg-light-green text-blue-900": isSelected,
           "bg-white/5 text-white": !isSelected && isHovered,

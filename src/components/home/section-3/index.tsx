@@ -86,16 +86,16 @@ const CasesText = ({
       {isMobile
         ? descriptionText
         : hoveredIndex === index && (
-          <motion.div
-            className="flex flex-col gap-4"
-            key={`use-case-description-${index}`}
-            initial={{ opacity: isMobile ? 1 : 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            {descriptionText}
-          </motion.div>
-        )}
+            <motion.div
+              className="flex flex-col gap-4"
+              key={`use-case-description-${index}`}
+              initial={{ opacity: isMobile ? 1 : 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              {descriptionText}
+            </motion.div>
+          )}
     </div>
   );
 };
@@ -268,13 +268,27 @@ export default function Section3() {
                   className="space-y-4"
                 >
                   <p>
-                    Climate and impact sector modelling is done in the same modelling chain, meaning that impact sector models access all the climate-related information they need (rather than just a subset of model outputs) while the digital twin is running. This allows for a detailed analysis of how climate variability and change affect different impact sectors, such as energy, agriculture or health, helping these sectors understand and anticipate risks and implement proactive measures to enhance societal resilience.
+                    Climate and impact sector modelling is done in the same modelling chain, meaning
+                    that impact sector models access all the climate-related information they need
+                    (rather than just a subset of model outputs) while the digital twin is running.
+                    This allows for a detailed analysis of how climate variability and change affect
+                    different impact sectors, such as energy, agriculture or health, helping these
+                    sectors understand and anticipate risks and implement proactive measures to
+                    enhance societal resilience.
                   </p>
                   <p>
-                    For instance, understanding how wind energy fluctuates at a certain location under particular storm conditions or looking at water availability in a river basin in the next 30 years, can be extremely valuable for planning renewable energy deployment or investments in irrigation systems or water resource management.
+                    For instance, understanding how wind energy fluctuates at a certain location
+                    under particular storm conditions or looking at water availability in a river
+                    basin in the next 30 years, can be extremely valuable for planning renewable
+                    energy deployment or investments in irrigation systems or water resource
+                    management.
                   </p>
                   <p>
-                    The integration of climate models with impact models constitutes a step towards the operationalisation of climate services, since it offers the possibility to transform climate-related information into information that is fit-for-purpose, including sectoral indicators or risk indices considering local vulnerability or adaptation tipping points.
+                    The integration of climate models with impact models constitutes a step towards
+                    the operationalisation of climate services, since it offers the possibility to
+                    transform climate-related information into information that is fit-for-purpose,
+                    including sectoral indicators or risk indices considering local vulnerability or
+                    adaptation tipping points.
                   </p>
                 </motion.div>
               )}

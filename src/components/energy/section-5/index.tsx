@@ -84,7 +84,10 @@ export default function Section5() {
             understand their potential impacts.
           </h3>
           <p className="text-base">
-            Present-day plots represent the simulation of an event under current conditions, covering the last few decades, to ensure that the model accurately captures the event. Future scenario plots simulate the same event under different levels of global warming to explore how it might manifest in various future climates.
+            Present-day plots represent the simulation of an event under current conditions,
+            covering the last few decades, to ensure that the model accurately captures the event.
+            Future scenario plots simulate the same event under different levels of global warming
+            to explore how it might manifest in various future climates.
           </p>
         </div>
       </div>

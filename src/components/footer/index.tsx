@@ -11,15 +11,10 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
   return (
     <footer className={cn("relative flex w-full flex-col text-white", backgroundClass)}>
       {/* Line as separator for xl up */}
-      <Lines
-        sectionName="footer"
-        columns={[]}
-        rows={[360]}
-        colorClass="bg-white/20"
-      />
+      <Lines sectionName="footer" columns={[]} rows={[360]} colorClass="bg-white/20" />
       <div className="container px-0">
         <div className="flex justify-center">
-          <div className="flex w-1/2 flex-col gap-20 px-[20px] py-10 xl:px-[100px] max-xl:container sm:py-10 xl:py-20">
+          <div className="flex w-1/2 flex-col gap-20 px-[20px] py-10 max-xl:container sm:py-10 xl:px-[100px] xl:py-20">
             <div className="max-w-[258px] text-sm font-medium uppercase tracking-widest">
               Digital Twins: <div>Innovative Research for a Sustainable Future</div>
             </div>
@@ -50,8 +45,13 @@ const Footer = ({ backgroundClass = "bg-green-700" }) => {
             </ul>
           </div>
         </div>
-        <div className="flex w-full gap-10 max-xl:border-t border-white/20 px-[20px] py-6 text-xs leading-relaxed text-white/50 xl:px-[100px] xl:text-lg">
-          <div className="max-w-[calc(50%-20px)]"><a href="https://www.bsc.es" target="_blank" rel="noopener noreferrer">© Barcelona Supercomputing Center</a>, 2024</div>
+        <div className="flex w-full gap-10 border-white/20 px-[20px] py-6 text-xs leading-relaxed text-white/50 max-xl:border-t xl:px-[100px] xl:text-lg">
+          <div className="max-w-[calc(50%-20px)]">
+            <a href="https://www.bsc.es" target="_blank" rel="noopener noreferrer">
+              © Barcelona Supercomputing Center
+            </a>
+            , 2024
+          </div>
           <div className="inline-flex flex-col gap-3 xl:flex-row xl:items-center xl:gap-1 xl:text-base">
             <span>Designed and Developed by </span>
             <a href="https://www.vizzuality.com/" target="_blank" rel="noopener noreferrer">
