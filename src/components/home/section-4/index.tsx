@@ -17,8 +17,8 @@ import VideoPlayer from "@/components/video-player";
 const renderLegend = (
   <div className="legend relative inline-flex w-full flex-col gap-2 pt-6 text-2xs lg:py-1 xl:absolute xl:-top-[70px] xl:right-0 xl:h-8 xl:w-[258px]">
     <div className="inline-flex items-start justify-between">
-      <div>LOW (20º)</div>
-      <div>HIGH (47º)</div>
+      <div>LOW (20 C)</div>
+      <div>HIGH (47º C)</div>
     </div>
     <Image
       alt="legend"

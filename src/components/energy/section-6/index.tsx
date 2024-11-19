@@ -7,8 +7,8 @@ import ImageSliderWithText from "@/components/image-slider-with-text";
 const renderLegend = (
   <div className="relative inline-flex w-full flex-col gap-1 pt-6 text-2xs lg:py-1 xl:absolute xl:-top-14 xl:right-[152px] xl:h-8 xl:w-[258px]">
     <div className="inline-flex items-start justify-between self-stretch">
-      <div>LOW (20º)</div>
-      <div>HIGH (47º)</div>
+      <div>LOW (20º C)</div>
+      <div>HIGH (47º C)</div>
     </div>
     <Image
       alt="legend"

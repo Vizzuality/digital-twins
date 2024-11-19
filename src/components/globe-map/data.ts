@@ -43,8 +43,8 @@ export const popupContent = [
     video: "videos/stream-videos/tooltip-tas_10km_square/index.m3u8",
     legend: {
       image: "/images/home-legend-spectral.svg",
-      low: "20º",
-      high: "47º",
+      low: "20º C",
+      high: "47º C",
     },
   },
   {
@@ -56,8 +56,8 @@ export const popupContent = [
     video: "videos/stream-videos/tooltip-sst_10km_square/index.m3u8",
     legend: {
       image: "/images/home-legend-4.svg",
-      low: "20º",
-      high: "30º",
+      low: "20º C",
+      high: "30º C",
     },
   },
 ];

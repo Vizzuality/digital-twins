@@ -48,8 +48,8 @@ export default function Section4() {
   const legend = (
     <div className="inline-flex h-8 w-full flex-col gap-1 py-1 text-2xs">
       <div className="inline-flex items-start justify-between self-stretch">
-        <div>LOW (20º)</div>
-        <div>HIGH (47º)</div>
+        <div>LOW (20º C)</div>
+        <div>HIGH (47º C)</div>
       </div>
       <Image
         alt="legend"
