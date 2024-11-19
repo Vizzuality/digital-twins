@@ -61,7 +61,7 @@ export default function Section1() {
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base"
+                className="space-y-4 text-sm xl:text-base xl:max-w-[594px]"
               >
                 <p>
                   There are many moments during the vineyard cycle where climate plays a key role.
@@ -174,7 +174,7 @@ export default function Section1() {
                   rel="noreferrer"
                   href="https://www.mapa.gob.es/es/cartografia-y-sig/ide/descargas/alimentacion/vinos.aspx"
                 >
-                  Capa GIS disponible en la web del Ministerio de Agricultura, Pesca y Alimentación
+                  Wine quality areas in Spain. Credit: Spanish Ministry of Agriculture, Fishing and Food
                 </a>
               </div>
             </div>
@@ -239,7 +239,7 @@ export default function Section1() {
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base"
+                className="space-y-4 text-sm xl:text-base xl:max-w-[594px]"
               >
                 Wind energy is particularly exposed, emphasising the need for accurate
                 representations of future wind resources. Such climate information will allow us to
@@ -414,7 +414,7 @@ export default function Section1() {
                 initial={{ opacity: 0, height: 0 }}
                 exit={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:text-base"
+                className="space-y-4 text-sm xl:text-base xl:max-w-[594px]"
               >
                 During 18th - 24th January heavy coastal flooding occurred, due to large storm
                 swells and record breaking precipitation. This caused significant impacts on
@@ -519,8 +519,8 @@ export default function Section1() {
     </TabsContent>
   );
 
-  const AGRICULTURE_ROWS = [openedKnowMore ? 1978 : 1690, openedKnowMore ? 2280 : 1910];
-  const INSURANCE_ROWS = [openedKnowMore ? 1100 : 950, openedKnowMore ? 1800 : 1650];
+  const AGRICULTURE_ROWS = [openedKnowMore ? 1819 : 1690, openedKnowMore ? 2344 : 1910];
+  const INSURANCE_ROWS = [openedKnowMore ? 1200 : 950, openedKnowMore ? 1900 : 1650];
   return (
     <section className="relative">
       <div className="relative bg-blue-950 text-white">

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import dynamic from "next/dynamic";
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 
