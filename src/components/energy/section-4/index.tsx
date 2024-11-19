@@ -98,7 +98,7 @@ export default function Section4() {
             src="/videos/stream-videos/observations/index.m3u8"
             className="h-screen w-full"
             fluid
-            videoClassName="object-fill !h-screen"
+            videoClassName="object-cover max-xl:object-[9%] xl:object-fill !h-screen"
           />
           <motion.div
             className="absolute left-0 top-[calc(50%_-_100px)] flex h-full w-full flex-col gap-4 text-green-950"
@@ -112,12 +112,13 @@ export default function Section4() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, translateY: "-200px" }}
-                  className="flex w-full flex-col"
+                  className="flex w-full flex-col items-center justify-center text-center"
                 >
-                  <h2 className="mx-auto text-base uppercase tracking-tight xl:text-lg">
+
+                  <h2 className="sm:mx-auto text-base uppercase tracking-tight xl:text-lg">
                     Exploring energy futures
                   </h2>
-                  <h3 className="mx-auto max-w-[80vw] text-[36px] xl:max-w-[720px] xl:text-4xl">
+                  <h3 className="sm:mx-auto max-w-[80vw] text-[36px] xl:max-w-[720px] xl:text-4xl">
                     Inside the 2018 heatwave
                     <br /> on the Iberian Peninsula
                   </h3>
