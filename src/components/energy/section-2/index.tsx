@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
-import ScrollStep from "@/components/scroll-step";
-import GlobeMap from "@/components/globe-map";
 import { useRecoilState } from "recoil";
+
 import { globePhaseAtom } from "@/store";
+
+import GlobeMap from "@/components/globe-map";
+import ScrollStep from "@/components/scroll-step";
 
 const transition = { duration: 0.2, ease: "linear" };
 

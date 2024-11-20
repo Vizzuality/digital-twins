@@ -1,10 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, forwardRef } from "react";
-
-import dynamic from "next/dynamic";
-
-const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
+import StepDots from "@/components/step-dots";
 import { useGesture } from "@use-gesture/react";
 import { useScroll, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
@@ -218,17 +215,30 @@ export default function Section2() {
   });
 
   Phase2Content.displayName = "Phase2Content";
+
+  const areStepsInView = useInView(scrollSectionRef,
+    { margin: "-50% 0px -50% 0px" }
+  );
+
   return (
     <section className="relative bg-green-800" id="section-2">
-      <div className="pointer-events-none relative">
-        <Lines
-          verticalClassName="left-8"
-          sectionName="section-2"
-          columns={[100]}
-          rows={[100]}
-          colorClass="bg-blue-900/10"
-        />
-      </div>
+      {areStepsInView && <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="hidden xl:block fixed transform w-full z-10 top-0 translate-y-[50vh]"
+      >
+        <div className="absolute flex h-full w-6 items-center right-[138px]">
+          <StepDots
+            sectionName="home-2"
+            colorClass="bg-green-300"
+            stepsNumber={3}
+            currentStep={globePhase}
+            onClick={setGlobePhase}
+          />
+        </div>
+      </motion.div>}
       <div className="relative h-[500vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
           <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
