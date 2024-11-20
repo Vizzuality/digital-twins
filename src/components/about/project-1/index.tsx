@@ -132,7 +132,7 @@ export default function Section1() {
           </div>
         ) : (
           <div
-            className={cn("mb-10 flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}
+            className={cn("flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}
           >
             <AnimatePresence>
               {Array(2)
@@ -161,7 +161,7 @@ export default function Section1() {
         )}
         <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
           <div className={cn(gridColumnsAgriculture)}>
-            <h4 className="col-span-1 mb-4 max-w-[274px] text-lg xl:mb-0 xl:text-xl">
+            <h4 className="col-span-1 mb-4 max-w-[314px] text-lg xl:mb-0 xl:text-xl">
               Climate and geographic indicators for wine production in Spain
             </h4>
           </div>
@@ -345,7 +345,7 @@ export default function Section1() {
             />
           </div>
         ) : (
-          <div className={cn("mb-10 flex h-[313px] w-full overflow-hidden", gridColumnsEnergy)}>
+          <div className={cn("flex h-[313px] w-full overflow-hidden", gridColumnsEnergy)}>
             <AnimatePresence>
               {Array(2)
                 .fill(null)
@@ -529,7 +529,8 @@ export default function Section1() {
     </TabsContent>
   );
 
-  const AGRICULTURE_ROWS = [openedKnowMore ? 1819 : 1690, openedKnowMore ? 2344 : 1910];
+  const AGRICULTURE_ROWS = [openedKnowMore ? 2306 : 1646, openedKnowMore ? 2528 : 1870];
+  const ENERGY_ROWS = [openedKnowMore ? 2728 : 2240, openedKnowMore ? 3188 : 2702];
   const INSURANCE_ROWS = [openedKnowMore ? 1200 : 950, openedKnowMore ? 1900 : 1650];
   return (
     <section className="relative">
@@ -606,6 +607,7 @@ export default function Section1() {
             510,
             570,
             ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : []),
+            ...(selectedTab === "energy" ? ENERGY_ROWS : []),
             ...(selectedTab === "insurance" ? INSURANCE_ROWS : []),
           ]}
           colorClass="bg-blue-900/10"
