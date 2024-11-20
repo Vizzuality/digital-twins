@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useGesture } from "@use-gesture/react";
 
 import { useIsMobile } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
-
+import StepDots from "@/components/step-dots";
 import Arrows from "@/components/arrows";
 
 import { TAB_CONTENT } from "./data";
@@ -63,17 +62,16 @@ const TabContentItem = ({ index = 0 }: { index: number }) => {
       <div className="relative flex h-full flex-col justify-between gap-4 text-sm leading-[24px] xl:min-h-[392px] xl:text-base">
         {content.text}
         <div className="flex items-center justify-center gap-2 xl:justify-start xl:gap-0.5">
-          {Array(TAB_CONTENT[index].length)
-            .fill(null)
-            .map((_, idx) => (
-              <div
-                key={idx}
-                className={cn("rounded-full bg-white", {
-                  "h-[14px] w-[14px]": textIndex === idx,
-                  "h-2 w-2": textIndex !== idx,
-                })}
-              />
-            ))}
+          <StepDots
+            sectionName="home-2"
+            colorClass="bg-white"
+            vertical={false}
+            stepsNumber={TAB_CONTENT[index].length}
+            currentStep={textIndex}
+            onClick={(index) => {
+              setTextIndex(index);
+            }}
+          />
         </div>
       </div>
       {!isMobile && (

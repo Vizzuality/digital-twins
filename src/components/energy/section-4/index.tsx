@@ -4,11 +4,12 @@ import { useRef, useState } from "react";
 
 import Image from "next/image";
 
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants, useInView } from "framer-motion";
 
 import { useIsMobile } from "@/lib/hooks";
 
 import ScrollStep from "@/components/scroll-step";
+import StepDots from "@/components/step-dots";
 import VideoPlayer from "@/components/video-player";
 
 import Chart from "@/svgs/chart.svg";
@@ -89,8 +90,31 @@ export default function Section4() {
       </div>
     </div>
   );
+  const isInView = useInView(scrollSectionRef, { margin: "-50% 0px -50% 0px" });
+
   return (
     <section className="relative" id="section-4">
+      {isInView && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
+        >
+          <div className="absolute right-[138px] flex h-full w-6 items-center">
+            <StepDots
+              sectionName="home-2"
+              colorClass="bg-green-700"
+              stepsNumber={3}
+              currentStep={parseInt(step.slice(-1), 10) - 1}
+              onClick={(index: number) => {
+                setStep(`step-${index + 1}`);
+              }}
+            />
+          </div>
+        </motion.div>
+      )}
       <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id="step-1" className="relative h-[50vh]" offset={0.5} onEnter={setStep} />
         <div className="sticky inset-0 flex h-[100vh] w-full justify-center" id="section-4-1">

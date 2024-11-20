@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRecoilState } from "recoil";
 
 import { globePhaseAtom } from "@/store";
 
 import GlobeMap from "@/components/globe-map";
 import ScrollStep from "@/components/scroll-step";
+import StepDots from "@/components/step-dots";
 
 const transition = { duration: 0.2, ease: "linear" };
 
@@ -26,8 +27,32 @@ export default function Section2() {
     }
   }, [step, globePhase, setGlobePhase]);
 
+  const isInView = useInView(scrollSectionRef, { margin: "-50% 0px -50% 0px" });
+
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
+      {isInView && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
+        >
+          <div className="absolute right-[138px] flex h-full w-6 items-center">
+            <StepDots
+              sectionName="home-2"
+              colorClass="bg-green-700"
+              stepsNumber={2}
+              currentStep={globePhase}
+              onClick={(index) => {
+                setGlobePhase(index);
+                setStep(`section-2-step-${index + 1}`);
+              }}
+            />
+          </div>
+        </motion.div>
+      )}
       <div
         className="relative h-[200vh] xl:container xl:h-[300vh]"
         ref={scrollSectionRef}

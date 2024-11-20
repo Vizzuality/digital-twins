@@ -131,9 +131,7 @@ export default function Section1() {
             />
           </div>
         ) : (
-          <div
-            className={cn("flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}
-          >
+          <div className={cn("flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}>
             <AnimatePresence>
               {Array(2)
                 .fill(null)
