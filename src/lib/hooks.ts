@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useLayoutEffect } from "react";
+
 import { useMediaQuery } from "react-responsive";
 
 export function useWindowWidth() {
@@ -38,7 +39,7 @@ export const useContainerWidthWithResize = (containerRef: React.RefObject<HTMLDi
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [containerRef]);
+  }, [containerRef, handleResize]);
 
   return containerWidth;
 };

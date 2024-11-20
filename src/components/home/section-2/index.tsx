@@ -54,9 +54,6 @@ export default function Section2() {
   if (!screenWidth) {
     screenWidth = isMobile ? 400 : 800;
   }
-  if (isMobile && screenWidth > 400) {
-    screenWidth = 400;
-  }
 
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
   const isInView = useInView(scrollSectionRef);
