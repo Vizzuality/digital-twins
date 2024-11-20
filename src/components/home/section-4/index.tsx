@@ -28,11 +28,11 @@ const renderLegend = (
       height={100}
     />
     <div className="flex w-full justify-between">
-      <div>CONTOUR LINE: +35º C</div>
+      <div className="min-w-[106px]">CONTOUR LINE: +35º C</div>
       <Image
         alt="contour line legend"
         src="/images/home-legend-contour-line.svg"
-        className="w-[200px] xl:w-[91px]"
+        className="h-[16px] w-full max-w-[100%] sm:h-full sm:w-[200px] xl:w-[91px] object-right object-contain"
         width={91}
         height={100}
       />
