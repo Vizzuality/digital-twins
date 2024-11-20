@@ -30,7 +30,7 @@ const tabsTriggerVariants = cva(
         default:
           "whitespace-nowrap py-1.5 pr-10 font-medium uppercase decoration-4 underline-offset-4 data-[state=active]:text-light-green data-[state=active]:underline xl:text-lg",
         whatif:
-          "max-xl:w-[213px] mb-2 uppercase px-10 py-4 data-[state=active]:bg-light-green justify-center items-center flex text-center text-light-green data-[state=active]:text-blue-900 xl:text-lg xl:mr-6 font-medium border-2 border-light-green",
+          "max-xl:w-[120px] mr-2 max-xl:w-[100px] mb-2 uppercase px-6 xl:px-10 py-4 data-[state=active]:bg-light-green justify-center items-center flex text-center text-light-green data-[state=active]:text-blue-900 xl:text-lg xl:mr-6 font-medium border-2 border-light-green",
         about:
           "max-xl:w-[213px] mb-2 uppercase px-10 py-4 data-[state=active]:bg-green-900 justify-center items-center flex text-center text-green-900 data-[state=active]:text-white xl:text-lg xl:mr-6 font-medium border-2 border-green-900",
       },
@@ -44,7 +44,7 @@ const tabsTriggerVariants = cva(
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> &
-    VariantProps<typeof tabsTriggerVariants>
+  VariantProps<typeof tabsTriggerVariants>
 >(({ className, onClick, variant, ...props }, ref) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(event);
