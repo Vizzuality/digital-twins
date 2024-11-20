@@ -39,7 +39,7 @@ export default function Section2() {
           transition={{ duration: 0.5 }}
           className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
         >
-          <div className="absolute right-[138px] flex h-full w-6 items-center">
+          <div className="absolute xl:right-6 2xl:right-[138px] flex h-full w-6 items-center">
             <StepDots
               sectionName="home-2"
               colorClass="bg-green-700"

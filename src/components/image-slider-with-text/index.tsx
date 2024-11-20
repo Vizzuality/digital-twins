@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { Resizable } from "re-resizable";
 
-import { useContainerWidthWithResize, useIsMobile } from "@/lib/hooks";
+import { useContainerWidthWithResize } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/button";
@@ -64,7 +64,6 @@ const ImageSliderWithText = ({
       </Button>
     </>
   );
-  const isMobile = useIsMobile();
 
   return (
     <div className={cn("relative flex flex-col overflow-hidden", className)}>
@@ -79,8 +78,8 @@ const ImageSliderWithText = ({
             onResizeStop={(e, direction, ref, d) => {
               setResizableWidth(resizableWidth + d.width);
             }}
-            maxWidth={isMobile ? (containerWidth || 1000) - 65 : (containerWidth || 1000) - 200}
-            minWidth={isMobile ? 65 : 200}
+            maxWidth={(containerWidth || 1000) - 0}
+            minWidth={0}
             handleComponent={{
               right: ResizeButton ? <ResizeButton /> : undefined,
             }}
