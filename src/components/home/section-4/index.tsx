@@ -72,7 +72,8 @@ export default function Section4() {
       <div className="relative z-10 flex h-[255px] items-center justify-center overflow-hidden max-xl:mb-6 xl:h-[548px]">
         <VideoPlayer
           src="/videos/stream-videos/section-4/index.m3u8"
-          className="absolute z-0 w-screen object-fill"
+          className="absolute z-0 w-screen self-start min-h-[255px]"
+          videoClassName="object-cover sm:object-fit min-h-[255px]"
         />
         <div className="xl relative z-10 px-2 text-center text-white xl:px-0">
           <h2 className="text-center uppercase tracking-tight xl:text-lg">
