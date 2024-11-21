@@ -52,13 +52,14 @@ export const metadata: Metadata = {
     ],
   },
   icons: [
+    { rel: "shortcut icon", url: "/favicon.ico", type: "image/x-icon" },
     { rel: "icon", url: "/images/media/favicon.ico", type: "image/x-icon" },
     { rel: "icon", url: "/images/media/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
     { rel: "icon", url: "/images/media/android-chrome-256x256.png", sizes: "256x256", type: "image/png" },
     { rel: "apple-touch-icon", url: "/images/media/apple-touch-icon.png", sizes: "72x72", type: "image/png" },
   ],
   manifest: "/images/media/site.webmanifest",
-  themeColor: "#ffffff"
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
