@@ -35,6 +35,52 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Docker
+
+To run the app in a docker container you can use the following commands:
+
+```bash
+docker build -t digital-twins .
+docker run -p 3000:3000 digital-twins
+```
+
+## Structure
+
+The app is structured with a next.js app that uses the following pages and sections:
+
+- `app/(home)`: Contains the main page of the app.
+- `app/case-study-energy`: Contains the case study page of the app.
+- `app/about`: Contains the about page of the app.
+
+In components folder there are the different sections of the app:
+- home:
+  + intro: Digital Twins intro section
+  + section-1: Understanding digital twins
+  + section-2: Unlocking climate potential
+  + section-3: From data to impact
+  + section-4: Unlocking future possibilities
+  + section-5: Towards data streaming for efficient uptake by users
+
+- energy:
+  + intro: Case study intro section
+  + section-1: Wind energy production
+  + section-2: Digital twins are revolutionising the way to approach wind farm development and energy management.
+  + section-3: Planning decisions in the wind energy sector
+  + section-4: Exploring energy futures
+  + section-5: Why storylines for energy futures?
+  + section-6: Heatwaves scenarios
+  + section-7: Unlocking Future Possibilities
+
+- about:
+  + intro: Hero section
+  + section-1: Digital twins intro section
+  + project-1: Gloria project section
+  + project-2: Destination earth project section
+  + project-3: nextGEMS section
+  + project-4: EERIE section
+  + acknowledgements: Acknowledgements section
+
+
 ## Responsive
 
 Please refer to the following link for more information on how to use Tailwind CSS for responsive design:
@@ -71,3 +117,7 @@ If you open this script you can adjust video output quality the -b:v:0, -b:v:1 a
 The 3d globe is a component that uses [react-three-fiber](https://r3f.docs.pmnd.rs/) a react library to use [Three.js](https://threejs.org/).
 
 The globes use either VideoMaterial or GlobeShaderMaterial to display the videos on the globe. The VideoMaterial uses the HLS videos to display the videos on the globe. The GlobeShaderMaterial uses a shader to emulate a translucent globe.
+
+## Metadata
+
+Update the layout files in the `app` folder to change the metadata of the pages for SEO purposes.
