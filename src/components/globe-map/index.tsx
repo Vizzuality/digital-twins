@@ -53,6 +53,7 @@ export default function GlobeMap({
     if (!hasMarkers && enabled) {
       setEnabled(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMarkers]);
 
   // Handle vertical wheel events to scroll the page

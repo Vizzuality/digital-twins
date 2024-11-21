@@ -61,7 +61,7 @@ export default function Section2() {
       </button>
     </div>
   );
-  const bind = useGesture({
+  const bind: ReturnType<typeof useGesture> = useGesture({
     onDragEnd: ({ direction: [dx] }) => {
       if (dx > 0) {
         setMobileGlobeTextIndex(0);
