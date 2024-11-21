@@ -6,10 +6,12 @@ const Arrows = ({
   changeTextIndex,
   textIndex,
   isMaxIndex = false,
+  colorClassName = "text-white",
 }: {
   changeTextIndex: (index: number) => void;
   textIndex: number;
   isMaxIndex?: boolean;
+  colorClassName?: string;
 }) => (
   <div className="mt-1 flex items-start gap-0.5">
     <button
@@ -21,7 +23,7 @@ const Arrows = ({
     >
       <div className="sr-only">Previous text</div>
       <ArrowRight
-        className={cn("h-6 w-6 -rotate-180 p-[2px] text-white", {
+        className={cn("h-6 w-6 -rotate-180 p-[2px]", colorClassName, {
           "opacity-50": textIndex === 0,
         })}
       />
@@ -35,7 +37,7 @@ const Arrows = ({
     >
       <div className="sr-only">Next text</div>
       <ArrowRight
-        className={cn("h-6 w-6 p-[2px] text-white", {
+        className={cn("h-6 w-6 p-[2px]", colorClassName, {
           "opacity-50": isMaxIndex,
         })}
       />

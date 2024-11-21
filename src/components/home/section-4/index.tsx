@@ -1,8 +1,8 @@
 "use client";
+
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
-
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
 
@@ -87,7 +87,7 @@ export default function Section4() {
       <Lines
         verticalClassName="px-[152px] z-0"
         sectionName="section-4"
-        rows={[1142]}
+        rows={[1172]}
         columns={[548]}
         colorClass="bg-white/10"
       />
@@ -152,7 +152,7 @@ export default function Section4() {
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... the heatwave that affected Europe in 2018 occurred in a +2ºC warmer world ?
                 </div>
-                <div className="flex">
+                <div className="flex justify-between">
                   <div className="max-w-[466px] text-balance text-white max-xl:pb-12">
                     The digital twin allows not only to understand the conditions under which the
                     2018 heatwave had occurred, but also to simulate how much worse could this
@@ -161,6 +161,7 @@ export default function Section4() {
                   <Arrows
                     textIndex={0}
                     changeTextIndex={(index: number) => index > 0 && handleValueChange("scenario2")}
+                    colorClassName="text-light-green"
                   />
                 </div>
               </div>
@@ -183,7 +184,7 @@ export default function Section4() {
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... forest areas in a region are converted to irrigated cropland?
                 </div>
-                <div className="flex">
+                <div className="flex justify-between">
                   <div className="max-w-[466px] text-balance text-white xl:mb-20">
                     By allowing the change of land use category from forest to cropland, the digital
                     twin makes it possible for users to explore the effects that the reduced amount
@@ -195,6 +196,7 @@ export default function Section4() {
                     changeTextIndex={(index: number) =>
                       index > 0 ? handleValueChange("scenario3") : handleValueChange("scenario1")
                     }
+                    colorClassName="text-light-green"
                   />
                 </div>
                 <div className="pb-6 xl:hidden">
@@ -222,7 +224,7 @@ export default function Section4() {
                 <div className="max-w-[320px] text-xl text-light-green">
                   ... a wind farm is built in a particular location?
                 </div>
-                <div className="flex">
+                <div className="flex justify-between">
                   <div className="max-w-[466px] text-balance text-white xl:mb-20">
                     The digital twin allows simulations of the average energy output of a wind farm
                     built in a particular location. This type of information is key to advising the
@@ -233,6 +235,7 @@ export default function Section4() {
                     textIndex={2}
                     changeTextIndex={(index: number) => index < 0 && handleValueChange("scenario2")}
                     isMaxIndex
+                    colorClassName="text-light-green"
                   />
                 </div>
                 <div className="pb-6 xl:hidden">
