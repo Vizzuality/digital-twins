@@ -112,13 +112,6 @@ export default function GlobeMap({
     };
   }, []);
 
-  // const dcontrols = new DeviceOrientationControls(camera, renderer.domElement);
-
-  // addEventListener('touchstart', function (evt) {
-  //   dcontrols.enabled = false;
-  //   evt.preventDefault();
-  // }, false);
-
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
   useEffect(() => {
     if (didCatch) {

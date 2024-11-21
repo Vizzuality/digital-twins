@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, forwardRef } from "react";
-import StepDots from "@/components/step-dots";
+
 import { useGesture } from "@use-gesture/react";
 import { useScroll, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
@@ -15,6 +15,7 @@ import { globePhaseAtom } from "@/store";
 
 import { Button } from "@/components/button";
 import GlobeMap from "@/components/globe-map";
+import StepDots from "@/components/step-dots";
 
 import ArrowRight from "@/svgs/arrow-right.svg";
 import CaretRight from "@/svgs/caret-right.svg";
