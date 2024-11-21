@@ -17,7 +17,7 @@ import VideoPlayer from "@/components/video-player";
 const renderLegend = (
   <div className="legend relative inline-flex w-full flex-col gap-2 pt-6 text-2xs lg:py-1 xl:absolute xl:-top-[70px] xl:right-0 xl:h-8 xl:w-[258px]">
     <div className="inline-flex items-start justify-between">
-      <div>LOW (20 C)</div>
+      <div>LOW (20º C)</div>
       <div>HIGH (47º C)</div>
     </div>
     <Image
@@ -27,7 +27,7 @@ const renderLegend = (
       width={378}
       height={100}
     />
-    <div className="flex w-full justify-between">
+    <div className="flex w-full justify-between items-center">
       <div className="min-w-[106px]">CONTOUR LINE: +35º C</div>
       <Image
         alt="contour line legend"

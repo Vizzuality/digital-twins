@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useGesture } from "@use-gesture/react";
 
 import { useIsMobile } from "@/lib/hooks";
-import StepDots from "@/components/step-dots";
+
 import Arrows from "@/components/arrows";
+import StepDots from "@/components/step-dots";
 
 import { TAB_CONTENT } from "./data";
 
