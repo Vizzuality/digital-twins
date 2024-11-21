@@ -37,10 +37,37 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Responsive
 
-Please refer to the following link for more information on how to make the website responsive:
+Please refer to the following link for more information on how to use Tailwind CSS for responsive design:
 https://tailwindcss.com/docs/responsive-design
 
 The used breakpoints are:
 
 - `sm`: 640px
 - `xl`: 1280px
+
+## Videos
+
+The videos are hosted on the public folder on hls format.
+HLS is a streaming protocol that was developed by Apple. It is widely used for streaming video on the internet. [HLS](https://developer.apple.com/streaming/) is a protocol that breaks the overall stream into a sequence of small HTTP-based file downloads. Each download loads one short chunk of the overall video file. As the video plays, the client player requests the next chunk of the video file.
+
+To compress the videos there is a bash script that uses [ffmpeg](https://www.ffmpeg.org/).
+
+To use the script you need to have ffmpeg installed on your machine. Follow the instructions on the website mentioned above to install it.
+
+To compress the videos add the desired videos to the `public/videos/to-compress` folder and run the following command:
+
+```bash
+  sh public/videos/to-compress/compress-videos.sh
+```
+
+This script will compress any videos placed on this folder and output the compressed videos to the `public/videos/stream-videos` folder. Then they can be played by the VideoPlayer component or the Globe which is configured to use HLS.
+
+The videos will be compressed to 3 different qualities depending on the output device. The [videojs](https://videojs.com/) library will automatically select the best quality based on the user's internet connection.
+
+If you open this script you can adjust video output quality the -b:v:0, -b:v:1 and -b:v:2 values to change the video quality.
+
+## 3d Globe
+
+The 3d globe is a component that uses [react-three-fiber](https://r3f.docs.pmnd.rs/) a react library to use [Three.js](https://threejs.org/).
+
+The globes use either VideoMaterial or GlobeShaderMaterial to display the videos on the globe. The VideoMaterial uses the HLS videos to display the videos on the globe. The GlobeShaderMaterial uses a shader to emulate a translucent globe.
