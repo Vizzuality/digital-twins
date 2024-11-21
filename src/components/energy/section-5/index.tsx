@@ -83,7 +83,7 @@ export default function Section5() {
             Using storylines to simulate the 2018 heatwave under current and future conditions to
             understand their potential impacts.
           </h3>
-          <p className="text-base">
+          <p className="text-base max-w-[540px]">
             Present-day plots represent the simulation of an event under current conditions,
             covering the last few decades, to ensure that the model accurately captures the event.
             Future scenario plots simulate the same event under different levels of global warming

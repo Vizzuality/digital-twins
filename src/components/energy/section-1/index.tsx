@@ -18,20 +18,19 @@ import VideoPlayer from "@/components/video-player";
 
 export default function Section1() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);
-  const [openedKnowMoreWind, setOpenedKnowMoreWind] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
 
   const gridColumns = isMobile
     ? "flex flex-col"
     : {
-        "grid transition-all duration-500": true,
-        "grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]": hoveredIndex === 0,
-        "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr]": hoveredIndex === 1,
-        "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr]": hoveredIndex === 2,
-        "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr]": hoveredIndex === 3,
-        "grid-cols-[1fr_1fr_1fr_1fr]": hoveredIndex === null,
-      };
+      "grid transition-all duration-500": true,
+      "grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]": hoveredIndex === 0,
+      "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr]": hoveredIndex === 1,
+      "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr]": hoveredIndex === 2,
+      "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr]": hoveredIndex === 3,
+      "grid-cols-[1fr_1fr_1fr_1fr]": hoveredIndex === null,
+    };
 
   return (
     <section className="relative scroll-mt-8 bg-white" id="section-1">
@@ -221,24 +220,11 @@ export default function Section1() {
               The renewable energy sector is significantly impacted by climate variability and
               change.
             </h4>
-            <KnowMoreButton
-              onClick={() => setOpenedKnowMoreWind(!openedKnowMoreWind)}
-              opened={openedKnowMoreWind}
-            />
-            <AnimatePresence>
-              {openedKnowMoreWind && (
-                <motion.div
-                  key="know-more-renewable-sector"
-                  initial={{ opacity: 0, height: 0 }}
-                  exit={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                >
-                  Phenomena such as wind droughts, heatwaves, and droughts can both affect energy
-                  supply and demand. In the case of wind, daily variability is especially relevant,
-                  which makes high-resolution information desirable.
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <p>
+              Phenomena such as wind droughts, heatwaves, and droughts can both affect energy
+              supply and demand. In the case of wind, daily variability is especially relevant,
+              which makes high-resolution information desirable.
+            </p>
           </div>
         </div>
       </div>
