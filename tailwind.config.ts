@@ -135,7 +135,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        marquee: "marquee 10s linear infinite",
+        marquee: "marquee 20s linear infinite",
       },
       transitionDuration: {
         "2000": "2000ms",
