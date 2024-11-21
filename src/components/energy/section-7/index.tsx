@@ -85,7 +85,7 @@ export default function Section7() {
           <h2 className="text-center uppercase tracking-tight xl:text-lg">
             Unlocking Future Possibilities
           </h2>
-          <h3 className="max-w-[830px] text-center text-[36px] max-xl:leading-[42px] xl:text-4xl">
+          <h3 className="max-w-[95%] text-center text-[36px] max-xl:leading-[42px] xl:text-4xl">
             Harnessing Digital Twins for on-demand simulations.
           </h3>
         </div>

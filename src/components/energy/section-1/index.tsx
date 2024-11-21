@@ -45,7 +45,7 @@ export default function Section1() {
           <h2 className="text-center uppercase tracking-tight xl:text-lg">
             Wind energy production
           </h2>
-          <h3 className="max-w-[830px] text-center text-[36px] leading-[32px] xl:text-4xl">
+          <h3 className="max-w-[95%] text-center text-[36px] leading-[32px] xl:text-4xl">
             Advanced simulations for a climate resilient energy sector
           </h3>
         </div>
