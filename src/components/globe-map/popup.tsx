@@ -53,13 +53,7 @@ const Popup = ({
       })}
     >
       <div
-        className={cn(
-          "relative inline-flex w-fit gap-6 bg-green-700/80 py-8 pl-8 pr-4 text-white xl:h-[344px] xl:w-[662px]",
-          {
-            "bg-white/20 backdrop-blur-[15px]": !isMobile,
-            "bg-green-700/60 backdrop-blur-[5px]": isMobile,
-          },
-        )}
+        className="relative inline-flex w-fit gap-6 py-8 pl-8 pr-4 text-white xl:h-[344px] xl:w-[662px] bg-white/20 backdrop-blur-[15px]"
       >
         <div className="flex flex-col-reverse gap-6 xl:flex-row">
           <div className="flex items-center justify-center">
