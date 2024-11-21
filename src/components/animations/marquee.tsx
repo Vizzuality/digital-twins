@@ -1,5 +1,7 @@
 "use client";
+
 import { useRef } from "react";
+
 import { cn } from "@/lib/utils";
 
 const Marquee = ({ children, className }: { children: React.ReactNode; className?: string }) => {
