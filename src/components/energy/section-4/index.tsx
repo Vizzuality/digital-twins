@@ -141,7 +141,7 @@ export default function Section4() {
                   <h2 className="uppercase tracking-tight sm:mx-auto xl:text-lg">
                     Exploring energy futures
                   </h2>
-                  <h3 className="max-w-[95%] sm:mx-auto xl:max-w-[720px] text-[36px] max-xl:leading-[42px] xl:text-4xl">
+                  <h3 className="max-w-[95%] text-[36px] max-xl:leading-[42px] sm:mx-auto xl:max-w-[720px] xl:text-4xl">
                     Inside the 2018 heatwave
                     <br /> on the Iberian Peninsula
                   </h3>
@@ -161,7 +161,7 @@ export default function Section4() {
                 {step === "step-2" && (
                   <motion.div
                     key="section-4-description-2"
-                    className="absolute inset-0 h-fit w-full bg-white/30 p-6 text-xl xl:text-2xl backdrop-blur-lg"
+                    className="absolute inset-0 h-fit w-full bg-white/30 p-6 text-xl backdrop-blur-lg xl:text-2xl"
                     initial={{ opacity: 0, top: "200px" }}
                     animate={{ opacity: 1, top: 0, transition }}
                     exit={{ opacity: 0, top: "-200px" }}

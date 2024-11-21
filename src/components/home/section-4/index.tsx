@@ -32,7 +32,7 @@ const renderLegend = (
       <Image
         alt="contour line legend"
         src="/images/home-legend-contour-line.svg"
-        className="h-[16px] w-full max-w-[100%] sm:h-full sm:w-[200px] xl:w-[91px] object-right object-contain"
+        className="h-[16px] w-full max-w-[100%] object-contain object-right sm:h-full sm:w-[200px] xl:w-[91px]"
         width={91}
         height={100}
       />
@@ -72,7 +72,7 @@ export default function Section4() {
       <div className="relative z-10 flex h-[255px] items-center justify-center overflow-hidden max-xl:mb-6 xl:h-[548px]">
         <VideoPlayer
           src="/videos/stream-videos/section-4/index.m3u8"
-          className="absolute z-0 w-screen self-start min-h-[255px]"
+          className="absolute z-0 min-h-[255px] w-screen self-start"
           videoClassName="object-cover sm:object-fit min-h-[255px]"
         />
         <div className="xl relative z-10 px-2 text-center text-white xl:px-0">

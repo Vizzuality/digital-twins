@@ -10,7 +10,7 @@ export default function Intro() {
         columns={[349, 1050]}
         rows={[220, 286, 302, 364]}
       />
-      <div className="container relative flex flex-col-reverse pb-[60px] px-8 pt-[110px] xl:grid xl:grid-cols-[250px_1fr_250px] xl:pl-24 xl:pt-[177px]">
+      <div className="container relative flex flex-col-reverse px-8 pb-[60px] pt-[110px] xl:grid xl:grid-cols-[250px_1fr_250px] xl:pl-24 xl:pt-[177px]">
         <div className="xl:space-y-10 xl:pt-[41px]">
           {/* Text and images removed for now - May be recovered on the future */}
           {/* <div className='text-white text-balanced leading-[18px] pt-4 xl:pt-0'>
@@ -27,7 +27,7 @@ export default function Intro() {
             }
           </ul> */}
         </div>
-        <div className="space-y-[30px] xl:pb-[206px] text-center xl:space-y-[94px]">
+        <div className="space-y-[30px] text-center xl:space-y-[94px] xl:pb-[206px]">
           <div>
             <div className="inline-flex items-center pb-4 text-xs text-light-green">
               Case study

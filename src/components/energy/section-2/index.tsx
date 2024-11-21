@@ -15,8 +15,7 @@ import GlobeMap from "@/components/globe-map";
 import ScrollStep from "@/components/scroll-step";
 import StepDots from "@/components/step-dots";
 
-import ArrowRight from '@/svgs/arrow-right.svg';
-
+import ArrowRight from "@/svgs/arrow-right.svg";
 
 const transition = { duration: 0.2, ease: "linear" };
 
@@ -44,11 +43,7 @@ export default function Section2() {
   const isMobile = useIsMobile();
   const renderArrows = (
     <div className="absolute -top-8 right-0 flex items-center gap-0.5">
-      <button
-        onClick={() => setMobileGlobeTextIndex(0)}
-        type="button"
-        title="Previous text"
-      >
+      <button onClick={() => setMobileGlobeTextIndex(0)} type="button" title="Previous text">
         <div className="sr-only">Previous text</div>
         <ArrowRight
           className={cn("h-6 w-6 -rotate-180 p-[2px] text-green-950", {
@@ -64,7 +59,8 @@ export default function Section2() {
           })}
         />
       </button>
-    </div>);
+    </div>
+  );
   const bind = useGesture({
     onDragEnd: ({ direction: [dx] }) => {
       if (dx > 0) {
@@ -84,7 +80,7 @@ export default function Section2() {
           transition={{ duration: 0.5 }}
           className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
         >
-          <div className="absolute xl:right-6 2xl:right-[138px] flex h-full w-6 items-center">
+          <div className="absolute flex h-full w-6 items-center xl:right-6 2xl:right-[138px]">
             <StepDots
               sectionName="home-2"
               colorClass="bg-green-700"
@@ -146,21 +142,22 @@ export default function Section2() {
                     {(!isMobile || mobileGlobeTextIndex === 0) && (
                       <motion.div className="text-sm leading-tight xl:text-base">
                         <p>
-                          By allowing users to perform simulations that replicate real-world conditions,
-                          digital twins can help energy practitioners to map the wind potential of
-                          different regions, optimise the location of wind turbines, and predict energy
-                          generation.
+                          By allowing users to perform simulations that replicate real-world
+                          conditions, digital twins can help energy practitioners to map the wind
+                          potential of different regions, optimise the location of wind turbines,
+                          and predict energy generation.
                         </p>
                       </motion.div>
                     )}
                     {(!isMobile || mobileGlobeTextIndex === 1) && (
                       <motion.div className="text-sm leading-tight xl:text-base">
                         <p>
-                          The energy output of a wind turbine depends on a variety of factors, the most
-                          important being the wind speed at the height at which the turbines are placed.
-                          Current state-of-the-art models only provide wind information at 10 metres,
-                          whereas wind turbines are normally placed at around 100 metres height, and this
-                          requires an interpolation to convert wind speed from 10 to 100 metres.
+                          The energy output of a wind turbine depends on a variety of factors, the
+                          most important being the wind speed at the height at which the turbines
+                          are placed. Current state-of-the-art models only provide wind information
+                          at 10 metres, whereas wind turbines are normally placed at around 100
+                          metres height, and this requires an interpolation to convert wind speed
+                          from 10 to 100 metres.
                         </p>
                       </motion.div>
                     )}
@@ -181,14 +178,14 @@ export default function Section2() {
                   {(!isMobile || mobileGlobeTextIndex === 0) && (
                     <motion.div className="text-sm leading-tight xl:text-base">
                       <p>
-                        A wind turbine has a specific power curve that is provided by the manufacturer
-                        and depends on several factors (e.g. rotor diameter, rated wind speed, etc.).
-                        The measure of how much energy a turbine produces compared to its maximum
-                        theoretical output, over a certain period of time, is what is called capacity
-                        factor. This is a more meaningful variable to the energy industry than wind
-                        speed or energy density. Therefore, it is crucial for energy companies to get
-                        access to information about the capacity factor to be able to assess energy
-                        supply and meet the demand.
+                        A wind turbine has a specific power curve that is provided by the
+                        manufacturer and depends on several factors (e.g. rotor diameter, rated wind
+                        speed, etc.). The measure of how much energy a turbine produces compared to
+                        its maximum theoretical output, over a certain period of time, is what is
+                        called capacity factor. This is a more meaningful variable to the energy
+                        industry than wind speed or energy density. Therefore, it is crucial for
+                        energy companies to get access to information about the capacity factor to
+                        be able to assess energy supply and meet the demand.
                       </p>
                     </motion.div>
                   )}
@@ -196,11 +193,11 @@ export default function Section2() {
                     <motion.div className="text-sm leading-tight xl:text-base">
                       <p>
                         Classic energy models require full time series to generate histograms of the
-                        capacity factor, which makes using the outputs of the digital twin challenging.
-                        However, a streaming setup allows histograms to be built on the fly. This
-                        functionality greatly facilitates the interactivity between the results from the
-                        climate models with impact model applications, such as applications used by the
-                        energy sector.
+                        capacity factor, which makes using the outputs of the digital twin
+                        challenging. However, a streaming setup allows histograms to be built on the
+                        fly. This functionality greatly facilitates the interactivity between the
+                        results from the climate models with impact model applications, such as
+                        applications used by the energy sector.
                       </p>
                     </motion.div>
                   )}
