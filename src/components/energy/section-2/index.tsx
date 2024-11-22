@@ -91,7 +91,7 @@ export default function Section2() {
           <div
             className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
           >
-            <div className="absolute flex h-full w-6 items-center right-6">
+            <div className="absolute flex h-full w-6 items-center right-6 2xl:right-[138px]">
               <StepDots
                 sectionName="home-2"
                 colorClass="bg-green-700"
@@ -107,7 +107,7 @@ export default function Section2() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute bottom-6 right-0 w-[100px] text-green-700 space-y-2 flex flex-col items-center">
+              className="hidden xl:flex absolute bottom-6 2xl:right-[106px] right-0 w-[100px] text-green-700 space-y-2 flex-col items-center text-center">
               Scroll to <br /> continue
               <ArrowDown
                 className="h-6 w-6 animate-bounce"

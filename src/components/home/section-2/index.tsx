@@ -210,7 +210,7 @@ export default function Section2() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute bottom-6 right-12 w-[200px] text-green-300 space-y-2 flex flex-col items-center">
+              className="hidden xl:flex absolute bottom-6 right-14 w-[200px] text-green-300 space-y-2 flex-col items-center text-center">
               Scroll to <br /> continue
               <ArrowDown
                 className="h-6 w-6 animate-bounce"
