@@ -19,7 +19,7 @@ const renderLegend = (
       width={378}
       height={100}
     />
-    <div className="flex w-full justify-between items-center">
+    <div className="flex w-full items-center justify-between">
       <div className="min-w-[106px]">CONTOUR LINE: +35º C</div>
       <Image
         alt="contour line legend +35º C"
@@ -29,12 +29,12 @@ const renderLegend = (
         height={100}
       />
     </div>
-    <div className="flex w-full justify-between items-center">
+    <div className="flex w-full items-center justify-between">
       <div className="min-w-[106px]">CONTOUR LINE: +42º C</div>
       <Image
         alt="contour line legend +42º C"
         src="/images/energy-section-6-contour-line-2.svg"
-        className="h-[16px] w-full max-w-[100%] object-contain object-right sm:h-[22px] xl:h-full sm:w-[200px] xl:w-[43px]"
+        className="h-[16px] w-full max-w-[100%] object-contain object-right sm:h-[22px] sm:w-[200px] xl:h-full xl:w-[43px]"
         width={43}
         height={100}
       />
@@ -49,11 +49,11 @@ const renderText1 = (
       <div className="text-xl">7th August 2018</div>
     </div>
     <div className="text-xs leading-[16px]">
-      In the case of the 2018 heatwave, maximum temperatures were well captured in valley and mountain ridges such as the Pyrinees, while some differences in maximum temperature remained along the Portuguese western coast.
+      In the case of the 2018 heatwave, maximum temperatures were well captured in valley and
+      mountain ridges such as the Pyrinees, while some differences in maximum temperature remained
+      along the Portuguese western coast.
     </div>
-    <div className="text-xs leading-[16px]">
-      Source: Destination Earth
-    </div>
+    <div className="text-xs leading-[16px]">Source: Destination Earth</div>
   </>
 );
 
@@ -71,9 +71,7 @@ const renderText2 = (
       extremes are located in the inland northwestern Iberian Peninsula, with a warming ranging
       between 3.5 and 5°C.
     </div>
-    <div className="text-xs leading-[16px]">
-      Source: Destination Earth
-    </div>
+    <div className="text-xs leading-[16px]">Source: Destination Earth</div>
   </>
 );
 

@@ -46,7 +46,7 @@ const tabsTriggerVariants = cva(
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> &
-  VariantProps<typeof tabsTriggerVariants>
+    VariantProps<typeof tabsTriggerVariants>
 >(({ className, onClick, variant, ...props }, ref) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(event);

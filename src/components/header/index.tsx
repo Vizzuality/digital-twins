@@ -11,11 +11,10 @@ import { menuAtom } from "@/store";
 import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import { MotionButton } from "@/components/button";
 
-
 import Logo from "@/svgs/logo.svg";
 import Menu from "@/svgs/menu.svg";
 
-export default function Header({ colorClassName = 'bg-blue-900' }: { colorClassName?: string }) {
+export default function Header({ colorClassName = "bg-blue-900" }: { colorClassName?: string }) {
   const [, setOpenedMenu] = useRecoilState(menuAtom);
   const [isVisible, setIsVisible] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);

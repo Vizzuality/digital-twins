@@ -84,7 +84,7 @@ const ImageSliderWithText = ({
             onResizeStop={(e, direction, ref, d) => {
               setResizableWidth(resizableWidth + d.width);
             }}
-            maxWidth={(containerWidth || 1000)}
+            maxWidth={containerWidth || 1000}
             minWidth={0}
             handleComponent={{
               right: ResizeButton ? <ResizeButton /> : undefined,

@@ -23,7 +23,7 @@ export default function Section5() {
             <h2 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
               Why storylines for energy futures?
             </h2>
-            <h3 className="pb-5 text-xl xl:text-2xl max-w-[492px]">
+            <h3 className="max-w-[492px] pb-5 text-xl xl:text-2xl">
               Storylines in climate science make climate information more relevant and
               understandable, aiding decision-making, especially when used with digital twin
               simulations.
@@ -39,7 +39,7 @@ export default function Section5() {
                   initial={{ opacity: 0, height: 0 }}
                   exit={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="space-y-4 text-sm xl:text-base max-w-[492px]"
+                  className="max-w-[492px] space-y-4 text-sm xl:text-base"
                 >
                   <p>
                     Climate and impact sector modelling is done in the same modelling chain, meaning
@@ -83,7 +83,7 @@ export default function Section5() {
             Using storylines to simulate the 2018 heatwave under current and future conditions to
             understand their potential impacts.
           </h3>
-          <p className="text-base max-w-[492px]">
+          <p className="max-w-[492px] text-base">
             Present-day plots represent the simulation of an event under current conditions,
             covering the last few decades, to ensure that the model accurately captures the event.
             Future scenario plots simulate the same event under different levels of global warming

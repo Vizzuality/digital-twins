@@ -63,7 +63,7 @@ export default function Intro() {
           </MotionButton>
         </div>
       </div>
-      <Marquee className="absolute bottom-0 w-full gap-12 border-t border-light-green py-4 text-light-green bg-white/5 backdrop-blur-2xl xl:text-xl">
+      <Marquee className="absolute bottom-0 w-full gap-12 border-t border-light-green bg-white/5 py-4 text-light-green backdrop-blur-2xl xl:text-xl">
         <span className="ml-10 h-8 border-l border-light-green pl-10">
           Bridging data and discovery with state-of-the-art digital twin technology
         </span>

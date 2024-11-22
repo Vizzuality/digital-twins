@@ -111,7 +111,7 @@ export default function Section7() {
                   initial={{ opacity: 0, height: 0 }}
                   exit={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="space-y-4 max-w-[492px]"
+                  className="max-w-[492px] space-y-4"
                 >
                   Climate change is not just an environmental issue. It affects every aspect of our
                   lives, from energy security to public health, to the way we design the cities we

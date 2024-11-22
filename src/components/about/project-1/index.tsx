@@ -628,23 +628,17 @@ export default function Section1() {
             <TabsList className="h-fit flex-col xl:flex-row">
               <TabsTrigger value="agriculture" variant="about">
                 <HoverRepeatAnimation>
-                  <div className="px-6 py-[14px]">
-                    Agriculture
-                  </div>
+                  <div className="px-6 py-[14px]">Agriculture</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="energy" variant="about">
                 <HoverRepeatAnimation>
-                  <div className="px-6 py-[14px]">
-                    Energy
-                  </div>
+                  <div className="px-6 py-[14px]">Energy</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="insurance" variant="about">
                 <HoverRepeatAnimation>
-                  <div className="px-6 py-[14px]">
-                    Insurance
-                  </div>
+                  <div className="px-6 py-[14px]">Insurance</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
             </TabsList>

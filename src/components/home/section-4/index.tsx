@@ -28,7 +28,7 @@ const renderLegend = (
       width={378}
       height={100}
     />
-    <div className="flex w-full justify-between items-center">
+    <div className="flex w-full items-center justify-between">
       <div className="min-w-[106px]">CONTOUR LINE: +35º C</div>
       <Image
         alt="contour line legend"
@@ -140,14 +140,18 @@ export default function Section4() {
             <TabsList className="h-auto">
               <TabsTrigger value="scenario1" variant="whatif">
                 <HoverRepeatAnimation>
-                  <div className="px-2 xl:px-6 py-[14px]">Scenario 1</div>
+                  <div className="px-2 py-[14px] xl:px-6">Scenario 1</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="scenario2" variant="whatif">
-                <HoverRepeatAnimation><div className="px-2 xl:px-6 py-[14px]">Scenario 2</div></HoverRepeatAnimation>
+                <HoverRepeatAnimation>
+                  <div className="px-2 py-[14px] xl:px-6">Scenario 2</div>
+                </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="scenario3" variant="whatif">
-                <HoverRepeatAnimation><div className="px-2 xl:px-6 py-[14px]">Scenario 3</div></HoverRepeatAnimation>
+                <HoverRepeatAnimation>
+                  <div className="px-2 py-[14px] xl:px-6">Scenario 3</div>
+                </HoverRepeatAnimation>
               </TabsTrigger>
             </TabsList>
             <TabsContent value="scenario1" className="pt-6 xl:pt-10">

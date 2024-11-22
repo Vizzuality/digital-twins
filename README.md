@@ -53,33 +53,35 @@ The app is structured with a next.js app that uses the following pages and secti
 - `app/about`: Contains the about page of the app.
 
 In components folder there are the different sections of the app:
+
 - home:
-  + intro: Digital Twins intro section
-  + section-1: Understanding digital twins
-  + section-2: Unlocking climate potential
-  + section-3: From data to impact
-  + section-4: Unlocking future possibilities
-  + section-5: Towards data streaming for efficient uptake by users
+
+  - intro: Digital Twins intro section
+  - section-1: Understanding digital twins
+  - section-2: Unlocking climate potential
+  - section-3: From data to impact
+  - section-4: Unlocking future possibilities
+  - section-5: Towards data streaming for efficient uptake by users
 
 - energy:
-  + intro: Case study intro section
-  + section-1: Wind energy production
-  + section-2: Digital twins are revolutionising the way to approach wind farm development and energy management.
-  + section-3: Planning decisions in the wind energy sector
-  + section-4: Exploring energy futures
-  + section-5: Why storylines for energy futures?
-  + section-6: Heatwaves scenarios
-  + section-7: Unlocking Future Possibilities
+
+  - intro: Case study intro section
+  - section-1: Wind energy production
+  - section-2: Digital twins are revolutionising the way to approach wind farm development and energy management.
+  - section-3: Planning decisions in the wind energy sector
+  - section-4: Exploring energy futures
+  - section-5: Why storylines for energy futures?
+  - section-6: Heatwaves scenarios
+  - section-7: Unlocking Future Possibilities
 
 - about:
-  + intro: Hero section
-  + section-1: Digital twins intro section
-  + project-1: Gloria project section
-  + project-2: Destination earth project section
-  + project-3: nextGEMS section
-  + project-4: EERIE section
-  + acknowledgements: Acknowledgements section
-
+  - intro: Hero section
+  - section-1: Digital twins intro section
+  - project-1: Gloria project section
+  - project-2: Destination earth project section
+  - project-3: nextGEMS section
+  - project-4: EERIE section
+  - acknowledgements: Acknowledgements section
 
 ## Responsive
 
