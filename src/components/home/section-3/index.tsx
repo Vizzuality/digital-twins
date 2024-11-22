@@ -1,11 +1,11 @@
 "use client";
 
+import { useEffect, useRef, useState, Fragment } from "react";
+
 import dynamic from "next/dynamic";
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
 import Link from "next/link";
-
-import { useEffect, useRef, useState, Fragment } from "react";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
 

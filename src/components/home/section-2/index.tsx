@@ -39,6 +39,8 @@ const ResizeButton = () => (
   </>
 );
 
+const STEPS = ["section-2-step-1", "section-2-step-2", "section-2-step-3"];
+
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -49,14 +51,12 @@ export default function Section2() {
     screenWidth = isMobile ? 400 : 800;
   }
 
-  const STEPS = ["section-2-step-1", "section-2-step-2", "section-2-step-3"];
-
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
   const [step, setStep] = useState(STEPS[0]);
 
   useEffect(() => {
     setGlobePhase(STEPS.indexOf(step));
-  }, [step]);
+  }, [step, setGlobePhase]);
   useEffect(() => {
     if (globePhase !== 0 && screenWidth) {
       // Prevent errors on reload

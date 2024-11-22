@@ -112,6 +112,7 @@ export const Controls = ({
     if (globePhase === 0 || globePhase === 1) {
       resetPosition();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globePhase]);
 
   useEffect(() => {
@@ -147,6 +148,7 @@ export const Controls = ({
           setEnabled(false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, marker, active, resettingPosition]);
 
   const isInView = useInView(canvasRef);

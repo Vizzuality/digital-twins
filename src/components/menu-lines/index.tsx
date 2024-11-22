@@ -39,4 +39,7 @@ const MenuLines = ({ columns = [], verticalClassName }: MenuLinesProps) => {
   );
 };
 
-export default (props: MenuLinesProps) => createPortal(<MenuLines {...props} />, document.body);
+const MenuLinesPortal = (props: MenuLinesProps) =>
+  createPortal(<MenuLines {...props} />, document.body);
+
+export default MenuLinesPortal;

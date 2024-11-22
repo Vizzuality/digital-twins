@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
-import Image from "next/image";
 
 import { AnimatePresence, motion } from "framer-motion";
 

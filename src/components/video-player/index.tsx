@@ -86,6 +86,7 @@ export const VideoPlayer = ({
         playerRef.current = null;
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src, isInView]);
 
   return <div data-vjs-player ref={videoRef} className={className} />;
