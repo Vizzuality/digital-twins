@@ -58,7 +58,6 @@ export default function Section2() {
   useEffect(() => {
     setGlobePhase(STEPS.indexOf(step));
   }, [step]);
-  console.log(step, globePhase)
   useEffect(() => {
     if (globePhase !== 0 && screenWidth) {
       // Prevent errors on reload
