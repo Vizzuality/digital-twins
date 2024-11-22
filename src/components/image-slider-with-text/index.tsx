@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 
@@ -26,7 +26,7 @@ const ImageSliderWithText = ({
   textClass = "text-green-700",
   className,
   resizeButtonClassName,
-  initialPosition = 500,
+  initialPosition = 550,
 }: {
   text1: JSX.Element;
   text2: JSX.Element;
@@ -47,6 +47,12 @@ const ImageSliderWithText = ({
   const containerWidth = useContainerWidthWithResize(containerRef);
   const [resizableWidth, setResizableWidth] = useState(initialPosition);
   const [resizableCurrentWidth, setResizableCurrentWidth] = useState(initialPosition);
+
+  // Place the resizable bar in the middle of the container once we know the container width
+  useEffect(() => {
+    setResizableWidth(containerWidth / 2);
+    setResizableCurrentWidth(containerWidth / 2);
+  }, [containerWidth]);
 
   const ResizeButton = () => (
     <>
@@ -78,7 +84,7 @@ const ImageSliderWithText = ({
             onResizeStop={(e, direction, ref, d) => {
               setResizableWidth(resizableWidth + d.width);
             }}
-            maxWidth={(containerWidth || 1000) - 0}
+            maxWidth={(containerWidth || 1000)}
             minWidth={0}
             handleComponent={{
               right: ResizeButton ? <ResizeButton /> : undefined,
