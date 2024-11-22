@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useGesture } from "@use-gesture/react";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRecoilState } from "recoil";
 
 import { useIsMobile } from "@/lib/hooks";
@@ -42,7 +42,6 @@ export default function Section2() {
     setMobileGlobeTextIndex(0);
   }, [step]);
 
-  const isInView = useInView(scrollSectionRef, { margin: "-50% 0px -50% 0px" });
   const isMobile = useIsMobile();
   const renderArrows = (
     <div className="absolute -top-8 right-0 flex items-center gap-0.5">
