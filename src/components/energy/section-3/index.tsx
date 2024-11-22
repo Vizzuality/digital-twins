@@ -1,9 +1,9 @@
 "use client";
+import { useState } from "react";
+
 import dynamic from "next/dynamic";
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
-
-import { useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -18,12 +18,12 @@ export default function Section3() {
   const gridColumns = isMobile
     ? "flex flex-col"
     : {
-      "grid transition-all duration-500": true,
-      "grid-cols-[1.2fr_0.9fr_0.9fr]": hoveredIndex === 0,
-      "grid-cols-[0.9fr_1.2fr_0.9fr]": hoveredIndex === 1,
-      "grid-cols-[0.9fr_0.9fr_1.2fr]": hoveredIndex === 2,
-      "grid-cols-[1fr_1fr_1fr]": hoveredIndex === null,
-    };
+        "grid transition-all duration-500": true,
+        "grid-cols-[1.2fr_0.9fr_0.9fr]": hoveredIndex === 0,
+        "grid-cols-[0.9fr_1.2fr_0.9fr]": hoveredIndex === 1,
+        "grid-cols-[0.9fr_0.9fr_1.2fr]": hoveredIndex === 2,
+        "grid-cols-[1fr_1fr_1fr]": hoveredIndex === null,
+      };
   return (
     <section className="relative scroll-mt-8 bg-white pb-[60px] xl:pb-20" id="section-3">
       {/* Decorative div to continue previous section */}

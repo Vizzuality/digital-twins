@@ -15,8 +15,8 @@ import GlobeMap from "@/components/globe-map";
 import ScrollStep from "@/components/scroll-step";
 import StepDots from "@/components/step-dots";
 
-import ArrowRight from "@/svgs/arrow-right.svg";
 import ArrowDown from "@/svgs/arrow-down.svg";
+import ArrowRight from "@/svgs/arrow-right.svg";
 
 const transition = { duration: 0.2, ease: "linear" };
 
@@ -85,13 +85,9 @@ export default function Section2() {
           offset={0.5}
           onEnter={setStep}
         />
-        <div
-          className="sticky inset-0 h-[100vh] w-full"
-        >
-          <div
-            className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
-          >
-            <div className="absolute flex h-full w-6 items-center right-6 2xl:right-[138px]">
+        <div className="sticky inset-0 h-[100vh] w-full">
+          <div className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block">
+            <div className="absolute right-6 flex h-full w-6 items-center 2xl:right-[138px]">
               <StepDots
                 sectionName="home-2"
                 colorClass="bg-green-700"
@@ -107,13 +103,13 @@ export default function Section2() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="hidden xl:flex absolute bottom-6 2xl:right-[106px] right-0 w-[100px] text-green-700 space-y-2 flex-col items-center text-center">
+              className="absolute bottom-6 right-0 hidden w-[100px] flex-col items-center space-y-2 text-center text-green-700 xl:flex 2xl:right-[106px]"
+            >
               Scroll to <br /> continue
-              <ArrowDown
-                className="h-6 w-6 animate-bounce"
-              />
-            </motion.div>)}
-          <div className="h-full w-full xl:container flex flex-col-reverse xl:flex-row xl:gap-[63px] items-center justify-center ">
+              <ArrowDown className="h-6 w-6 animate-bounce" />
+            </motion.div>
+          )}
+          <div className="flex h-full w-full flex-col-reverse items-center justify-center xl:container xl:flex-row xl:gap-[63px]">
             <div
               key="section-2-title-1"
               className="flex h-[50vh] max-h-[936px] w-full items-center justify-center xl:h-full xl:w-1/2"
@@ -139,8 +135,8 @@ export default function Section2() {
                     {...(isMobile ? bind() : {})}
                   >
                     <h2 className="text-xl xl:text-2xl">
-                      Digital twins are revolutionising the way to approach wind farm development and
-                      energy management.
+                      Digital twins are revolutionising the way to approach wind farm development
+                      and energy management.
                     </h2>
                     <div className="relative">
                       {isMobile && renderArrows}
@@ -159,10 +155,10 @@ export default function Section2() {
                           <p>
                             The energy output of a wind turbine depends on a variety of factors, the
                             most important being the wind speed at the height at which the turbines
-                            are placed. Current state-of-the-art models only provide wind information
-                            at 10 metres, whereas wind turbines are normally placed at around 100
-                            metres height, and this requires an interpolation to convert wind speed
-                            from 10 to 100 metres.
+                            are placed. Current state-of-the-art models only provide wind
+                            information at 10 metres, whereas wind turbines are normally placed at
+                            around 100 metres height, and this requires an interpolation to convert
+                            wind speed from 10 to 100 metres.
                           </p>
                         </motion.div>
                       )}
@@ -184,25 +180,25 @@ export default function Section2() {
                       <motion.div className="text-sm leading-tight xl:text-base">
                         <p>
                           A wind turbine has a specific power curve that is provided by the
-                          manufacturer and depends on several factors (e.g. rotor diameter, rated wind
-                          speed, etc.). The measure of how much energy a turbine produces compared to
-                          its maximum theoretical output, over a certain period of time, is what is
-                          called capacity factor. This is a more meaningful variable to the energy
-                          industry than wind speed or energy density. Therefore, it is crucial for
-                          energy companies to get access to information about the capacity factor to
-                          be able to assess energy supply and meet the demand.
+                          manufacturer and depends on several factors (e.g. rotor diameter, rated
+                          wind speed, etc.). The measure of how much energy a turbine produces
+                          compared to its maximum theoretical output, over a certain period of time,
+                          is what is called capacity factor. This is a more meaningful variable to
+                          the energy industry than wind speed or energy density. Therefore, it is
+                          crucial for energy companies to get access to information about the
+                          capacity factor to be able to assess energy supply and meet the demand.
                         </p>
                       </motion.div>
                     )}
                     {(!isMobile || mobileGlobeTextIndex === 1) && (
                       <motion.div className="text-sm leading-tight xl:text-base">
                         <p>
-                          Classic energy models require full time series to generate histograms of the
-                          capacity factor, which makes using the outputs of the digital twin
-                          challenging. However, a streaming setup allows histograms to be built on the
-                          fly. This functionality greatly facilitates the interactivity between the
-                          results from the climate models with impact model applications, such as
-                          applications used by the energy sector.
+                          Classic energy models require full time series to generate histograms of
+                          the capacity factor, which makes using the outputs of the digital twin
+                          challenging. However, a streaming setup allows histograms to be built on
+                          the fly. This functionality greatly facilitates the interactivity between
+                          the results from the climate models with impact model applications, such
+                          as applications used by the energy sector.
                         </p>
                       </motion.div>
                     )}

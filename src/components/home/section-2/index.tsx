@@ -7,19 +7,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
 import { useRecoilState } from "recoil";
 
-import { useWindowWidth } from "@/lib/hooks";
-import { useIsMobile } from "@/lib/hooks";
+import { useIsMobile, useWindowWidth } from "@/lib/hooks";
 import { cn, scrollToSection } from "@/lib/utils";
 
 import { globePhaseAtom } from "@/store";
 
 import { Button } from "@/components/button";
 import GlobeMap from "@/components/globe-map";
-import StepDots from "@/components/step-dots";
 import ScrollStep from "@/components/scroll-step";
+import StepDots from "@/components/step-dots";
 
-import ArrowRight from "@/svgs/arrow-right.svg";
 import ArrowDown from "@/svgs/arrow-down.svg";
+import ArrowRight from "@/svgs/arrow-right.svg";
 import CaretRight from "@/svgs/caret-right.svg";
 
 import InfoPopover from "../../info-popover";
@@ -191,18 +190,14 @@ export default function Section2() {
       <div className="relative h-[450vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id={STEPS[0]} className="relative h-[100vh]" offset={0.5} onEnter={setStep} />
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
-          <div
-            className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block"
-          >
+          <div className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block">
             <div className="absolute right-[138px] flex h-full w-6 items-center">
               <StepDots
                 sectionName="home-2"
                 colorClass="bg-green-300"
                 stepsNumber={3}
                 currentStep={globePhase}
-                onClick={
-                  (index: number) => scrollToSection(`section-2-step-${index + 1}`)
-                }
+                onClick={(index: number) => scrollToSection(`section-2-step-${index + 1}`)}
               />
             </div>
           </div>
@@ -210,12 +205,12 @@ export default function Section2() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="hidden xl:flex absolute bottom-6 right-14 w-[200px] text-green-300 space-y-2 flex-col items-center text-center">
+              className="absolute bottom-6 right-14 hidden w-[200px] flex-col items-center space-y-2 text-center text-green-300 xl:flex"
+            >
               Scroll to <br /> continue
-              <ArrowDown
-                className="h-6 w-6 animate-bounce"
-              />
-            </motion.div>)}
+              <ArrowDown className="h-6 w-6 animate-bounce" />
+            </motion.div>
+          )}
           <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
             {/* High globe */}
             <GlobeMap

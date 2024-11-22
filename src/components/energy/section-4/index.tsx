@@ -101,10 +101,8 @@ export default function Section4() {
       <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <ScrollStep id={STEPS[0]} className="relative h-[50vh]" offset={0.5} onEnter={setStep} />
         <div className="sticky inset-0 flex h-[100vh] w-full justify-center" id="section-4-1">
-          <div
-            className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
-          >
-            <div className="absolute flex h-full w-6 items-center right-6 2xl:right-[138px]">
+          <div className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block">
+            <div className="absolute right-6 flex h-full w-6 items-center 2xl:right-[138px]">
               <StepDots
                 sectionName="home-2"
                 colorClass="bg-green-950"
@@ -120,12 +118,12 @@ export default function Section4() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="hidden xl:flex z-10 absolute bottom-6 right-0 2xl:right-[106px] w-[100px] text-green-950 space-y-2 flex-col items-center text-center">
+              className="absolute bottom-6 right-0 z-10 hidden w-[100px] flex-col items-center space-y-2 text-center text-green-950 xl:flex 2xl:right-[106px]"
+            >
               Scroll to <br /> continue
-              <ArrowDown
-                className="h-6 w-6 animate-bounce"
-              />
-            </motion.div>)}
+              <ArrowDown className="h-6 w-6 animate-bounce" />
+            </motion.div>
+          )}
           <VideoPlayer
             src="/videos/stream-videos/observations/index.m3u8"
             className="h-screen w-full"

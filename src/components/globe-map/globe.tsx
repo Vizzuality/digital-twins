@@ -1,5 +1,4 @@
-import { Suspense } from "react";
-import { useRef, useMemo } from "react";
+import { Suspense, useRef, useMemo } from "react";
 
 import { useTexture, useVideoTexture } from "@react-three/drei";
 import { ShaderMaterial, DoubleSide, NearestFilter } from "three";

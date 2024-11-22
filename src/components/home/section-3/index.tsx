@@ -3,10 +3,9 @@
 import dynamic from "next/dynamic";
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
+import Link from "next/link";
 
 import { useEffect, useRef, useState, Fragment } from "react";
-
-import Link from "next/link";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
 
@@ -92,16 +91,16 @@ const CasesText = ({
       {isMobile
         ? descriptionText
         : hoveredIndex === index && (
-          <motion.div
-            className="flex flex-col gap-4"
-            key={`use-case-description-${index}`}
-            initial={{ opacity: isMobile ? 1 : 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            {descriptionText}
-          </motion.div>
-        )}
+            <motion.div
+              className="flex flex-col gap-4"
+              key={`use-case-description-${index}`}
+              initial={{ opacity: isMobile ? 1 : 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              {descriptionText}
+            </motion.div>
+          )}
     </div>
   );
 };
