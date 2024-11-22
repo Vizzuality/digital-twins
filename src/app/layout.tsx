@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/media/media02.jpg",
+        url: "/images/metadata/media02.jpg",
         width: 630,
         height: 630,
         alt: "Barcelona Supercomputing Center",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     creator: "@bsc",
     images: [
       {
-        url: "/images/media/media01.jpg",
+        url: "/images/metadata/media01.jpg",
         width: 1200,
         height: 630,
         alt: "Barcelona Supercomputing Center",
@@ -52,28 +52,26 @@ export const metadata: Metadata = {
   },
   icons: [
     { rel: "shortcut icon", url: "/favicon.ico", type: "image/x-icon" },
-    { rel: "icon", url: "/images/media/favicon.ico", type: "image/x-icon" },
+    { rel: "icon", url: "/images/metadata/favicon.ico", type: "image/x-icon" },
     {
       rel: "icon",
-      url: "/images/media/android-chrome-192x192.png",
+      url: "/images/metadata/android-chrome-192x192.png",
       sizes: "192x192",
       type: "image/png",
     },
     {
       rel: "icon",
-      url: "/images/media/android-chrome-256x256.png",
+      url: "/images/metadata/android-chrome-256x256.png",
       sizes: "256x256",
       type: "image/png",
     },
     {
       rel: "apple-touch-icon",
-      url: "/images/media/apple-touch-icon.png",
+      url: "/images/metadata/apple-touch-icon.png",
       sizes: "72x72",
       type: "image/png",
     },
-  ],
-  manifest: "/images/media/site.webmanifest",
-  themeColor: "#ffffff",
+  ]
 };
 
 export default function RootLayout({
