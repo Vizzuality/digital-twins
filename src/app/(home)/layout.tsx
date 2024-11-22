@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Barcelona Supercomputing Center",
@@ -14,6 +15,7 @@ export default function HomeLayout({
 }>) {
   return (
     <>
+      <Header />
       {children}
       <Footer />
     </>

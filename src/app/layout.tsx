@@ -76,7 +76,6 @@ export default function RootLayout({
         )}
       >
         <ContextWrapper>
-          <Header />
           <Menu />
           {children}
         </ContextWrapper>

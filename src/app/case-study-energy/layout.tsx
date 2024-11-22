@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Barcelona Supercomputing Center - Case Study Energy",
@@ -13,6 +15,7 @@ export default function EnergyLayout({
 }>) {
   return (
     <>
+      <Header colorClassName="bg-blue-950" />
       {children}
       <Footer backgroundClass="bg-blue-900" />
     </>

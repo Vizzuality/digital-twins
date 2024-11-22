@@ -1,15 +1,21 @@
 "use client";
 
-import HoverRepeatAnimation from "@/components/animations/hover-repeat";
-import { useRecoilState } from "recoil";
-import { menuAtom } from "@/store";
-import { MotionButton } from "@/components/button";
-import { cn } from "@/lib/utils";
-import Menu from "@/svgs/menu.svg";
-import Logo from "@/svgs/logo.svg";
 import { useState, useEffect, useRef } from "react";
 
-export default function Header() {
+import { useRecoilState } from "recoil";
+
+import { cn } from "@/lib/utils";
+
+import { menuAtom } from "@/store";
+
+import HoverRepeatAnimation from "@/components/animations/hover-repeat";
+import { MotionButton } from "@/components/button";
+
+
+import Logo from "@/svgs/logo.svg";
+import Menu from "@/svgs/menu.svg";
+
+export default function Header({ colorClassName = 'bg-blue-900' }: { colorClassName?: string }) {
   const [, setOpenedMenu] = useRecoilState(menuAtom);
   const [isVisible, setIsVisible] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
@@ -59,7 +65,7 @@ export default function Header() {
         {
           "translate-y-0": isVisible,
           "-translate-y-full": !isVisible,
-          "bg-blue-900": !isAtTop,
+          [colorClassName]: !isAtTop,
           "bg-transparent": isAtTop,
         },
       )}
