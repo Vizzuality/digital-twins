@@ -85,7 +85,7 @@ export default function Section6() {
           verticalClassName="left-8"
           sectionName="section-6"
           columns={[100]}
-          rows={[100]}
+          rows={[]}
           colorClass="bg-blue-900/10"
         />
       </div>

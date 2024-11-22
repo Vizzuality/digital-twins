@@ -19,11 +19,11 @@ export default function Section5() {
       />
       <div className="container flex flex-col items-start justify-between px-[20px] xl:flex-row xl:px-[150px]">
         <div className="flex pb-6 xl:pb-[120px] xl:pr-[40px]">
-          <div className="max-w-[540px] space-y-5 text-green-700 xl:min-w-[500px] xl:pb-10">
+          <div className="max-w-[492px] space-y-5 text-green-700 xl:min-w-[500px] xl:pb-10">
             <h2 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
               Why storylines for energy futures?
             </h2>
-            <h3 className="pb-5 text-xl xl:text-2xl">
+            <h3 className="pb-5 text-xl xl:text-2xl max-w-[492px]">
               Storylines in climate science make climate information more relevant and
               understandable, aiding decision-making, especially when used with digital twin
               simulations.
@@ -39,7 +39,7 @@ export default function Section5() {
                   initial={{ opacity: 0, height: 0 }}
                   exit={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="space-y-4 text-sm xl:text-base"
+                  className="space-y-4 text-sm xl:text-base max-w-[492px]"
                 >
                   <p>
                     Climate and impact sector modelling is done in the same modelling chain, meaning
@@ -78,12 +78,12 @@ export default function Section5() {
         />
       </div>
       <div className="container flex flex-col items-start justify-between px-[20px] pb-4 xl:flex-row xl:px-[150px] xl:pb-[100px]">
-        <div className="max-w-[540px] space-y-5 text-green-700 xl:min-w-[500px] xl:pb-10">
+        <div className="max-w-[492px] space-y-5 text-green-700 xl:min-w-[500px] xl:pb-10">
           <h3 className="text-xl xl:text-2xl">
             Using storylines to simulate the 2018 heatwave under current and future conditions to
             understand their potential impacts.
           </h3>
-          <p className="text-base max-w-[540px]">
+          <p className="text-base max-w-[492px]">
             Present-day plots represent the simulation of an event under current conditions,
             covering the last few decades, to ensure that the model accurately captures the event.
             Future scenario plots simulate the same event under different levels of global warming

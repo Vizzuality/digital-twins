@@ -93,7 +93,7 @@ export default function Section7() {
       <div className="container px-[20px] xl:px-[150px]">
         <div className="flex flex-col gap-[60px] pb-[120px] xl:gap-[100px]">
           <div className="max-w-[630px] space-y-5 pt-4 xl:pt-20">
-            <div className="max-w-[594px]">
+            <div className="max-w-[492px]">
               <h3 className="pb-5 text-xl xl:text-2xl">
                 Climate change affects various aspects of our lives, making it essential to
                 understand its wide-ranging impacts, this way strategies for adaptation can be
@@ -111,7 +111,7 @@ export default function Section7() {
                   initial={{ opacity: 0, height: 0 }}
                   exit={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="space-y-4"
+                  className="space-y-4 max-w-[492px]"
                 >
                   Climate change is not just an environmental issue. It affects every aspect of our
                   lives, from energy security to public health, to the way we design the cities we
