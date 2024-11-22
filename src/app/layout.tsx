@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: "Barcelona Supercomputing Center",
   authors: [{ name: "Vizzuality" }],
   robots: { index: true, follow: true },
-  viewport: "width=device-width, initial-scale=1",
+  metadataBase: new URL("https://bsc.es"), // Set your base URL here
   openGraph: {
     title: "Barcelona Supercomputing Center",
     description: "Barcelona Supercomputing Center",
