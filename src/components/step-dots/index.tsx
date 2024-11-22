@@ -17,7 +17,7 @@ const StepDots = ({
 }) => (
   <div
     className={cn(
-      "pointer-events-auto flex items-center justify-center gap-2 xl:justify-start xl:gap-[5px]",
+      "pointer-events-auto flex items-center justify-center gap-2 xl:justify-start xl:gap-[8px]",
       {
         "flex-col": vertical,
         "flex-row": !vertical,
