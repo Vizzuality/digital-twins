@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { motion, AnimatePresence } from "framer-motion";
 
+import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import Arrows from "@/components/arrows";
 import ImageSliderWithText from "@/components/image-slider-with-text";
 import KnowMoreButton from "@/components/know-more-button";
@@ -87,7 +88,7 @@ export default function Section4() {
       <Lines
         verticalClassName="px-[152px] z-0"
         sectionName="section-4"
-        rows={[1172]}
+        rows={[1110, 1160]}
         columns={[548]}
         colorClass="bg-white/10"
       />
@@ -138,13 +139,15 @@ export default function Section4() {
           <Tabs defaultValue="scenario1" value={tabsValue} onValueChange={handleValueChange}>
             <TabsList className="h-auto">
               <TabsTrigger value="scenario1" variant="whatif">
-                Scenario 1
+                <HoverRepeatAnimation>
+                  <div className="px-2 xl:px-6 py-[14px]">Scenario 1</div>
+                </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="scenario2" variant="whatif">
-                Scenario 2
+                <HoverRepeatAnimation><div className="px-2 xl:px-6 py-[14px]">Scenario 2</div></HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="scenario3" variant="whatif">
-                Scenario 3
+                <HoverRepeatAnimation><div className="px-2 xl:px-6 py-[14px]">Scenario 3</div></HoverRepeatAnimation>
               </TabsTrigger>
             </TabsList>
             <TabsContent value="scenario1" className="pt-6 xl:pt-10">

@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
+import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -603,7 +604,7 @@ export default function Section1() {
           sectionName="project-1"
           rows={[
             510,
-            570,
+            560,
             ...(selectedTab === "agriculture" ? AGRICULTURE_ROWS : []),
             ...(selectedTab === "energy" ? ENERGY_ROWS : []),
             ...(selectedTab === "insurance" ? INSURANCE_ROWS : []),
@@ -626,13 +627,25 @@ export default function Section1() {
           <Tabs defaultValue="agriculture" value={selectedTab} onValueChange={setSelectedTab}>
             <TabsList className="h-fit flex-col xl:flex-row">
               <TabsTrigger value="agriculture" variant="about">
-                Agriculture
+                <HoverRepeatAnimation>
+                  <div className="px-6 py-[14px]">
+                    Agriculture
+                  </div>
+                </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="energy" variant="about">
-                Energy
+                <HoverRepeatAnimation>
+                  <div className="px-6 py-[14px]">
+                    Energy
+                  </div>
+                </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="insurance" variant="about">
-                Insurance
+                <HoverRepeatAnimation>
+                  <div className="px-6 py-[14px]">
+                    Insurance
+                  </div>
+                </HoverRepeatAnimation>
               </TabsTrigger>
             </TabsList>
             {agricultureContent}
