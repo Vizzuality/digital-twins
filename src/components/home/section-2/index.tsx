@@ -18,6 +18,7 @@ import GlobeMap from "@/components/globe-map";
 import StepDots from "@/components/step-dots";
 
 import ArrowRight from "@/svgs/arrow-right.svg";
+import ArrowDown from "@/svgs/arrow-down.svg";
 import CaretRight from "@/svgs/caret-right.svg";
 
 import InfoPopover from "../../info-popover";
@@ -221,27 +222,31 @@ export default function Section2() {
 
   return (
     <section className="relative bg-green-800" id="section-2">
-      {areStepsInView && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
-        >
-          <div className="absolute right-[138px] flex h-full w-6 items-center">
-            <StepDots
-              sectionName="home-2"
-              colorClass="bg-green-300"
-              stepsNumber={3}
-              currentStep={globePhase}
-              onClick={setGlobePhase}
-            />
-          </div>
-        </motion.div>
-      )}
       <div className="relative h-[500vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
+          <div
+            className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
+          >
+            <div className="absolute right-[138px] flex h-full w-6 items-center">
+              <StepDots
+                sectionName="home-2"
+                colorClass="bg-green-300"
+                stepsNumber={3}
+                currentStep={globePhase}
+                onClick={setGlobePhase}
+              />
+            </div>
+          </div>
+          {globePhase === 2 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute bottom-6 right-12 w-[200px] text-green-300 space-y-2 flex flex-col items-center">
+              Scroll to <br /> continue
+              <ArrowDown
+                className="h-6 w-6 animate-bounce"
+              />
+            </motion.div>)}
           <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
             {/* High globe */}
             <GlobeMap

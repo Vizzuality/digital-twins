@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 import Image from "next/image";
 
-import { AnimatePresence, motion, Variants, useInView } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 
 import { useIsMobile } from "@/lib/hooks";
 
@@ -12,6 +12,7 @@ import ScrollStep from "@/components/scroll-step";
 import StepDots from "@/components/step-dots";
 import VideoPlayer from "@/components/video-player";
 
+import ArrowDown from "@/svgs/arrow-down.svg";
 import Chart from "@/svgs/chart.svg";
 
 export interface DebugOffsetProps {
@@ -30,17 +31,20 @@ export const DebugOffset = ({ offset }: DebugOffsetProps) => {
 };
 
 const transition = { duration: 0.5, ease: "linear" };
+
+const STEPS = ["step-1", "step-2", "step-3"];
+
 export default function Section4() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
-  const [step, setStep] = useState("step1");
+  const [step, setStep] = useState("step-1");
   const isMobile = useIsMobile();
   const variantsDescription: Record<string, Variants> = {
-    "step-2": {
+    [STEPS[1]]: {
       initial: { top: "100%", opacity: 0 },
       animate: { top: isMobile ? "10%" : "30%", opacity: 1, transition },
       exit: { top: 0, opacity: 0 },
     },
-    "step-3": {
+    [STEPS[2]]: {
       initial: { top: "100%", opacity: 0 },
       animate: { top: 0, opacity: 1, transition },
     },
@@ -90,34 +94,37 @@ export default function Section4() {
       </div>
     </div>
   );
-  const isInView = useInView(scrollSectionRef, { margin: "-50% 0px -50% 0px" });
 
   return (
     <section className="relative" id="section-4">
-      {isInView && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
-        >
-          <div className="absolute right-6 flex h-full w-6 items-center">
-            <StepDots
-              sectionName="home-2"
-              colorClass="bg-green-700"
-              stepsNumber={3}
-              currentStep={parseInt(step.slice(-1), 10) - 1}
-              onClick={(index: number) => {
-                setStep(`step-${index + 1}`);
-              }}
-            />
-          </div>
-        </motion.div>
-      )}
       <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
-        <ScrollStep id="step-1" className="relative h-[50vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep id={STEPS[0]} className="relative h-[50vh]" offset={0.5} onEnter={setStep} />
         <div className="sticky inset-0 flex h-[100vh] w-full justify-center" id="section-4-1">
+          <div
+            className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
+          >
+            <div className="absolute flex h-full w-6 items-center right-[138px]">
+              <StepDots
+                sectionName="home-2"
+                colorClass="bg-green-950"
+                stepsNumber={3}
+                currentStep={parseInt(step.slice(-1), 10) - 1}
+                onClick={(index: number) => {
+                  setStep(`step-${index + 1}`);
+                }}
+              />
+            </div>
+          </div>
+          {step === STEPS[2] && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="z-10 absolute bottom-6 right-16 w-[200px] text-green-950 space-y-2 flex flex-col items-center">
+              Scroll to <br /> continue
+              <ArrowDown
+                className="h-6 w-6 animate-bounce"
+              />
+            </motion.div>)}
           <VideoPlayer
             src="/videos/stream-videos/observations/index.m3u8"
             className="h-screen w-full"
@@ -130,7 +137,7 @@ export default function Section4() {
             animate="animate"
           >
             <AnimatePresence>
-              {step === "step-1" && (
+              {step === STEPS[0] && (
                 <motion.div
                   key="section-4-title-1"
                   initial={{ opacity: 0 }}
@@ -150,7 +157,7 @@ export default function Section4() {
             </AnimatePresence>
           </motion.div>
           <AnimatePresence>
-            {step !== "step-1" && (
+            {step !== STEPS[0] && (
               <motion.div
                 key="section-4-description-1"
                 initial="initial"
@@ -158,7 +165,7 @@ export default function Section4() {
                 variants={variantsDescription[step]}
                 className="absolute bottom-0 left-8 h-full w-full max-w-[80vw] text-green-950 xl:left-[60%] xl:max-w-[459px]"
               >
-                {step === "step-2" && (
+                {step === STEPS[1] && (
                   <motion.div
                     key="section-4-description-2"
                     className="absolute inset-0 h-fit w-full bg-white/30 p-6 text-xl backdrop-blur-lg xl:text-2xl"
@@ -171,7 +178,7 @@ export default function Section4() {
                     Iberian Peninsula since 2003.
                   </motion.div>
                 )}
-                {step === "step-3" && (
+                {step === STEPS[2] && (
                   <div
                     className="flex h-full items-center justify-center"
                     key="section-4-description-3"
@@ -205,8 +212,8 @@ export default function Section4() {
             )}
           </AnimatePresence>
         </div>
-        <ScrollStep id="step-2" className="h-[100vh]" offset={0.5} onEnter={setStep} />
-        <ScrollStep id="step-3" className="h-[250vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep id={STEPS[2]} className="h-[250vh]" offset={0.5} onEnter={setStep} />
       </div>
     </section>
   );

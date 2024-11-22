@@ -16,20 +16,23 @@ import ScrollStep from "@/components/scroll-step";
 import StepDots from "@/components/step-dots";
 
 import ArrowRight from "@/svgs/arrow-right.svg";
+import ArrowDown from "@/svgs/arrow-down.svg";
 
 const transition = { duration: 0.2, ease: "linear" };
 
+const STEPS = ["section-2-step-1", "section-2-step-2"];
+
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
-  const [step, setStep] = useState("section-2-step-1");
+  const [step, setStep] = useState(STEPS[0]);
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
 
   useEffect(() => {
-    if (globePhase !== 1 && step === "section-2-step-2") {
+    if (globePhase !== 1 && step === STEPS[1]) {
       setGlobePhase(1);
     }
-    if (globePhase !== 0 && step !== "section-2-step-2") {
+    if (globePhase !== 0 && step !== STEPS[1]) {
       setGlobePhase(0);
     }
   }, [step, globePhase, setGlobePhase]);
@@ -72,30 +75,8 @@ export default function Section2() {
   });
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
-      {isInView && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
-        >
-          <div className="absolute flex h-full w-6 items-center xl:right-6 2xl:right-[138px]">
-            <StepDots
-              sectionName="home-2"
-              colorClass="bg-green-700"
-              stepsNumber={2}
-              currentStep={globePhase}
-              onClick={(index) => {
-                setGlobePhase(index);
-                setStep(`section-2-step-${index + 1}`);
-              }}
-            />
-          </div>
-        </motion.div>
-      )}
       <div
-        className="relative h-[200vh] xl:container xl:h-[300vh]"
+        className="relative h-[200vh] xl:h-[300vh]"
         ref={scrollSectionRef}
         id="section-2-scroll-parent"
       >
@@ -106,111 +87,139 @@ export default function Section2() {
           onEnter={setStep}
         />
         <div
-          className="sticky inset-0 flex h-[100vh] w-full flex-col-reverse items-center justify-center xl:flex-row xl:gap-[63px]"
-          id="section-2-step-1"
+          className="sticky inset-0 h-[100vh] w-full"
+          id={STEPS[0]}
         >
           <div
-            key="section-2-title-1"
-            className="flex h-[50vh] max-h-[936px] w-full items-center justify-center xl:h-full xl:w-1/2"
+            className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
           >
-            <GlobeMap
-              className="h-full w-full"
-              videoMaterial={
-                step === "section-2-step-2"
-                  ? "videos/capacity_factor_10km.mp4"
-                  : "videos/stream-videos/wind_speed_global_10km/index.m3u8"
-              }
-              rotate={step !== "section-2-step-2"}
-            />
+            <div className="absolute flex h-full w-6 items-center right-[138px]">
+              <StepDots
+                sectionName="home-2"
+                colorClass="bg-green-700"
+                stepsNumber={2}
+                currentStep={globePhase}
+                onClick={(index) => {
+                  setGlobePhase(index);
+                  setStep(`section-2-step-${index + 1}`);
+                }}
+              />
+            </div>
           </div>
-          <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-10 xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center">
-            <AnimatePresence>
-              {step !== "section-2-step-2" ? (
-                <motion.div
-                  key="section-2-description-1"
-                  initial={{ opacity: 0, translateY: "200px" }}
-                  animate={{ opacity: 1, translateY: 0, transition }}
-                  className="max-w-[480px] space-y-3 xl:space-y-6"
-                  {...(isMobile ? bind() : {})}
-                >
-                  <h2 className="text-xl xl:text-2xl">
-                    Digital twins are revolutionising the way to approach wind farm development and
-                    energy management.
-                  </h2>
-                  <div className="relative">
+          {step === 'section-2-step-2' && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute bottom-6 right-16 w-[200px] text-green-700 space-y-2 flex flex-col items-center">
+              Scroll to <br /> continue
+              <ArrowDown
+                className="h-6 w-6 animate-bounce"
+              />
+            </motion.div>)}
+          <div className="h-full w-full xl:container flex flex-col-reverse xl:flex-row xl:gap-[63px] items-center justify-center ">
+            <div
+              key="section-2-title-1"
+              className="flex h-[50vh] max-h-[936px] w-full items-center justify-center xl:h-full xl:w-1/2"
+            >
+              <GlobeMap
+                className="h-full w-full"
+                videoMaterial={
+                  step === STEPS[1]
+                    ? "videos/capacity_factor_10km.mp4"
+                    : "videos/stream-videos/wind_speed_global_10km/index.m3u8"
+                }
+                rotate={step !== STEPS[1]}
+              />
+            </div>
+            <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-10 xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center">
+              <AnimatePresence>
+                {step !== STEPS[1] ? (
+                  <motion.div
+                    key="section-2-description-1"
+                    initial={{ opacity: 0, translateY: "200px" }}
+                    animate={{ opacity: 1, translateY: 0, transition }}
+                    className="max-w-[480px] space-y-3 xl:space-y-6"
+                    {...(isMobile ? bind() : {})}
+                  >
+                    <h2 className="text-xl xl:text-2xl">
+                      Digital twins are revolutionising the way to approach wind farm development and
+                      energy management.
+                    </h2>
+                    <div className="relative">
+                      {isMobile && renderArrows}
+                      {(!isMobile || mobileGlobeTextIndex === 0) && (
+                        <motion.div className="text-sm leading-tight xl:text-base">
+                          <p>
+                            By allowing users to perform simulations that replicate real-world
+                            conditions, digital twins can help energy practitioners to map the wind
+                            potential of different regions, optimise the location of wind turbines,
+                            and predict energy generation.
+                          </p>
+                        </motion.div>
+                      )}
+                      {(!isMobile || mobileGlobeTextIndex === 1) && (
+                        <motion.div className="text-sm leading-tight xl:text-base">
+                          <p>
+                            The energy output of a wind turbine depends on a variety of factors, the
+                            most important being the wind speed at the height at which the turbines
+                            are placed. Current state-of-the-art models only provide wind information
+                            at 10 metres, whereas wind turbines are normally placed at around 100
+                            metres height, and this requires an interpolation to convert wind speed
+                            from 10 to 100 metres.
+                          </p>
+                        </motion.div>
+                      )}
+                    </div>
+                    <p className="text-xs leading-tight">
+                      Legend: wind energy. Data source: nextGEMS
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="section-2-description-2"
+                    initial={{ opacity: 0, translateY: "200px" }}
+                    animate={{ opacity: 1, translateY: 0, transition }}
+                    className="relative max-w-[480px] space-y-4 xl:space-y-6"
+                    {...(isMobile ? bind() : {})}
+                  >
                     {isMobile && renderArrows}
                     {(!isMobile || mobileGlobeTextIndex === 0) && (
                       <motion.div className="text-sm leading-tight xl:text-base">
                         <p>
-                          By allowing users to perform simulations that replicate real-world
-                          conditions, digital twins can help energy practitioners to map the wind
-                          potential of different regions, optimise the location of wind turbines,
-                          and predict energy generation.
+                          A wind turbine has a specific power curve that is provided by the
+                          manufacturer and depends on several factors (e.g. rotor diameter, rated wind
+                          speed, etc.). The measure of how much energy a turbine produces compared to
+                          its maximum theoretical output, over a certain period of time, is what is
+                          called capacity factor. This is a more meaningful variable to the energy
+                          industry than wind speed or energy density. Therefore, it is crucial for
+                          energy companies to get access to information about the capacity factor to
+                          be able to assess energy supply and meet the demand.
                         </p>
                       </motion.div>
                     )}
                     {(!isMobile || mobileGlobeTextIndex === 1) && (
                       <motion.div className="text-sm leading-tight xl:text-base">
                         <p>
-                          The energy output of a wind turbine depends on a variety of factors, the
-                          most important being the wind speed at the height at which the turbines
-                          are placed. Current state-of-the-art models only provide wind information
-                          at 10 metres, whereas wind turbines are normally placed at around 100
-                          metres height, and this requires an interpolation to convert wind speed
-                          from 10 to 100 metres.
+                          Classic energy models require full time series to generate histograms of the
+                          capacity factor, which makes using the outputs of the digital twin
+                          challenging. However, a streaming setup allows histograms to be built on the
+                          fly. This functionality greatly facilitates the interactivity between the
+                          results from the climate models with impact model applications, such as
+                          applications used by the energy sector.
                         </p>
                       </motion.div>
                     )}
-                  </div>
-                  <p className="text-xs leading-tight">
-                    Legend: wind energy. Data source: nextGEMS
-                  </p>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="section-2-description-2"
-                  initial={{ opacity: 0, translateY: "200px" }}
-                  animate={{ opacity: 1, translateY: 0, transition }}
-                  className="relative max-w-[480px] space-y-4 xl:space-y-6"
-                  {...(isMobile ? bind() : {})}
-                >
-                  {isMobile && renderArrows}
-                  {(!isMobile || mobileGlobeTextIndex === 0) && (
-                    <motion.div className="text-sm leading-tight xl:text-base">
-                      <p>
-                        A wind turbine has a specific power curve that is provided by the
-                        manufacturer and depends on several factors (e.g. rotor diameter, rated wind
-                        speed, etc.). The measure of how much energy a turbine produces compared to
-                        its maximum theoretical output, over a certain period of time, is what is
-                        called capacity factor. This is a more meaningful variable to the energy
-                        industry than wind speed or energy density. Therefore, it is crucial for
-                        energy companies to get access to information about the capacity factor to
-                        be able to assess energy supply and meet the demand.
-                      </p>
-                    </motion.div>
-                  )}
-                  {(!isMobile || mobileGlobeTextIndex === 1) && (
-                    <motion.div className="text-sm leading-tight xl:text-base">
-                      <p>
-                        Classic energy models require full time series to generate histograms of the
-                        capacity factor, which makes using the outputs of the digital twin
-                        challenging. However, a streaming setup allows histograms to be built on the
-                        fly. This functionality greatly facilitates the interactivity between the
-                        results from the climate models with impact model applications, such as
-                        applications used by the energy sector.
-                      </p>
-                    </motion.div>
-                  )}
-                  <p className="text-xs leading-tight">
-                    Legend: capacity factor. Data source: nextGEMS
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <p className="text-xs leading-tight">
+                      Legend: capacity factor. Data source: nextGEMS
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
         <ScrollStep
-          id="section-2-step-2"
+          id={STEPS[1]}
           className="h-[100vh] xl:h-[200vh]"
           offset={0.5}
           onEnter={setStep}
