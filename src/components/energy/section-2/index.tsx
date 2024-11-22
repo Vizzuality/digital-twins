@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRecoilState } from "recoil";
 
 import { useIsMobile } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 
 import { globePhaseAtom } from "@/store";
 
@@ -81,14 +81,13 @@ export default function Section2() {
         id="section-2-scroll-parent"
       >
         <ScrollStep
-          id="step-1"
+          id={STEPS[0]}
           className="relative h-[10vh] xl:h-[100vh]"
           offset={0.5}
           onEnter={setStep}
         />
         <div
           className="sticky inset-0 h-[100vh] w-full"
-          id={STEPS[0]}
         >
           <div
             className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
@@ -99,18 +98,17 @@ export default function Section2() {
                 colorClass="bg-green-700"
                 stepsNumber={2}
                 currentStep={globePhase}
-                onClick={(index) => {
-                  setGlobePhase(index);
-                  setStep(`section-2-step-${index + 1}`);
+                onClick={(index: number) => {
+                  scrollToSection(`section-2-step-${index + 1}`);
                 }}
               />
             </div>
           </div>
-          {step === 'section-2-step-2' && (
+          {step === STEPS[1] && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute bottom-6 right-16 w-[200px] text-green-700 space-y-2 flex flex-col items-center">
+              className="absolute bottom-6 right-0 w-[100px] text-green-700 space-y-2 flex flex-col items-center">
               Scroll to <br /> continue
               <ArrowDown
                 className="h-6 w-6 animate-bounce"

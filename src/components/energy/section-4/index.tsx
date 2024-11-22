@@ -7,6 +7,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 
 import { useIsMobile } from "@/lib/hooks";
+import { scrollToSection } from "@/lib/utils";
 
 import ScrollStep from "@/components/scroll-step";
 import StepDots from "@/components/step-dots";
@@ -32,11 +33,11 @@ export const DebugOffset = ({ offset }: DebugOffsetProps) => {
 
 const transition = { duration: 0.5, ease: "linear" };
 
-const STEPS = ["step-1", "step-2", "step-3"];
+const STEPS = ["section-4-step-1", "section-4-step-2", "section-4-step-3"];
 
 export default function Section4() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
-  const [step, setStep] = useState("step-1");
+  const [step, setStep] = useState(STEPS[0]);
   const isMobile = useIsMobile();
   const variantsDescription: Record<string, Variants> = {
     [STEPS[1]]: {
@@ -110,7 +111,7 @@ export default function Section4() {
                 stepsNumber={3}
                 currentStep={parseInt(step.slice(-1), 10) - 1}
                 onClick={(index: number) => {
-                  setStep(`step-${index + 1}`);
+                  scrollToSection(`section-4-step-${index + 1}`);
                 }}
               />
             </div>
@@ -119,7 +120,7 @@ export default function Section4() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="z-10 absolute bottom-6 right-16 w-[200px] text-green-950 space-y-2 flex flex-col items-center">
+              className="z-10 absolute bottom-6 right-0 w-[100px] text-green-950 space-y-2 flex flex-col items-center">
               Scroll to <br /> continue
               <ArrowDown
                 className="h-6 w-6 animate-bounce"

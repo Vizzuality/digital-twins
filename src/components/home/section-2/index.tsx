@@ -3,19 +3,20 @@
 import { useRef, useEffect, useState, forwardRef } from "react";
 
 import { useGesture } from "@use-gesture/react";
-import { useScroll, motion, useMotionValueEvent, useInView, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
 import { useRecoilState } from "recoil";
 
 import { useWindowWidth } from "@/lib/hooks";
 import { useIsMobile } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 
 import { globePhaseAtom } from "@/store";
 
 import { Button } from "@/components/button";
 import GlobeMap from "@/components/globe-map";
 import StepDots from "@/components/step-dots";
+import ScrollStep from "@/components/scroll-step";
 
 import ArrowRight from "@/svgs/arrow-right.svg";
 import ArrowDown from "@/svgs/arrow-down.svg";
@@ -39,13 +40,8 @@ const ResizeButton = () => (
   </>
 );
 
-const SECTION_STARTS = [0.1, 0.3, 0.6];
-
 export default function Section2() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollSectionRef,
-  });
   const isMobile = useIsMobile();
 
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
@@ -54,26 +50,15 @@ export default function Section2() {
     screenWidth = isMobile ? 400 : 800;
   }
 
+  const STEPS = ["section-2-step-1", "section-2-step-2", "section-2-step-3"];
+
   const [resizableWidth, setResizableWidth] = useState(screenWidth ? screenWidth / 2 : 800);
-  const isInView = useInView(scrollSectionRef);
+  const [step, setStep] = useState(STEPS[0]);
 
-  // If section 2 is in view change scroll-snap-type to y mandatory. And change it back when its not in view
   useEffect(() => {
-    const scrollParent = document.body;
-    if (scrollParent) {
-      const handleScroll = () => {
-        if (isInView) {
-          scrollParent.classList.add("snap-y", "snap-mandatory");
-        } else {
-          scrollParent.classList?.remove("snap-y", "snap-mandatory");
-        }
-      };
-
-      handleScroll();
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [isInView]);
-
+    setGlobePhase(STEPS.indexOf(step));
+  }, [step]);
+  console.log(step, globePhase)
   useEffect(() => {
     if (globePhase !== 0 && screenWidth) {
       // Prevent errors on reload
@@ -84,22 +69,6 @@ export default function Section2() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screenWidth, globePhase]);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest >= SECTION_STARTS[0] && latest < SECTION_STARTS[1] && globePhase !== 0) {
-      setGlobePhase(0);
-      setResizableWidth(screenWidth / 2);
-    }
-
-    if (latest >= SECTION_STARTS[1] && latest < SECTION_STARTS[2] && globePhase !== 1) {
-      setGlobePhase(1);
-      setResizableWidth(screenWidth);
-    }
-
-    if (latest >= SECTION_STARTS[2] && globePhase < 2) {
-      setGlobePhase(2);
-    }
-  });
 
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
 
@@ -165,7 +134,7 @@ export default function Section2() {
           )}
           <AnimatePresence>
             {(!isMobile || mobileGlobeTextIndex === 0) && (
-              <motion.div className="flex flex-col gap-2 xl:gap-6">
+              <motion.div key="mobile-text-1" className="flex flex-col gap-2 xl:gap-6">
                 <p>
                   At the{" "}
                   <InfoPopover
@@ -194,7 +163,7 @@ export default function Section2() {
               </motion.div>
             )}
             {(!isMobile || mobileGlobeTextIndex === 1) && (
-              <motion.div className="flex flex-col gap-2 xl:gap-6">
+              <motion.div key="mobile-text-2" className="flex flex-col gap-2 xl:gap-6">
                 <p>
                   The climate adaptation digital twin provides high-quality information at scales
                   that matter to society, based on better simulations performed with more realistic
@@ -218,11 +187,10 @@ export default function Section2() {
 
   Phase2Content.displayName = "Phase2Content";
 
-  const areStepsInView = useInView(scrollSectionRef, { margin: "-50% 0px -50% 0px" });
-
   return (
     <section className="relative bg-green-800" id="section-2">
-      <div className="relative h-[500vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
+      <div className="relative h-[450vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
+        <ScrollStep id={STEPS[0]} className="relative h-[100vh]" offset={0.5} onEnter={setStep} />
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
           <div
             className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block"
@@ -233,7 +201,9 @@ export default function Section2() {
                 colorClass="bg-green-300"
                 stepsNumber={3}
                 currentStep={globePhase}
-                onClick={setGlobePhase}
+                onClick={
+                  (index: number) => scrollToSection(`section-2-step-${index + 1}`)
+                }
               />
             </div>
           </div>
@@ -343,6 +313,8 @@ export default function Section2() {
             )}
           </AnimatePresence>
         </div>
+        <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep id={STEPS[2]} className="h-[250vh]" offset={0.5} onEnter={setStep} />
       </div>
     </section>
   );
