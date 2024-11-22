@@ -1,8 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
-const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
+
 import InfoPopover from "@/components/info-popover";
+
+const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 
 export default function Section5() {
   return (

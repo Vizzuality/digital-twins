@@ -24,13 +24,13 @@ export default function Section1() {
   const gridColumns = isMobile
     ? "flex flex-col"
     : {
-        "grid transition-all duration-500": true,
-        "grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]": hoveredIndex === 0,
-        "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr]": hoveredIndex === 1,
-        "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr]": hoveredIndex === 2,
-        "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr]": hoveredIndex === 3,
-        "grid-cols-[1fr_1fr_1fr_1fr]": hoveredIndex === null,
-      };
+      "grid transition-all duration-500": true,
+      "grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]": hoveredIndex === 0,
+      "grid-cols-[0.9fr_1.3fr_0.9fr_0.9fr]": hoveredIndex === 1,
+      "grid-cols-[0.9fr_0.9fr_1.3fr_0.9fr]": hoveredIndex === 2,
+      "grid-cols-[0.9fr_0.9fr_0.9fr_1.3fr]": hoveredIndex === 3,
+      "grid-cols-[1fr_1fr_1fr_1fr]": hoveredIndex === null,
+    };
 
   return (
     <section className="relative scroll-mt-8 bg-white" id="section-1">

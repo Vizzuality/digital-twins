@@ -1,9 +1,11 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
+
+import { AnimatePresence, motion } from "framer-motion";
+
 import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
 
 type MenuLinesProps = {
   colorClass?: string;

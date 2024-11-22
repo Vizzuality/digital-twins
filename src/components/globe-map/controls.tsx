@@ -1,14 +1,19 @@
 import { useState, useEffect, useMemo } from "react";
-import { CameraControls } from "@react-three/drei";
 import { useRef } from "react";
-import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
-import type { MarkerType } from "./marker";
-import { Group } from "three";
-import { useIsMobile } from "@/lib/hooks";
+
+import { usePathname } from "next/navigation";
+
+import { CameraControls } from "@react-three/drei";
 import { useInView } from "framer-motion";
 import { useRecoilState } from "recoil";
+import { Group } from "three";
+
+import { convertLatLonToGlobalPosition } from "@/lib/globe-utils";
+import { useIsMobile } from "@/lib/hooks";
+
 import { globePhaseAtom } from "@/store";
-import { usePathname } from "next/navigation";
+
+import type { MarkerType } from "./marker";
 
 const MADRID_COORDINATES = { lat: 40.416775, lng: -3.70379 };
 

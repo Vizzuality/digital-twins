@@ -1,7 +1,8 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+
 import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
 
 type LinesProps = {
   sectionName: string;
@@ -9,9 +10,9 @@ type LinesProps = {
   colorClass?: string;
   verticalClassName?: string;
 } & (
-  | { columnsNumber: number; hoveredIndex?: number | null; columns?: never }
-  | { columns?: number[]; columnsNumber?: never; hoveredIndex?: never }
-);
+    | { columnsNumber: number; hoveredIndex?: number | null; columns?: never }
+    | { columns?: number[]; columnsNumber?: never; hoveredIndex?: never }
+  );
 
 const Lines = ({
   sectionName,
@@ -78,22 +79,22 @@ const Lines = ({
           >
             {columnsNumber
               ? Array(columnsNumber + 1)
-                  .fill(null)
-                  .map((_, index) => (
-                    <motion.div
-                      key={`line-y-${sectionName}-${index}`}
-                      className={cn("h-full w-px", colorClass)}
-                    />
-                  ))
-              : columns.map((x, index) => (
+                .fill(null)
+                .map((_, index) => (
                   <motion.div
                     key={`line-y-${sectionName}-${index}`}
-                    initial={{ x: 1000, opacity: 0 }}
-                    animate={{ x, opacity: 1 }}
-                    transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
-                    className={cn("absolute h-full w-px", colorClass)}
+                    className={cn("h-full w-px", colorClass)}
                   />
-                ))}
+                ))
+              : columns.map((x, index) => (
+                <motion.div
+                  key={`line-y-${sectionName}-${index}`}
+                  initial={{ x: 1000, opacity: 0 }}
+                  animate={{ x, opacity: 1 }}
+                  transition={{ delay: 0.1 + index * 0.1, duration: 0.1 }}
+                  className={cn("absolute h-full w-px", colorClass)}
+                />
+              ))}
           </motion.div>
         </div>
         {/* Horizontal lines */}

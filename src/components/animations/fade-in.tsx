@@ -1,5 +1,7 @@
 import { useRef, FC, useState, useEffect } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
+
 import { useIsMobile } from "@/lib/hooks";
 
 const FadeIn: FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay }) => {

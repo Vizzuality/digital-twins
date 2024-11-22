@@ -1,16 +1,20 @@
 "use client";
 
-import HoverRepeatAnimation from "@/components/animations/hover-repeat";
-import { useRecoilState } from "recoil";
-import { menuAtom } from "@/store";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { MotionButton } from "@/components/button";
+
 import { motion } from "framer-motion";
+import { useRecoilState } from "recoil";
+
+import { menuAtom } from "@/store";
+
+import HoverRepeatAnimation from "@/components/animations/hover-repeat";
+import { MotionButton } from "@/components/button";
+
 import CloseSmall from "@/svgs/close-small.svg";
-import Logo from "@/svgs/logo.svg";
 import Instagram from "@/svgs/instagram.svg";
 import Linkedin from "@/svgs/linkedin.svg";
-import dynamic from "next/dynamic";
+import Logo from "@/svgs/logo.svg";
 
 const MenuLines = dynamic(() => import("@/components/menu-lines"), { ssr: false });
 

@@ -1,4 +1,5 @@
 import { useRef, SyntheticEvent } from "react";
+
 import VideoPlayer from "@/components/video-player";
 
 const HeroVideo = () => {

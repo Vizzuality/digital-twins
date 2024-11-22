@@ -1,7 +1,9 @@
 "use client";
 
 import { PropsWithChildren } from "react";
+
 import { EasingDefinition, Variants, motion } from "framer-motion";
+
 import { cn } from "@/lib/utils";
 
 const ANIMATION_EASE: EasingDefinition = "linear";

@@ -1,6 +1,8 @@
-import ArrowDown from "@/svgs/arrow-down.svg";
-import { Button } from "@/components/button";
 import { cn } from "@/lib/utils";
+
+import { Button } from "@/components/button";
+
+import ArrowDown from "@/svgs/arrow-down.svg";
 
 const KnowMoreButton = ({
   onClick,

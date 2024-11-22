@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, Children } from "react";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 const VerticalCarousel = ({
   children,

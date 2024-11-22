@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import ContextWrapper from "@/app/contextWrapper";
 
 import "./globals.css";
-import Header from "@/components/header";
 import Menu from "@/components/menu";
 
 const fontSans = Roboto({

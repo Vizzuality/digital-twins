@@ -3,13 +3,19 @@
 import dynamic from "next/dynamic";
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 import Image from "next/image";
+
 import { useEffect, useRef, useState, Fragment } from "react";
-import { AnimatePresence, motion, useInView } from "framer-motion";
-import KnowMoreButton from "@/components/know-more-button";
-import { cn } from "@/lib/utils";
-import ArrowRight from "@/svgs/arrow-right.svg";
+
 import Link from "next/link";
+
+import { AnimatePresence, motion, useInView } from "framer-motion";
+
 import { useIsMobile } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
+
+import KnowMoreButton from "@/components/know-more-button";
+
+import ArrowRight from "@/svgs/arrow-right.svg";
 
 const USE_CASES = [
   {
@@ -86,16 +92,16 @@ const CasesText = ({
       {isMobile
         ? descriptionText
         : hoveredIndex === index && (
-            <motion.div
-              className="flex flex-col gap-4"
-              key={`use-case-description-${index}`}
-              initial={{ opacity: isMobile ? 1 : 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              {descriptionText}
-            </motion.div>
-          )}
+          <motion.div
+            className="flex flex-col gap-4"
+            key={`use-case-description-${index}`}
+            initial={{ opacity: isMobile ? 1 : 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            {descriptionText}
+          </motion.div>
+        )}
     </div>
   );
 };

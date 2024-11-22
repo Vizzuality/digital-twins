@@ -1,6 +1,8 @@
 import Image from "next/image";
-import CursorSelect from "@/svgs/cursor-select.svg";
+
 import { cn } from "@/lib/utils";
+
+import CursorSelect from "@/svgs/cursor-select.svg";
 
 const TabTriggerItem = ({
   title,

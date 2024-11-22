@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
+
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
-import KnowMoreButton from "@/components/know-more-button";
 import { AnimatePresence, motion } from "framer-motion";
+
+import KnowMoreButton from "@/components/know-more-button";
 
 export default function Section5() {
   const [openedKnowMore, setOpenedKnowMore] = useState(false);

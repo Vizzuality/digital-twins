@@ -1,5 +1,5 @@
-import { useInView } from "framer-motion";
 import { useEffect, useRef, SyntheticEvent } from "react";
+import { useInView } from "framer-motion";
 
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
