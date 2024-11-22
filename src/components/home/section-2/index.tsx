@@ -225,7 +225,7 @@ export default function Section2() {
       <div className="relative h-[500vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
           <div
-            className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
+            className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block"
           >
             <div className="absolute right-[138px] flex h-full w-6 items-center">
               <StepDots

@@ -93,7 +93,7 @@ export default function Section2() {
           <div
             className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block"
           >
-            <div className="absolute flex h-full w-6 items-center right-[138px]">
+            <div className="absolute flex h-full w-6 items-center right-6">
               <StepDots
                 sectionName="home-2"
                 colorClass="bg-green-700"
