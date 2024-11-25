@@ -153,7 +153,7 @@ const ImageSliderWithText = ({
         </div>
       </div>
       {legend}
-      <div className={cn("flex flex-col gap-4 pb-10 pt-10 xl:hidden", textClass)}>
+      <div className={cn("flex flex-col gap-4 pb-[60px] pt-10 xl:hidden xl:pb-10", textClass)}>
         {text1}
         {text2}
       </div>

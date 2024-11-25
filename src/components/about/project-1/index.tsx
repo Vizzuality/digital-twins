@@ -33,7 +33,7 @@ export default function Section1() {
   const agricultureContent = (
     <TabsContent
       value="agriculture"
-      className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
+      className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-0 xl:pt-16"
     >
       <Lines
         verticalClassName="left-8 xl:left-24"
@@ -42,175 +42,178 @@ export default function Section1() {
         columns={[395, 765, 1270]}
         colorClass="bg-blue-900/10"
       />
-      <div className="flex flex-col justify-between gap-8 xl:flex-row">
-        <div className="relative space-y-[18px]">
-          <div className="max-w-[680px] pb-4 text-xl xl:pb-10 xl:text-2xl">
-            The wine sector is an important pillar of the global economy (EU 2024), with Spain being
-            the third largest wine producer in the world (OIV 2024). Climate variations strongly
-            affect the year-to-year production of wine and grapes. Hence, reliable and timely
-            information on climatic conditions will enable wineries to optimise planning and
-            management activities over a range of timescales.
-          </div>
-          <KnowMoreButton
-            onClick={() => setOpenedKnowMore(!openedKnowMore)}
-            opened={openedKnowMore}
-          />
-          <AnimatePresence>
-            {openedKnowMore && (
-              <motion.div
-                key="know-more-green-transition"
-                initial={{ opacity: 0, height: 0 }}
-                exit={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
-              >
-                <p>
-                  There are many moments during the vineyard cycle where climate plays a key role.
-                  For instance, spring is a critical season for frosts, as just one night of frost
-                  can damage the whole production. On the producer’s side, there are some management
-                  actions that can be applied to reduce damages in the short-medium term, such as
-                  late pruning to delay the bud-break (Persico et al. 2023). Wine companies may also
-                  consider paying insurance to receive compensation in the case of frost damage
-                  affecting grape production. In the longer term, wineries may consider investing in
-                  a frost prevention system or choosing grape varieties with delayed bud-break that
-                  are better adapted to climate change. Having information about the changes in the
-                  frequency and intensity of spring frosts in the future can help wineries to decide
-                  on the most suitable adaptation actions.
-                </p>
-                <p>
-                  Another challenge for Spanish agriculture, especially in the Mediterranean region,
-                  are droughts, which exacerbate during the summer period. As long as there is water
-                  available in the reservoirs, wine producers with irrigation systems in place may
-                  be able to irrigate the vines. However, in the case of water restrictions,
-                  wineries have to assume a lower production or buy grapes from external farmers. A
-                  useful indicator for the monitoring of agricultural drought is the Standardised
-                  Precipitation and Evapotranspiration Index (SPEI), which assesses water
-                  availability comparing the balance between precipitation and potential
-                  evapotranspiration. Another indicator such as the average maximum temperature for
-                  the months of June-July-August is also useful to identify heat stress hotspots.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-        <div className="flex max-w-[390px] flex-1 gap-4">
-          <Image
-            width={232}
-            height={88}
-            className="h-[44px] w-[116px]"
-            src="/images/about-logo-ptv.png"
-            alt="Plataforma tecnológica del vino"
-          />
-          <a
-            href="https://www.ptvino.com/en/home/"
-            target="_blank"
-            rel="noreferrer"
-            className="max-w-[160px] text-xs underline"
-          >
-            Spanish Wine Technological Platform
-          </a>
-        </div>
-      </div>
-      <div className="max-xl:pt-6">
-        {isMobile ? (
-          <div className="w-full">
-            <Image
-              className="h-[213px]"
-              alt=""
-              src="/images/about-gloria-agriculture-1.png"
-              height={374}
-              width={360}
-              style={{ objectFit: "cover" }}
+      <div className="mt-0 xl:space-y-20">
+        <div className="flex flex-col justify-between gap-8 xl:flex-row">
+          <div className="relative space-y-[18px]">
+            <div className="max-w-[680px] pb-4 text-xl xl:pb-10 xl:text-2xl">
+              The wine sector is an important pillar of the global economy (EU 2024), with Spain
+              being the third largest wine producer in the world (OIV 2024). Climate variations
+              strongly affect the year-to-year production of wine and grapes. Hence, reliable and
+              timely information on climatic conditions will enable wineries to optimise planning
+              and management activities over a range of timescales.
+            </div>
+            <KnowMoreButton
+              onClick={() => setOpenedKnowMore(!openedKnowMore)}
+              opened={openedKnowMore}
             />
-            <Image
-              className="h-[213px]"
-              alt=""
-              src="/images/about-gloria-agriculture-2.png"
-              height={502}
-              width={360}
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        ) : (
-          <div className={cn("flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}>
             <AnimatePresence>
-              {Array(2)
-                .fill(null)
-                .map((_, index) => (
-                  <motion.div
-                    key={`image-section1-${index}`}
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: "auto" }}
-                    transition={{ delay: 0.5 + index, duration: 1, ease: "easeInOut" }}
-                    className={cn(
-                      "relative z-10 flex h-full items-center",
-                      `col-start-${index + 2}`,
-                    )}
-                  >
-                    <Image
-                      alt=""
-                      src={`/images/about-gloria-agriculture-${index + 1}.png`}
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                  </motion.div>
-                ))}
+              {openedKnowMore && (
+                <motion.div
+                  key="know-more-green-transition"
+                  initial={{ opacity: 0, height: 0 }}
+                  exit={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
+                >
+                  <p>
+                    There are many moments during the vineyard cycle where climate plays a key role.
+                    For instance, spring is a critical season for frosts, as just one night of frost
+                    can damage the whole production. On the producer’s side, there are some
+                    management actions that can be applied to reduce damages in the short-medium
+                    term, such as late pruning to delay the bud-break (Persico et al. 2023). Wine
+                    companies may also consider paying insurance to receive compensation in the case
+                    of frost damage affecting grape production. In the longer term, wineries may
+                    consider investing in a frost prevention system or choosing grape varieties with
+                    delayed bud-break that are better adapted to climate change. Having information
+                    about the changes in the frequency and intensity of spring frosts in the future
+                    can help wineries to decide on the most suitable adaptation actions.
+                  </p>
+                  <p>
+                    Another challenge for Spanish agriculture, especially in the Mediterranean
+                    region, are droughts, which exacerbate during the summer period. As long as
+                    there is water available in the reservoirs, wine producers with irrigation
+                    systems in place may be able to irrigate the vines. However, in the case of
+                    water restrictions, wineries have to assume a lower production or buy grapes
+                    from external farmers. A useful indicator for the monitoring of agricultural
+                    drought is the Standardised Precipitation and Evapotranspiration Index (SPEI),
+                    which assesses water availability comparing the balance between precipitation
+                    and potential evapotranspiration. Another indicator such as the average maximum
+                    temperature for the months of June-July-August is also useful to identify heat
+                    stress hotspots.
+                  </p>
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
-        )}
-        <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
-          <div className={cn(gridColumnsAgriculture)}>
-            <h4 className="col-span-1 mb-4 max-w-[314px] text-lg xl:mb-0 xl:text-xl">
-              Climate and geographic indicators for wine production in Spain
-            </h4>
+          <div className="flex max-w-[390px] flex-1 gap-4">
+            <Image
+              width={232}
+              height={88}
+              className="h-[44px] w-[116px]"
+              src="/images/about-logo-ptv.png"
+              alt="Plataforma tecnológica del vino"
+            />
+            <a
+              href="https://www.ptvino.com/en/home/"
+              target="_blank"
+              rel="noreferrer"
+              className="max-w-[160px] text-xs underline"
+            >
+              Spanish Wine Technological Platform
+            </a>
           </div>
-          <div className={cn(gridColumnsAgriculture, "mb-2 xl:mb-[30px]")}>
-            <div className="col-start-2">
-              <div className="max-w-[338px] text-xs leading-tight xl:text-sm">
-                <a
-                  target="_blank"
-                  className="underline hover:opacity-70"
-                  rel="noreferrer"
-                  href="https://www.mapa.gob.es/es/cartografia-y-sig/ide/descargas/alimentacion/vinos.aspx"
-                >
-                  Wine quality areas in Spain. Credit: Spanish Ministry of Agriculture, Fishing and
-                  Food
-                </a>
-              </div>
+        </div>
+        <div className="max-xl:pt-6">
+          {isMobile ? (
+            <div className="w-full">
+              <Image
+                className="h-[213px]"
+                alt=""
+                src="/images/about-gloria-agriculture-1.png"
+                height={374}
+                width={360}
+                style={{ objectFit: "cover" }}
+              />
+              <Image
+                className="h-[213px]"
+                alt=""
+                src="/images/about-gloria-agriculture-2.png"
+                height={502}
+                width={360}
+                style={{ objectFit: "cover" }}
+              />
             </div>
-            <div className="col-start-3">
-              <div className="max-w-[410px] text-xs xl:text-sm">
-                Average maximum temperature for JJA (June-July-August) in 2020 over the Iberian
-                Peninsula at a horizontal resolution of 5 km. The average was computed using daily
-                temperature values. Data comes from the ICON model. Grey-shaded areas represent
-                urban regions. Credit: BSC
+          ) : (
+            <div className={cn("flex h-[360px] w-full overflow-hidden", gridColumnsAgriculture)}>
+              <AnimatePresence>
+                {Array(2)
+                  .fill(null)
+                  .map((_, index) => (
+                    <motion.div
+                      key={`image-section1-${index}`}
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: "auto" }}
+                      transition={{ delay: 0.5 + index, duration: 1, ease: "easeInOut" }}
+                      className={cn(
+                        "relative z-10 flex h-full items-center",
+                        `col-start-${index + 2}`,
+                      )}
+                    >
+                      <Image
+                        alt=""
+                        src={`/images/about-gloria-agriculture-${index + 1}.png`}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
+            </div>
+          )}
+          <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
+            <div className={cn(gridColumnsAgriculture)}>
+              <h4 className="col-span-1 mb-4 max-w-[314px] text-lg xl:mb-0 xl:text-xl">
+                Climate and geographic indicators for wine production in Spain
+              </h4>
+            </div>
+            <div className={cn(gridColumnsAgriculture, "mb-2 xl:mb-[30px]")}>
+              <div className="col-start-2">
+                <div className="max-w-[338px] text-xs leading-tight xl:text-sm">
+                  <a
+                    target="_blank"
+                    className="underline hover:opacity-70"
+                    rel="noreferrer"
+                    href="https://www.mapa.gob.es/es/cartografia-y-sig/ide/descargas/alimentacion/vinos.aspx"
+                  >
+                    Wine quality areas in Spain. Credit: Spanish Ministry of Agriculture, Fishing
+                    and Food
+                  </a>
+                </div>
+              </div>
+              <div className="col-start-3">
+                <div className="max-w-[410px] text-xs xl:text-sm">
+                  Average maximum temperature for JJA (June-July-August) in 2020 over the Iberian
+                  Peninsula at a horizontal resolution of 5 km. The average was computed using daily
+                  temperature values. Data comes from the ICON model. Grey-shaded areas represent
+                  urban regions. Credit: BSC
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="flex flex-col max-xl:pt-6 xl:flex-row xl:gap-[140px]">
-        <h4 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
-          Digital Twin Technology for Climate Change Adaptation
-        </h4>
-        <div className="inline-flex flex-col gap-8 xl:max-w-[500px]">
-          <div className="text-xl xl:text-2xl">
-            The digital twin for climate change adaptation allows the integration of climate models
-            and impact models.{" "}
-          </div>
-          <div className="space-y-4 xl:text-lg">
-            <p>
-              This not only offers the Spanish wine sector the opportunity to have quick access to
-              climate data on the past, present and future, but also the possibility of defining
-              their own climate-related indicators, such as the average maximum temperature in
-              summer, spring frost or SPEI, that can be calculated as the climate model runs. This
-              allows wineries to have regularly updated information on the risks of spring frost,
-              heatwaves and droughts that may affect their vineyards in the long-term future.
-              Additionally, the digital twin offers a unified climate information source for those
-              producers that own farms not only in the Spanish territory but also in other world
-              regions suitable for grape and wine production, like California or South America to
-              name a few.
-            </p>
+        <div className="flex flex-col max-xl:pt-6 xl:flex-row xl:gap-[140px]">
+          <h4 className="pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
+            Digital Twin Technology for Climate Change Adaptation
+          </h4>
+          <div className="inline-flex flex-col gap-8 xl:max-w-[500px]">
+            <div className="text-xl xl:text-2xl">
+              The digital twin for climate change adaptation allows the integration of climate
+              models and impact models.{" "}
+            </div>
+            <div className="space-y-4 xl:text-lg">
+              <p>
+                This not only offers the Spanish wine sector the opportunity to have quick access to
+                climate data on the past, present and future, but also the possibility of defining
+                their own climate-related indicators, such as the average maximum temperature in
+                summer, spring frost or SPEI, that can be calculated as the climate model runs. This
+                allows wineries to have regularly updated information on the risks of spring frost,
+                heatwaves and droughts that may affect their vineyards in the long-term future.
+                Additionally, the digital twin offers a unified climate information source for those
+                producers that own farms not only in the Spanish territory but also in other world
+                regions suitable for grape and wine production, like California or South America to
+                name a few.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -220,7 +223,7 @@ export default function Section1() {
   const energyContent = (
     <TabsContent
       value="energy"
-      className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
+      className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-0 xl:pt-16"
     >
       <Lines
         verticalClassName="left-8 xl:left-24"
@@ -229,169 +232,172 @@ export default function Section1() {
         columns={[394, 830, 1270]}
         colorClass="bg-blue-900/10"
       />
-      <div className="flex flex-col justify-between gap-8 xl:flex-row">
-        <div className="relative space-y-[18px]">
-          <div className="max-w-[680px] pb-4 text-xl xl:pb-10 xl:text-2xl">
-            As the need for decarbonisation of the global energy system intensifies, renewable
-            energies have become one of the most promising assets to achieve net zero emissions.
-            Yet, unlike their fossil fuel counterparts, renewables are more vulnerable to a changing
-            climate and the expected increase in extreme weather events.
-          </div>
-          <KnowMoreButton
-            onClick={() => setOpenedKnowMore(!openedKnowMore)}
-            opened={openedKnowMore}
-          />
-          <AnimatePresence>
-            {openedKnowMore && (
-              <motion.div
-                key="know-more-green-transition"
-                initial={{ opacity: 0, height: 0 }}
-                exit={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
-              >
-                Wind energy is particularly exposed, emphasising the need for accurate
-                representations of future wind resources. Such climate information will allow us to
-                provide more reliable estimates of future energy production of current wind farms
-                and support decision-making regarding the viability of new wind farm locations. By
-                using the outputs of the climate models as the simulation is running, an energy
-                company would be able to calculate meaningful indicators directly related to their
-                activity, such as capacity factors, energy demand predictors (e.g. cooling and
-                heating degree days) or wind speed anomalies, among others. The implementation of
-                this streaming environment allows us to estimate user-tailored indicators in a
-                timely manner, without the need to store the complete model output permanently. By
-                directly simulating wind at turbine hub height and through enhanced spatial and
-                temporal resolution, interactive and user-oriented digital twins represent a step
-                forward in assisting near- to long-term measures against the impacts of climate
-                change. Having prompt access to this kind of climate information would help the
-                renewable energy sector avoid misdirected decisions and failed opportunities in
-                terms of adaptation.
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-        <div className="flex h-fit max-w-[376px] flex-1 items-end gap-4 xl:min-w-[376px]">
-          <Image
-            width={201}
-            height={44}
-            className="h-[44px] w-[201px]"
-            src="/images/about-logo-endesa.png"
-            alt="Endesa"
-          />
-          <a
-            href="https://www.endesa.com/es"
-            target="_blank"
-            rel="noreferrer"
-            className="max-w-[160px] text-xs underline"
-          >
-            Endesa
-          </a>
-        </div>
-      </div>
-      <div className="space-y-4 max-xl:pt-6 xl:space-y-6">
-        <Image
-          className="h-full xl:w-[1160px]"
-          alt="Energy sector visualization"
-          src="/images/about-gloria-energy-0.png"
-          height={416}
-          width={1160}
-        />
-        <div className="max-w-[652px] text-xs">
-          Visualisation of the streaming concept tailored towards the wind energy sector. The
-          climate model outputs raw climate variables which are summarised in the form of wind speed
-          distributions for a specific wind farm or region. The wind speed distribution is then
-          converted to capacity factor, which can be adjusted for different types of turbines.
-        </div>
-      </div>
-      <div className="flex flex-col justify-between max-xl:pt-6 xl:flex-row xl:gap-[140px]">
-        <h4 className="max-w-[530px] pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
-          Capacity Factors and Energy System Resilience
-        </h4>
-        <div className="inline-flex flex-col gap-8 xl:max-w-[438px]">
-          <div className="text-xl xl:text-2xl">
-            Capacity factors are a measure of how much energy can be produced by a turbine over a
-            specific period of time, as a fraction of its rated power.
-          </div>
-          <div className="space-y-4 xl:text-lg">
-            <p>
-              These tailored indicators allow the energy sector to more efficiently ensure the
-              security of energy supply, price and power grid stability; obtain reliable data on how
-              energy systems and turbine structural integrity can cope with the effects of extreme
-              events; and have insights into future changes in climate variability to plan and
-              manage the design of energy systems and the impact on energy demand and prices.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="max-xl:pt-6">
-        {isMobile ? (
-          <div className="w-full">
-            <Image
-              className="h-[213px]"
-              alt=""
-              src="/images/about-gloria-energy-1.png"
-              height={438}
-              width={313}
-              style={{ objectFit: "cover" }}
+      <div className="xl:space-y-20">
+        <div className="flex flex-col justify-between gap-8 xl:flex-row">
+          <div className="relative space-y-[18px]">
+            <div className="max-w-[680px] pb-4 text-xl xl:pb-10 xl:text-2xl">
+              As the need for decarbonisation of the global energy system intensifies, renewable
+              energies have become one of the most promising assets to achieve net zero emissions.
+              Yet, unlike their fossil fuel counterparts, renewables are more vulnerable to a
+              changing climate and the expected increase in extreme weather events.
+            </div>
+            <KnowMoreButton
+              onClick={() => setOpenedKnowMore(!openedKnowMore)}
+              opened={openedKnowMore}
             />
-            <Image
-              className="h-[213px]"
-              alt=""
-              src="/images/about-gloria-energy-2.png"
-              height={426}
-              width={432}
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        ) : (
-          <div className={cn("flex h-[313px] w-full overflow-hidden", gridColumnsEnergy)}>
             <AnimatePresence>
-              {Array(2)
-                .fill(null)
-                .map((_, index) => (
-                  <motion.div
-                    key={`image-section1-${index}`}
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: "auto" }}
-                    transition={{ delay: 0.5 + index, duration: 1, ease: "easeInOut" }}
-                    className={cn(
-                      "relative z-10 flex h-full items-center",
-                      `col-start-${index + 2}`,
-                    )}
-                  >
-                    <Image
-                      alt=""
-                      src={`/images/about-gloria-energy-${index + 1}.png`}
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                  </motion.div>
-                ))}
+              {openedKnowMore && (
+                <motion.div
+                  key="know-more-green-transition"
+                  initial={{ opacity: 0, height: 0 }}
+                  exit={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  className="space-y-4 text-sm xl:max-w-[594px] xl:text-base"
+                >
+                  Wind energy is particularly exposed, emphasising the need for accurate
+                  representations of future wind resources. Such climate information will allow us
+                  to provide more reliable estimates of future energy production of current wind
+                  farms and support decision-making regarding the viability of new wind farm
+                  locations. By using the outputs of the climate models as the simulation is
+                  running, an energy company would be able to calculate meaningful indicators
+                  directly related to their activity, such as capacity factors, energy demand
+                  predictors (e.g. cooling and heating degree days) or wind speed anomalies, among
+                  others. The implementation of this streaming environment allows us to estimate
+                  user-tailored indicators in a timely manner, without the need to store the
+                  complete model output permanently. By directly simulating wind at turbine hub
+                  height and through enhanced spatial and temporal resolution, interactive and
+                  user-oriented digital twins represent a step forward in assisting near- to
+                  long-term measures against the impacts of climate change. Having prompt access to
+                  this kind of climate information would help the renewable energy sector avoid
+                  misdirected decisions and failed opportunities in terms of adaptation.
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
-        )}
-        <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
-          <div className={cn(gridColumnsEnergy)}>
-            <h4 className="col-span-1 mb-4 max-w-[274px] text-lg xl:mb-0 xl:text-xl">
-              Projected wind energy capacity factors for Europe and the Iberian Peninsula
-            </h4>
+          <div className="flex h-fit max-w-[376px] flex-1 items-end gap-4 xl:min-w-[376px]">
+            <Image
+              width={201}
+              height={44}
+              className="h-[44px] w-[201px]"
+              src="/images/about-logo-endesa.png"
+              alt="Endesa"
+            />
+            <a
+              href="https://www.endesa.com/es"
+              target="_blank"
+              rel="noreferrer"
+              className="max-w-[160px] text-xs underline"
+            >
+              Endesa
+            </a>
           </div>
-          <div className={cn(gridColumnsEnergy, "mb-2 xl:mb-[30px]")}>
-            <div className="col-start-2">
-              <div className="max-w-[382px] text-xs xl:text-sm">
-                Capacity factor (CF) for a class I/II Siemens-Gamesa G80 wind turbine at 1-hourly
-                frequency and a spatial resolution of 5 km, averaged over one week for the European
-                continent. Data was obtained from the DestinE IFS-NEMO 2020-2040 projection
-                simulation.
-              </div>
+        </div>
+        <div className="space-y-4 max-xl:pt-6 xl:space-y-6">
+          <Image
+            className="h-full xl:w-[1160px]"
+            alt="Energy sector visualization"
+            src="/images/about-gloria-energy-0.png"
+            height={416}
+            width={1160}
+          />
+          <div className="max-w-[652px] text-xs">
+            Visualisation of the streaming concept tailored towards the wind energy sector. The
+            climate model outputs raw climate variables which are summarised in the form of wind
+            speed distributions for a specific wind farm or region. The wind speed distribution is
+            then converted to capacity factor, which can be adjusted for different types of
+            turbines.
+          </div>
+        </div>
+        <div className="flex flex-col justify-between max-xl:pt-6 xl:flex-row xl:gap-[140px]">
+          <h4 className="max-w-[530px] pb-6 text-3xl font-medium xl:pb-16 xl:text-4xl">
+            Capacity Factors and Energy System Resilience
+          </h4>
+          <div className="inline-flex flex-col gap-8 xl:max-w-[438px]">
+            <div className="text-xl xl:text-2xl">
+              Capacity factors are a measure of how much energy can be produced by a turbine over a
+              specific period of time, as a fraction of its rated power.
             </div>
-            <div className="col-start-3">
-              <div className="max-w-[382px] text-xs xl:text-sm">
-                Capacity factor (CF) for a class I/II Siemens-Gamesa G80 wind turbine at 1-hourly
-                frequency and a spatial resolution of 5 km, averaged over one week for the Iberian
-                Peninsula. The dark blue dot marks the approximate position of the Tico wind farm in
-                the Ebro Valley, operated by Enel Green Power (ENDESA). Data was obtained from the
-                DestinE IFS-NEMO 2020-2040 projection simulation.
+            <div className="space-y-4 xl:text-lg">
+              <p>
+                These tailored indicators allow the energy sector to more efficiently ensure the
+                security of energy supply, price and power grid stability; obtain reliable data on
+                how energy systems and turbine structural integrity can cope with the effects of
+                extreme events; and have insights into future changes in climate variability to plan
+                and manage the design of energy systems and the impact on energy demand and prices.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="max-xl:pt-6">
+          {isMobile ? (
+            <div className="w-full">
+              <Image
+                className="h-[213px]"
+                alt=""
+                src="/images/about-gloria-energy-1.png"
+                height={438}
+                width={313}
+                style={{ objectFit: "cover" }}
+              />
+              <Image
+                className="h-[213px]"
+                alt=""
+                src="/images/about-gloria-energy-2.png"
+                height={426}
+                width={432}
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ) : (
+            <div className={cn("flex h-[313px] w-full overflow-hidden", gridColumnsEnergy)}>
+              <AnimatePresence>
+                {Array(2)
+                  .fill(null)
+                  .map((_, index) => (
+                    <motion.div
+                      key={`image-section1-${index}`}
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: "auto" }}
+                      transition={{ delay: 0.5 + index, duration: 1, ease: "easeInOut" }}
+                      className={cn(
+                        "relative z-10 flex h-full items-center",
+                        `col-start-${index + 2}`,
+                      )}
+                    >
+                      <Image
+                        alt=""
+                        src={`/images/about-gloria-energy-${index + 1}.png`}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
+            </div>
+          )}
+          <div className={cn("mt-6 grid text-green-700 xl:mt-0")}>
+            <div className={cn(gridColumnsEnergy)}>
+              <h4 className="col-span-1 mb-4 max-w-[274px] text-lg xl:mb-0 xl:text-xl">
+                Projected wind energy capacity factors for Europe and the Iberian Peninsula
+              </h4>
+            </div>
+            <div className={cn(gridColumnsEnergy, "mb-2 xl:mb-[30px]")}>
+              <div className="col-start-2">
+                <div className="max-w-[382px] text-xs xl:text-sm">
+                  Capacity factor (CF) for a class I/II Siemens-Gamesa G80 wind turbine at 1-hourly
+                  frequency and a spatial resolution of 5 km, averaged over one week for the
+                  European continent. Data was obtained from the DestinE IFS-NEMO 2020-2040
+                  projection simulation.
+                </div>
+              </div>
+              <div className="col-start-3">
+                <div className="max-w-[382px] text-xs xl:text-sm">
+                  Capacity factor (CF) for a class I/II Siemens-Gamesa G80 wind turbine at 1-hourly
+                  frequency and a spatial resolution of 5 km, averaged over one week for the Iberian
+                  Peninsula. The dark blue dot marks the approximate position of the Tico wind farm
+                  in the Ebro Valley, operated by Enel Green Power (ENDESA). Data was obtained from
+                  the DestinE IFS-NEMO 2020-2040 projection simulation.
+                </div>
               </div>
             </div>
           </div>
@@ -403,7 +409,7 @@ export default function Section1() {
   const insuranceContent = (
     <TabsContent
       value="insurance"
-      className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-10"
+      className="max-xl:divide-y-green-700/10 space-y-6 pt-6 max-xl:divide-y xl:space-y-20 xl:pt-16"
     >
       <div className="flex flex-col justify-between gap-8 xl:flex-row">
         <div className="relative space-y-[18px]">
@@ -471,6 +477,13 @@ export default function Section1() {
             extremes (Alicante, Girona, Ibiza and Valencia) (right).
           </div>
           <div className="italic">Source: BSC with storyline simulations from AWI.</div>
+          <a
+            rel="noreferrer noopener"
+            href="https://doi.org/10.22541/essoar.173160166.64258929/v1"
+            className="underline hover:opacity-80"
+          >
+            https://doi.org/10.22541/essoar.173160166.64258929/v1
+          </a>
         </div>
       </div>
       <div className="flex flex-col max-xl:pt-6 xl:flex-row xl:gap-[140px]">
@@ -528,8 +541,8 @@ export default function Section1() {
     </TabsContent>
   );
 
-  const AGRICULTURE_ROWS = [openedKnowMore ? 2306 : 1646, openedKnowMore ? 2528 : 1870];
-  const ENERGY_ROWS = [openedKnowMore ? 2728 : 2240, openedKnowMore ? 3188 : 2702];
+  const AGRICULTURE_ROWS = [openedKnowMore ? 2238 : 1580, openedKnowMore ? 2462 : 1805];
+  const ENERGY_ROWS = [openedKnowMore ? 2666 : 2177, openedKnowMore ? 3120 : 2633];
   const INSURANCE_ROWS = [openedKnowMore ? 1200 : 950, openedKnowMore ? 1900 : 1650];
   return (
     <section className="relative">

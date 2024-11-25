@@ -204,18 +204,18 @@ export default function Section1() {
             </div>
           </FadeIn>
         </div>
-        <div className="flex flex-col-reverse items-center gap-6 pb-[20px] xl:mt-[184px] xl:flex-row xl:items-start xl:gap-[69px] xl:pb-[150px]">
+        <div className="flex flex-col-reverse gap-6 pb-[60px] xl:mt-[184px] xl:flex-row xl:gap-[69px] xl:pb-[150px]">
           <div className="xl:pt-[121px]">
             <VideoPlayer
               src="/videos/stream-videos/energy-section-1/index.m3u8"
               className="w-full xl:ml-0.5 xl:min-w-[546px]"
             />
           </div>
-          <div className="max-w-[536px] space-y-3 pt-10 text-green-700 xl:w-[536px] xl:space-y-5 xl:pt-0">
+          <div className="max-w-[536px] space-y-3 pt-10 text-green-700 xl:w-[536px] xl:space-y-0 xl:pt-0">
             <h3 className="pb-8 text-2xl font-medium xl:-translate-y-1 xl:pb-20 xl:text-4xl">
               Transforming wind to energy
             </h3>
-            <h4 className="pb-4 text-xl xl:pb-10 xl:text-2xl">
+            <h4 className="pb-4 text-xl xl:pb-5 xl:text-2xl">
               The renewable energy sector is significantly impacted by climate variability and
               change.
             </h4>

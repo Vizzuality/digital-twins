@@ -190,8 +190,8 @@ export default function Section4() {
                     >
                       <div className="text-xs xl:pb-10 xl:text-base">
                         According to observations, it can be seen that during the first week of
-                        August 2018, temperatures reached 40°C in the southwestern part of the
-                        Iberian Peninsula due to a warm air intrusion that moved up from Africa. Two
+                        August 2018, maximum temperatures reached values above 45 ºC in the Iberian
+                        Peninsula due to a warm air intrusion that moved up from Africa. Two
                         wildfires occurred in Spain during the heatwave, causing more than 4,500
                         burned hectares and thousands of people being evacuated. Some Spanish
                         regions registered the highest number of deaths by heat stroke since
