@@ -43,7 +43,7 @@ const renderLegend = (
 );
 
 const renderText1 = (
-  <>
+  <div>
     <div>
       <div className="text-base">SIM. 01</div>
       <div className="text-xl">7th August 2018</div>
@@ -54,11 +54,11 @@ const renderText1 = (
       along the Portuguese western coast.
     </div>
     <div className="text-xs leading-[16px]">Source: Destination Earth</div>
-  </>
+  </div>
 );
 
 const renderText2 = (
-  <>
+  <div>
     <div>
       <div className="text-base">SIM. 02</div>
       <div className="text-xl">Future scenario: +2ºC</div>
@@ -72,7 +72,7 @@ const renderText2 = (
       between 3.5 and 5°C.
     </div>
     <div className="text-xs leading-[16px]">Source: Destination Earth</div>
-  </>
+  </div>
 );
 
 export default function Section6() {

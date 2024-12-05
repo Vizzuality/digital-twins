@@ -46,12 +46,10 @@ const ImageSliderWithText = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const containerWidth = useContainerWidthWithResize(containerRef);
   const [resizableWidth, setResizableWidth] = useState(initialPosition);
-  const [resizableCurrentWidth, setResizableCurrentWidth] = useState(initialPosition);
 
   // Place the resizable bar in the middle of the container once we know the container width
   useEffect(() => {
     setResizableWidth(containerWidth / 2);
-    setResizableCurrentWidth(containerWidth / 2);
   }, [containerWidth]);
 
   const ResizeButton = () => (
@@ -78,9 +76,6 @@ const ImageSliderWithText = ({
           <Resizable
             className={cn("z-50 border-r border-blue-900/10")}
             size={{ width: resizableWidth, height: "100%" }}
-            onResize={(e, direction, ref, d) => {
-              setResizableCurrentWidth(resizableWidth + d.width);
-            }}
             onResizeStop={(e, direction, ref, d) => {
               setResizableWidth(resizableWidth + d.width);
             }}
@@ -104,17 +99,6 @@ const ImageSliderWithText = ({
                   />
                 )}
               </div>
-              <div
-                className={cn(
-                  "hidden max-w-[378px] flex-col gap-4 pt-10 transition-opacity duration-500 xl:inline-flex xl:pb-[120px]",
-                  textClass,
-                  {
-                    "opacity-0": resizableCurrentWidth < 400,
-                  },
-                )}
-              >
-                {text1}
-              </div>
             </div>
           </Resizable>
         </div>
@@ -136,24 +120,15 @@ const ImageSliderWithText = ({
               width={1160}
             />
           )}
-          <div
-            className={cn(
-              "hidden max-w-[378px] flex-col gap-4 pt-10 transition-opacity duration-500 xl:inline-flex xl:pb-[120px]",
-              textClass,
-              {
-                "opacity-0": resizableCurrentWidth > (containerWidth || 800) - 400,
-              },
-            )}
-            style={{
-              transform: `translateX(${resizableCurrentWidth}px)`,
-            }}
-          >
-            {text2}
-          </div>
         </div>
       </div>
       {legend}
-      <div className={cn("flex flex-col gap-4 pb-[60px] pt-10 xl:hidden xl:pb-10", textClass)}>
+      <div
+        className={cn(
+          "grid pb-[60px] pt-10 max-xl:grid-rows-2 max-xl:gap-4 xl:grid-cols-2 xl:pb-10",
+          textClass,
+        )}
+      >
         {text1}
         {text2}
       </div>
