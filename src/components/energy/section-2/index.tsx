@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRecoilState } from "recoil";
 
 import { useIsMobile } from "@/lib/hooks";
+import useScrollSnap from "@/lib/use-scroll-snap";
 import { cn, scrollToSection } from "@/lib/utils";
 
 import { globePhaseAtom } from "@/store";
@@ -72,6 +73,9 @@ export default function Section2() {
       }
     },
   });
+
+  useScrollSnap({ ref: scrollSectionRef, duration: 1 });
+
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
       <div
