@@ -10,15 +10,20 @@ Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
 
 The project contains one pipeline for now: `globe`
 
-### `lowvshigh`
+### `global`
 
-Pipeline to generate the comparisson between low and high resolution simulations. Currently it has:
-
-- splits nextgems global datasets into a set of tiffs (one per timestep) to use in blender to render a rotating globe.
-- video generation pipeline for a regions defined in `conf/parameters.yml`
+Generates global videos of wind and so
 
 
-## How to install dependencies
+### `scenarios`
+
+Scenario comparison, image and videos
+
+### `zooms`
+
+Zoomed in videos for the globe visualization
+
+##  Dependencies
 
 Declare any dependencies in `requirements.txt` for `pip` installation.
 
@@ -35,19 +40,14 @@ You can run your Kedro project with:
 ```
 kedro run
 ```
-I recomend use the `ParallelRunner` to run the nodes in parallel 
 
-```
-kedro run --runner=ParallelRunner
-```
-
-### Run a subset of the pipeline
+### Run a single pipeline
 
 Kedro allows run subsets by selecting only nodes, pipelines or tags. Check the tags in the pipeline code or in kedro viz.
 For example to run only the detailed videos pipelines use
 
 ```
-kedro run --runner=ParallelRunner --tags zoomin
+kedro run --pipeline zoomms --tags precipitation
 ```
 
 
