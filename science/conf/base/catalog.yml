@@ -142,19 +142,17 @@ iberia_plus2k.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/destine/2K/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
 
-iberia_plus2k.video:
-  type: video.VideoDataset
-  filepath: data/03_primary/iberia_plus_2k_scenario.mp4
-  fourcc: avc1
+iberia_plus2k.image:
+  type: pillow.ImageDataset
+  filepath: data/03_primary/iberia_plus_2k_scenario.png
 
 iberia_hist.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset
   filepath: data/01_raw/destine/hist/2018_07_29_T00_00_to_2018_08_09_T23_00_2t_iberia.nc
 
-iberia_hist.video:
-  type: video.VideoDataset
-  filepath: data/03_primary/iberia_hist_scenario.mp4
-  fourcc: avc1
+iberia_hist.image:
+  type: pillow.ImageDataset
+  filepath: data/03_primary/iberia_hist_scenario.png
 
 observations.raw:
   type: kedro_datasets_experimental.netcdf.NetCDFDataset

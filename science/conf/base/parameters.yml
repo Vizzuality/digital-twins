@@ -98,6 +98,7 @@ sst_100km_global:
 scenarios:
     cmap: "Spectral_r"
     scale: 10
+    date: "2018-08-07"
     # we need to fix the temp range so the normal and +2 scenario can be compared side by side
     vmin: 269.56
     vmax: 324.11

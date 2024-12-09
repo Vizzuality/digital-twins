@@ -92,16 +92,16 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
     iberia_plus2k_pipe = pipeline(
-        pipe=scenarios_base_video_pipeline,
+        pipe=static_image_base_pipeline,
         namespace="iberia_plus2k",
-        parameters={"video": "params:scenarios"},
+        parameters={"image": "params:scenarios"},
         tags=["iberia"],
     )
 
     iberia_hist_pipe = pipeline(
-        pipe=scenarios_base_video_pipeline,
+        pipe=static_image_base_pipeline,
         namespace="iberia_hist",
-        parameters={"video": "params:scenarios"},
+        parameters={"image": "params:scenarios"},
         tags=["iberia"],
     )
 
