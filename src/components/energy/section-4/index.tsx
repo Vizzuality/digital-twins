@@ -7,6 +7,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 
 import { useIsMobile } from "@/lib/hooks";
+import useScrollSnap from "@/lib/use-scroll-snap";
 import { scrollToSection } from "@/lib/utils";
 
 import ScrollStep from "@/components/scroll-step";
@@ -95,6 +96,8 @@ export default function Section4() {
       </div>
     </div>
   );
+
+  useScrollSnap({ ref: scrollSectionRef, duration: 1 });
 
   return (
     <section className="relative" id="section-4">
@@ -212,7 +215,7 @@ export default function Section4() {
           </AnimatePresence>
         </div>
         <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
-        <ScrollStep id={STEPS[2]} className="h-[250vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep id={STEPS[2]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
       </div>
     </section>
   );
