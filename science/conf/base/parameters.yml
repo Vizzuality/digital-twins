@@ -1,59 +1,85 @@
-global_video_10:
-    cmap: "viridis"
-    scale: 1
+# ------- GLOBAL ----------
+default:
+    cmap: "YlGn"
+    scale:  1
+    vmin: 0
+    vmax: 1
 
-global_video_100:
-    cmap: "viridis"
-    scale: 10
+global_wind_video_10:
+    cmap: "tempo"
+    scale: 1
+    vmin: 0
+    vmax: 20
+
+global_wind_video_100:
+    cmap: "tempo"
+    scale: 1
+    vmin: 0
+    vmax: 20
+
+capacity_factor:
+    cmap: "GWA_r"
+    scale:  1
+    vmin: 0
+    vmax: 1
+
+# ------- ZOOM IN ----------
 
 hurricane_10km_render_params:
     cmap: "Blues_r"
     scale: 4
+    vmin: 0
+    vmax: 0.99
     bbox:
         minx: -88.23
         miny: 21.37
         maxx: -51.77
         maxy: 42.37
 
-hurricane_100km_render_params:
-    cmap: "viridis"
-    scale: 20
-    bbox:
-        minx: -84.088
-        miny: 15.89
-        maxx: -55.88
-        maxy: 41.15
+cloud_cover_100km_global:
+    cmap: "Blues_r"
+    scale: 1
+    vmin: 0
+    vmax: 0.99
 
-amazonia_10km_render_params:
-    cmap: "viridis"
+total_precipitation_10km:
+    cmap: "rain_custom"
     scale: 4
+    # vmin: 0
+    # vmax: 0.08
+    basemap: true
+    basemap_style: "cm2xjiks300pc01qwbgo8a9f4"
     bbox:
-        minx: -79.72
-        miny: -16.60
-        maxx: -45.27
-        maxy: 7.672
+        minx: -75
+        miny: -12
+        maxx: -52
+        maxy: 6
+
+total_precipitation_100km_global:
+    cmap: "rain_custom"
+    scale: 1
+    vmin: 0
+    vmax: 0.1
 
 temperature_10km_render_params:
-    cmap: "winter"
+    cmap: "Spectral_r"
     scale: 4
+    vmin: 277
+    vmax: 319
     bbox:
-        minx: -12.1350
-        miny: 32.5146
-        maxx: 4.7930
-        maxy: 44.1825
+        minx: -12
+        miny: 33
+        maxx: 6
+        maxy: 46
 
-amazonia_100km_render_params:
-    cmap: "Greens_r"
-    scale: 20
-    bbox:
-        minx: -67.53
-        miny: -8.55
-        maxx: -47.76
-        maxy: 8.64
-
+temperature_100km_global:
+    cmap: "inferno"
+    scale: 1
+    vmin: 277
+    vmax: 319
 
 sst_10km_render_params:
-    cmap: "plasma"
+    cmap: "thermal"
     scale: 4
     bbox:
         minx: -129
@@ -61,14 +87,46 @@ sst_10km_render_params:
         maxx: -93
         maxy: 8.5
 
+sst_100km_global:
+    cmap: "thermal"
+    scale: 1
+    vmin: 292.329
+    vmax: 304.38
+
+# ------ SCENARIOS ---------
+
 scenarios:
-    cmap: "winter"
-    scale: 2
-    fps: 20
+    cmap: "Spectral_r"
+    scale: 10
+    date: "2018-08-07"
+    # we need to fix the temp range so the normal and +2 scenario can be compared side by side
     vmin: 269.56
     vmax: 324.11
+
+europe_scenario:
+    cmap: "Spectral_r"
+    scale: 10
+    date: "2018-08-07"
+    vmin: 285.15  # 12 C
+    vmax: 318.15  # 45 C
+    bbox:
+        minx: -20
+        miny: 35
+        maxx: 20
+        maxy: 55
 
 diff_video:
     cmap: "RdBu_r"
     scale: 2
-    fps: 20
+    vmin: -5
+    vmax: 5
+
+observations:
+    cmap: "Spectral_r"
+    scale: 10
+    dataset_name: "tasmax"
+    bbox:
+      minx: -10
+      miny: 35
+      maxx: 15
+      maxy: 45
