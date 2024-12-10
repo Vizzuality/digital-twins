@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import ImageSliderWithText from "@/components/image-slider-with-text";
+import ImageSlider from "@/components/image-slider";
 
 const Lines = dynamic(() => import("@/components/lines"), { ssr: false });
 
@@ -43,7 +43,7 @@ const renderLegend = (
 );
 
 const renderText1 = (
-  <div>
+  <div className="space-y-4 xl:max-w-[378px]">
     <div>
       <div className="text-base">SIM. 01</div>
       <div className="text-xl">7th August 2018</div>
@@ -58,7 +58,7 @@ const renderText1 = (
 );
 
 const renderText2 = (
-  <div>
+  <div className="space-y-4 xl:max-w-[378px]">
     <div>
       <div className="text-base">SIM. 02</div>
       <div className="text-xl">Future scenario: +2ºC</div>
@@ -78,26 +78,28 @@ const renderText2 = (
 export default function Section6() {
   return (
     <section className="relative scroll-mt-8 bg-white" id="section-6">
-      <div className="pointer-events-none relative">
-        <Lines
-          verticalClassName="left-8"
-          sectionName="section-6"
-          columns={[100]}
-          rows={[]}
-          colorClass="bg-blue-900/10"
-        />
-      </div>
       <div className="container relative hidden w-full xl:block">{renderLegend}</div>
-      <ImageSliderWithText
-        text1={renderText1}
-        text2={renderText2}
+      <ImageSlider
         legend={renderLegend}
         image1="/images/energy-section-6-iberia-1.png"
         image2="/images/energy-section-6-iberia-2.png"
         sliderHeightClass={"xl:h-[730px]"}
         resizeButtonClassName="top-[80%] xl:top-[600px]"
-        className="container px-[20px] xl:px-[150px]"
+        className="container z-10 px-[20px] xl:px-[150px]"
       />
+      <div className="container z-0 px-[20px] xl:px-[150px]">
+        <div className="grid pb-[60px] pt-6 text-green-700 max-xl:grid-rows-2 max-xl:gap-4 xl:grid-cols-2 xl:pb-[100px]">
+          <Lines
+            verticalClassName="left-8"
+            sectionName="section-6"
+            columns={[118, 667, 1216]}
+            rows={[]}
+            colorClass="bg-blue-900/10"
+          />
+          {renderText1}
+          {renderText2}
+        </div>
+      </div>
     </section>
   );
 }

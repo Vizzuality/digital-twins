@@ -12,9 +12,7 @@ import VideoPlayer from "@/components/video-player";
 
 import CaretRight from "@/svgs/caret-right.svg";
 
-const ImageSliderWithText = ({
-  text1,
-  text2,
+const ImageSlider = ({
   legend,
   image1,
   image2,
@@ -23,13 +21,10 @@ const ImageSliderWithText = ({
   video1,
   video2,
   sliderHeightClass,
-  textClass = "text-green-700",
   className,
   resizeButtonClassName,
   initialPosition = 550,
 }: {
-  text1: JSX.Element;
-  text2: JSX.Element;
   legend?: JSX.Element;
   image1?: string;
   image2?: string;
@@ -123,17 +118,8 @@ const ImageSliderWithText = ({
         </div>
       </div>
       {legend}
-      <div
-        className={cn(
-          "grid pb-[60px] pt-10 max-xl:grid-rows-2 max-xl:gap-4 xl:grid-cols-2 xl:pb-10",
-          textClass,
-        )}
-      >
-        {text1}
-        {text2}
-      </div>
     </div>
   );
 };
 
-export default ImageSliderWithText;
+export default ImageSlider;

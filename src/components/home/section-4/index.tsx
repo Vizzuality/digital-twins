@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import HoverRepeatAnimation from "@/components/animations/hover-repeat";
 import Arrows from "@/components/arrows";
-import ImageSliderWithText from "@/components/image-slider-with-text";
+import ImageSlider from "@/components/image-slider";
 import KnowMoreButton from "@/components/know-more-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import VideoPlayer from "@/components/video-player";
@@ -175,9 +175,7 @@ export default function Section4() {
               </div>
               <div className="relative xl:mt-16">
                 <div className="hidden w-full xl:block">{renderLegend}</div>
-                <ImageSliderWithText
-                  text1={renderText1}
-                  text2={renderText2}
+                <ImageSlider
                   legend={renderLegend}
                   image1="/images/home-europe-hist-scenario.png"
                   image2="/images/home-europe-plus-2k-scenario.png"
@@ -185,6 +183,10 @@ export default function Section4() {
                   textClass={"text-white"}
                   resizeButtonClassName="top-[170px] xl:top-[350px]"
                 />
+                <div className="grid pt-6 max-xl:grid-rows-2 max-xl:gap-4 max-xl:pb-10 xl:grid-cols-2">
+                  {renderText1}
+                  {renderText2}
+                </div>
               </div>
             </TabsContent>
             <TabsContent value="scenario2" className="pt-6 xl:pt-10">
