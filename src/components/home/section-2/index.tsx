@@ -219,6 +219,7 @@ export default function Section2() {
                 })}
                 videoMaterial="videos/stream-videos/wind_speed_global_10km/index.m3u8"
                 style={{ width: screenWidth }}
+                syncId="section-2"
               />
               <div className="absolute inset-0 z-30 w-full">
                 <Resizable
@@ -253,6 +254,7 @@ export default function Section2() {
                             ? "videos/stream-videos/wind_speed_global_10km/index.m3u8"
                             : undefined
                       }
+                      syncId="section-2"
                     />
                   </div>
                 </Resizable>

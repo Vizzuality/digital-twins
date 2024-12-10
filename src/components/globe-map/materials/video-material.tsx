@@ -5,11 +5,14 @@ import { NearestFilter } from "three";
 
 import { useVideoSync } from "../video-sync-context";
 
-function VideoMaterial({ url }: { url: string; }) {
-  const { registerVideo, unregisterVideo, playAll, areAllVideosLoaded } = useVideoSync();
+function VideoMaterial({ url, syncId }: { url: string; syncId?: string }) {
+  const videoSyncContext = useVideoSync(syncId);
 
   const texture = useVideoTexture(url, {
     playsInline: true,
+    autoplay: false,
+    // Start videos paused to sync them
+    start: false,
   });
 
   texture.minFilter = NearestFilter;
@@ -18,26 +21,36 @@ function VideoMaterial({ url }: { url: string; }) {
   useEffect(() => {
     const currentVideoRef = texture.source.data;
     if (currentVideoRef) {
-      registerVideo(url, currentVideoRef);
-      if (!areAllVideosLoaded()) {
-        // Pause the video until all videos are loaded
-        currentVideoRef.pause();
+      if (syncId && videoSyncContext) {
+        const { registerVideo, unregisterVideo, playAll, areAllVideosLoaded } = videoSyncContext;
+
+        registerVideo(url, currentVideoRef);
+        const handleLoadedData = () => {
+          if (areAllVideosLoaded()) {
+            playAll();
+          }
+        };
+
+        currentVideoRef.addEventListener("loadeddata", handleLoadedData);
+
+        return () => {
+          unregisterVideo(url);
+          currentVideoRef.removeEventListener("loadeddata", handleLoadedData);
+        };
+      } else {
+        // Handle video independently if not using sync
+        const handleLoadedData = () => {
+          currentVideoRef.play();
+        };
+
+        currentVideoRef.addEventListener("loadeddata", handleLoadedData);
+
+        return () => {
+          currentVideoRef.removeEventListener("loadeddata", handleLoadedData);
+        };
       }
-
-      const handleLoadedData = () => {
-        if (areAllVideosLoaded()) {
-          playAll();
-        }
-      };
-
-      currentVideoRef.addEventListener("loadeddata", handleLoadedData);
-
-      return () => {
-        unregisterVideo(url);
-        currentVideoRef.removeEventListener("loadeddata", handleLoadedData);
-      };
     }
-  }, [url, registerVideo, unregisterVideo, playAll, areAllVideosLoaded, texture]);
+  }, [url, syncId, videoSyncContext, texture]);
 
   return <meshBasicMaterial map={texture} toneMapped={false} />;
 }

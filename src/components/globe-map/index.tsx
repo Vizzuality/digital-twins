@@ -17,12 +17,14 @@ export default function GlobeMap({
   style,
   hasMarkers = false,
   rotate = false,
+  syncId,
 }: {
   videoMaterial?: string;
   className: string;
   style?: CSSProperties;
   hasMarkers?: boolean;
   rotate?: boolean;
+  syncId?: string;
 }) {
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const groupRef = useRef<Group>(null!);
@@ -150,6 +152,7 @@ export default function GlobeMap({
                 rotate={rotate}
                 setEnabled={setEnabled}
                 videoMaterial={videoMaterial}
+                syncId={syncId}
               />
             </Canvas>
           </ErrorBoundary>

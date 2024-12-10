@@ -44,9 +44,9 @@ export const VideoSyncProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   );
 };
 
-export const useVideoSync = () => {
+export const useVideoSync = (syncId?: string) => {
   const context = useContext(VideoSyncContext);
-  if (!context) {
+  if (syncId && !context) {
     throw new Error("useVideoSync must be used within a VideoSyncProvider");
   }
   return context;
