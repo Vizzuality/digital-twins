@@ -18,7 +18,7 @@ interface ScrollState {
   timeoutID: ReturnType<typeof setTimeout>;
   direction: Direction;
   directionStart: number;
-  animation: AnimationPlaybackControls | null; // Updated type
+  animation: AnimationPlaybackControls | null;
 }
 
 interface UseScrollSnapProps {
@@ -50,6 +50,8 @@ function useScrollSnap({
     directionStart: 0,
     animation: null,
   });
+
+  const isInViewRef = useRef(false);
 
   const getTargetScrollOffset = (element: HTMLElement) => {
     let top = element.offsetTop;
@@ -97,9 +99,21 @@ function useScrollSnap({
     return elementY;
   };
 
+  const getCumulativeOffset = (element: HTMLElement) => {
+    let top = 0;
+    let currentElement: HTMLElement | null = element;
+
+    while (currentElement) {
+      top += currentElement.offsetTop;
+      currentElement = currentElement.offsetParent as HTMLElement;
+    }
+
+    return top;
+  };
+
   const isScrollWithinBounds = () => {
     if (!elementRef.current) return false;
-    const containerTop = elementRef.current.offsetTop;
+    const containerTop = getCumulativeOffset(elementRef.current);
     const containerBottom = containerTop + elementRef.current.offsetHeight;
     const scrollTop = window.scrollY;
     const scrollBottom = scrollTop + window.innerHeight;
@@ -107,6 +121,7 @@ function useScrollSnap({
   };
 
   const findSnapTarget = () => {
+    if (!isInViewRef.current) return;
     const elementsInView = getElementsInView();
     if (elementsInView.length < 1) return;
 
@@ -284,7 +299,17 @@ function useScrollSnap({
       document.addEventListener("keydown", handleKeyDown);
     }
 
-    findSnapTarget();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.1 },
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
 
     return () => {
       clearAnimation();
@@ -295,6 +320,10 @@ function useScrollSnap({
 
       if (isArrowKeysEnabled) {
         document.removeEventListener("keydown", handleKeyDown);
+      }
+
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
