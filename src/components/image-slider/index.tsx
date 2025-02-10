@@ -66,7 +66,7 @@ const ImageSlider = ({
 
   return (
     <div className={cn("relative flex flex-col overflow-hidden", className)}>
-      <div className="relative w-full" ref={containerRef} id="container">
+      <div className="relative w-full overflow-hidden" ref={containerRef} id="container">
         <div className="absolute inset-0 z-30 w-full">
           <Resizable
             className={cn("z-50 border-r border-blue-900/10")}

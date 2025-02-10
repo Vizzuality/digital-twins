@@ -56,7 +56,7 @@ const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref
   return (
     <motion.div
       key="section-2-phase-2-content"
-      className="flex w-[100vw] items-center justify-center bg-white/30 p-6 leading-relaxed text-green-950 backdrop-blur-lg xl:w-[517px]"
+      className="flex w-[80vw] items-center justify-center bg-white/30 p-6 leading-relaxed text-green-950 backdrop-blur-lg xl:w-[517px]"
       ref={ref}
       initial={{ opacity: 0, y: "100%" }}
       animate={{
@@ -185,7 +185,11 @@ export default function Section2() {
 
   return (
     <section className="relative bg-green-800" id="section-2">
-      <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
+      <div
+        className="relative h-[360vh] xl:h-[400vh]"
+        ref={scrollSectionRef}
+        id="section-2-scroll-parent"
+      >
         <ScrollStep id={STEPS[0]} className="h-[50vh]" offset={0.5} onEnter={setStep} />
         <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
           <div className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block">

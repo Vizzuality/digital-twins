@@ -79,7 +79,7 @@ export default function Section2() {
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
       <div
-        className="relative h-[200vh] xl:h-[300vh]"
+        className="relative h-[210vh] xl:h-[300vh]"
         ref={scrollSectionRef}
         id="section-2-scroll-parent"
       >
@@ -218,7 +218,7 @@ export default function Section2() {
         <ScrollStep
           id={STEPS[1]}
           className="h-[100vh] xl:h-[200vh]"
-          offset={0.5}
+          offset={0.1}
           onEnter={setStep}
         />
       </div>
