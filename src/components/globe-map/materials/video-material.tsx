@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useVideoTexture } from "@react-three/drei";
 import { NearestFilter } from "three";
@@ -8,11 +8,16 @@ import { useVideoSync } from "../video-sync-context";
 function VideoMaterial({ url, syncId }: { url: string; syncId?: string }) {
   const videoSyncContext = useVideoSync(syncId);
 
+  // If it's an iphone using safari, the loadeddata event is not triggered, so we need to autoplay the videos
+  const autoplay = useMemo(() => {
+    return typeof window !== "undefined" && /iphone.*safari/i.test(navigator?.userAgent);
+  }, []);
+
   const texture = useVideoTexture(url, {
     playsInline: true,
     autoplay: false,
-    // Start videos paused to sync them
-    start: false,
+    // Start videos paused to sync them. Only autoplay if it's an iphone using safari
+    start: autoplay,
   });
 
   texture.minFilter = NearestFilter;
