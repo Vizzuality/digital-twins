@@ -186,7 +186,7 @@ export default function Section2() {
   return (
     <section className="relative bg-green-800" id="section-2">
       <div
-        className="relative h-[350vh] xl:h-[400vh]"
+        className="relative h-[360vh] xl:h-[400vh]"
         ref={scrollSectionRef}
         id="section-2-scroll-parent"
       >
