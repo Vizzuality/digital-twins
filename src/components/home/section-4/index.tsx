@@ -141,17 +141,17 @@ export default function Section4() {
             <TabsList className="h-auto">
               <TabsTrigger value="scenario1" variant="whatif">
                 <HoverRepeatAnimation>
-                  <div className="px-2 py-[14px] xl:px-6">Scenario 1</div>
+                  <div className="px-2 py-[14px] text-xs xl:px-6 xl:text-sm">Scenario 1</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="scenario2" variant="whatif">
                 <HoverRepeatAnimation>
-                  <div className="px-2 py-[14px] xl:px-6">Scenario 2</div>
+                  <div className="px-2 py-[14px] text-xs xl:px-6">Scenario 2</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
               <TabsTrigger value="scenario3" variant="whatif">
                 <HoverRepeatAnimation>
-                  <div className="px-2 py-[14px] xl:px-6">Scenario 3</div>
+                  <div className="px-2 py-[14px] text-xs xl:px-6">Scenario 3</div>
                 </HoverRepeatAnimation>
               </TabsTrigger>
             </TabsList>
@@ -181,7 +181,7 @@ export default function Section4() {
                   image2="/images/home-europe-plus-2k-scenario.png"
                   sliderHeightClass={"xl:h-[440px]"}
                   textClass={"text-white"}
-                  resizeButtonClassName="top-[170px] xl:top-[350px]"
+                  resizeButtonClassName="top-[80%] xl:top-[350px]"
                 />
                 <div className="grid pt-6 max-xl:grid-rows-2 max-xl:gap-4 max-xl:pb-10 xl:grid-cols-2">
                   {renderText1}
