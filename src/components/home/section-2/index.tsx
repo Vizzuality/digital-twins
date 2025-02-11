@@ -314,7 +314,7 @@ export default function Section2() {
           </VideoSyncProvider>
         </div>
         <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
-        <ScrollStep id={STEPS[2]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep id={STEPS[2]} className="h-[100vh]" offset={0.1} onEnter={setStep} />
       </div>
     </section>
   );
