@@ -16,10 +16,10 @@ function VideoMaterial({ url }: { url: string; syncId?: string }) {
 
   const texture = useVideoTexture(url, {
     playsInline: true,
-    autoplay: false,
-    // muted: true,
+    autoplay: true,
+    muted: true,
     // Start videos paused to sync them. Only autoplay if it's an iphone using safari
-    start: false,
+    start: true,
   });
 
   texture.minFilter = NearestFilter;
