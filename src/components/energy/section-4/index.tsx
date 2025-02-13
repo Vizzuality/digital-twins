@@ -101,121 +101,131 @@ export default function Section4() {
 
   return (
     <section className="relative" id="section-4">
-      <div className="relative h-[400vh]" ref={scrollSectionRef} id="section-2-scroll-parent">
-        <ScrollStep id={STEPS[0]} className="relative h-[50vh]" offset={0.5} onEnter={setStep} />
-        <div className="sticky inset-0 flex h-[100vh] w-full justify-center" id="section-4-1">
-          <div className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block">
-            <div className="absolute right-6 flex h-full w-6 items-center 2xl:right-[138px]">
-              <StepDots
-                sectionName="home-2"
-                colorClass="bg-green-950"
-                stepsNumber={3}
-                currentStep={parseInt(step.slice(-1), 10) - 1}
-                onClick={(index: number) => {
-                  scrollToSection(`section-4-step-${index + 1}`);
-                }}
-              />
-            </div>
-          </div>
-          {step === STEPS[2] && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="absolute bottom-6 right-0 z-10 hidden w-[100px] flex-col items-center space-y-2 text-center text-green-950 xl:flex 2xl:right-[106px]"
-            >
-              Scroll to <br /> continue
-              <ArrowDown className="h-6 w-6 animate-bounce" />
-            </motion.div>
-          )}
-          <VideoPlayer
-            src="/videos/stream-videos/observations/index.m3u8"
-            className="h-screen w-full"
-            fluid
-            videoClassName="object-cover max-xl:object-[9%] xl:object-fill !h-screen"
-          />
-          <motion.div
-            className="absolute left-0 top-[calc(50%_-_100px)] flex h-full w-full flex-col gap-4 text-green-950"
-            initial="initial"
-            animate="animate"
+      <div className="relative h-[310vh] xl:h-[350vh]" id="section-2-scroll-parent">
+        <div className="absolute top-0 h-[310vh] w-full xl:h-[350vh]">
+          <div
+            className="sticky inset-0 top-0 flex h-[100vh] w-full justify-center"
+            id="section-4-1"
           >
-            <AnimatePresence>
-              {step === STEPS[0] && (
-                <motion.div
-                  key="section-4-title-1"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, translateY: "-200px" }}
-                  className="flex w-full flex-col items-center justify-center text-center"
-                >
-                  <h2 className="uppercase tracking-tight sm:mx-auto xl:text-lg">
-                    Exploring energy futures
-                  </h2>
-                  <h3 className="max-w-[95%] text-[36px] max-xl:leading-[42px] sm:mx-auto xl:max-w-[720px] xl:text-4xl">
-                    Inside the 2018 heatwave
-                    <br /> on the Iberian Peninsula
-                  </h3>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-          <AnimatePresence>
-            {step !== STEPS[0] && (
+            <div className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block">
+              <div className="absolute right-6 flex h-full w-6 items-center 2xl:right-[138px]">
+                <StepDots
+                  sectionName="home-2"
+                  colorClass="bg-green-950"
+                  stepsNumber={3}
+                  currentStep={parseInt(step.slice(-1), 10) - 1}
+                  onClick={(index: number) => {
+                    scrollToSection(`section-4-step-${index + 1}`);
+                  }}
+                />
+              </div>
+            </div>
+            {step === STEPS[2] && (
               <motion.div
-                key="section-4-description-1"
-                initial="initial"
-                animate="animate"
-                variants={variantsDescription[step]}
-                className="absolute bottom-0 left-8 h-full w-full max-w-[80vw] text-green-950 xl:left-[60%] xl:max-w-[459px]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute bottom-6 right-0 z-10 hidden w-[100px] flex-col items-center space-y-2 text-center text-green-950 xl:flex 2xl:right-[106px]"
               >
-                {step === STEPS[1] && (
+                Scroll to <br /> continue
+                <ArrowDown className="h-6 w-6 animate-bounce" />
+              </motion.div>
+            )}
+            <VideoPlayer
+              src="/videos/stream-videos/observations/index.m3u8"
+              className="h-screen w-full"
+              fluid
+              videoClassName="object-cover max-xl:object-[9%] xl:object-fill !h-screen"
+            />
+            <motion.div
+              className="absolute left-0 top-[calc(50%_-_100px)] flex h-full w-full flex-col gap-4 text-green-950"
+              initial="initial"
+              animate="animate"
+            >
+              <AnimatePresence>
+                {step === STEPS[0] && (
                   <motion.div
-                    key="section-4-description-2"
-                    className="absolute inset-0 h-fit w-full bg-white/30 p-6 text-xl backdrop-blur-lg xl:text-2xl"
-                    initial={{ opacity: 0, top: "200px" }}
-                    animate={{ opacity: 1, top: 0, transition }}
-                    exit={{ opacity: 0, top: "-200px" }}
+                    key="section-4-title-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, translateY: "-200px" }}
+                    className="flex w-full flex-col items-center justify-center text-center"
                   >
-                    Imagine using the digital twin to dissect a real-world event like the
-                    devastating 2018 European heatwave, which caused the warmest conditions in the
-                    Iberian Peninsula since 2003.
+                    <h2 className="uppercase tracking-tight sm:mx-auto xl:text-lg">
+                      Exploring energy futures
+                    </h2>
+                    <h3 className="max-w-[95%] text-[36px] max-xl:leading-[42px] sm:mx-auto xl:max-w-[720px] xl:text-4xl">
+                      Inside the 2018 heatwave
+                      <br /> on the Iberian Peninsula
+                    </h3>
                   </motion.div>
                 )}
-                {step === STEPS[2] && (
-                  <div
-                    className="flex h-full items-center justify-center"
-                    key="section-4-description-3"
-                  >
+              </AnimatePresence>
+            </motion.div>
+            <AnimatePresence>
+              {step !== STEPS[0] && (
+                <motion.div
+                  key="section-4-description-1"
+                  initial="initial"
+                  animate="animate"
+                  variants={variantsDescription[step]}
+                  className="absolute bottom-0 left-8 h-full w-full max-w-[80vw] text-green-950 xl:left-[60%] xl:max-w-[459px]"
+                >
+                  {step === STEPS[1] && (
                     <motion.div
-                      className="h-fit max-h-screen w-full max-w-[80vw] bg-white/30 p-6 text-base backdrop-blur-lg xl:min-w-[498px] xl:max-w-[498px]"
+                      key="section-4-description-2"
+                      className="absolute inset-0 h-fit w-full bg-white/30 p-6 text-xl backdrop-blur-lg xl:text-2xl"
                       initial={{ opacity: 0, top: "200px" }}
                       animate={{ opacity: 1, top: 0, transition }}
                       exit={{ opacity: 0, top: "-200px" }}
                     >
-                      <div className="text-xs xl:pb-10 xl:text-base">
-                        According to observations, it can be seen that during the first week of
-                        August 2018, maximum temperatures reached values above 45 ºC in the Iberian
-                        Peninsula due to a warm air intrusion that moved up from Africa. Two
-                        wildfires occurred in Spain during the heatwave, causing more than 4,500
-                        burned hectares and thousands of people being evacuated. Some Spanish
-                        regions registered the highest number of deaths by heat stroke since
-                        official records started in 2004. A portion of health-related impacts could
-                        be mitigated by the use of air conditioning, but this caused a 10% rise in
-                        Iberian energy consumption and blackouts in Lisbon suburbs.
-                      </div>
-                      <div className="block max-xl:max-h-[250px]">{renderChart}</div>
-                      <div className="flex items-end justify-between gap-4">
-                        <div className="max-w-[258px]">{legend}</div>
-                        <div className="text-xs">Source: Destination Earth</div>
-                      </div>
+                      Imagine using the digital twin to dissect a real-world event like the
+                      devastating 2018 European heatwave, which caused the warmest conditions in the
+                      Iberian Peninsula since 2003.
                     </motion.div>
-                  </div>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  )}
+                  {step === STEPS[2] && (
+                    <div
+                      className="flex h-full items-center justify-center"
+                      key="section-4-description-3"
+                    >
+                      <motion.div
+                        className="h-fit max-h-screen w-full max-w-[80vw] bg-white/30 p-6 text-base backdrop-blur-lg xl:min-w-[498px] xl:max-w-[498px]"
+                        initial={{ opacity: 0, top: "200px" }}
+                        animate={{ opacity: 1, top: 0, transition }}
+                        exit={{ opacity: 0, top: "-200px" }}
+                      >
+                        <div className="text-xs xl:pb-10 xl:text-base">
+                          According to observations, it can be seen that during the first week of
+                          August 2018, maximum temperatures reached values above 45 ºC in the
+                          Iberian Peninsula due to a warm air intrusion that moved up from Africa.
+                          Two wildfires occurred in Spain during the heatwave, causing more than
+                          4,500 burned hectares and thousands of people being evacuated. Some
+                          Spanish regions registered the highest number of deaths by heat stroke
+                          since official records started in 2004. A portion of health-related
+                          impacts could be mitigated by the use of air conditioning, but this caused
+                          a 10% rise in Iberian energy consumption and blackouts in Lisbon suburbs.
+                        </div>
+                        <div className="block max-xl:max-h-[250px]">{renderChart}</div>
+                        <div className="flex items-end justify-between gap-4">
+                          <div className="max-w-[258px]">{legend}</div>
+                          <div className="text-xs">Source: Destination Earth</div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
+        <ScrollStep id={STEPS[0]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
         <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
-        <ScrollStep id={STEPS[2]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep
+          id={STEPS[2]}
+          className="h-[110vh] xl:h-[150vh]"
+          offset={0.5}
+          onEnter={setStep}
+        />
       </div>
     </section>
   );
