@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, forwardRef } from "react";
+import { useEffect, useState, forwardRef } from "react";
 
 import { useGesture } from "@use-gesture/react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +8,6 @@ import { Resizable } from "re-resizable";
 import { useRecoilState } from "recoil";
 
 import { useIsMobile, useWindowWidth } from "@/lib/hooks";
-import useScrollSnap from "@/lib/use-scroll-snap";
 import { cn, scrollToSection } from "@/lib/utils";
 
 import { globePhaseAtom } from "@/store";
@@ -143,7 +142,6 @@ const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref
 Phase2Content.displayName = "Phase2Content";
 
 export default function Section2() {
-  const scrollSectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
@@ -181,140 +179,141 @@ export default function Section2() {
     },
   });
 
-  useScrollSnap({ ref: scrollSectionRef, duration: 1 });
-
   return (
     <section className="relative bg-green-800" id="section-2">
-      <div
-        className="relative h-[360vh] xl:h-[400vh]"
-        ref={scrollSectionRef}
-        id="section-2-scroll-parent"
-      >
-        <ScrollStep id={STEPS[0]} className="h-[50vh]" offset={0.5} onEnter={setStep} />
-        <div className="sticky inset-0 flex h-[100vh] justify-center" id="globe-phase-1">
-          <div className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block">
-            <div className="absolute right-[138px] flex h-full w-6 items-center">
-              <StepDots
-                sectionName="home-2"
-                colorClass="bg-green-300"
-                stepsNumber={3}
-                currentStep={globePhase}
-                onClick={(index: number) => scrollToSection(`section-2-step-${index + 1}`)}
-              />
-            </div>
-          </div>
-          {globePhase === 2 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="absolute bottom-6 right-14 hidden w-[200px] flex-col items-center space-y-2 text-center text-green-300 xl:flex"
-            >
-              Scroll to <br /> continue
-              <ArrowDown className="h-6 w-6 animate-bounce" />
-            </motion.div>
-          )}
-          <VideoSyncProvider>
-            <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
-              {/* High globe */}
-              <GlobeMap
-                className={cn("h-full", {
-                  "opacity-1": globePhase === 0,
-                  "opacity-0": globePhase > 0,
-                })}
-                videoMaterial="videos/stream-videos/wind_speed_global_10km/index.m3u8"
-                style={{ width: screenWidth }}
-                syncId="section-2"
-              />
-              <div className="absolute inset-0 z-30 w-full">
-                <Resizable
-                  className={cn("w-full", {
-                    "border-r border-red-700/25": globePhase === 0,
-                  })}
-                  size={{ width: resizableWidth, height: "100%" }}
-                  onResizeStop={(e, direction, ref, d) => {
-                    setResizableWidth(resizableWidth + d.width);
-                  }}
-                  enable={{
-                    right: globePhase === 0,
-                  }}
-                  maxWidth={screenWidth}
-                  minWidth="1"
-                  handleComponent={{
-                    right: <ResizeButton />,
-                  }}
-                >
-                  <div className="h-full overflow-hidden">
-                    {/* Low globe */}
-                    <GlobeMap
-                      className="h-full transform"
-                      style={{ width: screenWidth }}
-                      hasMarkers={globePhase > 1}
-                      rotate={globePhase === 1}
-                      videoMaterial={
-                        // 100km is not compressed to keep the lofi look
-                        globePhase === 0
-                          ? "videos/wind_speed_global_100km.mp4"
-                          : globePhase === 1
-                            ? "videos/stream-videos/wind_speed_global_10km/index.m3u8"
-                            : undefined
-                      }
-                      syncId="section-2"
-                    />
-                  </div>
-                </Resizable>
+      <div className="relative h-[310vh] xl:h-[350vh]" id="section-2-scroll-parent">
+        <div className="absolute top-0 h-[310vh] w-full justify-center xl:h-[350vh]">
+          <div className="sticky inset-0 top-0 flex h-[100vh] justify-center" id="globe-phase-1">
+            <div className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block">
+              <div className="absolute right-[138px] flex h-full w-6 items-center">
+                <StepDots
+                  sectionName="home-2"
+                  colorClass="bg-green-300"
+                  stepsNumber={3}
+                  currentStep={globePhase}
+                  onClick={(index: number) => scrollToSection(`section-2-step-${index + 1}`)}
+                />
               </div>
             </div>
-            <AnimatePresence>
-              {globePhase < 2 && (
-                <motion.div
-                  key="section-2-content"
-                  className={cn(
-                    "absolute z-30 flex h-full w-full flex-col items-center justify-center",
-                    { "pointer-events-none": globePhase !== 1 },
-                  )}
-                >
-                  {globePhase === 0 && (
-                    <motion.div
-                      key="section-2-phase-1-content"
-                      initial={{ opacity: 0, y: "100%" }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          ease: "linear",
-                        },
-                      }}
-                      className="pointer-events-none flex h-full w-full items-center justify-center text-center"
-                    >
-                      <div>
-                        <h2 className="text-base font-bold uppercase tracking-tight text-green-950 xl:text-lg xl:font-normal">
-                          UNLOCKING CLIMATE POTENTIAL
-                        </h2>
-                        <div className="max-w-[90vw] text-2xl font-bold text-green-950 xl:max-w-[720px] xl:text-4xl xl:font-normal">
-                          High-quality information <br />
-                          from global to local scale
+            {globePhase === 2 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute bottom-6 right-14 hidden w-[200px] flex-col items-center space-y-2 text-center text-green-300 xl:flex"
+              >
+                Scroll to <br /> continue
+                <ArrowDown className="h-6 w-6 animate-bounce" />
+              </motion.div>
+            )}
+            <VideoSyncProvider>
+              <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
+                {/* High globe */}
+                <GlobeMap
+                  className={cn("h-full", {
+                    "opacity-1": globePhase === 0,
+                    "opacity-0": globePhase > 0,
+                  })}
+                  videoMaterial="videos/stream-videos/wind_speed_global_10km/index.m3u8"
+                  style={{ width: screenWidth }}
+                  syncId="section-2"
+                />
+                <div className="absolute inset-0 z-30 w-full">
+                  <Resizable
+                    className={cn("w-full", {
+                      "border-r border-red-700/25": globePhase === 0,
+                    })}
+                    size={{ width: resizableWidth, height: "100%" }}
+                    onResizeStop={(e, direction, ref, d) => {
+                      setResizableWidth(resizableWidth + d.width);
+                    }}
+                    enable={{
+                      right: globePhase === 0,
+                    }}
+                    maxWidth={screenWidth}
+                    minWidth="1"
+                    handleComponent={{
+                      right: <ResizeButton />,
+                    }}
+                  >
+                    <div className="h-full overflow-hidden">
+                      {/* Low globe */}
+                      <GlobeMap
+                        className="h-full transform"
+                        style={{ width: screenWidth }}
+                        hasMarkers={globePhase > 1}
+                        rotate={globePhase === 1}
+                        videoMaterial={
+                          // 100km is not compressed to keep the lofi look
+                          globePhase === 0
+                            ? "videos/wind_speed_global_100km.mp4"
+                            : globePhase === 1
+                              ? "videos/stream-videos/wind_speed_global_10km/index.m3u8"
+                              : undefined
+                        }
+                        syncId="section-2"
+                      />
+                    </div>
+                  </Resizable>
+                </div>
+              </div>
+              <AnimatePresence>
+                {globePhase < 2 && (
+                  <motion.div
+                    key="section-2-content"
+                    className={cn(
+                      "absolute z-30 flex h-full w-full flex-col items-center justify-center",
+                      { "pointer-events-none": globePhase !== 1 },
+                    )}
+                  >
+                    {globePhase === 0 && (
+                      <motion.div
+                        key="section-2-phase-1-content"
+                        initial={{ opacity: 0, y: "100%" }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            ease: "linear",
+                          },
+                        }}
+                        className="pointer-events-none flex h-full w-full items-center justify-center text-center"
+                      >
+                        <div>
+                          <h2 className="text-base font-bold uppercase tracking-tight text-green-950 xl:text-lg xl:font-normal">
+                            UNLOCKING CLIMATE POTENTIAL
+                          </h2>
+                          <div className="max-w-[90vw] text-2xl font-bold text-green-950 xl:max-w-[720px] xl:text-4xl xl:font-normal">
+                            High-quality information <br />
+                            from global to local scale
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  )}
-                  {globePhase === 1 && (
-                    <Phase2Content
-                      {...{
-                        isMobile,
-                        globePhase,
-                        bind,
-                        setMobileGlobeTextIndex,
-                        mobileGlobeTextIndex,
-                      }}
-                    />
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </VideoSyncProvider>
+                      </motion.div>
+                    )}
+                    {globePhase === 1 && (
+                      <Phase2Content
+                        {...{
+                          isMobile,
+                          globePhase,
+                          bind,
+                          setMobileGlobeTextIndex,
+                          mobileGlobeTextIndex,
+                        }}
+                      />
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </VideoSyncProvider>
+          </div>
         </div>
+        <ScrollStep id={STEPS[0]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
         <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
-        <ScrollStep id={STEPS[2]} className="h-[100vh]" offset={0.1} onEnter={setStep} />
+        <ScrollStep
+          id={STEPS[2]}
+          className="h-[110vh] xl:h-[150vh]"
+          offset={0.5}
+          onEnter={setStep}
+        />
       </div>
     </section>
   );

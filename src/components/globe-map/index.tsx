@@ -63,7 +63,7 @@ export default function GlobeMap({
   const touchMoveX = useRef<number | null>(null);
 
   // Handle vertical wheel events to scroll the page
-  useGesture(
+  const bind = useGesture(
     {
       onWheel: (props) => {
         const { event, direction, delta } = props;
@@ -74,12 +74,9 @@ export default function GlobeMap({
       },
       onTouchMove: (props) => {
         const { event } = props;
+
         if (touchMoveY.current === null || touchMoveX.current === null) {
           return;
-        }
-        event.stopPropagation();
-        if (event.cancelable) {
-          event.preventDefault();
         }
         const currentY = event.touches[0].clientY; // Current Y position
         const currentX = event.touches[0].clientX; // Current Y position
@@ -101,9 +98,9 @@ export default function GlobeMap({
     },
     {
       eventOptions: { passive: false },
-      target: canvasRef,
     },
   );
+  const { onWheel, onTouchMove, onTouchStart } = bind();
 
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
   useEffect(() => {
@@ -113,7 +110,7 @@ export default function GlobeMap({
   }, [didCatch, error]);
   return (
     <>
-      <div className={className + " touch-none"} style={style}>
+      <div className={className} style={style}>
         {!didCatch && (
           <ErrorBoundary>
             <Canvas
@@ -121,6 +118,9 @@ export default function GlobeMap({
               ref={canvasRef}
               resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
               fallback={<div>Sorry, no WebGL supported in your browser</div>}
+              onWheel={onWheel}
+              onTouchMove={onTouchMove}
+              onTouchStart={onTouchStart}
             >
               <Controls
                 canvasRef={canvasRef}
