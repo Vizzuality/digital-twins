@@ -27,8 +27,6 @@ export default function Section2() {
   const [globePhase, setGlobePhase] = useRecoilState(globePhaseAtom);
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
 
-  console.log({ mobileGlobeTextIndex });
-
   useEffect(() => {
     if (globePhase !== 1 && step === STEPS[1]) {
       setGlobePhase(1);
