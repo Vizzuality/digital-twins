@@ -174,6 +174,7 @@ export const Controls = ({
       makeDefault
       dollySpeed={0}
       polarRotateSpeed={0}
+      enabled={!isMobile}
       azimuthRotateSpeed={enabled || resettingPosition ? 1 : 0}
     />
   );

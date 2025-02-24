@@ -2,7 +2,6 @@
 
 import { useEffect, useState, forwardRef } from "react";
 
-import { useGesture } from "@use-gesture/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
 import { useRecoilState } from "recoil";
@@ -44,13 +43,11 @@ const STEPS = ["section-2-step-1", "section-2-step-2", "section-2-step-3"];
 
 type Phase2ContentProps = {
   isMobile: boolean;
-  bind: ReturnType<typeof useGesture>;
-  setMobileGlobeTextIndex: (index: number) => void;
   mobileGlobeTextIndex: number;
 };
 
 const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref) => {
-  const { isMobile, bind, setMobileGlobeTextIndex, mobileGlobeTextIndex } = props;
+  const { isMobile, mobileGlobeTextIndex } = props;
 
   return (
     <motion.div
@@ -65,29 +62,8 @@ const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref
           ease: "linear",
         },
       }}
-      {...bind()}
     >
       <div className="flex flex-col gap-2 xl:gap-6">
-        {isMobile && (
-          <div className="absolute -top-8 right-0 flex items-center gap-0.5">
-            <button onClick={() => setMobileGlobeTextIndex(0)} type="button" title="Previous text">
-              <div className="sr-only">Previous text</div>
-              <ArrowRight
-                className={cn("h-6 w-6 -rotate-180 p-[2px] text-green-950", {
-                  "opacity-50": mobileGlobeTextIndex === 0,
-                })}
-              />
-            </button>
-            <button onClick={() => setMobileGlobeTextIndex(1)} type="button" title="Next text">
-              <div className="sr-only">Next text</div>
-              <ArrowRight
-                className={cn("h-6 w-6 p-[2px] text-green-950", {
-                  "opacity-50": mobileGlobeTextIndex === 1,
-                })}
-              />
-            </button>
-          </div>
-        )}
         <AnimatePresence>
           {(!isMobile || mobileGlobeTextIndex === 0) && (
             <motion.div key="mobile-text-1" className="flex flex-col gap-2 xl:gap-6">
@@ -141,6 +117,45 @@ const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref
 
 Phase2Content.displayName = "Phase2Content";
 
+type MobileArrowsProps = {
+  step: string;
+  handleMobileNext: () => void;
+  handleMobilePrev: () => void;
+};
+const MobileArrows = ({ step, handleMobileNext, handleMobilePrev }: MobileArrowsProps) => (
+  <div className="absolute right-5 top-8 z-30">
+    <div className="flex items-center gap-2.5">
+      <button
+        className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-light-green", {
+          hidden: step === STEPS[0],
+        })}
+        onClick={handleMobilePrev}
+        type="button"
+        title="Previous text"
+      >
+        <div className="sr-only">Previous text</div>
+        <ArrowRight className="h-[30px] w-[30px] -rotate-180 p-[2px] text-green-700" />
+      </button>
+      <button
+        className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-light-green", {
+          hidden: step === STEPS[2],
+        })}
+        onClick={handleMobileNext}
+        type="button"
+        title="Next text"
+      >
+        <div className="sr-only">Next text</div>
+        <ArrowRight className="h-[30px] w-[30px] p-[2px] text-green-700" />
+      </button>
+    </div>
+    {step === STEPS[0] && (
+      <p className="absolute w-[100px] -translate-x-7 translate-y-10 -rotate-90 text-base text-light-green">
+        Know more
+      </p>
+    )}
+  </div>
+);
+
 export default function Section2() {
   const isMobile = useIsMobile();
 
@@ -169,21 +184,43 @@ export default function Section2() {
 
   const [mobileGlobeTextIndex, setMobileGlobeTextIndex] = useState(0);
 
-  const bind = useGesture({
-    onDragEnd: ({ direction: [dx] }) => {
-      if (dx > 0) {
-        setMobileGlobeTextIndex(0);
-      } else if (dx < 0) {
-        setMobileGlobeTextIndex(1);
-      }
-    },
-  });
+  const handleMobileNext = () => {
+    if (step === STEPS[2]) {
+      return;
+    }
+    if (step === STEPS[1] && mobileGlobeTextIndex === 0) {
+      setMobileGlobeTextIndex(1);
+      return;
+    }
+    setMobileGlobeTextIndex(0);
+    const nextStep = STEPS[STEPS.indexOf(step) + 1];
+    setStep(nextStep);
+  };
+
+  const handleMobilePrev = () => {
+    if (step === STEPS[0]) {
+      return;
+    }
+    if (step === STEPS[1] && mobileGlobeTextIndex === 1) {
+      setMobileGlobeTextIndex(0);
+      return;
+    }
+    setMobileGlobeTextIndex(1);
+    const prevText = STEPS[STEPS.indexOf(step) - 1];
+    setStep(prevText);
+  };
 
   return (
     <section className="relative bg-green-800" id="section-2">
-      <div className="relative h-[310vh] xl:h-[350vh]" id="section-2-scroll-parent">
-        <div className="absolute top-0 h-[310vh] w-full justify-center xl:h-[350vh]">
-          <div className="sticky inset-0 top-0 flex h-[100vh] justify-center" id="globe-phase-1">
+      <div className="relative h-screen xl:h-[350vh]" id="section-2-scroll-parent">
+        {isMobile && (
+          <MobileArrows {...{ step, mobileGlobeTextIndex, handleMobileNext, handleMobilePrev }} />
+        )}
+        <div className="absolute top-0 h-screen w-full justify-center xl:h-[350vh]">
+          <div
+            className="inset-0 top-0 flex h-[100vh] items-end justify-center xl:sticky"
+            id="globe-phase-1"
+          >
             <div className="absolute top-0 z-40 hidden w-full translate-y-[50vh] transform xl:block">
               <div className="absolute right-[138px] flex h-full w-6 items-center">
                 <StepDots
@@ -206,10 +243,13 @@ export default function Section2() {
               </motion.div>
             )}
             <VideoSyncProvider>
-              <div className="relative h-[100vh] w-full overflow-hidden" id="high-globe-container">
+              <div
+                className="apt-[10vh] relative h-[100vh] w-full overflow-hidden xl:pt-0"
+                id="high-globe-container"
+              >
                 {/* High globe */}
                 <GlobeMap
-                  className={cn("h-full", {
+                  className={cn("mt-[10vh] h-[120vh] xl:mt-0 xl:h-full", {
                     "opacity-1": globePhase === 0,
                     "opacity-0": globePhase > 0,
                   })}
@@ -217,7 +257,7 @@ export default function Section2() {
                   style={{ width: screenWidth }}
                   syncId="section-2"
                 />
-                <div className="absolute inset-0 z-30 w-full">
+                <div className="absolute inset-0 z-20 w-full">
                   <Resizable
                     className={cn("w-full", {
                       "border-r border-red-700/25": globePhase === 0,
@@ -238,7 +278,10 @@ export default function Section2() {
                     <div className="h-full overflow-hidden">
                       {/* Low globe */}
                       <GlobeMap
-                        className="h-full transform"
+                        className={cn(
+                          "mt-[10vh] h-[120vh] transform transition-all duration-500 xl:mt-0 xl:h-full",
+                          step === STEPS[2] && "h-screen",
+                        )}
                         style={{ width: screenWidth }}
                         hasMarkers={globePhase > 1}
                         rotate={globePhase === 1}
@@ -261,7 +304,7 @@ export default function Section2() {
                   <motion.div
                     key="section-2-content"
                     className={cn(
-                      "absolute z-30 flex h-full w-full flex-col items-center justify-center",
+                      "absolute z-20 flex h-full w-full flex-col items-center justify-center",
                       { "pointer-events-none": globePhase !== 1 },
                     )}
                   >
@@ -294,8 +337,6 @@ export default function Section2() {
                         {...{
                           isMobile,
                           globePhase,
-                          bind,
-                          setMobileGlobeTextIndex,
                           mobileGlobeTextIndex,
                         }}
                       />
@@ -306,11 +347,21 @@ export default function Section2() {
             </VideoSyncProvider>
           </div>
         </div>
-        <ScrollStep id={STEPS[0]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
-        <ScrollStep id={STEPS[1]} className="h-[100vh]" offset={0.5} onEnter={setStep} />
+        <ScrollStep
+          id={STEPS[0]}
+          className="hidden h-[100vh] xl:block"
+          offset={0.5}
+          onEnter={setStep}
+        />
+        <ScrollStep
+          id={STEPS[1]}
+          className="hidden h-[100vh] xl:block"
+          offset={0.5}
+          onEnter={setStep}
+        />
         <ScrollStep
           id={STEPS[2]}
-          className="h-[110vh] xl:h-[150vh]"
+          className="hidden h-[110vh] xl:block xl:h-[150vh]"
           offset={0.5}
           onEnter={setStep}
         />

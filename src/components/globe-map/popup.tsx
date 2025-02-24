@@ -46,18 +46,18 @@ const Popup = ({
 
   const renderPopup = (
     <div
-      className={cn("globe-popup flex justify-center", {
+      className={cn("globe-popup z-50 flex justify-center", {
         "relative -ml-[140px] -mt-[140px] xl:-ml-[140px]": !isMobile,
-        "xs:left-[calc(50%-250px)] xs:max-w-[500px] fixed top-0 z-50 h-full w-full items-center justify-center px-4 sm:left-[calc(50%-325px)] sm:max-w-[650px]":
+        "xs:left-[calc(50%-250px)] xs:max-w-[500px] absolute top-0 z-50 h-full w-full items-center justify-center px-4 sm:left-[calc(50%-325px)] sm:max-w-[650px] xl:fixed":
           isMobile,
       })}
     >
-      <div className="relative inline-flex w-fit gap-6 bg-white/20 py-8 pl-8 pr-4 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px]">
-        <div className="flex flex-col-reverse gap-6 xl:flex-row">
+      <div className="relative z-30 inline-flex w-fit gap-6 bg-white/20 py-8 pl-4 pr-4 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px] xl:pl-8">
+        <div className="flex max-h-[90vh] flex-col-reverse gap-6 overflow-y-auto xl:flex-row xl:overflow-y-hidden">
           <div className="flex items-center justify-center">
-            <div className="relative h-full w-full">
+            <div className="relative h-full w-full max-w-[65vw]">
               <Corners />
-              <VideoPlayer src={video} className="h-[280px] w-[280px]" />
+              <VideoPlayer src={video} className="h-[280px] max-h-[65vw] w-[280px] max-w-[65vw]" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -100,7 +100,7 @@ const Popup = ({
         </div>
         <button
           onClick={closePopup}
-          className="absolute -top-4 left-[calc(50%_-_9px)] flex transform items-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
+          className="absolute -top-4 left-[calc(50%_-_9px)] z-50 flex transform items-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
         >
           <Close width={14} height={14} />
         </button>
