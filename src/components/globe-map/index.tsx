@@ -59,9 +59,6 @@ export default function GlobeMap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMarkers]);
 
-  const touchMoveY = useRef<number | null>(null);
-  const touchMoveX = useRef<number | null>(null);
-
   // Handle vertical wheel events to scroll the page
   const bind = useGesture(
     {
@@ -72,35 +69,12 @@ export default function GlobeMap({
           window.scrollBy(0, delta[1]);
         }
       },
-      onTouchMove: (props) => {
-        const { event } = props;
-
-        if (touchMoveY.current === null || touchMoveX.current === null) {
-          return;
-        }
-        const currentY = event.touches[0].clientY; // Current Y position
-        const currentX = event.touches[0].clientX; // Current Y position
-
-        const deltaY = currentY - touchMoveY.current; // Vertical movement difference
-        const deltaX = currentX - touchMoveX.current; // Horizontal movement difference
-
-        if (Math.abs(deltaY) < Math.abs(deltaX)) return; // Prevent vertical scrolling if the user is trying to rotate the map
-        touchMoveY.current = currentY;
-        touchMoveX.current = currentX;
-
-        window.scrollBy(0, -deltaY);
-      },
-      onTouchStart: (props) => {
-        const { event } = props;
-        touchMoveY.current = event.touches[0].clientY;
-        touchMoveX.current = event.touches[0].clientX;
-      },
     },
     {
       eventOptions: { passive: false },
     },
   );
-  const { onWheel, onTouchMove, onTouchStart } = bind();
+  const { onWheel } = bind();
 
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
   useEffect(() => {
@@ -119,8 +93,6 @@ export default function GlobeMap({
               resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
               fallback={<div>Sorry, no WebGL supported in your browser</div>}
               onWheel={onWheel}
-              onTouchMove={onTouchMove}
-              onTouchStart={onTouchStart}
             >
               <Controls
                 canvasRef={canvasRef}

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { useGesture } from "@use-gesture/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRecoilState } from "recoil";
 
@@ -36,54 +35,85 @@ export default function Section2() {
     }
   }, [step, globePhase, setGlobePhase]);
 
-  useEffect(() => {
-    // Reset the text index when the step changes
-    setMobileGlobeTextIndex(0);
-  }, [step]);
+  const handleMobileNext = () => {
+    if (mobileGlobeTextIndex === 1 && step === STEPS[1]) {
+      return;
+    }
+    if (mobileGlobeTextIndex === 0) {
+      setMobileGlobeTextIndex(1);
+      return;
+    }
+    if (step === STEPS[0]) {
+      setMobileGlobeTextIndex(0);
+      setStep(STEPS[1]);
+    }
+  };
+
+  const handleMobilePrev = () => {
+    if (mobileGlobeTextIndex === 0 && step === STEPS[0]) {
+      return;
+    }
+    if (mobileGlobeTextIndex === 1) {
+      setMobileGlobeTextIndex(0);
+      return;
+    }
+    if (step === STEPS[1]) {
+      setMobileGlobeTextIndex(1);
+      setStep(STEPS[0]);
+    }
+  };
 
   const isMobile = useIsMobile();
+
   const renderArrows = (
-    <div className="absolute -top-8 right-0 flex items-center gap-0.5">
-      <button onClick={() => setMobileGlobeTextIndex(0)} type="button" title="Previous text">
+    <div className="absolute right-5 top-8 flex items-center gap-2.5">
+      <button
+        className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-green-700", {
+          hidden: step === STEPS[0] && mobileGlobeTextIndex === 0,
+        })}
+        onClick={handleMobilePrev}
+        type="button"
+        title="Previous text"
+      >
         <div className="sr-only">Previous text</div>
-        <ArrowRight
-          className={cn("h-6 w-6 -rotate-180 p-[2px] text-green-950", {
-            "opacity-50": mobileGlobeTextIndex === 0,
-          })}
-        />
+        <ArrowRight className="h-[30px] w-[30px] -rotate-180 p-[2px] text-light-green" />
       </button>
-      <button onClick={() => setMobileGlobeTextIndex(1)} type="button" title="Next text">
+      {step === STEPS[0] && mobileGlobeTextIndex === 0 && (
+        <p className="mr-2 text-base">Know more</p>
+      )}
+      <button
+        className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-green-700", {
+          hidden: step === STEPS[1] && mobileGlobeTextIndex === 1,
+        })}
+        onClick={handleMobileNext}
+        type="button"
+        title="Next text"
+      >
         <div className="sr-only">Next text</div>
-        <ArrowRight
-          className={cn("h-6 w-6 p-[2px] text-green-950", {
-            "opacity-50": mobileGlobeTextIndex === 1,
-          })}
-        />
+        <ArrowRight className="h-[30px] w-[30px] p-[2px] text-light-green" />
       </button>
     </div>
   );
-  const bind: ReturnType<typeof useGesture> = useGesture({
-    onDragEnd: ({ direction: [dx] }) => {
-      if (dx > 0) {
-        setMobileGlobeTextIndex(0);
-      } else if (dx < 0) {
-        setMobileGlobeTextIndex(1);
-      }
-    },
-  });
 
   return (
     <section className="relative bg-green-200 text-green-700" id="section-2">
-      <div className="relative h-[210vh] xl:h-[250vh]" id="section-2-scroll-parent">
-        <ScrollStep id={STEPS[0]} className="relative h-[100vh]" offset={0.5} onEnter={setStep} />
+      <div className="relative h-screen xl:h-[250vh]" id="section-2-scroll-parent">
         <ScrollStep
-          id={STEPS[1]}
-          className="h-[110vh] xl:h-[150vh]"
+          id={STEPS[0]}
+          className="relative hidden h-[100vh] xl:block"
           offset={0.5}
           onEnter={setStep}
         />
-        <div className="absolute top-0 h-[210vh] w-full xl:h-[250vh]">
-          <div className="sticky inset-0 top-0 h-[100vh] w-full">
+        <ScrollStep
+          id={STEPS[1]}
+          className="hidden h-[110vh] xl:block xl:h-[150vh]"
+          offset={0.5}
+          onEnter={setStep}
+        />
+
+        <div className="absolute top-0 h-screen w-full xl:h-[250vh]">
+          <div className="inset-0 top-0 h-[100vh] w-full xl:sticky">
+            {/* Desktop */}
             <div className="absolute top-0 z-10 hidden w-full translate-y-[50vh] transform xl:block">
               <div className="absolute right-6 flex h-full w-6 items-center 2xl:right-[138px]">
                 <StepDots
@@ -107,7 +137,8 @@ export default function Section2() {
                 <ArrowDown className="h-6 w-6 animate-bounce" />
               </motion.div>
             )}
-            <div className="flex h-full w-full flex-col-reverse items-center justify-center xl:container xl:flex-row xl:gap-[63px]">
+
+            <div className="flex h-screen w-full flex-col-reverse items-center justify-between xl:container xl:h-full xl:flex-row xl:justify-center xl:gap-[63px]">
               <div
                 key="section-2-title-1"
                 className="flex h-[50vh] max-h-[936px] w-full items-center justify-center xl:h-full xl:w-1/2"
@@ -122,7 +153,9 @@ export default function Section2() {
                   rotate={step !== STEPS[1]}
                 />
               </div>
-              <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-10 xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center">
+
+              <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-[100px] xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center">
+                {isMobile && renderArrows}
                 <AnimatePresence>
                   {step !== STEPS[1] ? (
                     <motion.div
@@ -130,14 +163,16 @@ export default function Section2() {
                       initial={{ opacity: 0, translateY: "200px" }}
                       animate={{ opacity: 1, translateY: 0, transition }}
                       className="max-w-[480px] space-y-3 xl:space-y-6"
-                      {...(isMobile ? bind() : {})}
                     >
-                      <h2 className="text-xl xl:text-2xl">
+                      <h2
+                        className={cn("text-xl xl:text-2xl", {
+                          hidden: isMobile && mobileGlobeTextIndex === 1,
+                        })}
+                      >
                         Digital twins are revolutionising the way to approach wind farm development
                         and energy management.
                       </h2>
                       <div className="relative">
-                        {isMobile && renderArrows}
                         {(!isMobile || mobileGlobeTextIndex === 0) && (
                           <motion.div className="text-sm leading-tight xl:text-base">
                             <p>
@@ -161,7 +196,11 @@ export default function Section2() {
                           </motion.div>
                         )}
                       </div>
-                      <p className="text-xs leading-tight">
+                      <p
+                        className={cn("text-xs leading-tight", {
+                          hidden: isMobile && mobileGlobeTextIndex === 0,
+                        })}
+                      >
                         Legend: wind energy. Data source: nextGEMS
                       </p>
                     </motion.div>
@@ -171,9 +210,7 @@ export default function Section2() {
                       initial={{ opacity: 0, translateY: "200px" }}
                       animate={{ opacity: 1, translateY: 0, transition }}
                       className="relative max-w-[480px] space-y-4 xl:space-y-6"
-                      {...(isMobile ? bind() : {})}
                     >
-                      {isMobile && renderArrows}
                       {(!isMobile || mobileGlobeTextIndex === 0) && (
                         <motion.div className="text-sm leading-tight xl:text-base">
                           <p>
@@ -201,7 +238,11 @@ export default function Section2() {
                           </p>
                         </motion.div>
                       )}
-                      <p className="text-xs leading-tight">
+                      <p
+                        className={cn("text-xs leading-tight", {
+                          hidden: isMobile && mobileGlobeTextIndex === 0,
+                        })}
+                      >
                         Legend: capacity factor. Data source: nextGEMS
                       </p>
                     </motion.div>

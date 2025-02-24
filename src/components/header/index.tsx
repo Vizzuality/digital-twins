@@ -14,6 +14,8 @@ import { MotionButton } from "@/components/button";
 import Logo from "@/svgs/logo.svg";
 import Menu from "@/svgs/menu.svg";
 
+const SCROLL_THRESHOLD = 30;
+
 export default function Header({ colorClassName = "bg-blue-900" }: { colorClassName?: string }) {
   const [, setOpenedMenu] = useRecoilState(menuAtom);
   const [isVisible, setIsVisible] = useState(true);
@@ -26,7 +28,7 @@ export default function Header({ colorClassName = "bg-blue-900" }: { colorClassN
     if (currentScrollY > lastScrollY.current) {
       // Scrolling down
       setIsVisible(false);
-    } else {
+    } else if (currentScrollY + SCROLL_THRESHOLD < lastScrollY.current) {
       // Scrolling up
       setIsVisible(true);
     }
