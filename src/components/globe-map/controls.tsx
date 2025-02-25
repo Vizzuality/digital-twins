@@ -144,7 +144,7 @@ export const Controls = ({
         .setPosition(0, 1, isMobile ? ZOOMS.home.initial.mobile : ZOOMS.home.initial.desktop, true)
         .then(() => {
           setResettingPosition(false);
-          resetSelectedMarker();
+          // resetSelectedMarker();
           setEnabled(false);
         });
     }

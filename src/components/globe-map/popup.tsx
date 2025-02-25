@@ -13,19 +13,19 @@ import { popupContent } from "./data";
 
 const Corners = () => (
   <>
-    <div className="absolute -left-1 -top-1">
+    <div className="absolute left-0 top-0">
       <div className="h-0.5 w-8 bg-white"></div>
       <div className="h-8 w-0.5 bg-white"></div>
     </div>
-    <div className="absolute -right-1 -top-1">
+    <div className="absolute right-0 top-0">
       <div className="h-0.5 w-8 bg-white"></div>
       <div className="absolute right-0 h-8 w-0.5 bg-white"></div>
     </div>
-    <div className="absolute -bottom-1 -left-1">
+    <div className="absolute bottom-0 left-0">
       <div className="absolute bottom-0 h-0.5 w-8 bg-white"></div>
       <div className="bottom-0 h-8 w-0.5 bg-white"></div>
     </div>
-    <div className="absolute -bottom-1 -right-1">
+    <div className="absolute bottom-0 right-0">
       <div className="h-0.5 w-8 bg-white"></div>
       <div className="absolute bottom-0 right-0 h-8 w-0.5 bg-white"></div>
     </div>
@@ -46,21 +46,21 @@ const Popup = ({
 
   const renderPopup = (
     <div
-      className={cn("globe-popup z-50 flex justify-center", {
+      className={cn("globe-popup flex justify-center", {
         "relative -ml-[140px] -mt-[140px] xl:-ml-[140px]": !isMobile,
-        "xs:left-[calc(50%-250px)] xs:max-w-[500px] absolute top-0 z-50 h-full w-full items-center justify-center px-4 sm:left-[calc(50%-325px)] sm:max-w-[650px] xl:fixed":
+        "xs:left-[calc(50%-250px)] xs:max-w-[500px] absolute top-0 z-30 h-full w-full items-center justify-center px-5 sm:left-[calc(50%-325px)] sm:max-w-[650px] xl:fixed xl:px-4":
           isMobile,
       })}
     >
-      <div className="relative z-30 inline-flex w-fit gap-6 bg-white/20 py-8 pl-4 pr-4 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px] xl:pl-8">
+      <div className="relative inline-flex w-fit gap-6 bg-white/20 px-8 py-8 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px] xl:pr-4">
         <div className="flex max-h-[90vh] flex-col-reverse gap-6 overflow-y-auto xl:flex-row xl:overflow-y-hidden">
           <div className="flex items-center justify-center">
-            <div className="relative h-full w-full max-w-[65vw]">
+            <div className="x-full relative w-full xl:h-[280px] xl:w-[280px]">
               <Corners />
-              <VideoPlayer src={video} className="h-[280px] max-h-[65vw] w-[280px] max-w-[65vw]" />
+              <VideoPlayer src={video} className="h-full w-full p-1.5 xl:h-[280px] xl:w-[280px]" />
             </div>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex max-w-[500px] flex-col gap-4">
             <div className="inline-flex flex-col items-start justify-start gap-2">
               <div className="flex w-full justify-between">
                 <div className="text-sm leading-relaxed xl:text-base">{title}</div>
@@ -83,8 +83,8 @@ const Popup = ({
                   </button>
                 </div>
               </div>
-              <div className="max-w-[258px] text-xl uppercase">{subtitle}</div>
-              <div className="flex w-[258px] flex-col gap-1">
+              <div className="text-xl uppercase xl:max-w-[258px]">{subtitle}</div>
+              <div className="flex flex-col gap-1 xl:w-[258px]">
                 <div className="flex w-full justify-between gap-1">
                   <div className="text-[10px] leading-3">LOW ({legend.low})</div>
                   {legend.center && <div className="text-[10px] leading-3">{legend.center}</div>}
@@ -94,15 +94,15 @@ const Popup = ({
               </div>
             </div>
             <div className="h-[160px] overflow-auto text-sm leading-tight xl:w-[304px]">
-              <div className="max-w-[258px]">{description}</div>
+              <div className="xl:max-w-[258px]">{description}</div>
             </div>
           </div>
         </div>
         <button
           onClick={closePopup}
-          className="absolute -top-4 left-[calc(50%_-_9px)] z-50 flex transform items-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
+          className="absolute -top-4 left-[calc(50%_-_9px)] z-50 flex h-10 w-10 transform items-center justify-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
         >
-          <Close width={14} height={14} />
+          <Close width={15} height={15} className="stroke-2" />
         </button>
       </div>
     </div>

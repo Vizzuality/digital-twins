@@ -4,8 +4,11 @@ import { useState, useRef, useEffect, CSSProperties, useCallback } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { useGesture } from "@use-gesture/react";
+import { useRecoilState } from "recoil";
 import { Group } from "three";
 import { useErrorBoundary } from "use-error-boundary";
+
+import { selectedGlobeMarkerAtom } from "@/store";
 
 import { Controls } from "./controls";
 import { markers } from "./data";
@@ -26,7 +29,7 @@ export default function GlobeMap({
   rotate?: boolean;
   syncId?: string;
 }) {
-  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const [selectedMarker, setSelectedMarker] = useRecoilState(selectedGlobeMarkerAtom);
   const groupRef = useRef<Group>(null!);
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
   const canvasRef = useRef<HTMLCanvasElement>(null);
