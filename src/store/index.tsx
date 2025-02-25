@@ -9,3 +9,8 @@ export const globePhaseAtom = atom({
   key: "globePhase",
   default: 0,
 });
+
+export const selectedGlobeMarkerAtom = atom<number | null>({
+  key: "globeMarkerOpen",
+  default: null,
+});

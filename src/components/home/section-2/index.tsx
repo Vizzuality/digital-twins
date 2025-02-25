@@ -4,12 +4,12 @@ import { useEffect, useState, forwardRef } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import { useIsMobile, useWindowWidth } from "@/lib/hooks";
 import { cn, scrollToSection } from "@/lib/utils";
 
-import { globePhaseAtom } from "@/store";
+import { globePhaseAtom, selectedGlobeMarkerAtom } from "@/store";
 
 import { Button } from "@/components/button";
 import GlobeMap from "@/components/globe-map";
@@ -52,9 +52,9 @@ const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref
   return (
     <motion.div
       key="section-2-phase-2-content"
-      className="flex w-[80vw] items-center justify-center bg-white/30 p-6 leading-relaxed text-green-950 backdrop-blur-lg xl:w-[517px]"
+      className="mx-5 flex items-center justify-center bg-white/30 p-6 leading-relaxed text-green-950 backdrop-blur-lg xl:mx-0 xl:w-[517px]"
       ref={ref}
-      initial={{ opacity: 0, y: "100%" }}
+      initial={{ opacity: 0, y: !isMobile ? "100%" : 0 }}
       animate={{
         opacity: 1,
         y: 0,
@@ -122,39 +122,43 @@ type MobileArrowsProps = {
   handleMobileNext: () => void;
   handleMobilePrev: () => void;
 };
-const MobileArrows = ({ step, handleMobileNext, handleMobilePrev }: MobileArrowsProps) => (
-  <div className="absolute right-5 top-8 z-30">
-    <div className="flex items-center gap-2.5">
-      <button
-        className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-light-green", {
-          hidden: step === STEPS[0],
-        })}
-        onClick={handleMobilePrev}
-        type="button"
-        title="Previous text"
-      >
-        <div className="sr-only">Previous text</div>
-        <ArrowRight className="h-[30px] w-[30px] -rotate-180 p-[2px] text-green-700" />
-      </button>
-      <button
-        className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-light-green", {
-          hidden: step === STEPS[2],
-        })}
-        onClick={handleMobileNext}
-        type="button"
-        title="Next text"
-      >
-        <div className="sr-only">Next text</div>
-        <ArrowRight className="h-[30px] w-[30px] p-[2px] text-green-700" />
-      </button>
+const MobileArrows = ({ step, handleMobileNext, handleMobilePrev }: MobileArrowsProps) => {
+  const selectedMarker = useRecoilValue(selectedGlobeMarkerAtom);
+
+  return (
+    <div className="absolute right-5 top-8 z-30">
+      <div className="flex items-center gap-2.5">
+        <button
+          className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-light-green", {
+            hidden: step === STEPS[0] || selectedMarker !== null,
+          })}
+          onClick={handleMobilePrev}
+          type="button"
+          title="Previous text"
+        >
+          <div className="sr-only">Previous text</div>
+          <ArrowRight className="h-[30px] w-[30px] -rotate-180 p-[2px] text-green-700" />
+        </button>
+        <button
+          className={cn("flex h-10 w-10 items-center justify-center rounded-full bg-light-green", {
+            hidden: step === STEPS[2],
+          })}
+          onClick={handleMobileNext}
+          type="button"
+          title="Next text"
+        >
+          <div className="sr-only">Next text</div>
+          <ArrowRight className="h-[30px] w-[30px] p-[2px] text-green-700" />
+        </button>
+      </div>
+      {step === STEPS[0] && (
+        <p className="absolute w-[100px] -translate-x-8 translate-y-10 -rotate-90 text-base text-light-green">
+          Know more
+        </p>
+      )}
     </div>
-    {step === STEPS[0] && (
-      <p className="absolute w-[100px] -translate-x-7 translate-y-10 -rotate-90 text-base text-light-green">
-        Know more
-      </p>
-    )}
-  </div>
-);
+  );
+};
 
 export default function Section2() {
   const isMobile = useIsMobile();
@@ -280,7 +284,7 @@ export default function Section2() {
                       <GlobeMap
                         className={cn(
                           "mt-[10vh] h-[120vh] transform transition-all duration-500 xl:mt-0 xl:h-full",
-                          step === STEPS[2] && "h-screen",
+                          step === STEPS[2] && "h-[80vh]",
                         )}
                         style={{ width: screenWidth }}
                         hasMarkers={globePhase > 1}
@@ -311,7 +315,7 @@ export default function Section2() {
                     {globePhase === 0 && (
                       <motion.div
                         key="section-2-phase-1-content"
-                        initial={{ opacity: 0, y: "100%" }}
+                        initial={{ opacity: 0, y: isMobile ? 0 : "100%" }}
                         animate={{
                           opacity: 1,
                           y: 0,
