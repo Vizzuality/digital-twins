@@ -284,7 +284,7 @@ export default function Section2() {
                       <GlobeMap
                         className={cn(
                           "mt-[10vh] h-[120vh] transform transition-all duration-500 xl:mt-0 xl:h-full",
-                          step === STEPS[2] && "h-[80vh]",
+                          step === STEPS[2] && "h-[80vh] xl:h-full",
                         )}
                         style={{ width: screenWidth }}
                         hasMarkers={globePhase > 1}

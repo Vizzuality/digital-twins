@@ -160,7 +160,7 @@ export default function Section2() {
                   {step !== STEPS[1] ? (
                     <motion.div
                       key="section-2-description-1"
-                      initial={{ opacity: 0, translateY: "200px" }}
+                      initial={{ opacity: 0, translateY: !isMobile ? "200px" : 0 }}
                       animate={{ opacity: 1, translateY: 0, transition }}
                       className="max-w-[480px] space-y-3 xl:space-y-6"
                     >
@@ -207,7 +207,7 @@ export default function Section2() {
                   ) : (
                     <motion.div
                       key="section-2-description-2"
-                      initial={{ opacity: 0, translateY: "200px" }}
+                      initial={{ opacity: 0, translateY: isMobile ? 0 : "200px" }}
                       animate={{ opacity: 1, translateY: 0, transition }}
                       className="relative max-w-[480px] space-y-4 xl:space-y-6"
                     >
