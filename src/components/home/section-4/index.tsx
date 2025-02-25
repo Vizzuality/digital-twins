@@ -45,6 +45,7 @@ const renderLegend = (
 const renderText1 = (
   <>
     <div>
+      <div>SIM. 01</div>
       <div className="text-base">7th AUGUST 2018</div>
       <div className="pb-2 text-xl">Western European heatwave</div>
       <div className="text-xs">Source: Destination Earth</div>
@@ -55,6 +56,7 @@ const renderText1 = (
 const renderText2 = (
   <>
     <div>
+      <div>SIM. 02</div>
       <div className="text-base">PRESENT-DAY CONDITIONS</div>
       <div className="pb-2 text-xl">Warning in a +2ºC world</div>
       <div className="text-xs">Source: Destination Earth</div>

@@ -22,6 +22,18 @@ export default function Header({ colorClassName = "bg-blue-900" }: { colorClassN
   const [isAtTop, setIsAtTop] = useState(true);
   const lastScrollY = useRef(0);
 
+  const closeTimeOut = useRef<NodeJS.Timeout | null>(null);
+
+  const handleOpenByScroll = () => {
+    if (closeTimeOut.current) {
+      clearTimeout(closeTimeOut.current);
+    }
+    setIsVisible(true);
+    closeTimeOut.current = setTimeout(() => {
+      setIsVisible(false);
+    }, 3000);
+  };
+
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
@@ -30,11 +42,21 @@ export default function Header({ colorClassName = "bg-blue-900" }: { colorClassN
       setIsVisible(false);
     } else if (currentScrollY + SCROLL_THRESHOLD < lastScrollY.current) {
       // Scrolling up
-      setIsVisible(true);
+      handleOpenByScroll();
     }
     setIsAtTop(currentScrollY === 0);
     lastScrollY.current = currentScrollY;
   };
+
+  useEffect(() => {
+    // Always show header when at top
+    if (isAtTop) {
+      if (closeTimeOut.current) {
+        clearTimeout(closeTimeOut.current);
+      }
+      setIsVisible(true);
+    }
+  }, [isAtTop]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
