@@ -5,7 +5,7 @@ import { useState, useRef, useEffect, CSSProperties, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useGesture } from "@use-gesture/react";
 import { useRecoilState } from "recoil";
-import { Group } from "three";
+import { Group, WebGLRenderer } from "three";
 import { useErrorBoundary } from "use-error-boundary";
 
 import { selectedGlobeMarkerAtom } from "@/store";
@@ -21,6 +21,7 @@ export default function GlobeMap({
   hasMarkers = false,
   rotate = false,
   syncId,
+  fallbackElement,
 }: {
   videoMaterial?: string;
   className: string;
@@ -28,6 +29,7 @@ export default function GlobeMap({
   hasMarkers?: boolean;
   rotate?: boolean;
   syncId?: string;
+  fallbackElement: JSX.Element;
 }) {
   const [selectedMarker, setSelectedMarker] = useRecoilState(selectedGlobeMarkerAtom);
   const groupRef = useRef<Group>(null!);
@@ -85,39 +87,77 @@ export default function GlobeMap({
       console.error("Globe error", error);
     }
   }, [didCatch, error]);
+
+  const [contextLoss, setContextLoss] = useState(false);
+
+  // TEST: Simulate a context lost event
+  // REMOVE BEFORE PRODUCTION
+  const [glRef, setGlRef] = useState<WebGLRenderer | null>(null);
+  useEffect(() => {
+    if (glRef) {
+      const gl = glRef.getContext(); // Get the WebGL context
+      const loseContextExt = gl?.getExtension("WEBGL_lose_context");
+      // console.log(gl);
+      if (loseContextExt) {
+        // Simulate a context lost event after 1 second
+        setTimeout(() => {
+          console.log("Simulating context lost...");
+          loseContextExt.loseContext();
+        }, 1000);
+      } else {
+        console.warn("WEBGL_lose_context extension not supported");
+      }
+    }
+  }, [glRef]);
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      canvasRef.current.addEventListener("webglcontextlost", () => {
+        setContextLoss(true);
+      });
+    }
+  }, []);
+
   return (
     <>
       <div className={className} style={style}>
         {!didCatch && (
           <ErrorBoundary>
-            <Canvas
-              camera={{ fov: 35 }}
-              ref={canvasRef}
-              resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
-              fallback={<div>Sorry, no WebGL supported in your browser</div>}
-              onWheel={onWheel}
-            >
-              <Controls
-                canvasRef={canvasRef}
-                marker={marker}
-                active={hasMarkers}
-                enabled={enabled}
-                setEnabled={setEnabled}
-                groupRef={groupRef}
-                resetSelectedMarker={resetSelectedMarker}
-              />
-              <GlobeGroup
-                groupRef={groupRef}
-                hasMarkers={hasMarkers}
-                markers={markers}
-                selectedMarker={selectedMarker}
-                setSelectedMarker={setSelectedMarker}
-                rotate={rotate}
-                setEnabled={setEnabled}
-                videoMaterial={videoMaterial}
-                syncId={syncId}
-              />
-            </Canvas>
+            {contextLoss ? (
+              fallbackElement
+            ) : (
+              <Canvas
+                camera={{ fov: 35 }}
+                ref={canvasRef}
+                resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
+                fallback={<div>Sorry, no WebGL supported in your browser</div>}
+                onWheel={onWheel}
+                onCreated={({ gl }) => {
+                  setGlRef(gl);
+                }}
+              >
+                <Controls
+                  canvasRef={canvasRef}
+                  marker={marker}
+                  active={hasMarkers}
+                  enabled={enabled}
+                  setEnabled={setEnabled}
+                  groupRef={groupRef}
+                  resetSelectedMarker={resetSelectedMarker}
+                />
+                <GlobeGroup
+                  groupRef={groupRef}
+                  hasMarkers={hasMarkers}
+                  markers={markers}
+                  selectedMarker={selectedMarker}
+                  setSelectedMarker={setSelectedMarker}
+                  rotate={rotate}
+                  setEnabled={setEnabled}
+                  videoMaterial={videoMaterial}
+                  syncId={syncId}
+                />
+              </Canvas>
+            )}
           </ErrorBoundary>
         )}
       </div>

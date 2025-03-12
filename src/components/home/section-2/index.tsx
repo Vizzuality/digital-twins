@@ -2,6 +2,8 @@
 
 import { useEffect, useState, forwardRef } from "react";
 
+import Image from "next/image";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Resizable } from "re-resizable";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -22,6 +24,8 @@ import ArrowRight from "@/svgs/arrow-right.svg";
 import CaretRight from "@/svgs/caret-right.svg";
 
 import InfoPopover from "../../info-popover";
+
+import FallbackPopups from "./fallback-popups";
 
 const ResizeButton = () => (
   <>
@@ -260,6 +264,17 @@ export default function Section2() {
                   videoMaterial="videos/stream-videos/wind_speed_global_10km/index.m3u8"
                   style={{ width: screenWidth }}
                   syncId="section-2"
+                  fallbackElement={
+                    <div className="flex h-[90vh] w-full items-end justify-center xl:mt-[10vh]">
+                      <Image
+                        src="/images/globe_video.png"
+                        alt="Context lost"
+                        className="h-[120vw] w-[120vw] object-cover xl:h-full xl:object-contain"
+                        width={400}
+                        height={400}
+                      />
+                    </div>
+                  }
                 />
                 <div className="absolute inset-0 z-20 w-full">
                   <Resizable
@@ -298,6 +313,27 @@ export default function Section2() {
                               : undefined
                         }
                         syncId="section-2"
+                        fallbackElement={
+                          <div className="flex h-[90vh] w-full items-end justify-center xl:mt-[10vh]">
+                            <Image
+                              src={
+                                globePhase === 0
+                                  ? "/images/globe_video_lq.png"
+                                  : globePhase === 1
+                                    ? "/images/globe_video.png"
+                                    : "/images/globe-line.png"
+                              }
+                              alt="Context lost"
+                              className={cn(
+                                "h-[120vw] w-[120vw] object-cover xl:h-full xl:object-contain",
+                                step === STEPS[2] && "h-full w-full object-contain px-4",
+                              )}
+                              width={400}
+                              height={400}
+                            />
+                            {step === STEPS[2] && <FallbackPopups />}
+                          </div>
+                        }
                       />
                     </div>
                   </Resizable>

@@ -36,10 +36,12 @@ const Popup = ({
   closePopup,
   setSelectedMarker,
   index,
+  isFallback,
 }: {
-  closePopup: () => void;
+  closePopup?: () => void;
   setSelectedMarker: (index: number) => void;
   index: number;
+  isFallback?: boolean;
 }) => {
   const { title, subtitle, description, video, legend } = popupContent[index];
   const isMobile = useIsMobile();
@@ -50,9 +52,10 @@ const Popup = ({
         "relative -ml-[140px] -mt-[140px] xl:-ml-[140px]": !isMobile,
         "xs:left-[calc(50%-250px)] xs:max-w-[500px] absolute top-0 z-30 h-full w-full items-center justify-center px-5 sm:left-[calc(50%-325px)] sm:max-w-[650px] xl:fixed xl:px-4":
           isMobile,
+        "pointer-events-none h-screen items-end pb-4 sm:items-center": isFallback,
       })}
     >
-      <div className="relative inline-flex w-fit gap-6 bg-white/20 px-8 py-8 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px] xl:pr-4">
+      <div className="pointer-events-auto relative inline-flex w-fit gap-6 bg-white/20 px-8 py-8 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px] xl:pr-4">
         <div className="flex max-h-[90vh] flex-col-reverse gap-6 overflow-y-auto xl:flex-row xl:overflow-y-hidden">
           <div className="flex items-center justify-center">
             <div className="x-full relative w-full xl:h-[280px] xl:w-[280px]">
@@ -98,12 +101,14 @@ const Popup = ({
             </div>
           </div>
         </div>
-        <button
-          onClick={closePopup}
-          className="absolute -top-4 left-[calc(50%_-_9px)] z-50 flex h-10 w-10 transform items-center justify-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
-        >
-          <Close width={15} height={15} className="stroke-2" />
-        </button>
+        {!!closePopup && (
+          <button
+            onClick={closePopup}
+            className="absolute -top-4 left-[calc(50%_-_9px)] z-50 flex h-10 w-10 transform items-center justify-center gap-[7px] rounded-full bg-light-green p-[9px] transition-transform hover:rotate-45"
+          >
+            <Close width={15} height={15} className="stroke-2" />
+          </button>
+        )}
       </div>
     </div>
   );
