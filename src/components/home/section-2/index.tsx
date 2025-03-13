@@ -128,7 +128,6 @@ type MobileArrowsProps = {
 };
 const MobileArrows = ({ step, handleMobileNext, handleMobilePrev }: MobileArrowsProps) => {
   const selectedMarker = useRecoilValue(selectedGlobeMarkerAtom);
-  console.log({ selectedMarker });
 
   return (
     <div className="absolute right-5 top-8 z-30">
