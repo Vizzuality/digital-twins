@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import Image from "next/image";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { useRecoilState } from "recoil";
 
@@ -144,13 +146,28 @@ export default function Section2() {
                 className="flex h-[50vh] max-h-[936px] w-full items-center justify-center xl:h-full xl:w-1/2"
               >
                 <GlobeMap
-                  className="h-full w-full"
+                  className="flex h-full w-full items-center"
                   videoMaterial={
                     step === STEPS[1]
                       ? "videos/capacity_factor_10km.mp4"
                       : "videos/stream-videos/wind_speed_global_10km/index.m3u8"
                   }
                   rotate={step !== STEPS[1]}
+                  fallbackElement={
+                    <div className="contextLoss flex h-full max-h-[80vw] w-full items-center justify-center p-4 sm:max-h-[600px]">
+                      <Image
+                        src={
+                          step === STEPS[1]
+                            ? "/images/energy-globe-1.png"
+                            : "/images/energy-globe-2.png"
+                        }
+                        alt="Context lost"
+                        className="h-full w-full object-contain"
+                        width={400}
+                        height={400}
+                      />
+                    </div>
+                  }
                 />
               </div>
 

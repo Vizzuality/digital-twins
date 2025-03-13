@@ -21,6 +21,7 @@ export default function GlobeMap({
   hasMarkers = false,
   rotate = false,
   syncId,
+  fallbackElement,
 }: {
   videoMaterial?: string;
   className: string;
@@ -28,6 +29,7 @@ export default function GlobeMap({
   hasMarkers?: boolean;
   rotate?: boolean;
   syncId?: string;
+  fallbackElement: JSX.Element;
 }) {
   const [selectedMarker, setSelectedMarker] = useRecoilState(selectedGlobeMarkerAtom);
   const groupRef = useRef<Group>(null!);
@@ -85,40 +87,58 @@ export default function GlobeMap({
       console.error("Globe error", error);
     }
   }, [didCatch, error]);
+
+  const [contextLoss, setContextLoss] = useState(false);
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      canvasRef.current.addEventListener("webglcontextlost", () => {
+        setContextLoss(true);
+      });
+    }
+  }, []);
+
   return (
     <>
       <div className={className} style={style}>
-        {!didCatch && (
+        {!didCatch ? (
           <ErrorBoundary>
-            <Canvas
-              camera={{ fov: 35 }}
-              ref={canvasRef}
-              resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
-              fallback={<div>Sorry, no WebGL supported in your browser</div>}
-              onWheel={onWheel}
-            >
-              <Controls
-                canvasRef={canvasRef}
-                marker={marker}
-                active={hasMarkers}
-                enabled={enabled}
-                setEnabled={setEnabled}
-                groupRef={groupRef}
-                resetSelectedMarker={resetSelectedMarker}
-              />
-              <GlobeGroup
-                groupRef={groupRef}
-                hasMarkers={hasMarkers}
-                markers={markers}
-                selectedMarker={selectedMarker}
-                setSelectedMarker={setSelectedMarker}
-                rotate={rotate}
-                setEnabled={setEnabled}
-                videoMaterial={videoMaterial}
-                syncId={syncId}
-              />
-            </Canvas>
+            {/* The error boundary doesn't catch the context loss error, so it is handled separately */}
+            {contextLoss ? (
+              fallbackElement
+            ) : (
+              <Canvas
+                camera={{ fov: 35 }}
+                ref={canvasRef}
+                resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
+                fallback={<div>Sorry, no WebGL supported in your browser</div>}
+                onWheel={onWheel}
+              >
+                <Controls
+                  canvasRef={canvasRef}
+                  marker={marker}
+                  active={hasMarkers}
+                  enabled={enabled}
+                  setEnabled={setEnabled}
+                  groupRef={groupRef}
+                  resetSelectedMarker={resetSelectedMarker}
+                />
+                <GlobeGroup
+                  groupRef={groupRef}
+                  hasMarkers={hasMarkers}
+                  markers={markers}
+                  selectedMarker={selectedMarker}
+                  setSelectedMarker={setSelectedMarker}
+                  rotate={rotate}
+                  setEnabled={setEnabled}
+                  videoMaterial={videoMaterial}
+                  syncId={syncId}
+                />
+              </Canvas>
+            )}
           </ErrorBoundary>
+        ) : (
+          fallbackElement // Fallback element in case the error boundary catches an error
         )}
       </div>
     </>
