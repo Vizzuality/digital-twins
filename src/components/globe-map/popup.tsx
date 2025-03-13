@@ -52,7 +52,7 @@ const Popup = ({
         "relative -ml-[140px] -mt-[140px] xl:-ml-[140px]": !isMobile,
         "xs:left-[calc(50%-250px)] xs:max-w-[500px] absolute top-0 z-30 h-full w-full items-center justify-center px-5 sm:left-[calc(50%-325px)] sm:max-w-[650px] xl:fixed xl:px-4":
           isMobile,
-        "pointer-events-none h-screen items-end pb-4 sm:items-center": isFallback,
+        "pointer-events-none h-screen items-end pb-4 sm:items-center xl:ml-0": isFallback,
       })}
     >
       <div className="pointer-events-auto relative inline-flex w-fit gap-6 bg-white/20 px-8 py-8 text-white backdrop-blur-[15px] xl:h-[344px] xl:w-[662px] xl:pr-4">

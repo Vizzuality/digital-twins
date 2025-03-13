@@ -128,6 +128,7 @@ type MobileArrowsProps = {
 };
 const MobileArrows = ({ step, handleMobileNext, handleMobilePrev }: MobileArrowsProps) => {
   const selectedMarker = useRecoilValue(selectedGlobeMarkerAtom);
+  console.log({ selectedMarker });
 
   return (
     <div className="absolute right-5 top-8 z-30">
@@ -265,11 +266,11 @@ export default function Section2() {
                   style={{ width: screenWidth }}
                   syncId="section-2"
                   fallbackElement={
-                    <div className="flex h-[90vh] w-full items-end justify-center xl:mt-[10vh]">
+                    <div className="flex h-[90vh] w-full items-end justify-center sm:mt-[10vh]">
                       <Image
                         src="/images/globe_video.png"
                         alt="Context lost"
-                        className="h-[120vw] w-[120vw] object-cover xl:h-full xl:object-contain"
+                        className="h-[140vw] w-[140vw] object-cover object-bottom sm:h-[120vw] sm:w-[120vw] lg:mt-0 lg:h-[100vw] lg:w-[100vw] lg:object-contain xl:h-[70vw] xl:w-[70vw]"
                         width={400}
                         height={400}
                       />
@@ -325,8 +326,9 @@ export default function Section2() {
                               }
                               alt="Context lost"
                               className={cn(
-                                "h-[120vw] w-[120vw] object-cover xl:h-full xl:object-contain",
-                                step === STEPS[2] && "h-full w-full object-contain px-4",
+                                "h-[140vw] w-[140vw] object-cover object-bottom sm:h-[120vw] sm:w-[120vw] lg:mt-0 lg:h-[100vw] lg:w-[100vw] lg:object-contain xl:h-[70vw] xl:w-[70vw]",
+                                step === STEPS[2] &&
+                                  "h-full w-full object-contain object-center px-4 lg:h-[70vw] lg:w-[70vw]",
                               )}
                               width={400}
                               height={400}

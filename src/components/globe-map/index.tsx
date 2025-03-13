@@ -5,7 +5,7 @@ import { useState, useRef, useEffect, CSSProperties, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useGesture } from "@use-gesture/react";
 import { useRecoilState } from "recoil";
-import { Group, WebGLRenderer } from "three";
+import { Group } from "three";
 import { useErrorBoundary } from "use-error-boundary";
 
 import { selectedGlobeMarkerAtom } from "@/store";
@@ -90,26 +90,6 @@ export default function GlobeMap({
 
   const [contextLoss, setContextLoss] = useState(false);
 
-  // TEST: Simulate a context lost event
-  // REMOVE BEFORE PRODUCTION
-  const [glRef, setGlRef] = useState<WebGLRenderer | null>(null);
-  useEffect(() => {
-    if (glRef) {
-      const gl = glRef.getContext(); // Get the WebGL context
-      const loseContextExt = gl?.getExtension("WEBGL_lose_context");
-      // console.log(gl);
-      if (loseContextExt) {
-        // Simulate a context lost event after 1 second
-        setTimeout(() => {
-          console.log("Simulating context lost...");
-          loseContextExt.loseContext();
-        }, 1000);
-      } else {
-        console.warn("WEBGL_lose_context extension not supported");
-      }
-    }
-  }, [glRef]);
-
   useEffect(() => {
     if (canvasRef.current) {
       canvasRef.current.addEventListener("webglcontextlost", () => {
@@ -121,8 +101,9 @@ export default function GlobeMap({
   return (
     <>
       <div className={className} style={style}>
-        {!didCatch && (
+        {!didCatch ? (
           <ErrorBoundary>
+            {/* The error boundary doesn't catch the context loss error, so it is handled separately */}
             {contextLoss ? (
               fallbackElement
             ) : (
@@ -132,9 +113,6 @@ export default function GlobeMap({
                 resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
                 fallback={<div>Sorry, no WebGL supported in your browser</div>}
                 onWheel={onWheel}
-                onCreated={({ gl }) => {
-                  setGlRef(gl);
-                }}
               >
                 <Controls
                   canvasRef={canvasRef}
@@ -159,6 +137,8 @@ export default function GlobeMap({
               </Canvas>
             )}
           </ErrorBoundary>
+        ) : (
+          fallbackElement // Fallback element in case the error boundary catches an error
         )}
       </div>
     </>
