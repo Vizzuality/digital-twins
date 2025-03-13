@@ -101,44 +101,40 @@ export default function GlobeMap({
   return (
     <>
       <div className={className} style={style}>
-        {!didCatch ? (
-          <ErrorBoundary>
-            {/* The error boundary doesn't catch the context loss error, so it is handled separately */}
-            {contextLoss ? (
-              fallbackElement
-            ) : (
-              <Canvas
-                camera={{ fov: 35 }}
-                ref={canvasRef}
-                resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
-                fallback={<div>Sorry, no WebGL supported in your browser</div>}
-                onWheel={onWheel}
-              >
-                <Controls
-                  canvasRef={canvasRef}
-                  marker={marker}
-                  active={hasMarkers}
-                  enabled={enabled}
-                  setEnabled={setEnabled}
-                  groupRef={groupRef}
-                  resetSelectedMarker={resetSelectedMarker}
-                />
-                <GlobeGroup
-                  groupRef={groupRef}
-                  hasMarkers={hasMarkers}
-                  markers={markers}
-                  selectedMarker={selectedMarker}
-                  setSelectedMarker={setSelectedMarker}
-                  rotate={rotate}
-                  setEnabled={setEnabled}
-                  videoMaterial={videoMaterial}
-                  syncId={syncId}
-                />
-              </Canvas>
-            )}
-          </ErrorBoundary>
+        {/* The error boundary doesn't catch the context loss error, so it is handled separately */}
+        {contextLoss || didCatch ? (
+          fallbackElement
         ) : (
-          fallbackElement // Fallback element in case the error boundary catches an error
+          <ErrorBoundary>
+            <Canvas
+              camera={{ fov: 35 }}
+              ref={canvasRef}
+              resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
+              fallback={<div>Sorry, no WebGL supported in your browser</div>}
+              onWheel={onWheel}
+            >
+              <Controls
+                canvasRef={canvasRef}
+                marker={marker}
+                active={hasMarkers}
+                enabled={enabled}
+                setEnabled={setEnabled}
+                groupRef={groupRef}
+                resetSelectedMarker={resetSelectedMarker}
+              />
+              <GlobeGroup
+                groupRef={groupRef}
+                hasMarkers={hasMarkers}
+                markers={markers}
+                selectedMarker={selectedMarker}
+                setSelectedMarker={setSelectedMarker}
+                rotate={rotate}
+                setEnabled={setEnabled}
+                videoMaterial={videoMaterial}
+                syncId={syncId}
+              />
+            </Canvas>
+          </ErrorBoundary>
         )}
       </div>
     </>
