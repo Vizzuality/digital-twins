@@ -56,3 +56,31 @@ export const useIsMobile = () => {
 
   return isMobile;
 };
+
+/**
+ * Custom hook to detect if the device is an iPad
+ * @returns {boolean} True if the device is detected as an iPad
+ */
+export function useIsIpad(): boolean {
+  const [isIpad, setIsIpad] = useState(false);
+
+  useEffect(() => {
+    const checkIsIpad = () => {
+      const isIOS =
+        /iPad|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      const isTablet = isIOS && window.innerWidth > 767;
+
+      setIsIpad(isTablet);
+    };
+
+    checkIsIpad();
+
+    // Also check on resize in case of orientation changes
+    window.addEventListener("resize", checkIsIpad);
+    return () => window.removeEventListener("resize", checkIsIpad);
+  }, []);
+
+  return isIpad;
+}
