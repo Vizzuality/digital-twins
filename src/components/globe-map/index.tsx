@@ -94,7 +94,7 @@ export default function GlobeMap(props: {
   // Check if the device is an iPad. We have problems with context loss on old iPads.
   // The context loss is not handled correctly in the react-three-fiber library and was causing a loop crashing the app.
   // This is a workaround to avoid the issue.
-  const isIpad = true; //useIsIpad();
+  const isIpad = useIsIpad();
 
   return (
     <>
