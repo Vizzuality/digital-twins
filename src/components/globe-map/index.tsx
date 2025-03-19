@@ -8,21 +8,15 @@ import { useRecoilState } from "recoil";
 import { Group } from "three";
 import { useErrorBoundary } from "use-error-boundary";
 
+import { useIsIpad } from "@/lib/hooks";
+
 import { selectedGlobeMarkerAtom } from "@/store";
 
 import { Controls } from "./controls";
 import { markers } from "./data";
 import GlobeGroup from "./globe-group";
 
-export default function GlobeMap({
-  videoMaterial,
-  className,
-  style,
-  hasMarkers = false,
-  rotate = false,
-  syncId,
-  fallbackElement,
-}: {
+export default function GlobeMap(props: {
   videoMaterial?: string;
   className: string;
   style?: CSSProperties;
@@ -31,6 +25,15 @@ export default function GlobeMap({
   syncId?: string;
   fallbackElement: JSX.Element;
 }) {
+  const {
+    videoMaterial,
+    className,
+    style,
+    hasMarkers = false,
+    rotate = false,
+    syncId,
+    fallbackElement,
+  } = props;
   const [selectedMarker, setSelectedMarker] = useRecoilState(selectedGlobeMarkerAtom);
   const groupRef = useRef<Group>(null!);
   const marker = selectedMarker !== null ? markers[selectedMarker] : undefined;
@@ -88,21 +91,15 @@ export default function GlobeMap({
     }
   }, [didCatch, error]);
 
-  const [contextLoss, setContextLoss] = useState(false);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      canvasRef.current.addEventListener("webglcontextlost", () => {
-        setContextLoss(true);
-      });
-    }
-  }, []);
+  // Check if the device is an iPad. We have problems with context loss on old iPads.
+  // The context loss is not handled correctly in the react-three-fiber library and was causing a loop crashing the app.
+  // This is a workaround to avoid the issue.
+  const isIpad = useIsIpad();
 
   return (
     <>
       <div className={className} style={style}>
-        {/* The error boundary doesn't catch the context loss error, so it is handled separately */}
-        {contextLoss || didCatch ? (
+        {isIpad || didCatch ? (
           fallbackElement
         ) : (
           <ErrorBoundary>
