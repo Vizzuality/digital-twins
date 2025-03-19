@@ -269,7 +269,7 @@ export default function Section2() {
                       <Image
                         src="/images/globe_video.png"
                         alt="Context lost"
-                        className="h-[140vw] w-[140vw] max-w-[140vw] translate-y-[20%] object-contain object-bottom sm:h-[120vw] sm:w-[120vw] sm:max-w-[120vw] lg:mt-0 lg:h-[90vw] lg:w-[90vw] lg:translate-y-[30%] lg:object-contain xl:h-[70vw] xl:w-[70vw]"
+                        className="h-[140vw] w-[140vw] max-w-[140vw] translate-y-[20%] object-contain object-bottom sm:h-[120vw] sm:w-[120vw] sm:max-w-[120vw] lg:mt-0 lg:h-[110vw] lg:w-[110vw] lg:translate-y-[30%] lg:object-contain xl:h-[80vw] xl:w-[80vw]"
                         width={400}
                         height={400}
                       />
@@ -325,7 +325,7 @@ export default function Section2() {
                               }
                               alt="Context lost"
                               className={cn(
-                                "h-[140vw] w-[140vw] max-w-[140vw] translate-y-[20%] object-contain object-bottom sm:h-[120vw] sm:w-[120vw] sm:max-w-[120vw] lg:mt-0 lg:h-[90vw] lg:w-[90vw] lg:translate-y-[30%] lg:object-contain xl:h-[70vw] xl:w-[70vw]",
+                                "h-[140vw] w-[140vw] max-w-[140vw] translate-y-[20%] object-contain object-bottom sm:h-[120vw] sm:w-[120vw] sm:max-w-[120vw] lg:mt-0 lg:h-[110vw] lg:w-[110vw] lg:translate-y-[30%] lg:object-contain xl:h-[80vw] xl:w-[80vw]",
                                 step === STEPS[2] &&
                                   "h-full w-full object-contain object-center px-4 lg:h-[70vw] lg:w-[70vw]",
                               )}
