@@ -1,11 +1,13 @@
 // import { useEffect, useMemo } from "react";
 
+import { useEffect } from "react";
+
 import { useVideoTexture } from "@react-three/drei";
 import { NearestFilter } from "three";
 
 // import { useVideoSync } from "../video-sync-context";
 
-function VideoMaterial({ url }: { url: string; syncId?: string }) {
+function VideoMaterial({ url, inView, sync }: { url: string; sync?: boolean; inView?: boolean }) {
   // NOTE: the sync video feature was removed due to bugs generated in Safari and iOS devices
   // const videoSyncContext = useVideoSync(syncId);
 
@@ -18,12 +20,23 @@ function VideoMaterial({ url }: { url: string; syncId?: string }) {
     playsInline: true,
     autoplay: true,
     muted: true,
-    // Start videos paused to sync them. Only autoplay if it's an iphone using safari
     start: true,
   });
 
   texture.minFilter = NearestFilter;
   texture.magFilter = NearestFilter;
+
+  useEffect(() => {
+    // If sync is enabled, we need play the videos when it's in view
+    if (sync) {
+      if (inView) {
+        texture.source.data.currentTime = 0;
+        texture.source.data.play();
+      } else {
+        texture.source.data.pause();
+      }
+    }
+  }, [inView, texture, sync]);
 
   // useEffect(() => {
   //   const currentVideoRef = texture.source.data;

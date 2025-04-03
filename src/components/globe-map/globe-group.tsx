@@ -14,7 +14,8 @@ const GlobeGroup = ({
   rotate,
   videoMaterial,
   groupRef,
-  syncId,
+  sync,
+  isInView,
 }: {
   hasMarkers: boolean;
   markers: typeof MarkerType;
@@ -24,7 +25,8 @@ const GlobeGroup = ({
   rotate: boolean;
   videoMaterial?: string;
   groupRef: React.MutableRefObject<Group>;
-  syncId?: string;
+  sync?: boolean;
+  isInView: boolean;
 }) => {
   useFrame(() => {
     if (rotate && groupRef.current) {
@@ -34,7 +36,7 @@ const GlobeGroup = ({
 
   return (
     <group position={[0, 0, 0]} ref={groupRef}>
-      <Globe videoMaterial={videoMaterial} syncId={syncId} />
+      <Globe inView={isInView} videoMaterial={videoMaterial} sync={sync} />
       {hasMarkers &&
         markers.map((marker, index) => (
           <Marker
