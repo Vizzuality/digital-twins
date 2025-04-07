@@ -31,7 +31,7 @@ const ResizeButton = () => (
   <>
     <Button
       className={cn(
-        "absolute -left-[130px] top-[60%] z-10 border-0 bg-green-950 px-[18px] py-[14px] font-semibold text-white xl:-left-[180px] xl:top-[85%]",
+        "absolute -left-[130px] top-[65%] z-10 border-0 bg-green-950 px-[18px] py-[14px] font-semibold text-white xl:-left-[180px] xl:top-[85%]",
       )}
     >
       <div className="text-center text-2xs uppercase xl:text-sm">low resolution</div>
@@ -314,7 +314,7 @@ export default function Section2() {
                         }
                         sync={globePhase === 0}
                         fallbackElement={
-                          <div className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center">
+                          <div className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center sm:top-[-10vh] xl:top-0">
                             <Image
                               src={
                                 globePhase === 0
@@ -325,8 +325,10 @@ export default function Section2() {
                               }
                               alt="Context lost"
                               className={cn(
-                                "h-[65vh] min-h-[60vw] w-[65vh] min-w-[60vw] object-cover transition-all duration-700",
-                                step === STEPS[2] && "h-[90vh] min-h-[80vw] w-[90vh] min-w-[80vw]",
+                                "h-[65vh] min-h-[60vw] w-[65vh] min-w-[60vw] object-cover",
+                                step === STEPS[2] &&
+                                  "h-[90vh] min-h-[80vw] w-[90vh] min-w-[80vw] object-center",
+                                step !== STEPS[0] && "transition-all duration-700",
                               )}
                               width={400}
                               height={400}
