@@ -31,7 +31,7 @@ const ResizeButton = () => (
   <>
     <Button
       className={cn(
-        "absolute -left-[130px] top-[85%] z-10 border-0 bg-green-950 px-[18px] py-[14px] font-semibold text-white xl:-left-[180px]",
+        "absolute -left-[130px] top-[65%] z-10 border-0 bg-green-950 px-[18px] py-[14px] font-semibold text-white xl:-left-[180px] xl:top-[85%]",
       )}
     >
       <div className="text-center text-2xs uppercase xl:text-sm">low resolution</div>
@@ -56,7 +56,7 @@ const Phase2Content = forwardRef<HTMLDivElement, Phase2ContentProps>((props, ref
   return (
     <motion.div
       key="section-2-phase-2-content"
-      className="mx-5 flex items-center justify-center bg-white/30 p-6 leading-relaxed text-green-950 backdrop-blur-lg xl:mx-0 xl:w-[517px]"
+      className="mx-5 flex items-center justify-center bg-white/30 p-6 leading-relaxed text-green-950 backdrop-blur-lg sm:max-w-[50vw] xl:mx-0 xl:w-[517px]"
       ref={ref}
       initial={{ opacity: 0, y: !isMobile ? "100%" : 0 }}
       animate={{
@@ -263,13 +263,13 @@ export default function Section2() {
                   })}
                   videoMaterial="videos/stream-videos/wind_speed_global_10km/index.m3u8"
                   style={{ width: screenWidth }}
-                  syncId="section-2"
+                  sync={globePhase === 0}
                   fallbackElement={
-                    <div className="flex h-[90vh] w-full items-end justify-center sm:mt-[10vh]">
+                    <div className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center">
                       <Image
                         src="/images/globe_video.png"
                         alt="Context lost"
-                        className="h-[140vw] w-[140vw] max-w-[140vw] translate-y-[20%] object-contain object-bottom sm:h-[120vw] sm:w-[120vw] sm:max-w-[120vw] lg:mt-0 lg:h-[110vw] lg:w-[110vw] lg:translate-y-[30%] lg:object-contain xl:h-[80vw] xl:w-[80vw]"
+                        className="h-[65vh] min-h-[60vw] w-[65vh] min-w-[60vw] object-cover"
                         width={400}
                         height={400}
                       />
@@ -312,9 +312,9 @@ export default function Section2() {
                               ? "videos/stream-videos/wind_speed_global_10km/index.m3u8"
                               : undefined
                         }
-                        syncId="section-2"
+                        sync={globePhase === 0}
                         fallbackElement={
-                          <div className="flex h-[90vh] w-full items-end justify-center xl:mt-[10vh]">
+                          <div className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center sm:top-[-10vh] xl:top-0">
                             <Image
                               src={
                                 globePhase === 0
@@ -325,9 +325,10 @@ export default function Section2() {
                               }
                               alt="Context lost"
                               className={cn(
-                                "h-[140vw] w-[140vw] max-w-[140vw] translate-y-[20%] object-contain object-bottom sm:h-[120vw] sm:w-[120vw] sm:max-w-[120vw] lg:mt-0 lg:h-[110vw] lg:w-[110vw] lg:translate-y-[30%] lg:object-contain xl:h-[80vw] xl:w-[80vw]",
+                                "h-[65vh] min-h-[60vw] w-[65vh] min-w-[60vw] object-cover",
                                 step === STEPS[2] &&
-                                  "h-full w-full object-contain object-center px-4 lg:h-[70vw] lg:w-[70vw]",
+                                  "h-[90vh] min-h-[80vw] w-[90vh] min-w-[80vw] object-center",
+                                step !== STEPS[0] && "transition-all duration-700",
                               )}
                               width={400}
                               height={400}

@@ -140,13 +140,13 @@ export default function Section2() {
               </motion.div>
             )}
 
-            <div className="flex h-screen w-full flex-col-reverse items-center justify-between xl:container xl:h-full xl:flex-row xl:justify-center xl:gap-[63px]">
+            <div className="flex h-screen w-full flex-col-reverse items-center justify-end xl:container xl:h-full xl:flex-row xl:justify-center xl:gap-[63px]">
               <div
                 key="section-2-title-1"
-                className="flex h-[50vh] max-h-[936px] w-full items-center justify-center xl:h-full xl:w-1/2"
+                className="flex h-full max-h-[936px] w-full items-center justify-center xl:w-1/2"
               >
                 <GlobeMap
-                  className="flex h-full w-full items-center"
+                  className="flex h-[130vw] w-[130vw] items-center sm:h-full sm:w-full"
                   videoMaterial={
                     step === STEPS[1]
                       ? "videos/capacity_factor_10km.mp4"
@@ -154,7 +154,7 @@ export default function Section2() {
                   }
                   rotate={step !== STEPS[1]}
                   fallbackElement={
-                    <div className="contextLoss flex h-full max-h-[80vw] w-full items-center justify-center p-4 sm:max-h-[600px]">
+                    <div className="container flex h-full w-full items-center justify-center p-4 sm:max-h-[80vw]">
                       <Image
                         src={
                           step === STEPS[1]
@@ -162,7 +162,7 @@ export default function Section2() {
                             : "/images/energy-globe-2.png"
                         }
                         alt="Context lost"
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-contain object-top xl:object-center"
                         width={400}
                         height={400}
                       />
@@ -171,7 +171,7 @@ export default function Section2() {
                 />
               </div>
 
-              <div className="flex w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-[100px] xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center">
+              <div className="flex h-[45vh] w-full flex-col max-xl:container max-xl:max-h-[60vh] max-xl:pt-[100px] sm:h-[30vh] lg:h-[25vh] xl:h-full xl:w-1/2 xl:max-w-[612px] xl:justify-center lg:landscape:h-[30vh]">
                 {isMobile && renderArrows}
                 <AnimatePresence>
                   {step !== STEPS[1] ? (

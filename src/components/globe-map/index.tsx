@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, CSSProperties, useCallback } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { useGesture } from "@use-gesture/react";
+import { useInView } from "framer-motion";
 import { useRecoilState } from "recoil";
 import { Group } from "three";
 import { useErrorBoundary } from "use-error-boundary";
@@ -22,7 +23,7 @@ export default function GlobeMap(props: {
   style?: CSSProperties;
   hasMarkers?: boolean;
   rotate?: boolean;
-  syncId?: string;
+  sync?: boolean;
   fallbackElement: JSX.Element;
 }) {
   const {
@@ -31,7 +32,7 @@ export default function GlobeMap(props: {
     style,
     hasMarkers = false,
     rotate = false,
-    syncId,
+    sync,
     fallbackElement,
   } = props;
   const [selectedMarker, setSelectedMarker] = useRecoilState(selectedGlobeMarkerAtom);
@@ -96,6 +97,8 @@ export default function GlobeMap(props: {
   // This is a workaround to avoid the issue.
   const isIpad = useIsIpad();
 
+  const isInView = useInView(canvasRef);
+
   return (
     <>
       <div className={className} style={style}>
@@ -120,6 +123,7 @@ export default function GlobeMap(props: {
                 resetSelectedMarker={resetSelectedMarker}
               />
               <GlobeGroup
+                isInView={isInView}
                 groupRef={groupRef}
                 hasMarkers={hasMarkers}
                 markers={markers}
@@ -128,7 +132,7 @@ export default function GlobeMap(props: {
                 rotate={rotate}
                 setEnabled={setEnabled}
                 videoMaterial={videoMaterial}
-                syncId={syncId}
+                sync={sync}
               />
             </Canvas>
           </ErrorBoundary>
