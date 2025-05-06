@@ -1,0 +1,14 @@
+node_modules
+dist
+coverage
+Dockerfile
+.env
+.env.*
+*.log
+*.log.*
+*.tsbuildinfo
+DS_Store
+Thumbs.db
+.vscode
+.idea
+*.iml

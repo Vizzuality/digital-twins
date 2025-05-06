@@ -46,4 +46,10 @@ const nextConfig = {
   },
 };
 
+// Allow standalone builds on production
+// https://nextjs.org/docs/app/api-reference/config/next-config-js/output#automatically-copying-traced-files
+if (process.env.NODE_ENV === "production") {
+  nextConfig.output = 'standalone';
+}
+
 export default nextConfig;
