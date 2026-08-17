@@ -1,4 +1,4 @@
-FROM node:22.15.0-slim AS base
+FROM node:24.19.0-slim AS base
 
 # Install dependencies required for sharp to work properly
 RUN apt-get update \
